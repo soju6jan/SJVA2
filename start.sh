@@ -1,7 +1,6 @@
 #! /bin/sh
 nohup redis-server &
 COUNT=0
-python -OO sjva.py 0 ${COUNT}
 while [ 1 ];
 do
     git reset --hard HEAD
