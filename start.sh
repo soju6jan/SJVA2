@@ -1,4 +1,4 @@
-#! /bin/sh
+﻿#! /bin/sh
 nohup redis-server &
 COUNT=0
 while [ 1 ];
