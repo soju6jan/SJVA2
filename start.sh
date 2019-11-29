@@ -1,4 +1,5 @@
 #! /bin/sh
+nohup redis-server &
 COUNT=0
 while [ 1 ];
 do
@@ -16,8 +17,7 @@ do
         python -OO -m flask db migrate
         python -OO -m flask db upgrade
     fi
-    nohup redis-server &
-    nohup /app/consumer_start.sh &
+    nohup sh /app/consumer_start.sh &
     python -OO sjva.py 0 ${COUNT}
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
