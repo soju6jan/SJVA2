@@ -1,6 +1,7 @@
 #! /bin/sh
-nohup redis-server &
+#nohup redis-server &
 COUNT=0
+python -OO sjva.py 0 ${COUNT}
 while [ 1 ];
 do
     git reset --hard HEAD
@@ -17,7 +18,7 @@ do
         python -OO -m flask db migrate
         python -OO -m flask db upgrade
     fi
-    nohup sh /app/consumer_start.sh &
+    #nohup sh /app/consumer_start.sh &
     python -OO sjva.py 0 ${COUNT}
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
