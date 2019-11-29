@@ -1,4 +1,4 @@
-﻿#! /bin/sh
+#! /bin/sh
 nohup redis-server &
 COUNT=0
 while [ 1 ];
@@ -26,6 +26,6 @@ do
         break
     else
         echo 'REPEAT....'
-    fi
+    fi 
     COUNT=`expr $COUNT + 1`
 done
