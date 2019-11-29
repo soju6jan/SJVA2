@@ -16,7 +16,8 @@ do
         python -OO -m flask db migrate
         python -OO -m flask db upgrade
     fi
-    /app/consumer_start.sh
+    nohup redis-server &
+    nohup /app/consumer_start.sh &
     python -OO sjva.py 0 ${COUNT}
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
