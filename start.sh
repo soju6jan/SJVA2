@@ -21,11 +21,11 @@ do
     python -OO sjva.py 0 ${COUNT}
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
-    if [ "$RESULT" = "1" ] || [ "$RESULT" = "2" ]; then
-        echo 'REPEAT....'
-    else
+    if [ "$RESULT" = "0" ]; then
         echo 'FINISH....'
         break
+    else
+        echo 'REPEAT....'
     fi
     COUNT=`expr $COUNT + 1`
 done
