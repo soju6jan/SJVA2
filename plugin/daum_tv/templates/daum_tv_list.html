@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form id="form_search" class="form-inline" style="text-align:left">
+  <div class="container-fluid">
+    <div class="row show-grid">
+      <div class="col-md-12 form-inline">
+        <div class="col-md-12 form-inline " style="align-items:left; text-align:left;">
+          <div class="col-md-10" style="align-items:left; text-align:left;">
+            <input id="search_word" name="search_word" class="form-control form-control-sm w-100" type="text" placeholder="검색어" aria-label="Search">
+          </div>
+          <div class="col-md-2" style="align-items:left; text-align:left;">
+            <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div id='page1'></div>
+
+{{ macros.m_hr_head_top() }}
+{{ macros.m_row_start('0') }}
+{{ macros.m_col(2,  macros.m_strong('Poster')) }}
+{{ macros.m_col(2,  macros.m_strong('Title')) }}
+{{ macros.m_col(1,  macros.m_strong('Genre')) }}
+{{ macros.m_col(1,  macros.m_strong('Status')) }}
+{{ macros.m_col(2,  macros.m_strong('Info')) }}
+{{ macros.m_col(1,  macros.m_strong('1일')) }}
+{{ macros.m_col(1,  macros.m_strong('회차정보')) }}
+{{ macros.m_col(1,  macros.m_strong('Update')) }}
+{{ macros.m_col(1,  macros.m_strong('Action')) }}
+{{ macros.m_row_end() }}
+{{ macros.m_hr_head_bottom() }}
+<div id="list_div"></div>
+<div id='page2'></div>
+
+<script type="text/javascript">
+var package_name = 'daum_tv';
+var current_data = null;
+
+$(document).ready(function(){
+  request_search('1');
+    // 새로고침
+  $("body").on('click', '#refresh_btn', function(e){
+    e.preventDefault();
+    title = $(this).data('title')
+    $.ajax({
+      url: '/' + package_name + '/ajax/refresh',
+      type: "POST", 
+      cache: false,
+      data: {title:title},
+      dataType: "json",
+      success: function (data) {
+        request_search(current_data.paging.current_page)
+      }
+    });
+  });
+});
+
+$("#search").click(function(e) {
+  e.preventDefault();
+  request_search('1');
+});
+
+$("body").on('click', '#page', function(e){
+  e.preventDefault();
+  request_search($(this).data('page'));
+});
+
+function request_search(page) {
+  var formData = get_formdata('#form_search')
+  formData += '&page=' + page;
+  $.ajax({
+    url: '/' + package_name + '/ajax/db_list',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      window.scrollTo(0,0);
+      make_list(data.list)
+      make_page_html(data.paging)
+    }
+  });
+}  
+
+function make_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    if (data[i].poster_url != null) {
+      tmp1 = '<img src="' + data[i].poster_url + '" class="img-fluid">'
+    } else {
+      tmp1 = ''
+    }
+    str += m_col(2, tmp1);
+    str += m_col(2, data[i].title);
+    str += m_col(1, data[i].genre);
+    if (data[i].status == 0) {
+      tmp = '방송중'
+    } else if (data[i].status == 1) {
+      tmp = '종영'
+    } else if (data[i].status == 2) {
+      tmp = '예정'
+    } 
+    str += m_col(1, tmp);
+
+    tmp = data[i].studio + '<br>'
+    tmp += data[i].broadcast_info + '<br>'
+    tmp += data[i].broadcast_term + '<br>'
+    str += m_col(2, tmp);
+
+    str += m_col(1, data[i].episode_count_one_day + '회');
+    
+    if ( data[i].episode_list_json != '{}' ) {
+      tmp = 'O'
+    } else {
+      tmp = 'X'
+    }
+    str += m_col(1, tmp);
+    tmp = data[i].update_time.split(' ')
+    tmp = tmp[0] + '<br>' + tmp[1]
+    str += m_col(1, tmp);
+
+    tmp = 'https://search.daum.net/search?w=tv&q='+ data[i].title +'&irk='+data[i].daum_id+'&irt=tv-program&DA=TVP';
+    tmp = m_button('open_url_btn', 'DAUM', [{'key':'url', 'value':tmp}]);
+    tmp += m_button('refresh_btn', 'Refresh', [{'key':'title', 'value':data[i].title}]);
+    tmp = m_button_group(tmp)
+    str += m_col(1, tmp);
+
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+</script>    
+{% endblock %}

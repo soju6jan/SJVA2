@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  {{ macros.setting_checkbox('is_current_process', '실행 상태', value=arg['is_current_process'], desc='On : 실행중') }}
+  <form id='setting' name='setting'>
+  {{ macros.setting_checkbox('auro_start_rcd', '시작시 자동실행', value=arg['auro_start_rcd'], desc='On : 시작시 자동으로 실행합니다.') }}
+  {{ macros.setting_button([['global_setting_save_btn', '저장']]) }}
+  </form>
+</div> 
+
+<script type="text/javascript">
+var package_name = 'rclone';
+var current_data = null;
+
+$(document).ready(function(){
+});
+
+</script>    
+{% endblock %}

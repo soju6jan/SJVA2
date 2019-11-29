@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <!-- 일반 -->
+    {{ macros.m_tab_content_start('일반', true) }}
+      {{ macros.setting_scheduler_button(arg['is_include'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_input_int('interval', '파일 처리 실행 주기', value=arg['interval'], min='1', placeholder='2', desc='minute 단위') }}
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        
+        {{ macros.setting_input_int('web_page_size', '웹 페이지당 게시물 수', value=arg['web_page_size'], min='1', placeholder='30') }}
+        
+        {{ macros.setting_input_text('work_path', '변환할 폴더', desc=['smi 파일을 탐색할 폴더입니다.', '2개 이상일 경우 구분자 ,'], value=arg['work_path']) }}
+
+        {{ macros.setting_checkbox('flag_remake', '재변환', value=arg['flag_remake'], desc=['On : 이미 srt 파일이 있는 경우에도 다시 변환합니다.']) }}
+
+        {{ macros.setting_checkbox('flag_remove_smi', '변환 후 smi 파일 삭제', value=arg['flag_remove_smi'], desc=['On : srt로 변환 성공 시 smi 파일을 삭제합니다.']) }}
+
+        {{ macros.setting_checkbox('flag_append_ko', 'ko 삽입', value=arg['flag_append_ko'], desc=['On : .smi 를 .ko.srt 로 변환합니다.']) }}
+
+        {{ macros.setting_checkbox('flag_change_ko_srt', '.srt => .ko.srt 변환', value=arg['flag_change_ko_srt'], desc=['On : 탐색시 .srt파일을 .ko.srt으로 변환합니다.']) }}
+
+        {{ macros.setting_radio('fail_action', '변환 실패시', ['파일 유지', '특정 폴더로 이동'], value=arg['fail_action']) }}
+        <div id="fail_action0_div" class="collapse"></div>
+        <div id="fail_action1_div" class="collapse">
+        {{ macros.setting_input_text('fail_move_path', '실패시 이동 폴더', desc=['변환 실패시 smi 파일이 이동할 폴더입니다.'], value=arg['fail_move_path']) }}
+        </div>
+        {{ macros.setting_button([['setting_save_btn', '저장']]) }}
+      </form>
+        {{ macros.m_hr() }}
+        {{ macros.setting_button([['one_execute_btn', '1회 실행']], left='1회 실행' ) }}
+        {{ macros.setting_button([['reset_db_btn', '처리결과 전체 지우기']], left='DB정리' ) }}
+      
+    {{ macros.m_tab_content_end() }}
+    
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+
+<script type="text/javascript">
+var package_name = 'smi2srt';
+var current_data = null;
+var fail_action = "{{arg['fail_action']}}"
+$(document).ready(function(){
+  $(function() {
+    set_radio(fail_action)
+  });
+
+  // 스케쥴링 on / off
+  $('#scheduler').change(function() {
+    var ret = $(this).prop('checked');
+    $.ajax({
+      url: '/' + package_name + '/ajax/scheduler',
+      type: "POST", 
+      cache: false,
+      data: {scheduler : ret},
+      dataType: "json",
+      success: function (list) {
+      }
+    });
+  });
+
+  //설정 저장
+  $("#setting_save_btn").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  $("#one_execute_btn").click(function(e) {
+  //$("body").on('click', '#one_execute_btn', function(e){
+    e.preventDefault();
+    $.ajax({
+      url: '/' + package_name + '/ajax/one_execute',
+      type: "POST", 
+      cache: false,
+      data: {},
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>작업을 시작하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>작업 시작에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  $('input[type=radio][name=fail_action]').change(function() {
+    set_radio(this.value);
+  });
+
+  function set_radio(type) {
+    $('input[name=fail_action]')[parseInt(type)].checked = true;
+
+    if ( type == '0') {
+      $('#fail_action0_div').collapse('show')
+      $('#fail_action1_div').collapse('hide')
+    } else {
+      $('#fail_action0_div').collapse('hide')
+      $('#fail_action1_div').collapse('show')
+    }
+  }
+
+  $("body").on('click', '#reset_db_btn', function(e){
+    e.preventDefault();
+    document.getElementById("confirm_title").innerHTML = "DB 삭제";
+    document.getElementById("confirm_body").innerHTML = "전체 처리결과 내용을 삭제 하시겠습니까?";
+    $('#confirm_button').attr('onclick', "db_delete();");
+    $("#confirm_modal").modal();
+    return;
+  });
+  
+});
+
+
+
+function db_delete() {
+  $.ajax({
+    url: '/' + package_name + '/ajax/reset_db',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>삭제에 실패하였습니다.</strong>',{
+          type: 'warning'
+        });
+      }
+    }
+  });
+}
+
+
+
+
+
+</script>    
+{% endblock %}

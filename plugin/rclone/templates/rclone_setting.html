@@ -1,0 +1,488 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head2('normal', '일반', false) }}
+      {{ macros.m_tab_head2('remotes', 'Remotes', true) }}
+      {{ macros.m_tab_head2('job', '작업', false) }}
+      {{ macros.m_tab_head2('rc', 'Remote Control', false) }}
+      
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <!-- Remotes -->
+    {{ macros.m_tab_content_start('remotes', true) }}
+      {{ macros.setting_input_text_and_buttons('path_rclone', 'RCLONE Path', [['rclone_path_test_btn', '버전확인'], ['rclone_config_btn', 'Config']], value=arg['path_rclone'], disabled=True) }}
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1,  macros.m_strong('NO')) }}
+      {{ macros.m_col(2,  macros.m_strong('Name')) }}
+      {{ macros.m_col(1,  macros.m_strong('Type')) }}
+      {{ macros.m_col(8,  macros.m_strong('Detail')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+      <div id="remotes_list_div"></div>
+    {{ macros.m_tab_content_end() }}
+
+    <!-- 작업 -->
+    {{ macros.m_tab_content_start('job', false) }}
+      {{ macros.m_row_start() }}  
+      {{ macros.m_button('job_add_btn', '작업 추가') }}
+      {{ macros.m_row_end() }}  
+
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1, macros.m_strong('NO')) }}
+      {{ macros.m_col(1, macros.m_strong('Name')) }}
+      {{ macros.m_col(1, macros.m_strong('Type')) }}
+      {{ macros.m_col(1, macros.m_strong('CMD')) }}
+      {{ macros.m_col(3, macros.m_strong('Path')) }}
+      {{ macros.m_col(2, macros.m_strong('Last Run')) }}
+      {{ macros.m_col(1, macros.m_strong('스케쥴링')) }}
+      {{ macros.m_col(2, macros.m_strong('Action')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+
+      <div id="job_list_div"></div>
+    {{ macros.m_tab_content_end() }}
+
+    <!-- 일반 -->
+    {{ macros.m_tab_content_start('normal', false) }}
+      {{ macros.setting_global_scheduler_button(arg['scheduler'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_input_int('interval', '스케쥴링 실행 주기', value=arg['interval'], min='1', placeholder='10', desc='minute 단위') }}
+    
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        {{ macros.setting_input_int('web_page_size', '웹 페이지당 게시물 수', value=arg['web_page_size'], min='1', placeholder='30') }}
+        {{ macros.setting_button([['global_setting_save_btn', '저장']]) }}
+        {{ macros.m_hr() }}
+        {{ macros.setting_button([['global_reset_db_btn', '목록 전체 지우기']], left='DB정리' ) }}
+      </form>
+    {{ macros.m_tab_content_end() }}
+
+    {{ macros.m_tab_content_start('rc', false) }}
+      {{ macros.setting_checkbox('rc_current_process', '실행 상태', value=arg['rc_current_process'], desc='On : 실행중') }}
+      <form id='setting2' name='setting2'>
+        {{ macros.setting_checkbox('auro_start_rcd', '시작시 자동실행', value=arg['auro_start_rcd'], desc='On : 시작시 자동으로 실행합니다.') }}
+        {{ macros.setting_button([['global_setting_save_btn2', '저장']]) }}
+      </form>
+    {{ macros.m_tab_content_end() }}
+
+
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+<!-- 작업추가 모달 -->
+{{ macros.m_modal_start('job_add_modal', '작업 추가', 'modal-lg') }}
+  <form id='job_setting'>
+  {{ macros.setting_radio('job_type', '타입', ['사용자', '자동(타 플러그인)']) }}
+  {{ macros.setting_input_text('job_name', 'Name', desc='목록 검색에서 사용할 이름. 없을시 ID') }}
+  {{ macros.setting_select('job_command', 'Command', [['move', 'Move'],['copy', 'Copy'],['sync', 'Sync']], col='6', desc='Rclone 명령어')}}
+  {{ macros.setting_input_text_and_buttons('job_local_path', 'Local Path', [['job_local_ls_btn', '폴더확인'], ['job_local_ls_toggle_btn', 'Toggle']], value='/') }}
+  {{ macros.setting_top(padding='0') }}
+  <div id="local_ls_div" class="collapse" style="padding-left:20px;"></div>
+  {{ macros.setting_bottom(padding_top='0') }}
+  {{ macros.setting_select('job_remote', 'Remote', [], col='6')}}
+  {{ macros.setting_input_text_and_buttons('job_remote_path', 'Remote Path', [['job_ls_btn', '폴더확인'], ['job_ls_toggle_btn', 'Toggle']], value='/') }}
+  {{ macros.setting_top(padding='0') }}
+  <div id="ls_div" class="collapse" style="padding-left:20px;"></div>
+  {{ macros.setting_bottom(padding_top='0') }}
+
+  {{ macros.setting_input_textarea('job_option_static', '고정 옵션', value=arg['default_rclone_setting']['static']) }}
+  {{ macros.setting_input_textarea('job_option_user', '옵션') }}
+  
+  {{ macros.setting_checkbox('is_scheduling', '스케쥴링 여부', 'true', desc='스케쥴링 작업에 포함할 경우 체크') }}
+
+  {{ macros.setting_button([['job_save_btn', '저장'], ['job_remove_btn', '삭제']]) }}
+
+  </form>
+{{ macros.m_modal_end() }}
+<!-- END 작업추가 모달 -->
+
+
+<script type="text/javascript">
+var current_data = null;
+var package_name = 'rclone';
+
+$(document).ready(function(){
+  
+  
+  $('#job_ls_btn').attr("data-target", "#ls_div");
+  $('#job_ls_toggle_btn').attr("data-target", "#ls_div");
+  $('#job_local_ls_btn').attr("data-target", "#local_ls_div");
+  $('#job_local_ls_toggle_btn').attr("data-target", "#local_ls_div");
+  $('#job_option_static').attr("readonly", "readonly");
+  set_command_type('move')
+  
+  // 페이지 로딩
+  $.ajax({
+    url: '/' + package_name + '/ajax/load_remotes',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_remotes_list(data.remotes);
+      make_job_list(data.jobs);
+    }
+  });
+  // rclone 버전 버튼
+  $("body").on('click', '#rclone_path_test_btn', function(e){
+    e.preventDefault();
+    $.ajax({
+      url: '/' + package_name + '/ajax/rclone_version',
+      type: "POST", 
+      cache: false,
+      data:{},
+      dataType: "json",
+      success: function (data) {
+        var str = '';
+        for (var i = 0; i < data.length; i++) {
+          str += "<div>" + data[i] + "</div>";
+        }
+        document.getElementById("normal_modal_title").innerHTML = "Rclone version";
+        document.getElementById("normal_modal_body").innerHTML = str;
+        $("#normal_modal").modal();
+      }
+    });
+  });
+  // config 버튼
+  $("body").on('click', '#rclone_config_btn', function(e){
+    e.preventDefault();
+    command = 'config';
+    $.ajax({
+      url: '/' + package_name + '/ajax/send_to_command_plugin',
+      type: "POST", 
+      cache: false,
+      data:{command:command},
+      dataType: "json",
+      success: function (data) {
+        redirect = '/command/api/command'
+        $.redirectPost(redirect, {command: data});
+      }
+    });
+  });
+  // 작업추가 버튼
+  $("body").on('click', '#job_add_btn', function(e){
+    e.preventDefault();
+    $('input[name=job_type]')[0].checked = true;
+    $('#job_save_btn').data("id", "-1");
+    var str = '';
+    for (i in current_data.remotes) {
+      str += '<option value="'+current_data.remotes[i].name+'">'+current_data.remotes[i].name+'</option>'
+    }
+    tmp = document.querySelectorAll('[id^="job_type"]')
+    for (i in tmp)
+      tmp[i].disabled = true;
+    document.getElementById('job_remote').innerHTML = str;
+    document.getElementById('job_remove_btn').disabled = true; 
+    document.getElementById('job_save_btn').disabled = false;
+    document.getElementById('job_add_modal_title').innerHTML = "작업 추가"   
+    $("#job_add_modal").modal();
+  }); 
+  
+  // 작업 수정 버튼
+  $("body").on('click', '#job_setting_btn', function(e) {
+    e.preventDefault();
+    id = $(this).data('id')
+    var select_job = null;
+    for (i in current_data.jobs) {
+      if (current_data.jobs[i].id == id) {
+        select_job = current_data.jobs[i];
+        break;
+      }
+    }
+    if (select_job == null) return;
+    $('#job_save_btn').data("id", id);
+    if (select_job.job_type == 0) {
+      $('input[name=job_type]')[0].checked = true;
+      $('input[name=job_type]')[1].checked = false;
+    } else {
+      $('input[name=job_type]')[0].checked = false;
+      $('input[name=job_type]')[1].checked = true;
+    }
+    tmp = document.querySelectorAll('[id^="job_type"]')
+    for (i in tmp)
+      tmp[i].disabled = true;
+    document.getElementById('job_name').value = select_job.name;
+    document.getElementById('job_command').value = select_job.command;
+    document.getElementById('job_local_path').value = select_job.local_path;
+    
+    var str = '';
+    for (i in current_data.remotes) {
+      str += '<option value="'+current_data.remotes[i].name+'">'+current_data.remotes[i].name+'</option>'
+    }
+    document.getElementById('job_remote').innerHTML = str;
+    document.getElementById('job_remote').value = select_job.remote;
+    document.getElementById('job_remote_path').value = select_job.remote_path;
+    document.getElementById('job_option_static').value = select_job.option_static;
+    document.getElementById('job_option_user').value = select_job.option_user;
+    //is_scheduling
+    
+    if (select_job.is_scheduling) {
+      //document.getElementById("item_auto_start").value = 'on';
+      $('#is_scheduling').bootstrapToggle('on')
+    } else {
+      $('#is_scheduling').bootstrapToggle('off')
+    }
+    //document.getElementById('is_scheduling').checked = select_job.is_scheduling;
+    document.getElementById('job_remove_btn').disabled = false;  
+    document.getElementById('job_add_modal_title').innerHTML = "작업 수정"
+    /*
+    if (select_job.job_type != 0) {
+      document.getElementById('job_save_btn').disabled = true;
+      document.getElementById('job_remove_btn').disabled = true; 
+    }
+    */
+    $("#job_add_modal").modal();
+    
+  });
+  // 작업 실행 버튼
+  $("body").on('click', '#job_execute_btn', function(e) {
+    e.preventDefault();
+    id = $(this).data('id')
+    $.ajax({
+      url: '/' + package_name + '/ajax/execute_job',
+      type: "POST", 
+      cache: false,
+      data:{id:id},
+      dataType: "json",
+      success: function (data) {
+        if (data=='success') {
+          window.location.href='/rclone/status';
+        }
+      }
+    });
+  });
+  
+  
+  /******************************************************
+    작업추가 모달
+  *******************************************************/
+  // ls 버튼
+  $("body").on('click', '#job_ls_btn', function(e){
+    e.preventDefault();
+    remote = document.getElementById('job_remote').value;
+    remote_path = document.getElementById('job_remote_path').value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/remote_ls',
+      type: "POST", 
+      cache: false,
+      data:{remote:remote, remote_path:remote_path},
+      dataType: "json",
+      success: function (data) {
+        $('#ls_div').collapse('show')
+        document.getElementById('ls_div').innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+      }
+    });
+  }); 
+  // ls 버튼
+  $("body").on('click', '#job_local_ls_btn', function(e){
+    e.preventDefault();
+    local_path = document.getElementById('job_local_path').value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/local_ls',
+      type: "POST", 
+      cache: false,
+      data:{local_path:local_path},
+      dataType: "json",
+      success: function (data) {
+        $('#local_ls_div').collapse('show')
+        document.getElementById('local_ls_div').innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+      }
+    });
+  }); 
+  
+  // ls 토글 버튼
+  $("body").on('click', '#job_ls_toggle_btn', function(e){
+    e.preventDefault();
+    $('#ls_div').collapse('toggle');
+  }); 
+  // local ls 토글 버튼
+  $("body").on('click', '#job_local_ls_toggle_btn', function(e){
+    e.preventDefault();
+    $('#local_ls_div').collapse('toggle');
+  }); 
+  
+  // 작업 저장 버튼
+  $("body").on('click', '#job_save_btn', function(e) {
+    e.preventDefault();
+    id = $('#job_save_btn').data('id')
+    var formData = get_formdata('#job_setting');
+    formData += '&id=' + id;
+    formData += '&job_type='
+    if ( $('input[name=job_type]')[0].checked ) {
+      formData += '0'
+    } else {
+      formData += '1'
+    }
+    $.ajax({
+      url: '/' + package_name + '/ajax/job_save',
+      type: "POST", 
+      cache: false,
+      data:formData,
+      success: function (data) {
+        current_data = data;
+        make_remotes_list(data.remotes);
+        make_job_list(data.jobs);
+        if (data.ret == 'success')  {
+          $("#job_add_modal").modal('hide');
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>저장 실패</strong>', {
+            type: 'warning'
+          });
+        }
+      }
+    });
+  });
+  // 작업 삭제 버튼
+  $("body").on('click', '#job_remove_btn', function(e) {
+    e.preventDefault();
+    id = $('#job_save_btn').data('id')
+    $.ajax({
+      url: '/' + package_name + '/ajax/remove_job',
+      type: "POST", 
+      cache: false,
+      data:{id:id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        make_remotes_list(data.remotes);
+        make_job_list(data.jobs);
+        if (data.ret == 'success') {
+          $("#job_add_modal").modal('hide');
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>삭제 실패</strong>', {
+            type: 'warning'
+          });
+        }
+      }
+    });
+  });
+  // 작업 모달창에서 명령 변경
+  $('#job_command').change(function() {
+    set_command_type(this.value);
+  });
+});
+
+function make_remotes_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    str += m_col(1, (parseInt(i)+1));
+    str += m_col(2, data[i].name);
+    str += m_col(1, data[i].type);
+    tmp = ''
+    for (key in data[i]) {
+      tmp += m_row_start(padding="0");
+      if (key != 'type') {
+        tmp += m_col(3, key, align='right');
+        tmp += m_col(9, data[i][key]);
+      }
+      tmp += m_row_end();
+    }
+    str += m_col(8, tmp);
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("remotes_list_div").innerHTML = str;
+}
+function make_job_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    str += m_col(1, data[i].id);
+    if (data[i].name == '') {
+      tmp = 'ID : ' + data[i].id
+    } else {
+      tmp = data[i].name
+    }
+    str += m_col(1, tmp);
+    if (data[i].job_type == '0') {
+      tmp = '사용자'
+    } else {
+      tmp = '플러그인'
+    }
+    str += m_col(1, tmp);
+    str += m_col(1, data[i].command);
+    tmp = data[i].local_path + '<br>' + data[i].remote + ':' + data[i].remote_path
+    str += m_col(3, tmp);
+    
+    tmp = data[i].last_run_time + '<br>' + data[i].last_file_count + '개 파일'
+    str += m_col(2, tmp)
+    if (data[i].is_scheduling) {
+      tmp = '포함'
+    } else {
+      tmp = '미포함'
+    }
+    str += m_col(1, tmp)
+    tmp = m_button('job_execute_btn', '실행', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('job_setting_btn', '수정', [{'key':'id', 'value':data[i].id}]);
+    tmp = m_button_group(tmp)
+    str += m_col(2, tmp);
+    
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("job_list_div").innerHTML = str;
+}
+function set_command_type(type) {
+  var user = "{{ arg['default_rclone_setting']['user'] }}";
+  var data = {
+    "move":"{{ arg['default_rclone_setting']['move'] }}",
+    "copy":"{{ arg['default_rclone_setting']['copy'] }}",
+    "sync":"{{ arg['default_rclone_setting']['sync'] }}"
+  };
+  //$('input[name=job_command]')[parseInt(type)].checked = true;
+  document.getElementById("job_option_user").value = user + ' ' + data[type];
+}
+
+
+$('#rc_current_process').change(function() {
+  var ret = $(this).prop('checked');
+  $.ajax({
+    url: '/'+package_name+'/ajax/rc_process',
+    type: "POST", 
+    cache: false,
+    data: {rc_process : ret},
+    dataType: "json",
+    success: function (list) {
+    }
+  });
+});
+
+$("#global_setting_save_btn2").click(function(e) {
+  e.preventDefault();
+  var formData = get_formdata('#setting2');
+  $.ajax({
+    url: '/'+package_name+'/ajax/setting_save',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (ret) {
+      if (ret) {
+        $.notify('<strong>설정을 저장하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+</script>    
+{% endblock %}

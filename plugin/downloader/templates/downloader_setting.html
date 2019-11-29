@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+     {{ macros.m_tab_content_start('일반', true) }}
+     {{ macros.setting_scheduler_button(arg['scheduler'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_input_int('interval', '스케쥴링 실행 주기', value=arg['interval'], min='1', placeholder='10', desc='minute 단위') }}
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        {{ macros.setting_input_int('web_page_size', '웹 페이지당 게시물 수', value=arg['web_page_size'], min='1', placeholder='30') }}
+        {{ macros.m_hr() }}
+        {{ macros.setting_radio('default_torrent_program', '기본 토렌트 프로그램', ['Transmission', 'DownloadStation'], value=arg['default_torrent_program']) }}
+        <div id="transmission_div" class="collapse">
+        {{ macros.setting_input_text_and_buttons('transmission_url', 'URL', [['transmission_web_btn', 'GO']], placeholder='http://localhost:9091', value=arg['transmission_url'], desc='트랜스미션 URL. Port 필수') }}
+        {{ macros.setting_checkbox('transmission_use_auth', '인증 사용', value=arg['transmission_use_auth']) }}
+        {{ macros.setting_input_text('transmission_id', 'ID', value=arg['transmission_id'], col='3') }}
+        {{ macros.setting_input_text_and_buttons('transmission_pw', '암호', [['transmission_test_btn', '접속 확인']], value=arg['transmission_pw'], col='4', type='password') }}
+        {{ macros.setting_input_text('transmission_default_path', '다운로드 경로', value=arg['transmission_default_path'], desc=['기본 다운로드 경로. 생략시 트랜스미션의 기본 경로를 사용', '트랜스미션 설치 기기의 경로를 입력해야 합니다.']) }}
+        {{ macros.setting_checkbox('transmission_normal_file_download', '일반 파일 다운로드', value=arg['transmission_normal_file_download'], desc=['On : 트랜스미션은 토렌트 파일이 아닌 파일은 다운로드가 안됩니다.', ' 자막 등 일반 파일을 SJVA 대신 다운로드합니다.']) }}
+        
+        <div id="transmission_normal_file_download_div" class="collapse">
+        {{ macros.setting_input_text('transmission_normal_file_download_path', '일반 파일 다운로드 경로', value=arg['transmission_normal_file_download_path'], desc=['SJVA 상의 경로입니다.']) }}
+        </div>
+        </div>
+        <div id="downloadstation_div" class="collapse">
+        {{ macros.setting_input_text_and_buttons('downloadstation_url', 'URL', [['downloadstation_web_btn', 'GO']], placeholder='http://xxx.synology.me:5000', value=arg['downloadstation_url'], desc='다운로드스테이션 URL') }}
+        {{ macros.setting_input_text('downloadstation_id', 'ID', value=arg['downloadstation_id'], col='3') }}
+        {{ macros.setting_input_text_and_buttons('downloadstation_pw', '암호', [['downloadstation_test_btn', '접속 확인']], value=arg['downloadstation_pw'], col='4', type='password') }}
+        {{ macros.setting_input_text('downloadstation_default_path', '다운로드 경로', value=arg['downloadstation_default_path'], placeholder='예) video/download', desc=['기본 다운로드 경로. 생략 시 다운로드스테이션 기본 경로를 사용', '/volume 으로 시작하면 안되며, 공유폴더부터 시작해야 합니다.', '경로에 한글이 포함되어 있으면 안 됩니다.']) }}
+        </div>
+        {{ macros.m_hr() }}
+        {{ macros.setting_checkbox('auto_remove_completed', '프로그램에서 완료 목록 삭제', value=arg['auto_remove_completed'], desc='On : 스케쥴러 동작시 혹은 상태 화면 요청시 삭제합니다.') }}
+        {{ macros.setting_checkbox('download_completed_telegram_notify', '프로그램에서 완료 목록 삭제시 텔레그램 전송', value=arg['download_completed_telegram_notify'], desc='On : "프로그램에서 완료 목록 삭제"가 On 되어 있는 경우 삭제시 텔레그램을 보냅니다.') }}
+        {{ macros.setting_input_int('status_interval', '상태 화면 갱신 주기', value=arg['status_interval'], min='1', placeholder='5', desc='second 단위') }}
+        {{ macros.setting_button([['setting_save_btn', '저장']]) }}
+        {{ macros.m_hr() }}
+        {{ macros.setting_button([['global_reset_db_btn', '목록 전체 지우기']], left='DB정리' ) }}
+      </form>
+    {{ macros.m_tab_content_end() }}
+
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+
+
+<script type="text/javascript">
+var package_name = 'downloader';
+var current_data = null;
+var default_torrent_program = '{{arg['default_torrent_program']}}'
+
+$(document).ready(function(){
+  $(function() {
+    set_default_torrent_program(default_torrent_program)
+    use_collapse("transmission_normal_file_download")
+    /*
+    $.ajax({
+      url: '/pooq/ajax/auto_list',
+      type: "POST", 
+      cache: false,
+      data: {},
+      dataType: "json",
+      success: function (data) {
+        //make_list(data);
+        //use_collapse("qvod_download", reverse=true)
+      }
+    });
+    */
+  });
+
+  // 스케쥴링 on / off
+  $('#scheduler').change(function() {
+    var ret = $(this).prop('checked');
+    $.ajax({
+      url: '/' + package_name + '/ajax/scheduler',
+      type: "POST", 
+      cache: false,
+      data: {scheduler : ret},
+      dataType: "json",
+      success: function (list) {
+      }
+    });
+  });
+  
+  //설정 저장
+  $("#setting_save_btn").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    downloadstation_default_path = document.getElementById("downloadstation_default_path").value
+    if (downloadstation_default_path.startsWith('/')) {
+      $.notify('<strong>다운로드 경로는 / 로 시작하면 안됩니다.</strong>', {
+        type: 'warning'
+      });
+      return
+    }
+    if (downloadstation_default_path.startsWith('volume')) {
+      $.notify('<strong>공유폴더 이름부터 시작해야 합니다.</strong>', {
+        type: 'warning'
+      });
+      return
+    }
+
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  $('input[type=radio][name=default_torrent_program]').change(function() {
+    set_default_torrent_program(this.value);
+  });
+
+  function set_default_torrent_program(type) {
+    $('input[name=default_torrent_program]')[parseInt(type)].checked = true;
+
+    if ( type == '0') {
+      $('#transmission_div').collapse('show')
+      $('#downloadstation_div').collapse('hide')
+    } else {
+      $('#transmission_div').collapse('hide')
+      $('#downloadstation_div').collapse('show')
+    }
+  }
+
+  // transmission go
+  $("body").on('click', '#transmission_web_btn', function(e){
+    e.preventDefault();
+    transmission_url = document.getElementById("transmission_url").value
+    window.open(transmission_url, "_blank");
+  });
+
+  // 다운로드스테이션 go
+  $("body").on('click', '#downloadstation_web_btn', function(e){
+    e.preventDefault();
+    downloadstation_url = document.getElementById("downloadstation_url").value
+    window.open(downloadstation_url, "_blank");
+  });
+
+  // 트랜스미션 접속 확인
+  $("body").on('click', '#transmission_test_btn', function(e){
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/transmission_test',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (data) {
+        if (data.ret == 'success') {
+          $.notify('<strong>접속 성공<br>목록 : '+data.current+'개 </strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>접속 실패<br>에러 : '+data.log+'</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  // 다운로드스테이션 접속 확인
+  $("body").on('click', '#downloadstation_test_btn', function(e){
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/downloadstation_test',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (data) {
+        if (data.ret == 'success') {
+          $.notify('<strong>접속 성공<br>목록 : '+data.current+'개 </strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>접속 실패<br>에러 : '+data.log+'</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  $('#transmission_normal_file_download').change(function() {
+    use_collapse('transmission_normal_file_download');
+  });
+});
+
+
+
+
+
+
+
+
+
+
+</script>    
+{% endblock %}

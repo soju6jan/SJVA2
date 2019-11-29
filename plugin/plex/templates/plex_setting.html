@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('일반', true) }}
+      <form id='setting' name='setting'>
+      {{ macros.setting_input_text('id', 'Plex ID', col='3', value=arg['id']) }}
+      {{ macros.setting_input_text_and_buttons('pw', 'Plex PW', [['server_list_btn', '서버목록']], col='4', value=arg['pw'], type='password') }}
+      
+      <div id="sever_select_div">
+        {{ macros.setting_select_and_buttons('server_name', '서버', [[arg['server_name'], arg['server_name']]], [['server_connect_btn', '서버확인']], col='6', value=arg['server_name']) }}
+          
+      </div>
+      {{ macros.setting_input_text('server_url', 'Plex URL', value=arg['server_url'], col='6', desc='SJVA와 PLEX간 네트워크가 다른 경우 DDNS나 고정 IP로 입력하세요') }}
+      {{ macros.setting_input_text_and_buttons('server_token', 'Plex Token', [['server_connect_by_token_btn', '접속확인'], ['sjva_plugin_test_btn', 'SJVA 플러그인 확인']], value=arg['server_token'], col='9') }}
+      {{ macros.setting_button([['download_plugin_btn', 'SJVA 플러그인 다운로드']], desc='Plex에 SJVA 플러그인을 설치해야 연동이 됩니다.') }}
+      {{ macros.setting_input_text_and_buttons('machineIdentifier', 'Machine Identifier ', [['web_connect_btn', '웹 접속']], value=arg['machineIdentifier'], col='9') }}
+
+      {{ macros.setting_input_text('scan_server', '추가 스캔 Plex URL', value=arg['scan_server'], col='9', desc=['스캔 명령을 여러 서버에 보내야 할 때 사용', 'URL&TOKEN 형식. 구분자 ,'], placeholder='http://192.168.0.100:32400&TTTOOOKKKEEENNN') }}
+
+      {{ macros.setting_button([['setting_save_btn', '저장']]) }}
+      </form>
+    {{ macros.m_tab_content_end() }}
+  </div>
+</div> <!--전체-->
+
+<script type="text/javascript">
+var current_data = null;
+
+$(document).ready(function(){
+  var package_name = 'plex';
+
+  // 서버 목록
+  $("body").on('click', '#server_list_btn', function(e){
+    e.preventDefault();
+    id = document.getElementById("id").value;
+    pw = document.getElementById("pw").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/server_list',
+      type: "POST", 
+      cache: false,
+      data:{id:id, pw:pw},
+      dataType: "json",
+      success: function (data) {
+        m_modal(data, '서버목록');
+        $("#sever_select_div").empty();
+        str = `  
+          <div class="row" style="padding-top: 10px; padding-bottom:10px; align-items: center;">
+            <div class="col-sm-3 set-left">
+              <strong>서버선택</strong>
+            </div>
+            <div class="col-sm-9">
+              <div class="input-group col-sm-6">
+                <select id="server_name" name="server_name" class="form-control form-control-sm">`
+        for(var i in data) {
+          str += '<option value="' + data[i] + '">' + data[i]+ '</option>';
+        }
+        str += `                  
+                </select>
+                <span class="text-left" style="padding-left:5px; padding-top:0px">
+                  <button id="server_connect_btn" class="btn btn-sm btn-outline-success">서버확인</button>
+                </span>
+              </div>
+            </div>
+          </div>`
+        document.getElementById("sever_select_div").innerHTML = str;
+      }
+    });
+  });
+
+
+  //설정 저장
+  $("#setting_save_btn").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+
+  // select에서 서버 선택하여 연결
+  $("body").on('click', '#server_connect_btn', function(e){
+    e.preventDefault();
+    server_name = document.getElementById("server_name").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/connect_by_name',
+      type: "POST", 
+      cache: false,
+      data:{server_name:server_name},
+      dataType: "json",
+      success: function (data) {
+        document.getElementById("server_url").value = data[0];
+        document.getElementById("server_token").value = data[1];
+        document.getElementById("machineIdentifier").value = data[2];
+      }
+    });
+  });
+
+  // url, token으로 연결
+  $("body").on('click', '#server_connect_by_token_btn', function(e){
+    e.preventDefault();
+    server_url = document.getElementById("server_url").value;
+    server_token = document.getElementById("server_token").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/connect_by_url',
+      type: "POST", 
+      cache: false,
+      data:{server_url:server_url, server_token:server_token},
+      dataType: "json",
+      success: function (data) {
+        if (data == 'fail' || data=='') {
+          $.notify('<strong>서버확인 실패</strong>', {
+	          type: 'warning'
+          });
+        } else {
+          $.notify('<strong>서버확인 성공. 총 라이브러리 :'+ data+'개</strong>', {
+	          type: 'success'
+          });
+        }
+      }
+    });
+  });
+
+  // sjva plugin
+  $("body").on('click', '#sjva_plugin_test_btn', function(e){
+    e.preventDefault();
+    server_url = document.getElementById("server_url").value;
+    server_token = document.getElementById("server_token").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/get_sjva_version',
+      type: "POST", 
+      cache: false,
+      data:{server_url:server_url, server_token:server_token},
+      dataType: "json",
+      success: function (data) {
+        if (data == 'fail' || data=='') {
+          $.notify('<strong>Plex에 SJVA 플러그인이 설치되어 있지 않습니다.</strong>', {
+	          type: 'warning'
+          });
+        } else {
+          $.notify('<strong>플러그인 버전:'+ data+'</strong>', {
+	          type: 'success'
+          });
+        }
+      }
+    });
+  });
+
+  $("body").on('click', '#download_plugin_btn', function(e){
+    e.preventDefault();
+    window.location.href='https://github.com/soju6jan/SJVA.bundle/archive/master.zip';
+  });
+
+  // 웹 접속
+  $("body").on('click', '#web_connect_btn', function(e){
+    e.preventDefault();
+    //url = 'https://app.plex.tv/desktop#!/server/' + document.getElementById("machineIdentifier").value
+    //https://app.plex.tv/desktop#!/media/2dc7e04aea6799873e010c58689235d44eb82c5d
+    url = 'https://app.plex.tv/desktop#!/media/' + document.getElementById("machineIdentifier").value + '/com.plexapp.plugins.library?key=%2Fhubs&pageType=hub'
+    window.open(url, "_blank");
+  });
+  
+  
+
+
+});
+
+
+
+
+
+
+</script>    
+{% endblock %}

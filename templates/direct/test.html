@@ -1,0 +1,1053 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head lang="ko">
+        
+        <title>SJ Video Assistant</title>
+        
+        <meta name="google" value="notranslate">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="shortcut icon" href="/static/img/favicon.ico">
+        <link href="http://localhost:9999/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://localhost:9999/static/css/animate.min.css" rel="stylesheet">
+        <link href="http://localhost:9999/static/css/custom.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!--<script src="/static/js/popper.min.js"></script>-->
+        <script src="http://localhost:9999/static/js/bootstrap.min.js"></script>
+        <script src="http://localhost:9999/static/js/bootstrap-notify.min.js"></script>
+        <script src="http://localhost:9999/static/js/custom2.js"></script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
+        <!-- 토글 -->
+        <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/css/bootstrap4-toggle.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js"></script>
+        <!-- end 토글 -->
+        <script type="text/javascript">
+          $(document).ready(function(){
+            var socket = io.connect("http://" + document.domain + ":" + location.port + "/framework");
+            //var socket = io.connect("http://" + document.domain + ":" + location.port + "/framework", {transports:['websocket']},  {'force new connection': true});
+            socket.on('notify', function(data){
+              $.notify({
+                message : data['msg'],
+                url: data['url'],
+                target: '_self'
+              },{
+                type: data['type'],
+              });
+            });
+          });
+        </script>          
+        <!--
+             <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>          
+          .fixed-top-2 { margin-top: 56px; }
+          .sticky-offset { top: 1000px; }
+          .fixed-top-2 { margin-top: 0px; }          
+        -->
+        <style type="text/css">
+          body { padding-top: 56px; font-size: .850rem; }
+          .table>tbody>tr.collapse>td { background-color:#ecf3f8; }
+          .tableRowHover tbody tr:not(.tableRowHoverOff):hover td {
+            background-color: #ffff00;
+            transition: all 0.01s ease-in-out;
+          }
+          .loading { position: fixed; left: 45%; top: 50%; background: #ffffff; }
+          .table > tbody > tr > td { vertical-align: middle; }
+          
+          .tab-pane {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            border-radius: 0px 0px 5px 5px;
+            padding: 10px;
+          }
+          .btn-toolbar { text-align: center; }​
+          .nav-tabs { margin-bottom: 0; }
+          .row>div { padding-top: 10px; padding-bottom:10px; }
+          .row { align-items: center;}
+          .row>div:nth-child(odd) { align-items: right; text-align: right; }
+          .row>div:nth-child(even) { align-items: left; text-align: left; }
+          .navbar-nav li:hover>.dropdown-menu { display: block; }
+          .dropdown-toggle::after { display:none; }
+
+        </style>
+        <script type="text/javascript" language="javascript">
+          $(document).ready(function(){
+            $('#loading').hide();
+          })
+          .ajaxStart(function(){
+            $('#loading').show();
+          })
+          .ajaxStop(function(){
+            $('#loading').hide();
+          });
+          
+        </script> 
+    </head>
+    <body class="body ">
+      <!-- Modal -->
+      <div class="modal fade" id="large_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal_title"></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body" id="modal_body" style="word-break:break-all;">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+              <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal end -->
+
+      <div class="loading" id="loading">
+        <img src="/static/img/loading.gif" />
+      </div>
+      
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark flex-md-nowrap shadow" role="navigation">
+    <a class="navbar-brand" href="/">SJ Video Assistant</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse w-100" id="navbarsExample01">
+      
+      <ul class="nav navbar-nav mr-auto">
+      
+          
+          
+            
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">토렌트</a>
+                
+
+                
+                
+                <div class="dropdown-menu" style="top:34px;" aria-labelledby="navbarDropdown">
+                
+                  
+                    
+                      
+                        
+                          <a class="dropdown-item active" href="/rss" style="font-size: .850rem; font-weight:bold">RSS</a>
+                        
+                      
+                    
+                  
+                    
+                      <div class="dropdown-divider"></div>
+                    
+                  
+                    
+                      
+                        <a class="dropdown-item disabled" href="#" style="font-size: .850rem;color: gray">트랜스미션</a>
+                      
+                    
+                  
+                    
+                      
+                        <a class="dropdown-item disabled" href="#" style="font-size: .850rem;color: gray">다운로드스테이션</a>
+                      
+                    
+                  
+                    
+                      <div class="dropdown-divider"></div>
+                    
+                  
+                    
+                      
+                        
+                          <a class="dropdown-item" href="/offcloud" style="font-size: .850rem; font-weight:bold">Offcloud</a>
+                        
+                      
+                    
+                  
+                
+                </div>
+              </li>
+            
+          
+            
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">VOD</a>
+                
+
+                
+                
+                <div class="dropdown-menu" style="top:34px;" aria-labelledby="navbarDropdown">
+                
+                  
+                    
+                      
+                        
+                          <a class="dropdown-item" href="/ffmpeg" style="font-size: .850rem; font-weight:bold">FFMPEG</a>
+                        
+                      
+                    
+                  
+                    
+                      <div class="dropdown-divider"></div>
+                    
+                  
+                    
+                      
+                        
+                          <a class="dropdown-item" href="/pooq" style="font-size: .850rem; font-weight:bold">푹</a>
+                        
+                      
+                    
+                  
+                    
+                      
+                        
+                          <a class="dropdown-item" href="/tving" style="font-size: .850rem; font-weight:bold">티빙</a>
+                        
+                      
+                    
+                  
+                
+                </div>
+              </li>
+            
+          
+            
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">파일처리</a>
+                
+
+                
+                
+                <div class="dropdown-menu" style="top:34px;" aria-labelledby="navbarDropdown">
+                
+                  
+                    
+                      
+                        
+                          <a class="dropdown-item" href="/ktv" style="font-size: .850rem; font-weight:bold">국내TV 파일처리</a>
+                        
+                      
+                    
+                  
+                    
+                      
+                        <a class="dropdown-item disabled" href="#" style="font-size: .850rem;color: gray">AV Censored</a>
+                      
+                    
+                  
+                
+                </div>
+              </li>
+            
+          
+            
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PLEX</a>
+                
+
+                
+                
+                <div class="dropdown-menu" style="top:34px;" aria-labelledby="navbarDropdown">
+                
+                  
+                    
+                      
+                        <a class="dropdown-item disabled" href="#" style="font-size: .850rem;color: gray">PLEX</a>
+                      
+                    
+                  
+                    
+                      <div class="dropdown-divider"></div>
+                    
+                  
+                    
+                      
+                        <a class="dropdown-item disabled" href="#" style="font-size: .850rem;color: gray">GDrive 스캔</a>
+                      
+                    
+                  
+                
+                </div>
+              </li>
+            
+          
+            
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스</a>
+                
+
+                
+                
+                <div class="dropdown-menu" style="top:34px;" aria-labelledby="navbarDropdown">
+                
+                  
+                    
+                      
+                        <a class="dropdown-item disabled" href="#" style="font-size: .850rem;color: gray">KLive</a>
+                      
+                    
+                  
+                
+                </div>
+              </li>
+            
+          
+            
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">툴</a>
+                
+
+                
+                
+                <div class="dropdown-menu" style="top:34px;" aria-labelledby="navbarDropdown">
+                
+                  
+                    
+                      
+                        <a class="dropdown-item disabled" href="#" style="font-size: .850rem;color: gray">Rclone</a>
+                      
+                    
+                  
+                    
+                      
+                        <a class="dropdown-item disabled" href="#" style="font-size: .850rem;color: gray">Daum TV</a>
+                      
+                    
+                  
+                
+                </div>
+              </li>
+            
+          
+            
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Custom</a>
+                
+
+                
+                </div>
+              </li>
+            
+          
+            
+          
+            
+          
+      </ul>
+    </div>
+    
+    <div class="collapse navbar-collapse w-100" id="navbarsExample01">
+      
+      <ul class="nav navbar-nav ml-auto">
+      
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">링크</a>
+                
+
+                
+                
+                <div class="dropdown-menu dropdown-menu-right" style="top:34px;" aria-labelledby="navbarDropdown">
+                
+                  
+                    
+                      <a class="dropdown-item" href="https://soju6jan.com/sjva" target="_blank" style="font-size: .850rem; font-weight:bold">홈페이지</a>
+                    
+                  
+                    
+                      <a class="dropdown-item" href="https://www.clien.net/service/board/cm_nas" target="_blank" style="font-size: .850rem; font-weight:bold">나스당</a>
+                    
+                  
+                
+                </div>
+              </li>
+            
+          
+            
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">시스템</a>
+                
+
+                
+                
+                <div class="dropdown-menu dropdown-menu-right" style="top:34px;" aria-labelledby="navbarDropdown">
+                
+                  
+                    
+                      <a class="dropdown-item" href="/system/info" style="font-size: .850rem; font-weight:bold">정보</a>
+                    
+                  
+                    
+                      <a class="dropdown-item" href="/system/setting" style="font-size: .850rem; font-weight:bold">설정</a>
+                    
+                  
+                    
+                      <div class="dropdown-divider"></div>
+                    
+                  
+                    
+                      <a class="dropdown-item" href="/file_browser" style="font-size: .850rem; font-weight:bold">FileBrowser</a>
+                    
+                  
+                
+                </div>
+              </li>
+            
+          
+      </ul>
+    </div>
+    
+  </nav>
+
+
+      
+      <!--<nav class="navbar " role="navigation"> width가 메뉴만큼-->
+        
+  
+  
+    
+      
+        <ul class="nav nav-pills  bg-light shadow text-dark" >
+        
+          
+            <li class="nav-item"><a class="nav-link" href="/rss/setting">설정</a></li>
+          
+        
+          
+            <li class="nav-item"><a class="nav-link active" href="/rss/search">검색</a></li>
+          
+        
+          
+            <li class="nav-item"><a class="nav-link" href="/rss/list">목록</a></li>
+          
+        
+          
+            <li class="nav-item"><a class="nav-link" href="/rss/status">상태</a></li>
+          
+        
+          
+            <li class="nav-item"><a class="nav-link" href="/rss/log">로그</a></li>
+          
+        
+        </ul>
+        
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+      <!--</nav>-->
+      <main role="main" class="container">
+        <div class="d-inline-block"></div>
+        <div>
+          
+
+
+<form id="form_search" class="form-inline" style="text-align:left">
+  <div class="container-fluid">
+    <div class="row show-grid border border-primary">
+        <div class="col-md-5 form-inline border border-info">
+            <div class="custom-control custom-radio col-md-2 border border-info" style="align-items:left; text-align:left;">
+                <input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
+                <label class="custom-control-label" for="jb-radio-1">기본</label>
+            </div>
+            <div class="col-md-5 border border-info" style="align-items:left; text-align:left;">
+                <select id="site_select" class="form-control form-control-sm">
+                    <option value="all">전체</option>
+                    <option value="torrentwal">torrentwal</option>
+                    <option value="torrentboza">torrentboza</option>
+                    <option value="avnori">avnori</option>
+                    <option value="javnet">javnet</option>
+                </select>
+            </div>
+            <div class="col-md-5 border border-info" style="align-items:left; text-align:left;">
+                <select id="board_select" class="form-control form-control-sm">
+                <option value="all">전체</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-2 form-inline border border-info">
+            <div class="custom-control custom-radio">
+                <input type="radio" name="jb-radio" id="jb-radio-2" class="custom-control-input">
+                <label class="custom-control-label" for="jb-radio-2">그룹</label>
+            </div>
+            <div>
+                <select id="group_select" class="form-control form-control-sm">
+                <option value="all">전체</option>
+                
+                    <option value=drama>drama</option>
+                
+                    <option value=movie>movie</option>
+                
+                    <option value=ent>ent</option>
+                
+                    <option value=dacu>dacu</option>
+                
+                    <option value=av_c>av_c</option>
+                
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-5 form-inline border border-info">
+            <div class="col-md-3" class="align-items:left; text-align:left;">
+                <select id="group_select" class="form-control form-control-sm">
+                        <option value="all">전체</option>
+                        
+                            <option value=drama>drama</option>
+                </select>
+            </div>
+            <div class="col-md-7" class="align-items:left; text-align:left;">
+            <input id="program" name="program" class="form-control form-control-sm w-100" type="text" placeholder="프로그램명" aria-label="Search">
+            </div>
+            <div class="col-md-2" class="align-items:left; text-align:left;">
+            <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+            </div>
+            
+        </div>
+     
+    </div>
+  </div>
+</form>
+
+
+<form id="form" class="form-inline" >
+  <div class="container-fluid ">
+    <div class="row show-grid">
+      <div class="col-md-2">
+        
+      </div>
+      
+      <div class="col-md-6">
+        <input id="search" class="form-control w-75 mr-sm-2" type="text" placeholder="토렌트 검색" aria-label="Search">
+        <button id="submit" class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+      </div>
+    </div>
+  </div>
+  
+  
+</form>
+<div class="d-inline-block"></div>
+<!--<div id="accordion">-->
+<table id="result_table" class="table table-sm  tableRowHover">
+  <thead>
+    <tr>
+      <th style="width:5%">IDX</th>
+      <th style="width:15%">입력시간</th>
+      <th style="width:10%">사이트</th>
+      <th style="width:10%">게시판</th>
+      <th style="width:10%">게시판ID</th>
+      <th style="width:40%">제목</th>
+      <th style="width:10%">링크갯수</th>
+    </tr>
+  </thead>
+  <tbody id="list" >
+  </tbody>
+</table>
+<div id="more"></div>
+<!--</div>-->
+
+
+
+
+
+<div id="group_list_div">
+  <div class="row">
+    <div class="col-sm-1" style="text-align:center;">NO</div>
+    <div class="col-sm-2" style="text-align:left;">사이트</div>
+    <div class="col-sm-2" style="text-align:left;">게시판</div>
+    <div class="col-sm-7" style="text-align:left;">마지막 게시물</div>
+  </div>
+  <hr style="width: 100%; color: black; height: 2px; background-color:black;"> <div class="row">
+    <div class="col-sm-1" style="text-align: center;">1        </div>
+    <div class="col-sm-2" style="padding-top:0px; padding-bottom:0px">           <strong>drama</strong><hr>           
+      <div class="btn-group btn-group-sm flex-wrap mr-2" role="group">         
+        <button id="remove_scheduler_btn" class="btn btn-sm btn-outline-success" data-id="1">그룹 삭제</button>             <button id="add_group_child_btn" class="btn btn-sm btn-outline-success" data-id="1">목록 추가</button>          
+      </div>
+    </div>
+    
+    <div class="col-sm-6" style="text-align: left;">
+      <div class="col-sm-1" style="text-align: left;">torrentwal</div>
+      <div class="col-sm-1" style="text-align: left;">torrent_tv</div>
+      <div class="col-sm-1" style="text-align: left;"><button id="remove_scheduler_btn" class="btn btn-sm btn-outline-success" data-id="1">삭제</button></div>
+      <div class="col-sm-1" style="text-align: left;">torrentwal</div>
+      <div class="col-sm-1" style="text-align: left;">torrent_variety</div>
+<div class="col-sm-1" style="text-align: left;"><button id="remove_scheduler_btn" class="btn btn-sm btn-outline-success" data-id="1">삭제</button></div>
+</div>
+         <div class="col-sm-2" style="padding-top:0px; padding-bottom:0px"><pre>데이터 없음</pre>           <div class="input-group col-sm-6" style="padding-left:0px">             <span class="text-left">               <button id="remove_scheduler_btn" class="btn btn-sm btn-outline-success" data-id="1">스케쥴 삭제</button>             </span>           </div>
+                 </div>
+</div>
+<hr>       <div class="row">         <div class="col-sm-1" style="text-align: center;">2        </div>
+          <div class="col-sm-2" style="padding-top:0px; padding-bottom:0px">           <strong>asd</strong><hr>           <div class="btn-group btn-group-sm flex-wrap mr-2" role="group">             <button id="remove_scheduler_btn" class="btn btn-sm btn-outline-success" data-id="2">그룹 삭제</button>             <button id="add_group_child_btn" class="btn btn-sm btn-outline-success" data-id="2">목록 추가</button>           </div>
+      </div>
+              <div class="col-sm-6" style="text-align: left;"><div class="col-sm-1" style="text-align: left;">torrentwal</div>
+              <div class="col-sm-1" style="text-align: left;">torrent_tv</div>
+              <div class="col-sm-1" style="text-align: left;"><button id="remove_scheduler_btn" class="btn btn-sm btn-outline-success" data-id="2">삭제</button></div>
+                                                      </div>
+                                  <div class="col-sm-2" style="padding-top:0px; padding-bottom:0px"><pre>데이터 없음</pre>           <div class="input-group col-sm-6" style="padding-left:0px">             <span class="text-left">               <button id="remove_scheduler_btn" class="btn btn-sm btn-outline-success" data-id="2">스케쥴 삭제</button>             </span>           </div>
+                                          </div>
+                                                </div>       <hr></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function makeHTML(list_data) {
+  var data = list_data['data']
+  if (data) {
+    if (list_data['args']['page'] == '1') {
+      document.getElementById("list").innerHTML = "";
+    }
+    var previous_idx = 0;
+    //$.each(data, function(i) {
+    for (var i = 0; i < data.length; i++) {
+      str = '<tr style="cursor: pointer;" data-toggle="collapse" data-target="#collapse_'+ data[i].bbs_idx + '" aria-expanded="true" >';
+      str += '<td scope="col" style="width:5%">'+ data[i].bbs_idx + '</td>';
+      str += '<td scope="col" style="width:15%">'+ data[i].created_time + '</td>';
+      str += '<td scope="col" style="width:10%">'+ data[i].site + '</td>';
+      str += '<td scope="col" style="width:10%">'+ data[i].board + '</td>';
+      str += '<td scope="col" style="width:10%">'+ data[i].id + '</td>';
+      str += '<td scope="col" style="width:40%">'+ data[i].title + '</td>';
+      str += '<td scope="col" style="width:10%">'+ data[i].count + '</td>';
+      str += '</tr>'
+      str += '<tr class="collapse tableRowHoverOff" style="cursor: pointer;"  id="collapse_' + data[i].bbs_idx + '">' +
+        '<td colspan="1"></td><td colspan="5">' +
+        '<table class="table table-condensed table-bordered " width=100% >' +
+        '<thead class="thead-white">' +
+        '<tr>' +
+        '<th width=10%>no</th>' +
+        '<th width=10%>타입</th>' +
+        '<th width=60%>파일명</th>' +
+        '<th width=10%>Size</th>' +
+        '<th width=10%>게시물수</th>' +
+        '<th width=10%>Do</th>' +
+        '</tr>' +
+        '</thead>' +
+        '<tbody>';
+      do {
+        str += '<tr class="">'
+        str += '<td>' + data[i].idx + '</td>';
+        if (data[i].type == '1') {
+          str += '<td>토렌트</td>';
+        } else {
+          str += '<td>일반</td>';
+        }
+        str += '<td>';
+        var is_torrent = (data[i].type == '1')
+        var is_exist_filename = (data[i].filename != '')
+        if (is_exist_filename) {
+          str += '<a href="/rss/download?idx=' + data[i].idx + '">' + data[i].filename + '</a>';
+        }
+        if (is_torrent) {
+          if (is_exist_filename) {
+            str += '<br>';
+          } 
+          str += '<a href="'+ data[i].magnet + '">' + data[i].magnet + '</a>';
+        }
+        str += '</td>';
+        str += '<td>' + data[i].size + '</td>';
+        str += '<td>' + data[i].magnet_count + '</td>';
+        str += '<td>' + '<div class="btn-group">' 
+          + '<button class="align-middle btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Do'
+          + '<span class="caret"></span>'
+          + '</button>'
+          + '<div class="dropdown-menu dropdown-menu-right">'
+          + '<button class="dropdown-item" type="button">다운로드</button>'
+          + '<button class="dropdown-item" type="button">마그넷 링크</button>'
+          + '<div class="dropdown-divider"></div>'
+          + '<button class="dropdown-item" type="button">토렌트앱에서 받기</button>'
+          + '<button class="dropdown-item" type="button">Watched 폴더에 다운로드</button>'
+          + '<button class="dropdown-item" type="button">Offcloud에서 받기</button>'
+          + '</div>'
+          + '</td></tr>';
+        previous_idx = data[i].bbs_idx;
+        i++;
+        if ( i == data.length) break;
+      } while(previous_idx == data[i].bbs_idx);
+      i--;
+      str += '<tr><td colspan="5"><div><span> - 게시글 URL : </span><a href="'+data[i].url+'" target="_blank">' + data[i].url + '</a>'+
+        '</div></tr></td>';
+      str += '</tbody></table></td></tr>';  
+      document.getElementById("list").innerHTML += str;
+    }
+  }
+  if (list_data['more']) {
+    str = '<form>';
+    str += '<input id="more_group" type="hidden" name="group" value="' + list_data['args']['group'] + '">';
+    str += '<input id="more_site" type="hidden" name="site" value="' + list_data['args']['site'] + '">';
+    str += '<input id="more_board" type="hidden" name="board" value="' + list_data['args']['board'] + '">';
+    str += '<input id="more_search" type="hidden" name="search" value="' + list_data['args']['search'] + '">';
+    str += '<input id="more_count" type="hidden" name="count" value="' + list_data['args']['count'] + '">';
+    str += '<input id="more_page" type="hidden" name="page" value="' + list_data['args']['page'] + '">';
+    str += '<button id="more" class="btn btn-outline-secondary btn-lg btn-block" type="button">More</button>'
+    str += '</form>';
+    document.getElementById("more").innerHTML = str;
+  } else {
+    document.getElementById("more").innerHTML = '';
+  }
+}
+
+
+
+$(document).ready(function(){
+  $.ajax({
+    url: '/rss/ajax/rss_list',
+    type: "GET",
+    cache: false,
+    data:{ group : $("#group_select").val(), site:$("#site_select").val(), board: $("#board_select").val(), search:$("#search").val() },
+    dataType: "json",
+    success: function (list_data) {
+      makeHTML(list_data);
+    }
+  });
+
+
+  $("#site_select").change(function(e){
+    e.preventDefault();
+    $("#board_select").empty();
+    group = $("#group_select option:selected").val();
+    site = $("#site_select option:selected").val();
+    $.getJSON("/rss/ajax/site_list", {
+      group: group,
+      site: site
+    }, function(data) {
+        var options = $("#board_select");
+        options.append($("<option />").val("all").text("전체"));
+        $.each(data['board'], function() {
+          options.append($("<option />").val(this).text(this));
+      });
+    });
+    return false;
+  });
+
+  // 
+  $("#form").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: '/rss/ajax/rss_list',
+      type: "GET",
+      cache: false,
+      data:{ group : $("#group_select").val(), site:$("#site_select").val(), board: $("#board_select").val(), search:$("#search").val() },
+      dataType: "json",
+      success: function (list_data) {
+        makeHTML(list_data);
+      }
+    });
+  });
+
+  $("#more").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: '/rss/ajax/rss_list',
+      type: "GET",
+      cache: false,
+      data:{ group : $("#more_group").val(), site:$("#more_site").val(), board: $("#more_board").val(), search:$("#more_search").val(), count : $("#more_count").val(), page : parseInt($("#more_page").val())+1 },
+      dataType: "json",
+      success: function (list_data) {
+        makeHTML(list_data);
+      }
+    });
+  });
+});
+
+
+  
+
+
+
+</script>    
+
+        </div>
+     
+
+<div class="row border"> 
+  <div class="col-sm-1 border" style="text-align: center;" style="padding-top:10px; padding-bottom:10px">1</div>
+  <div class="col-sm-8 border">
+    <div class="row col-sm-12 border">
+      <div style="padding-top:10px; padding-bottom:10px">
+        <strong>Command : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</strong>
+      </div>
+    </div>
+    <div class='row' style="padding-top: 10px; padding-bottom:10px; align-items: center;">
+      <div class='col-sm-3 set-left'>
+        <strong>스케쥴링</strong>
+      </div>
+      <div class='col-sm-9 border'>
+          <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+              <label class="custom-control-label" for="defaultInline1">없음</label>
+            </div>
+            
+            <!-- Default inline 2-->
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+              <label class="custom-control-label" for="defaultInline2">시작시 한번 실행</label>
+            </div>
+            
+            <!-- Default inline 3-->
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="defaultInline3" name="inlineDefaultRadiosExample">
+              <label class="custom-control-label" for="defaultInline3">스케쥴링</label>
+            </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="row" style="padding-top: 10px; padding-bottom:10px; align-items: center;">
+        <div class="col-sm-3 set-left">
+        
+          <strong>전체 스케쥴링 작동</strong>
+        
+        </div>
+        <div class="col-sm-9">
+    
+          <div class="input-group col-sm-3">
+            
+            <div class="toggle btn btn-light off" data-toggle="toggle" style="width: 0px; height: 0px;"><input id="scheduler" name="scheduler" class="form-control form-control-sm" type="checkbox" data-toggle="toggle"><div class="toggle-group"><label class="btn btn-primary toggle-on">On</label><label class="btn btn-light toggle-off">Off</label><span class="toggle-handle btn btn-light"></span></div></div>
+            
+                
+                
+                
+          </div>
+          
+      
+        <div style="padding-left:20px; padding-top:5}px;">
+        <em>
+        
+          
+           On : 스케쥴링 시작<br>
+          
+           Off : 스케쥴링 중지<br>
+          
+        
+        </em>
+        </div>
+      
+        </div>
+      </div>
+
+
+
+      <form id="setting" name="setting">
+        
+  
+          <div class="row" style="padding-top: 10px; padding-bottom:10px; align-items: center;">
+            <div class="col-sm-3 set-left">
+            
+              <strong>스케쥴링 실행 주기</strong>
+            
+            </div>
+            <div class="col-sm-9">
+        
+              <div class="input-group col-sm-2">
+                <input id="interval" name="interval" type="number" class="form-control form-control-sm" min="1" placeholder="10" value="10">
+              </div>
+          
+          
+            <div style="padding-left:20px; padding-top:5}px;">
+            <em>
+            
+              minute 단위      
+            
+            </em>
+            </div>
+          
+            </div>
+          </div>
+        
+        
+            
+                
+          
+          <div class="row" style="padding-top: 10px; padding-bottom:10px; align-items: center;">
+            <div class="col-sm-3 set-left">
+            
+              <strong>시작시 자동실행</strong>
+            
+            </div>
+            <div class="col-sm-9">
+        
+              <div class="input-group col-sm-3">
+                
+                <div class="toggle btn btn-light off" data-toggle="toggle" style="width: 0px; height: 0px;"><input id="auto_start" name="auto_start" class="form-control form-control-sm" type="checkbox" data-toggle="toggle"><div class="toggle-group"><label class="btn btn-primary toggle-on">On</label><label class="btn btn-light toggle-off">Off</label><span class="toggle-handle btn btn-light"></span></div></div>
+                
+              </div>
+          
+          
+            <div style="padding-left:20px; padding-top:5}px;">
+            <em>
+            
+              On : 시작시 자동으로 스케쥴러에 등록됩니다.      
+            
+            </em>
+            </div>
+          
+            </div>
+          </div>
+        
+        
+          
+                
+          <div class="row" style="padding-top: 10px; padding-bottom:10px; align-items: center;">
+            <div class="col-sm-3 set-left">
+            
+            </div>
+            <div class="col-sm-9">
+        
+                  <div class="col-sm-6 text-left">
+                    <button id="setting_save" name="submit" class="btn btn-outline-success">저장</button>
+                  </div>
+                
+          
+            </div>
+          </div>
+        
+              </form>
+
+
+
+
+  </div>
+
+  <div class="col-sm-3 border">
+    <div class="btn-group btn-group-sm flex-wrap mr-2" role="group">
+      <button id="basic_search" name="submit" class="btn btn-sm  btn-outline-success" data-code="'+data[i].episode_code+'.' +data[i].corner_id + '">실1행</button>
+      <button id="basic_search" name="submit" class="btn btn-sm  btn-outline-success" data-code="'+data[i].program_code+ '">입력</button>
+      <button id="json" name="submit" class="btn btn-sm  btn-outline-success" data-idx="'+i+ '">설정</button>
+      <button id="program_search" class="btn btn-sm btn-outline-success" data-program="'+data[i].program_name+ '">삭제</button>
+    </div>
+  </div>
+
+</div>
+<hr style="width: 100%; margin:0px;" />';         
+
+
+      </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>

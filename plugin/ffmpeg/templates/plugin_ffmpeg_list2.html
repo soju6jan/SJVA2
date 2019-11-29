@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+{% block content %}
+<!--<div class="d-inline-block"></div>-->
+<!--<div id="accordion">-->
+    <style>
+        .row>div { padding-top: 3px; padding-bottom:3px; }
+        .row { align-items: center; word-break:break-all;}
+        .row>div:nth-child(odd) { align-items: right; text-align: right; }
+        .row>div:nth-child(even) { align-items: left; text-align: left; }
+      </style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
+<table id="result_table" class="table table-sm  tableRowHover">
+  <thead>
+    <tr>
+      <th style="width:5%">IDX</th>
+      <th style="width:8%">Plugin</th>
+      <th style="width:10%">시작시간</th>
+      <th style="width:20%">파일명</th>
+      <th style="width:8%">상태</th>
+      <th style="width:15%">진행률</th>
+      <th style="width:5%">길이</th>
+      <th style="width:5%">PF</th>
+      <th style="width:8%">배속</th>
+      <th style="width:8%">진행시간</th>
+      <th style="width:8%">Action</th>
+    </tr>
+  </thead>
+  <tbody id="list" >
+  </tbody>
+</table>
+
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+  var package_name = 'ffmpeg';
+  var protocol = window.location.protocol;
+  var socket = io.connect(protocol + "//" + document.domain + ":" + location.port + "/" + package_name)
+  //var socket = io.connect("http://" + document.domain + ":" + location.port + "/ffmpeg", {transports:['websocket']},  {'force new connection': true});
+  
+  //socket.emit("start");
+  
+  
+  socket.on('add', function(data){
+    str = make_item(data)
+    document.getElementById("list").innerHTML += str;
+    //document.getElementById("log_"+data.idx).scrollTop = document.getElementById("log_"+data.idx).scrollHeight ;
+  });
+
+  // 화면을 켜놓고, 스케쥴러에 의해 시작될때 add전에 로그가온다.
+  /*
+  socket.on('log', function(data){
+    if (document.getElementById("log_"+data.idx) != null) {
+      document.getElementById("log_"+data.idx).innerHTML += data.line;
+      document.getElementById("log_"+data.idx).scrollTop = document.getElementById("log_"+data.idx).scrollHeight;
+    }
+  });
+  */
+
+
+
+  socket.on('status_change', function(data) {
+    button_html(data);
+  });
+
+  socket.on('status', function(data){
+    status_html(data);
+  });
+
+  socket.on('last', function(data){
+    status_html(data);
+    button_html(data);
+  });
+
+  $.ajax({
+    url: '/' + package_name + '/ajax/list',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      document.getElementById("list").innerHTML = '';
+      str = ''
+      for(i in data) {
+        str += make_item(data[i])
+      }
+      document.getElementById("list").innerHTML = str;
+    }
+  });
+
+
+
+
+  $("body").on('click', '#stop', function(e){
+    e.stopPropagation();
+    e.preventDefault();
+    var idx = $(this).data('idx')
+    $.ajax({
+      url: '/ffmpeg/ajax/stop',
+      type: "POST",
+      cache: false,
+      data:{ idx : idx},
+      dataType: "json",
+      success: function (data) {
+      }
+    });
+  });
+
+  $("body").on('click', '#play', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var idx = $(this).data('idx')
+    $.ajax({
+      url: '/ffmpeg/ajax/play',
+      type: "POST",
+      cache: false,
+      data:{ idx : idx},
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        if (data.startsWith('/')) {
+          var url = '/open_file' + data;
+        } else {
+          var url = '/open_file/' + data;
+        }
+        window.open(url, "_blank");
+      }
+    });
+  });
+});
+
+function make_item(data) {
+  //if (document.getElementById("log_"+data.idx) != null) return;
+  str = '<tr style="cursor: pointer;" data-toggle="collapse" data-target="#collapse_'+ data.idx + '" aria-expanded="true" >';
+  str += '<td scope="col" style="width:5%">'+ data.idx + '</td>';
+  str += '<td scope="col" style="width:8%">'+ data.call_plugin + '</td>';
+  str += '<td scope="col" style="width:10%">'+ data.start_time + '</td>';
+  str += '<td scope="col" style="width:20%">'+ data.filename + '</td>';
+  str += '<td id="status_'+data.idx+'" scope="col" style="width:8%">'+ data.status_kor + '</td>';
+  var visi = 'hidden';
+  if (parseInt(data.percent) > 0) {
+    visi = 'visible';
+  }
+  str += '<td scope="col" style="width:20%"><div class="progress"><div id="progress_'+data.idx+'" class="progress-bar" style="visibility: '+visi+'; width:'+data.percent+'%">'+data.percent +'%</div></div></td>';
+  str += '<td scope="col" style="width:5%">'+ data.duration_str + '</td>';
+  str += '<td id="current_pf_count_'+data.idx+'" scope="col" style="width:5%">'+ data.current_pf_count + '</td>';
+  str += '<td id="current_speed_'+data.idx+'" scope="col" style="width:8%">'+ data.current_speed + '</td>';
+  str += '<td id="download_time_'+data.idx+'" scope="col" style="width:8%">'+ data.download_time + '</td>';
+  str += '<td id="button_'+data.idx+'" scope="col" style="width:8%" class="tableRowHoverOff">';
+  if (data.status_str == 'DOWNLOADING') {
+    str += '<button id="stop" class="align-middle btn btn-outline-danger btn-sm" data-idx="'+data.idx+'">중지</button>';
+  } else if (data.status_str == 'COMPLETED' && data.exist) {
+    str += '<button id="play" class="align-middle btn btn-outline-info btn-sm" data-idx="'+data.idx+'">재생</button>';
+  } 
+  str += '</td>'
+  str += '</tr>'
+  str += '<tr class="collapse tableRowHoverOff" style="cursor: pointer;"  id="collapse_' + data.idx + '">';
+  str += '<td colspan="11">';
+  str += '<div id="detail_'+data.idx+'">';
+  str += get_detail(data);
+  str += '</div>';
+  /*
+  str += '<div><textarea class="form-control" id="log_'+data.idx+'" rows="20">';
+  for (var i = 0; i < data.log.length; i++) {
+    str += data.log[i] + '\n';
+  }
+  str += '</textarea></div>';
+  */
+  str += '</td>';   
+  str += '</tr>'
+  return str
+}
+
+function info_html($left, $right) {
+  var str = '<div class="row">' +
+      '<div class="col-sm-2">' + 
+      '<strong>'+ $left +'</strong>' + 
+      '</div>' + 
+      '<div class="col-sm-10">' + 
+      '<div class="input-group col-sm-9">' +
+      '<span class="text-left" style="padding-left:10px; padding-top:3px">';
+  if ($left == 'URL') {
+    str += '<a href="/hls?url=' + $right + '" target="_blank">';
+  }
+  str += $right;
+  if ($left == 'URL') {
+    str += '</a>';
+  }    
+  str += '</span>' + 
+      '</div>' + 
+      '</div>' + 
+      '</div>';
+  return str;
+}
+
+function get_detail(data) {
+  var str = info_html('URL', data.url);
+  str += info_html('임시경로', data.temp_fullpath);
+  str += info_html('저장경로', data.save_fullpath);
+  str += info_html('진행률(current/total)', data.percent+ '% (' + data.current_duration + ' / ' + data.duration + ')');
+  str += info_html('현재 비트레이트', data.current_bitrate);
+  str += info_html('종료시간', data.end_time);
+  str += info_html('허용 Packet Fail 수', data.max_pf_count);    
+  str += info_html('파일 Exist', data.exist);
+  if (data.status_str == 'COMPLETED') {
+    str += info_html('파일 크기', data.filesize_str);
+    str += info_html('다운 속도', data.download_speed);
+  }
+  return str;
+}
+
+function button_html(data) {
+  if (data.status_str == 'DOWNLOADING') {
+    document.getElementById("button_" + data.idx).innerHTML = 
+    '<button id="stop" class="align-middle btn btn-outline-danger btn-sm" data-idx="'+data.idx+'">중지</button>';
+  } else if (data.status_str == 'COMPLETED' && data.exist) {
+    document.getElementById("button_" + data.idx).innerHTML = '<button id="play" class="align-middle btn btn-outline-info btn-sm" data-idx="'+data.idx+'">재생</button>';
+  } else {
+    document.getElementById("button_" + data.idx).innerHTML = '';
+  }
+}
+
+function status_html(data) {
+  var progress = document.getElementById("progress_" + data.idx);
+  progress.style.width = data.percent+ '%';
+  progress.innerHTML = data.percent+ '%';
+  progress.style.visibility = 'visible';
+  document.getElementById("status_" + data.idx).innerHTML = data.status_kor;
+  document.getElementById("current_pf_count_" + data.idx).innerHTML = data.current_pf_count;
+  document.getElementById("current_speed_" + data.idx).innerHTML = data.current_speed;
+  document.getElementById("download_time_" + data.idx).innerHTML = data.download_time;
+  //document.getElementById("log").innerHTML += str + '\r\n';
+  document.getElementById("detail_" + data.idx).innerHTML = get_detail(data);
+}
+
+</script>    
+{% endblock %}

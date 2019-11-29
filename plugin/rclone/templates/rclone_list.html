@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form id="form_search" class="form-inline" style="text-align:left">
+  <div class="container-fluid">
+    <div class="row show-grid">
+      <div class="col-md-12 form-inline">
+        <div class="col-md-4" style="align-items:left; text-align:left;">
+          <div id="job_select_div"></div>
+        </div>
+        <div class="col-md-8 form-inline " style="align-items:left; text-align:left;">
+          <div class="col-md-10" style="align-items:left; text-align:left;">
+            <input id="search_word" name="search_word" class="form-control form-control-sm w-100" type="text" placeholder="검색어" aria-label="Search">
+          </div>
+          <div class="col-md-2" style="align-items:left; text-align:left;">
+            <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div id='page1'></div>
+
+{{ macros.m_hr_head_top() }}
+{{ macros.m_row_start('0') }}
+{{ macros.m_col(1,  macros.m_strong('ID')) }}
+{{ macros.m_col(1,  macros.m_strong('Job')) }}
+{{ macros.m_col(4,  macros.m_strong('Folder / Name')) }}
+{{ macros.m_col(1,  macros.m_strong('Size')) }}
+{{ macros.m_col(1,  macros.m_strong('Speed')) }}
+{{ macros.m_col(2,  macros.m_strong('Time')) }}
+{{ macros.m_col(2,  macros.m_strong('Log')) }}
+{{ macros.m_row_end() }}
+{{ macros.m_hr_head_bottom() }}
+<div id="list_div"></div>
+<div id='page2'></div>
+
+<script type="text/javascript">
+var package_name = 'rclone';
+var current_data = null;
+
+$(document).ready(function(){
+  request_search('1');
+});
+
+$("#search").click(function(e) {
+  e.preventDefault();
+  request_search('1');
+});
+
+$("body").on('click', '#page', function(e){
+  e.preventDefault();
+  request_search($(this).data('page'));
+});
+
+function request_search(page) {
+  var formData = get_formdata('#form_search')
+  formData += '&page=' + page;
+  $.ajax({
+    url: '/' + package_name + '/ajax/filelist',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      window.scrollTo(0,0);
+      make_job_select(data.jobs)
+      make_list(data.list)
+      make_page_html(data.paging)
+    }
+  });
+}  
+
+function make_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    str += m_col(1, data[i].id);
+    tmp = 'ID:' + data[i].job_id
+    for(j in current_data.jobs) {
+      if (current_data.jobs[j].id == data[i].job_id) {
+        if (current_data.jobs[j].name != '') {
+          tmp = current_data.jobs[j].name
+          break
+        }
+      }
+    }
+    str += m_col(1, tmp);
+    if (data[i].folder != null)
+      tmp = data[i].folder + '<br>' + data[i].name
+    else
+      tmp = data[i].name
+    str += m_col(4, tmp);
+    str += m_col(1, data[i].size);
+    str += m_col(1, data[i].speed);
+    tmp = data[i].created_time + '<br>' + data[i].finish_time + '<br>' + data[i].delta
+    str += m_col(2, tmp);
+    str += m_col(2, data[i].log);
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+function make_job_select(data) {
+  prev = null
+  if (document.getElementById("job_select") != null) 
+    prev = document.getElementById("job_select").value
+  str = '<select id="job_select" name="job_select" class="form-control form-control-sm">'
+  str += '<option value="all">전체</option>';
+  for(var i in data) {
+    str += '<option value="'+ data[i].id+'">'
+    if (data[i].name == '') {
+      str += "ID:" + data[i].id
+    } else {
+      str += '' + data[i].name;// + " ID:" + data[i].id
+    }
+    str += "</option>"
+  }
+  str += "</select>"
+  document.getElementById("job_select_div").innerHTML = str;
+  if ( prev != null)
+    document.getElementById("job_select").value = prev
+}
+</script>    
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="login-form col-sm-4 border">
+    <!--<form action="/login" method="post" _lpchecked="1">
+      -->
+      <form id="login_form">
+      <input type="hidden" id="next" name="next" value="{{next}}">
+      <h2 class="text-center">Log in</h2>   
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input type="text" class="form-control" name="username" placeholder="Username" required="required" autocomplete="off" >				
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <input type="password" class="form-control" name="password" placeholder="Password" required="required" autocomplete="off" >				
+        </div>
+      </div>        
+      <div class="form-group">
+        <button id="login_btn" type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+      </div>
+      <div class="clearfix">
+        <label class="pull-left checkbox-inline"><input type="checkbox" name='remember' checked> Remember me</label>
+      </div>
+    </form>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<script type="text/javascript">
+
+$("#login_btn").click(function(e) {
+  e.preventDefault();
+  formData = get_formdata('#login_form')
+
+  $.ajax({
+    url: '/login',
+    type: "POST", 
+    cache: false,
+    data:formData,
+    dataType: "json",
+    success: function (data) {
+      if (data == 'redirect') {
+        next = document.getElementById("next").value;
+        if (next == 'None') {
+          next = '/'
+        }
+        window.location.href = next;
+      } else if (data == 'no_id') {
+        $.notify('<strong>ID가 없습니다.</strong>', {
+          type: 'warning'
+        });
+      } else if (data == 'wrong_password') {
+        $.notify('<strong>암호가 틀립니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+<div>
+  <form id="form_search" class="form-inline" style="text-align:left">
+    <div class="container-fluid">
+      <div class="row show-grid">
+        <span class="col-md-4">
+          <select id="order" name="order" class="form-control form-control-sm">
+            <option value="desc">최근순</option>
+            <option value="asc">오래된순</option>
+          </select>
+          <select id="option" name="option" class="form-control form-control-sm">
+            <option value="all">전체</option>
+            <option value="movie_o">영화⭕</option>
+            <option value="movie_x">영화❌</option>
+            <option value="kor">kor</option>
+            <option value="kor_vod">kor_vod</option>
+            <option value="vod">vod</option>
+            <option value="sub_x">sub</option>
+            <option value="imdb">imdb</option>
+          </select>
+        </span>
+        <span class="col-md-8">
+          <input id="search_word" name="search_word" class="form-control form-control-sm w-75" type="text" placeholder="" aria-label="Search">
+          <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+          <button id="reset_btn" class="btn btn-sm btn-outline-success">리셋</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <div id='page1'></div>
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(2,  macros.m_strong('Poster')) }}
+  {{ macros.m_col(2,  macros.m_strong('Time & Target')) }}
+  {{ macros.m_col(8,  macros.m_strong('Info')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <div id="list_div"></div>
+  <div id='page2'></div>
+</div>
+
+<script type="text/javascript">
+var package_name = 'fileprocess_movie';
+var current_data = null;
+
+$(document).ready(function(){
+  request_search('1');
+});
+
+$("#search").click(function(e) {
+  e.preventDefault();
+  request_search('1');
+});
+
+$("body").on('click', '#page', function(e){
+  e.preventDefault();
+  request_search($(this).data('page'));
+});
+
+$("#reset_btn").click(function(e) {
+  e.preventDefault();
+  document.getElementById("order").value = 'desc';
+  document.getElementById("option").value = 'all';
+  document.getElementById("search_word").value = '';
+  request_search('1')
+});
+
+$("body").on('click', '#json_btn', function(e){
+  e.preventDefault();
+  var id = $(this).data('id');
+  for (i in current_data.list) {
+    if (current_data.list[i].id == id) {
+      m_modal(current_data.list[i])
+    }
+  }
+});
+
+function request_search(page, move_top=true) {
+  var formData = get_formdata('#form_search')
+  formData += '&page=' + page;
+  $.ajax({
+    url: '/' + package_name + '/ajax/filelist',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      if (move_top)
+        window.scrollTo(0,0);
+      make_list(data.list)
+      make_page_html(data.paging)
+    }
+  });
+}
+
+
+function make_list(data) {
+  str = '';
+  for (i in data) {
+    //console.log(data[i])
+    str += m_row_start();
+    tmp = ''
+    if (data[i].movie_poster != null && data[i].movie_poster != 'about:blank') {
+      //console.log(data[i].movie_poster)
+      tmp = '<img src="' + data[i].movie_poster + '" class="img-fluid">'
+    }
+    str += m_col(2, tmp);
+    
+    tmp = data[i].created_time
+    tmp += '<br><span class="text-danger"><strong>' + data[i].target.replace('_x', '')  + '</strong></span>'
+    str += m_col(2, tmp)
+
+    tmp = ''
+    tmp += '<b>소스 ' + ((data[i].is_file) ? " 파일" : " 폴더") + ' : </b>' + data[i].filename
+    tmp += '<br><b>이동 폴더 : </b>' + data[i].dest_folder_name
+    
+    if (data[i].movie_id != null) {
+      tmp += m_hr()
+      tmp += '<b>' + data[i].movie_title + '</b>' 
+      if (data[i].movie_more_title != null) {
+        tmp += data[i].movie_more_title
+        tmp += '<br>' + data[i].movie_more_info.replace('요약', '').trim()
+      }
+    }
+
+    tmp2 = ''
+    if (data[i].movie_more_title != null) {
+      tmp2 += m_button('global_link_btn', 'Daum 검색', [{'key':'url', 'value':'https://movie.daum.net/moviedb/main?movieId='+data[i].movie_id}]);
+    }
+
+    if (data[i].movie_title != null) {
+      tmp2 += m_button('global_link_btn', 'Search PLEX', [{'key':'url', 'value':'https://app.plex.tv/desktop#!/server/' + current_data.plex_server_hash + '/search/' + data[i].movie_title}]);
+    }
+    tmp2 = m_button_group(tmp2)
+    tmp += '<br><br>' + tmp2
+    str += m_col(8, tmp)
+
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+</script>    
+{% endblock %}

@@ -1,0 +1,53 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides: SJVA
+# Required-Start: $network $remote_fs $local_fs
+# Required-Stop: $network $remote_fs $local_fs
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: SJVA
+# Description: SJVA, initscript by djjproject
+### END INIT INFO
+
+pid=`ps ax | grep /bin/sh | grep ./my_start.sh | awk '{ print $1 }'`
+pid2=`ps ax | grep python | grep sjva.py | awk '{ print $1 }'`
+
+do_start() {
+if [ -z "$pid" ]; then
+echo "start SJVA"
+cd /home/SJVA
+su root -c "nohup ./my_start.sh &" > /dev/null 2>&1
+else
+echo "SJVA already running."
+fi
+}
+
+do_stop() {
+if [ -z "$pid" ]; then
+echo "SJVA not running"
+else
+echo "SJVA stopped"
+kill -9 "$pid"
+kill -9 "$pid2"
+fi
+}
+
+case "$1" in
+start)
+do_start
+;;
+stop)
+do_stop
+;;
+restart)
+$0 stop
+$0 start
+;;
+*)
+echo "Usage: "$1" {start|stop|restart}"
+exit 1
+;;
+esac
+
+exit 0

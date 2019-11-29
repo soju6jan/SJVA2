@@ -1,0 +1,340 @@
+{% extends "base.html" %}
+{% block content %}
+
+{{ macros.m_row_start() }}  
+{{ macros.m_button('serve_add_btn', 'Serve 추가') }}
+{{ macros.m_row_end() }}  
+
+{{ macros.m_hr_head_top() }}
+{{ macros.m_row_start('0') }}
+{{ macros.m_col(2, macros.m_strong('Name')) }}
+{{ macros.m_col(1, macros.m_strong('Cmd')) }}
+{{ macros.m_col(2, macros.m_strong('Remote')) }}
+{{ macros.m_col(1, macros.m_strong('Port')) }}
+{{ macros.m_col(4, macros.m_strong('Option')) }}
+{{ macros.m_col(2, macros.m_strong('Action')) }}
+{{ macros.m_row_end() }}
+{{ macros.m_hr_head_bottom() }}
+
+<div id="serve_list_div"></div>
+</div>
+
+<!-- Serve 모달 -->
+{{ macros.m_modal_start('serve_add_modal', 'Serve Setting', 'modal-lg') }}
+  <form id='serve_setting'>
+  {{ macros.setting_input_text('serve_name', 'Name', desc='로그 파일 이름. 없을시 ID') }}
+  {{ macros.setting_select('serve_command', 'Command', [['webdav', 'WebDav'],['ftp', 'FTP'],['dlna', 'DLNA'], ['sftp', 'SFTP'], ['http', 'HTTP']], col='6', desc='Rclone 명령')}}
+
+  {{ macros.setting_select('serve_remote', 'Remote', [], col='6')}}
+  {{ macros.setting_input_text_and_buttons('serve_remote_path', 'Remote Path', [['serve_ls_btn', '폴더확인'], ['serve_ls_toggle_btn', 'Toggle']], value='/') }}
+
+  {{ macros.setting_top(padding='0') }}
+  <div id="ls_div" class="collapse" style="padding-left:20px;"></div>
+  {{ macros.setting_bottom(padding_top='0') }}
+
+  {{ macros.setting_input_int('serve_port', 'Port', desc=['Serve 실행 포트', '--addr 0.0.0.0:[PORT] 옵션으로 실행됩니다.']) }}
+
+  {{ macros.setting_input_textarea('serve_option', 'Serve 옵션', value='', row='10') }}
+  
+  {{ macros.setting_checkbox('auto_start', '시작시 Serve 실행', 'true', desc='스케쥴링 작업에 포함할 경우 체크') }}  
+  {{ macros.setting_button([['serve_save_btn', '저장'], ['serve_remove_btn', '삭제']]) }}
+
+  </form>
+{{ macros.m_modal_end() }}
+<!-- END 작업추가 모달 -->
+
+
+<script type="text/javascript">
+var package_name = 'rclone';
+var current_data = null;
+var default_option = "{{ arg['option'] }}"
+
+$(document).ready(function(){
+  $('#serve_ls_btn').attr("data-target", "#ls_div");
+  $('#serve_ls_toggle_btn').attr("data-target", "#ls_div");
+  //set_command_type('move')
+  
+  // 페이지 로딩
+  $.ajax({
+    url: '/' + package_name + '/ajax/load_serves',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_serve_list(data.serves);
+    }
+  });
+});
+
+
+// 작업추가 버튼
+$("body").on('click', '#serve_add_btn', function(e){
+  e.preventDefault();
+  $('#serve_save_btn').data("id", "-1");
+  var str = '';
+  for (i in current_data.remotes) {
+    str += '<option value="'+current_data.remotes[i].name+'">'+current_data.remotes[i].name+'</option>'
+  }
+  
+  document.getElementById('serve_name').value = "";
+  document.getElementById('serve_command').value = "webdav";
+  document.getElementById('serve_remote').innerHTML = str;
+  document.getElementById('serve_remote_path').value = "/";
+  document.getElementById('serve_port').value = "8080";
+
+  document.getElementById('serve_option').value = default_option;
+  document.getElementById('serve_remove_btn').disabled = true; 
+  document.getElementById('serve_save_btn').disabled = false;
+  document.getElementById('serve_add_modal_title').innerHTML = "Serve 추가"
+  $("#serve_add_modal").modal();
+}); 
+
+
+$("body").on('click', '#serve_ls_btn', function(e){
+  e.preventDefault();
+  remote = document.getElementById('serve_remote').value;
+  remote_path = document.getElementById('serve_remote_path').value;
+  $.ajax({
+    url: '/' + package_name + '/ajax/remote_ls',
+    type: "POST", 
+    cache: false,
+    data:{remote:remote, remote_path:remote_path},
+    dataType: "json",
+    success: function (data) {
+      $('#ls_div').collapse('show')
+      document.getElementById('ls_div').innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+    }
+  });
+}); 
+
+
+// ls 토글 버튼
+$("body").on('click', '#serve_ls_toggle_btn', function(e){
+  e.preventDefault();
+  $('#ls_div').collapse('toggle');
+}); 
+
+
+
+// 마운트 저장 버튼
+$("body").on('click', '#serve_save_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  var formData = get_formdata('#serve_setting');
+  formData += '&id=' + id;
+  $.ajax({
+    url: '/' + package_name + '/ajax/serve_save',
+    type: "POST", 
+    cache: false,
+    data:formData,
+    success: function (data) {
+      current_data = data;
+      //make_remotes_list(data.remotes);
+      make_serve_list(data.serves);
+      if (data.ret == 'success')  {
+        $("#serve_add_modal").modal('hide');
+        $.notify('<strong>설정을 저장하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>저장 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+
+
+
+// 마운트 삭제 버튼
+$("body").on('click', '#serve_remove_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  $.ajax({
+    url: '/' + package_name + '/ajax/serve_remove',
+    type: "POST", 
+    cache: false,
+    data:{id:id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_serve_list(data.serves);
+      if (data.ret == 'success') {
+        $("#serve_add_modal").modal('hide');
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>삭제 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+function make_serve_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    //str += m_col(1, data[i].id);
+    if (data[i].name == '') {
+      tmp = data[i].id
+    } else {
+      tmp = data[i].name
+    }
+    str += m_col(2, tmp);
+    str += m_col(1, data[i].command_ui);
+
+    tmp = data[i].remote + ':' + data[i].remote_path
+    str += m_col(2, tmp);
+    
+    str += m_col(1, data[i].port);
+    str += m_col(4, data[i].option);
+
+    tmp = m_button('serve_setting_btn', '수정', [{'key':'id', 'value':data[i].id}]);
+    if (data[i].current_status == false) {
+      tmp += m_button('serve_execute_btn', 'Serve 실행', [{'key':'id', 'value':data[i].id}]);
+    } else {
+      tmp += m_button('serve_stop_btn', 'Serve 중지', [{'key':'id', 'value':data[i].id}]);
+    }
+    tmp += m_button('serve_log_btn', 'Log', [{'key':'id', 'value':data[i].id}]);
+    tmp = m_button_group(tmp)
+    str += m_col(2, tmp);
+    
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("serve_list_div").innerHTML = str;
+}
+
+
+// 작업 실행 버튼
+$("body").on('click', '#serve_execute_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  $.ajax({
+    url: '/' + package_name + '/ajax/serve_execute',
+    type: "POST", 
+    cache: false,
+    data:{id:id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_serve_list(data.serves);
+      if (data.ret == 'success') {
+        $.notify('<strong>실행하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>실행 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+// 작업 중단 버튼
+$("body").on('click', '#serve_stop_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  $.ajax({
+    url: '/' + package_name + '/ajax/serve_stop',
+    type: "POST", 
+    cache: false,
+    data:{id:id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_serve_list(data.serves);
+      if (data.ret == 'success') {
+        $.notify('<strong>중지하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>중지 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+// 작업 수정 버튼
+$("body").on('click', '#serve_setting_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  var select_serve = null;
+  for (i in current_data.serves) {
+    if (current_data.serves[i].id == id) {
+      select_serve = current_data.serves[i];
+      break;
+    }
+  }
+  if (select_serve == null) return;
+  //console.log(select_serve)
+  $('#serve_save_btn').data("id", id);
+  $('#serve_remove_btn').data("id", id);
+  
+  document.getElementById('serve_remove_btn').disabled = false; 
+
+  var str = '';
+  for (i in current_data.remotes) {
+    str += '<option value="'+current_data.remotes[i].name+'">'+current_data.remotes[i].name+'</option>'
+  }
+  document.getElementById('serve_name').value = select_serve.name;
+  document.getElementById('serve_command').value = select_serve.command;
+  document.getElementById('serve_remote').innerHTML = str;
+  document.getElementById('serve_remote').value = select_serve.remote;
+  document.getElementById('serve_remote_path').value = select_serve.remote_path;
+  document.getElementById('serve_port').value = select_serve.port;
+  document.getElementById('serve_option').value = select_serve.option;
+  //document.getElementById('auto_start').value = select_serve.remote_path;
+
+  if (select_serve.auto_start) {
+    //document.getElementById("item_auto_start").value = 'on';
+    $('#auto_start').bootstrapToggle('on')
+  } else {
+    $('#auto_start').bootstrapToggle('off')
+  }
+  document.getElementById('serve_add_modal_title').innerHTML = "Serve 수정"
+  
+  $("#serve_add_modal").modal();
+  
+});
+
+
+// 로그
+$("body").on('click', '#serve_log_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  $.ajax({
+    url: '/' + package_name + '/ajax/get_log',
+    type: "POST", 
+    cache: false,
+    data:{type:'serve', id:id},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        m_modal(data.data, '로그')
+      } else {
+        $.notify('<strong>실패</strong><br>'+data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+
+</script>    
+{% endblock %}

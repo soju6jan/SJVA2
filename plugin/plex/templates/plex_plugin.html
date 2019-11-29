@@ -1,0 +1,628 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  {{ macros.m_button_group([['command_restart_scan_queue_btn', '스캔 정보 초기화'],['command_reload_section_btn', '폴더 정보 다시 읽기'],['command_get_setcion_btn', '폴더 정보 확인'],['command_self_update_btn', '플러그인 업데이트']])}}
+  {{ macros.m_row_start('10') }}
+  {{ macros.m_row_end() }}
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head2('scan_wait', 'Wait Queue', true) }}
+      {{ macros.m_tab_head2('scan_completed', 'Scan Queue', false) }}
+      {{ macros.m_tab_head2('plugin', 'Scanner / Agent 설치',  false) }}
+      {{ macros.m_tab_head2('file_read', '파일 읽기',  false) }}
+
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('scan_wait', true) }}
+      {{ macros.m_button_group([['command_get_scan_wait_list_btn', '로딩']])}}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1, macros.m_strong('Idx')) }}
+      {{ macros.m_col(1, macros.m_strong('Type')) }}
+      {{ macros.m_col(2, macros.m_strong('Status')) }}
+      {{ macros.m_col(3, macros.m_strong('Time')) }}
+      {{ macros.m_col(5, macros.m_strong('Info')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+      <div id="scan_wait_list_div"></div>
+    {{ macros.m_tab_content_end() }}
+
+    {{ macros.m_tab_content_start('scan_completed', false) }}
+      {{ macros.m_button_group([['command_get_scan_completed_list_btn', '로딩']])}}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1, macros.m_strong('Idx')) }}
+      {{ macros.m_col(1, macros.m_strong('Type')) }}
+      {{ macros.m_col(2, macros.m_strong('Status')) }}
+      {{ macros.m_col(3, macros.m_strong('Time')) }}
+      {{ macros.m_col(5, macros.m_strong('Info')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+      <div id="scan_completed_list_div"></div>
+    {{ macros.m_tab_content_end() }}
+
+
+    {{ macros.m_tab_content_start('plugin', false) }}
+      {{ macros.m_button_group([['command_get_plugin_list_btn', '설치 지원 목록 로딩']])}}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_row_end() }}      
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(2, macros.m_strong('Icon')) }}
+      {{ macros.m_col(3, macros.m_strong('Name')) }}
+      {{ macros.m_col(5, macros.m_strong('Description')) }}
+      {{ macros.m_col(2, macros.m_strong('Action')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+
+      <div id="plugin_list_div"></div>
+    {{ macros.m_tab_content_end() }}
+
+    {{ macros.m_tab_content_start('file_read', false) }}
+      <form id="form_search" class="form-inline" style="text-align:left">
+        <div class="container-fluid">
+          <div class="row show-grid">
+            <div class="col-md-5 form-inline">
+              <div id="filename_list_div"></div>
+            </div>
+            <div class="col-md-5 form-inline">
+              <input id="filename_text" name="filename_text" class="form-control form-control-sm w-100" type="text" aria-label="Search">
+            </div>
+            <div class="col-md-2 form-inline">
+              <button id="get_log_btn" class="btn btn-sm btn-outline-success">로딩</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      {{ macros.m_row_start('10') }}
+      {{ macros.m_row_end() }}  
+      <div>
+        <textarea id="file_content" class="col-md-12" rows="30" disabled style="visibility:visible"></textarea>
+      </div>
+    {{ macros.m_tab_content_end() }}
+  </div>
+
+  
+</div> <!--전체-->
+
+
+<script type="text/javascript">
+var package_name = 'plex';
+var current_data = {};
+
+$(document).ready(function() {
+  function ResizeTextArea() {
+    ClientHeight = window.innerHeight
+    $("#file_content").height(ClientHeight-300);
+    //$("#add").height(ClientHeight-260);
+  }
+  $(window).resize(function() {
+    ResizeTextArea();
+  });
+  ResizeTextArea()
+  make_form()
+  str = document.getElementById("filename_list").value;
+  document.getElementById("filename_text").value = str;
+
+})
+
+
+
+function make_form() {
+  data = ['Logs/Plex Media Server.log', 'Logs/Plex Media Scanner.log', 'Logs/Plex Transcoder Statistics.log', 'Logs/Plex Tuner Service.log', 'Logs/sjva.scanner.korea.tv.log', 'Logs/PMS Plugin Logs/com.plexapp.plugins.SJVA.log', 'Logs/PMS Plugin Logs/com.plexapp.agents.sj_daum.log']
+  str = '<select id="filename_list" name="filename_list" class="form-control form-control-sm">';
+  for(var i in data) {
+    str += '<option value="' + data[i] + '">' + data[i] + '</option>';
+  }
+  document.getElementById("filename_list_div").innerHTML = str;
+}
+
+
+
+$("body").on('click', '#command_restart_scan_queue_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'restart_scan_queue'}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        $.notify('<strong>초기화 하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>Exception</strong><br>' + data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$("body").on('click', '#command_reload_section_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'reload_section'}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        $.notify('<strong>' + data.data + ' 개의 폴더 정보 로딩</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>Exception</strong><br>' + data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$("body").on('click', '#command_get_setcion_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'get_setcion'}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      m_modal(data)
+    }
+  });
+});
+
+$("body").on('click', '#command_self_update_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'self_update'}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        tmp = data.data
+        if (data.data == 'OK') {
+          tmp = "설치중입니다."
+        }
+        $.notify('<strong>'+tmp+'</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>Exception</strong><br>' + data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+  
+$("body").on('click', '#command_get_plugin_list_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'get_plugin_list'}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      //m_modal(data)
+      if (data.ret == 'success') {
+        $.notify('<strong>'+data.data.length+'개 로딩</strong>', {
+          type: 'success'
+        });
+        make_plugin_list(data.data)
+      } else {
+        $.notify('<strong>Exception</strong><br>' + data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+  
+$("body").on('click', '#command_get_scan_wait_list_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'get_scan_wait_list'}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        $.notify('<strong>'+data.data.length+'개 로딩</strong>', {
+          type: 'success'
+        });
+        str = make_scan_list(data.data)
+        document.getElementById("scan_wait_list_div").innerHTML = str;
+      } else {
+        $.notify('<strong>Exception</strong><br>' + data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$("body").on('click', '#command_get_scan_completed_list_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'get_scan_completed_list'}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        $.notify('<strong>'+data.data.length+'개 로딩</strong>', {
+          type: 'success'
+        });
+        str = make_scan_list(data.data)
+        document.getElementById("scan_completed_list_div").innerHTML = str;
+      } else {
+        $.notify('<strong>Exception</strong><br>' + data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+$("body").on('click', '#install_plugin_confirm_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'install_plugin_confirm', 'param1':$(this).data('identifier')}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        if (data.data) {
+          tmp = "설치 되어 있습니다."
+        } else {
+          tmp = "설치 되어 있지 않습니다."
+        }
+        $.notify('<strong>'+tmp+'</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>Exception</strong><br>' + data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$("body").on('click', '#install_plugin_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'install_plugin', 'param1':$(this).data('identifier')}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        tmp = data.data
+        if (data.data == 'OK') {
+          tmp = "설치중입니다."
+        }
+        $.notify('<strong>'+tmp+'</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>Exception</strong><br>' + data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+function make_scan_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    tmp = parseInt(i) + 1
+    str += m_col(1, tmp);
+    if (data[i].call_from == "GDRIVE") {
+      tmp = "GDrive"
+    } else if (data[i].call_from == "FILE_MANAGER") {
+      tmp = "파일처리"
+    } else if (data[i].call_from == "WATCHDOG") {
+      tmp = "감시"
+    }
+    str += m_col(1, tmp);
+
+    tmp = get_wait_status(data[i].wait_status) + "<br>" + get_status(data[i].status)
+    str += m_col(2, tmp);
+
+    tmp = ""
+    tmp += data[i].time_make + " (Created) <br>"
+    tmp += data[i].time_inqueue + " (Inqueue) <br>"
+    tmp += data[i].time_scan_start + " (ScanStart) <br>"
+    tmp += data[i].time_scan_end + " (ScanEnd)"
+    str += m_col(3, tmp);
+
+    tmp = ""
+    tmp += "Directory : " + data[i].directory + "<br>"
+    tmp += "Filename : " + data[i].filename + "<br>"
+    tmp += "Section ID : " + data[i].section_id
+    str += m_col(5, tmp);
+
+    str += m_row_end();
+  }
+  return str
+  
+  
+}
+
+function get_wait_status(data) {
+  ret = ""
+  if (data == 'READY_ADD') {
+    ret = "파일 추가 대기"
+  } else if (data == 'READY_REMOVE') {
+    ret = "파일 삭제 대기"
+  } else if (data == 'REAL_ADD') {
+    ret = "파일 추가 확인"
+  } else if (data == 'REAL_REMOVE') {
+    ret = "파일 삭제 확인"
+  } else if (data == 'SHOW_IN_FILELIST') {
+    ret = "파일 목록에 나타남"
+  }
+  return ret
+}
+
+function get_status(data) {
+  ret = ""
+  if (data == 'ALREADY') {
+    ret = "중복 폴더"
+  } else if (data == 'SCAN_COMPLETED') {
+    ret = "스캔 완료"
+  } else if (data == 'SCAN_START') {
+    ret = "스캔중"
+  } else if (data == 'OK') {
+    ret = "스캔 큐 대기중"
+  } else if (data == 'EQUAL_FILE') {
+    ret = "동일 파일"
+  } else if (data == 'NO_LIBRARY') {
+    ret = "라이브러리 없음"
+  }
+  return ret
+}
+
+
+function make_plugin_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    tmp = '<img src="' + data[i].icon + '" class="img-fluid">'
+    str += m_col(2, tmp);
+    
+    str += m_col(3, data[i].name);
+    //str += m_col(3, data[i].identifier);
+    str += m_col(5, data[i].description);
+
+    tmp = ''
+    tmp += m_button('install_plugin_confirm_btn', '설치 확인', [{'key':'identifier', 'value':data[i].identifier}]);
+    tmp += m_button('install_plugin_btn', '설치', [{'key':'identifier', 'value':data[i].identifier}]);
+    tmp = m_button_group(tmp)
+    str += m_col(2, tmp)
+    str += m_row_end();
+  }
+  document.getElementById("plugin_list_div").innerHTML = str;
+}
+
+
+$("body").on('change', '#filename_list', function(e){
+  e.preventDefault();
+  str = document.getElementById("filename_list").value;
+  document.getElementById("filename_text").value = str;
+});
+
+
+$("body").on('click', '#get_log_btn', function(e){
+  e.preventDefault();
+  param = {'cmd':'get_log', 'param1':document.getElementById("filename_text").value}
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_command',
+    type: "POST", 
+    cache: false,
+    data:param,
+    dataType: "json",
+    success: function (data) {
+      console.log(data)
+      if (data.ret == 'success') {
+        $.notify('<strong>파일을 읽었습니다.</strong>', {
+          type: 'success'
+        });
+        document.getElementById("file_content").value = data.data
+      } else {
+        $.notify('<strong>Exception</strong><br>' + data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+function make_section_list(data) {
+  prev = null
+  if (document.getElementById("section_list") != null) 
+    prev = document.getElementById("section_list").value
+  str = '<select id="section_list" name="section_list" class="form-control form-control-sm">'
+  for(var i in data) {
+    if (data[i].type=='show') {
+      str += '<option value="'+ data[i].key+'">'
+      str += data[i].title
+      str += "</option>"
+    }
+  }
+  str += "</select>"
+  document.getElementById("section_list_div").innerHTML = str;
+  if ( prev != null)
+    document.getElementById("section_list").value = prev
+}
+
+
+function make_analyze_show(show) {
+  str = ''
+  for (i in show) {
+    str += make_analyze_show2(show[i])
+  }
+  document.getElementById("analyze_show_div").innerHTML = str;
+}
+
+
+//하나의 쇼
+function make_analyze_show2(show) {
+  str = ''
+  for (j in show.seasons) {
+    str += m_row_start();
+    tmp = ''
+    if (show.seasons[j].poster != null) {
+      tmp = '<img src="' + show.seasons[j].poster + '" class="img-fluid"><br>'
+    }
+    tmp += '<strong>'+show.title+'</strong>'
+    str += m_col(2, tmp);
+    
+    str += m_col(1, '' + show.seasons[j].season_number);
+    tmp = '총 에피소드 : ' +show.seasons[j].episode_count + '<br><br>'
+    tmp += '회차 에피소드 : ' +show.seasons[j].epi_count_index + '<br>'
+    if (show.seasons[j].epi_count_index != 0) {
+      tmp += '(최소:' + show.seasons[j].epi_min + ' 최대:' +show.seasons[j].epi_max + ')<br>'
+    }
+    tmp += '<br>'
+    tmp += '날짜 에피소드 : ' +show.seasons[j].epi_count_date + '<br>'
+
+    str += m_col(2, tmp);
+    if (show.seasons[j].status == 0 || show.seasons[j].status == 2) {
+      tmp = '정상'
+    } else if (show.seasons[j].status == 4 || show.seasons[j].status == 6) {
+      tmp = '<strong><span style="color: blue">정상 + 날짜 에피소드</span></strong>'
+    } else if (show.seasons[j].status == 1 || show.seasons[j].status == 3) {
+      tmp = '<strong><span style="color: red">비어있음</span></strong>'
+    } else if (show.seasons[j].status == 5 || show.seasons[j].status == 7) {
+      tmp = '<strong><span style="color: red">비어있음 + 날짜 에피소드</span></strong>'
+    } else if (show.seasons[j].status == 8) {
+      tmp = '전체 날짜 에피소드'
+    } else if (show.seasons[j].status == 9) {
+      tmp = '<strong><span style="color: red">확인필요</span></strong>'
+    } else if (show.seasons[j].status == 14) {
+      tmp = '<strong><span style="color: red">확인필요 + 날짜 에피소드</span></strong>'
+    }
+    str += m_col(2, tmp);
+    //str += m_col(2, show.seasons[j].status);
+    tmp = '<strong>요약</strong><br>' + show.seasons[j].msg + '<br><br>'
+    if (show.seasons[j].empty_episode_no != null) {
+      tmp += '<strong>비어있는 회차 : </strong>' + show.seasons[j].empty_episode_no.length + '건 - ' + show.seasons[j].empty_episode_no + '<br><br>'
+    }
+    
+    if (show.seasons[j].status != 8 && show.seasons[j].episode_air_list.length != 0) {
+      tmp += '<strong>날짜 에피소드 : </strong>' + show.seasons[j].episode_air_list.length + '건 - ' + show.seasons[j].episode_air_list + '<br><br>'
+    }
+
+    if (show.seasons[j].duplicate_list.length > 0) {
+      tmp += '<strong>중복 에피소드 : </strong>' + show.seasons[j].duplicate_list.length + '건 - '
+      tmp += show.seasons[j].duplicate_list + '<br><br>'
+    }
+
+    if (show.seasons[j].daum_info != null) {
+      tmp += '<strong>Daum</strong><br>'
+      if (show.seasons[j].daum_info.status == 1) {
+        tmp += '<strong><span style="color: blue">종영</span></strong>'
+      } else if (show.seasons[j].daum_info.status == 2) {
+        tmp += '<strong><span style="color: blue">방송예정</span></strong>'  
+      }
+      tmp += ' 1일' + show.seasons[j].daum_info.episode_count_one_day + '회 방송<br>'
+      
+      tmp += show.seasons[j].daum_info.studio + ' '
+      tmp += show.seasons[j].daum_info.genre + ' '
+      tmp += show.seasons[j].daum_info.broadcast_info + ' '
+      tmp += show.seasons[j].daum_info.broadcast_term + '<br>'
+      tmp += '에피소드 정보 : ' + Object.keys(show.seasons[j].daum_info.episode_list_json).length + '건'
+      tmp += '<br><br>'
+    }
+
+    tmp1 = m_button('file_modal_btn', '회차', [{'key':'id', 'value':show.seasons[j].season_key}, {'key':'type', 'value':'index'}]);
+    tmp1 += m_button('file_modal_btn', '날짜', [{'key':'id', 'value':show.seasons[j].season_key}, {'key':'type', 'value':'date'}]);
+
+
+    tmp1 += m_button('open_url_btn', 'PLEX', [{'key':'url', 'value':'https://app.plex.tv/desktop#!/server/' + current_data.plex_server_hash + '/details?key=' + show.seasons[j].season_key}]);
+
+    if ( show.seasons[j].daum_info != null ) {
+      tmp2 = 'https://search.daum.net/search?w=tv&q='+ show.title +'&irk='+show.seasons[j].daum_info.daum_id+'&irt=tv-program&DA=TVP';
+      tmp1 += m_button('open_url_btn', 'DAUM', [{'key':'url', 'value':tmp2}]);
+    }
+    //tmp += m_button('item_setting_btn', '설정', [{'key':'id', 'value':data[i].id}]);
+    
+    tmp1 = m_button_group(tmp1)
+
+    //tmp1 += "<pre>"+JSON.stringify(show.seasons[j].daum_info, null, 2) + "</pre>"
+    str += m_col(4, tmp + tmp1);
+    str += m_row_end();
+    if (j != show.seasons -1) str += m_hr();
+    
+  }
+  return str
+}
+
+
+
+
+
+</script>    
+{% endblock %}

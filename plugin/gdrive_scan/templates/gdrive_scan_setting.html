@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', false) }}
+      {{ macros.m_tab_head('작업', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <!-- 일반 -->
+    {{ macros.m_tab_content_start('일반', false) }}
+      {{ macros.setting_scheduler_button(arg['is_include'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        {{ macros.setting_input_int('web_page_size', '웹 페이지당 게시물 수', value=arg['web_page_size'], min='1', placeholder='30') }}
+        {{ macros.setting_button([['setting_save_btn', '저장'], ['reset_db_btn', '저장된 목록 지우기']]) }}
+      </form>
+    {{ macros.m_tab_content_end() }}
+
+    <!-- 작업 -->
+    {{ macros.m_tab_content_start('작업', true) }}
+      {{ macros.m_row_start() }}  
+      {{ macros.m_button('gdrive_add_btn', '작업 추가') }}
+      {{ macros.m_row_end() }}  
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1,  macros.m_strong('NO')) }}
+      {{ macros.m_col(3,  macros.m_strong('Name')) }}
+      {{ macros.m_col(3,  macros.m_strong('GDrive Path')) }}
+      {{ macros.m_col(3,  macros.m_strong('Plex Path')) }}
+      {{ macros.m_col(2,  macros.m_strong('Action')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+      <div id="gdrive_list_div"></div>
+    {{ macros.m_tab_content_end() }}
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+<!-- 작업추가 모달 -->
+{{ macros.m_modal_start('gdrive_add_modal', 'GDrive 추가', 'modal-lg') }}
+  <form id='gdrive_setting'>
+  {{ macros.setting_input_text('gdrive_name', 'GDrive 이름', desc='json 파일 이름', col='3') }}
+  {{ macros.setting_button([['auth_btn', '계정선택 및 인증']]) }}
+  {{ macros.setting_input_text('gdrive_code', 'Code', desc='복사한 코드 붙여넣기') }}
+  {{ macros.setting_input_text('gdrive_path', '경로 매칭 (GDrive)', placeholder='내 드라이브', value='내 드라이브', desc=['경로 매칭', 'GDrive 는 "내 드라이브" 가 루트를 의미하며 폴더 구분자는 "/"', '예)내 드라이브 or 내 드라이브/video']) }}
+  {{ macros.setting_input_text('plex_path', '경로 매칭 (Plex)', placeholder='', desc=['위의 경로 매칭(GDrive)의 Plex 서버 OS상의 경로', '예)윈도우 - M: or L:\video', '리눅스 계열 - /mnt/mydrive/video']) }}
+  {{ macros.setting_button([['gdrive_save_btn', '저장']]) }}
+  </form>
+{{ macros.m_modal_end() }}
+
+
+<script type="text/javascript">
+var package_name = 'gdrive_scan';
+var current_data = null;
+
+$(document).ready(function(){
+  // 페이지 로딩
+  $.ajax({
+    url: '/' + package_name + '/ajax/load',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_gdrive_list(data.gdrive_list);
+      //make_job_list(data.jobs);
+    }
+  });
+
+
+  // GDrive 추가
+  $("body").on('click', '#gdrive_add_btn', function(e){
+    e.preventDefault();
+    document.getElementById('gdrive_name').value = '';
+    document.getElementById('gdrive_code').value = '';
+    $("#gdrive_add_modal").modal();
+  });
+
+  // 계정선택 인증
+  $("body").on('click', '#auth_btn', function(e){
+    e.preventDefault();
+    $.ajax({
+      url: '/' + package_name + '/ajax/make_token',
+      type: "POST", 
+      cache: false,
+      data:{},
+      dataType: "json",
+      success: function (data) {
+        window.open(data, "_blank");
+      }
+    });
+  });
+
+  // GDrive 저장 버튼
+  $("body").on('click', '#gdrive_save_btn', function(e){
+    e.preventDefault();
+    var formData = get_formdata('#gdrive_setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/gdrive_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (data) {
+        current_data = data
+        make_gdrive_list(data.gdrive_list);
+        if (data.ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+          $("#gdrive_add_modal").modal('hide');
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  // GDrive 삭제 버튼
+  $("body").on('click', '#gdrive_delete_btn', function(e){
+    e.preventDefault();
+    var id = $(this).data('id')
+    $.ajax({
+      url: '/' + package_name + '/ajax/gdrive_delete',
+      type: "POST", 
+      cache: false,
+      data: {id:id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data
+        make_gdrive_list(data.gdrive_list);
+        if (data.ret) {
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>삭제에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  // 스케쥴링 on / off
+  $('#scheduler').change(function() {
+    var ret = $(this).prop('checked');
+    $.ajax({
+      url: '/' + package_name + '/ajax/scheduler',
+      type: "POST", 
+      cache: false,
+      data: {scheduler : ret},
+      dataType: "json",
+      success: function (list) {
+      }
+    });
+  });
+
+  //설정 저장
+  $("#setting_save_btn").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  $("body").on('click', '#reset_db_btn', function(e){
+    e.preventDefault();
+    $.ajax({
+      url: '/' + package_name + '/ajax/reset_db',
+      type: "POST", 
+      cache: false,
+      data: {},
+      dataType: "json",
+      success: function (data) {
+        if (data) {
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>삭제에 실패하였습니다.</strong>',{
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+
+});
+
+
+function make_gdrive_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    str += m_col(1, data[i].id);
+    str += m_col(3, data[i].name);
+    str += m_col(3, data[i].gdrive_path);
+    str += m_col(3, data[i].plex_path);
+    tmp = m_button('gdrive_delete_btn', '삭제', [{'key':'id', 'value':data[i].id}]);
+    tmp = m_button_group(tmp)
+    str += m_col(2, tmp);
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("gdrive_list_div").innerHTML = str;
+}
+
+</script>    
+{% endblock %}

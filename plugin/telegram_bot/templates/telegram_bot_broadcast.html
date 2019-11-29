@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  <form id='setting' name='setting'>
+    
+    {{ macros.setting_input_text('rss_type', '타입', value='', col='3', desc=['TV : drama, ent, dacu, etc', '영화 : movie', 'AV : av_censored, av_uncensored, av_west', '기타 : music, user' ]) }}
+    {{ macros.setting_input_text('title', '파일명 혹은 제목', value='') }}
+    {{ macros.setting_input_text('magnet', '마그넷', value='') }}
+
+    {{ macros.setting_button([['broadcast_btn', '방송']]) }}
+  </form>
+</div> <!--전체-->
+
+<script type="text/javascript">
+var package_name = 'telegram_bot';
+var available = "{{arg['available']}}"
+$(document).ready(function(){
+  if (available == 'False') {
+    $.notify('<strong>방송 권한이 없습니다.</strong>', {
+      type: 'warning'
+    });
+  } else {
+    $.notify('<strong>방송 가능합니다.</strong>', {
+      type: 'success'
+    });
+  }
+});
+
+
+// 서버 목록
+$("body").on('click', '#broadcast_btn', function(e){
+  e.preventDefault();
+  rss_type = document.getElementById("rss_type").value;
+  title = document.getElementById("title").value;
+  magnet = document.getElementById("magnet").value;
+  if (rss_type == '' || title == '' || magnet == '') {
+    $.notify('<strong>값을 모두 입력하세요!</strong>', {
+      type: 'warning'
+    });
+    return
+  }
+  $.ajax({
+    url: '/' + package_name + '/ajax/broadcast',
+    type: "POST", 
+    cache: false,
+    data:{rss_type:rss_type, title:title, magnet:magnet},
+    dataType: "json",
+    success: function (data) {
+      m_modal(data)
+    }
+  });
+});
+
+
+
+
+
+</script>    
+{% endblock %}

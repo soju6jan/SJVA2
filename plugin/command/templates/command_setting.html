@@ -1,0 +1,468 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  <!-- 일반 -->
+  {{ macros.setting_input_text_and_buttons('command', 'Command', [['command_btn', '실행'], ['save_btn', '저장']],value=arg['api_command'], desc=['예) cmd, /bin/sh, /bin/bash, python test.py, ifconfig']) }}
+
+  {{ macros.setting_top() }}
+    <div class="input-group col-sm-9">
+      <select id="command_file_select" class="form-control form-control-sm">
+        <option value=""></option>
+        {% for item in arg['command_file_list'] %}
+          <option value="{{ item['value'] }}">{{item['text']}}</option>
+        {% endfor %}
+      </select>
+    </div>
+  {{ macros.setting_bottom(desc=['command 폴더 파일']) }}
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(1, macros.m_strong('ID')) }}
+  {{ macros.m_col(8, macros.m_strong('정보')) }}
+  {{ macros.m_col(3, macros.m_strong('Action')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <div id="list_div"></div>
+
+</div> <!--전체-->
+
+{{ macros.m_modal_start('this_command_modal', '', 'modal-lg') }}
+  <div>
+    <textarea id="add_textarea" class="col-md-12" rows="30" disabled style="visibility:visible"></textarea>
+  </div>
+  <form id='command_form' name='command_form'>
+    <div class="form-inline input-group">
+      <input id="process_command" name="process_command" type="text" class="form-control form-control-sm" placeholder="">
+      <button id="send_process_command_btn" class="btn btn-sm btn-outline-success">Send</button>
+    </div>
+  </form>
+{{ macros.m_modal_end() }}
+
+{{ macros.m_modal_start('item_modal', '', 'modal-lg') }}
+  <form id='item_setting' name='item_setting'>
+    <input type='hidden' id="item_id" name="item_id">
+    {{ macros.setting_input_text('item_command', 'Command') }}
+    {{ macros.setting_input_text('item_description', 'Description') }}
+    {{ macros.setting_radio('item_schedule_type', '', ['없음', '시작시 한번 실행', '스케쥴링']) }}
+    {{ macros.setting_input_int('item_interval', '스케쥴링 실행 주기', min='1', placeholder='10', desc='minute 단위') }}
+    {{ macros.setting_checkbox('item_auto_start', '시작시 자동실행', desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+    {{ macros.setting_button([['item_save_btn', '저장'], ['item_remove_btn', '삭제']]) }}
+  </form>
+  <hr>
+  {{ macros.setting_scheduler_switch(desc=['On : 스케쥴링 시작','Off : 스케쥴링 중지', '스케쥴링 타입으로 저장 후 가능']) }}
+{{ macros.m_modal_end() }}
+
+
+<script type="text/javascript">
+var package_name = 'command';
+var current_data = null;
+
+function ResizeTextArea() {
+  ClientHeight = window.innerHeight
+  $("#this_command_modal").height(ClientHeight-100);
+  $("#add_textarea").height(ClientHeight-380);
+}
+
+function start_socketio() {
+  var protocol = window.location.protocol;
+  socket = io.connect(protocol + "//" + document.domain + ":" + location.port + "/" + package_name);
+
+  socket.on('add', function(data){
+    str = data;
+    document.getElementById("add_textarea").innerHTML += str ;
+    document.getElementById("add_textarea").scrollTop = document.getElementById("add_textarea").scrollHeight;
+  });
+
+  socket.on('end', function(data){
+    str = '\n<<< END COMMAND >>> \n'
+    socket.close();
+    document.getElementById("process_command").disabled = true;
+    document.getElementById("send_process_command_btn").disabled = true;
+    document.getElementById("add_textarea").innerHTML += str ;
+    document.getElementById("add_textarea").scrollTop = document.getElementById("add_textarea").scrollHeight;
+  });
+}
+
+function show_this_command_modal(title) {
+    document.getElementById("add_textarea").innerHTML = '';
+    document.getElementById("process_command").value = '';
+    document.getElementById("process_command").disabled = false;
+    document.getElementById("send_process_command_btn").disabled = false;
+    document.getElementById("this_command_modal_title").innerHTML = title;
+    $("#this_command_modal").modal();
+    start_socketio();  
+  }
+
+function make_list(data) {
+  current_data = data;
+  //document.getElementById("modal_title").innerHTML = "JSON";
+  //document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+  //$("#large_modal").modal();
+  str = '';      
+  
+  for(var i in data) {
+    str += m_row_start()
+    str += m_col(1, data[i].id)
+           
+    tmp = '<p><strong>Command : </strong>' + data[i].command + '</P> \
+          <p><strong>Description : </strong>' + data[i].description + '</p> \
+          <strong>스케쥴링 : </strong>'
+    if (data[i].schedule_type == 0) {
+      tmp += '없음'
+    } else if (data[i].schedule_type == 1) {
+      tmp += '시작시 한번 실행'
+    } else if (data[i].schedule_type == 2 ) {
+      tmp += '스케쥴링 사용<br>'
+      tmp += '<strong>상태 : </strong> 대기중<br>';
+      tmp += '<strong>주기 : </strong>' + data[i].schedule_interval + '분<br>';
+      tmp += '<strong>자동실행 : </strong>';
+      if (data[i].schedule_auto_start) {
+        tmp += 'On';
+      } else {
+        tmp += 'Off';
+      }
+      tmp += '<br>';
+      tmp += '<strong>스케쥴러 : </strong>';
+      if (data[i].is_include == 'True') {
+        tmp += '포함'
+        if ( data[i].is_running == 'True') {
+        tmp += '(실행중)'
+      } else {
+        tmp += '(대기중)'
+      }
+      } else {
+        tmp += '없음'
+      }
+    }
+    str += m_col(8, tmp, 'left')
+   
+    tmp = m_button('item_execute_btn', '실행', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('item_input_btn', '입력', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('item_setting_btn', '설정', [{'key':'id', 'value':data[i].id}]);
+    
+    tmp = m_button_group(tmp)
+    str += m_col(3, tmp)
+
+    str += m_row_end()
+    str += '<hr>';
+
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+function get_item(id) {
+  for(i in current_data) {
+    if (current_data[i].id == id) {
+      return current_data[i];
+    }
+  }
+}
+
+function set_schedule_type(type) {
+  //document.getElementById("schedule_radio" + type).checked = true;
+  $('input[name=item_schedule_type]')[parseInt(type)].checked = true;
+
+  if ( type == '0' || type == '1') {
+    document.getElementById("item_interval").disabled = true;
+    document.getElementById("item_auto_start").disabled = true;
+    
+  } else {
+    document.getElementById("item_interval").disabled = false;
+    document.getElementById("item_auto_start").disabled = false;
+  }
+}
+
+
+
+
+$(document).ready(function(){
+  var mode = "{{ mode }}"
+  ResizeTextArea();
+  
+  $.ajax({
+    url: '/' + package_name + '/ajax/command_list',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      make_list(data.list)
+      if (mode == 'api') {
+        document.getElementById("command_btn").click();
+      }
+    }
+  });
+
+
+  $(window).resize(function() {
+    ResizeTextArea();
+  });
+  
+  $("body").on('click', '#send_process_command_btn', function(e){
+    e.preventDefault();
+    command = document.getElementById("process_command").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/send_process_command',
+      type: "POST", 
+      cache: false,
+      data:{command:command},
+      dataType: "json",
+      success: function (data) {
+        document.getElementById("process_command").value = '';
+      }
+    });
+  });
+
+  $('#this_command_modal').on('hidden.bs.modal', function (e) {
+    e.preventDefault();
+    socket.close();
+    $.ajax({
+      url: '/' + package_name + '/ajax/command_close',
+      type: "POST", 
+      cache: false,
+      data:{},
+      dataType: "json",
+      success: function (data) {
+      }
+    });
+  });
+
+  // command 버튼
+  $("body").on('click', '#command_btn', function(e){
+    e.preventDefault();
+    command = document.getElementById("command").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/command',
+      type: "POST", 
+      cache: false,
+      data:{command:command},
+      dataType: "json",
+      success: function (data) {
+        if (data == 'success')  {
+          show_this_command_modal(command)
+        } else {
+          $.notify('<strong>실행 실패</strong>', {
+            type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  // 저장 버튼
+  $("body").on('click', '#save_btn', function(e){
+    e.preventDefault();
+    command = document.getElementById("command").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/save',
+      type: "POST", 
+      cache: false,
+      data:{command:command},
+      dataType: "json",
+      success: function (data) {
+        if (data.ret == 'success')  {
+          //show_command_modal(command)
+          make_list(data.list)
+        } else {
+          $.notify('<strong>저장 실패</strong>', {
+            type: 'warning'
+          });
+        }
+      }
+    });
+  });
+  
+
+  $("#command_file_select").change(function(e){
+    e.preventDefault();
+    command = $("#command_file_select option:selected").val();
+    document.getElementById("command").value = command;
+  });
+
+  // 설정 버튼
+  $("body").on('click', '#item_setting_btn', function(e){
+    e.preventDefault();
+    id = $(this).data('id');
+    item = get_item(id);
+    document.getElementById("item_id").value = id;
+    document.getElementById("item_modal_title").innerHTML = 'ID : ' + id;
+    document.getElementById("item_command").value = item.command;
+    document.getElementById("item_description").value = item.description;
+    set_schedule_type(item.schedule_type)
+    if ( item.schedule_type == '2') {
+      document.getElementById("scheduler_swtich_btn").disabled = false;
+    } else {
+      document.getElementById("scheduler_swtich_btn").disabled = true;
+    }
+    document.getElementById("item_interval").value = item.schedule_interval;
+    if (item.schedule_auto_start) {
+      document.getElementById("item_auto_start").value = 'on';
+      $('#item_auto_start').bootstrapToggle('on')
+    } else {
+      $('#item_auto_start').bootstrapToggle('off')
+    }
+    if (item.is_include == 'True') {
+      $('#scheduler_swtich_btn').bootstrapToggle('on')
+    } else {
+      $('#scheduler_swtich_btn').bootstrapToggle('off')
+    }
+    $("#item_modal").modal();
+  });
+
+
+  // 아이템 저장 버튼
+  $("body").on('click', '#item_save_btn', function(e){
+    e.preventDefault();
+    //tmp = document.getElementById("schedule_radio2").getAttribute("checked");
+    tmp = $('input[name=item_schedule_type]:checked').val()
+    
+    i = document.getElementById("item_interval").value
+    if (tmp == 2 && (i == '' || parseInt(i) < 1)) {
+      $.notify('<strong>실행 주기를 입력하세요</strong>', {
+        type: 'warning'
+      });
+      return
+    }
+    var formData = get_formdata('#item_setting');
+    //console.log(formData);
+    $.ajax({
+      url: '/' + package_name + '/ajax/item_save',
+      type: "POST", 
+      cache: false,
+      data:formData,
+      success: function (data) {
+        //console.log(data)
+        if (data.ret == 'success')  {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>저장 실패</strong>', {
+            type: 'warning'
+          });
+        }
+        $("#item_modal").modal('hide');
+        make_list(data.list)
+      }
+    });
+  });
+
+  // 아이템 삭제 버튼
+  $("body").on('click', '#item_remove_btn', function(e){
+    e.preventDefault();
+    id = document.getElementById("item_id").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/item_remove',
+      type: "POST", 
+      cache: false,
+      data:{item_id:id},
+      success: function (data) {
+        if (data.ret == 'success')  {
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>삭제 실패</strong>', {
+            type: 'warning'
+          });
+        }
+        $("#item_modal").modal('hide');
+        make_list(data.list)
+      }
+    });
+  });
+
+
+  
+
+
+
+  $("#command_file_select").change(function(e){
+    e.preventDefault();
+    command = $("#command_file_select option:selected").val();
+    
+    document.getElementById("command").value = command;
+    
+  });
+  
+  $('input[type=radio][name=item_schedule_type]').change(function() {
+    set_schedule_type(this.value);
+  });
+
+
+  // 아이템 실행 버튼
+  $("body").on('click', '#item_execute_btn', function(e){
+    e.preventDefault();
+    id = $(this).data('id');
+    item = get_item(id);
+    document.getElementById("command").value = item.command
+    document.getElementById("command_btn").click();
+
+  });
+
+  // 아이템 입력 버튼
+  $("body").on('click', '#item_input_btn', function(e){
+    e.preventDefault();
+    id = $(this).data('id');
+    item = get_item(id);
+    document.getElementById("command").value = item.command
+  });
+  
+
+  // 스케쥴링 on / off
+  $('#scheduler_swtich_btn').change(function() {
+    var ret = $(this).prop('checked');
+    id = document.getElementById("item_id").value;
+    item = get_item(id)
+    if (current_data[i].is_include == 'True' && ret) {
+      return
+    } else if (current_data[i].is_include == 'False' && !ret) {
+      return
+    }
+
+    $.ajax({
+      url: '/' + package_name + '/ajax/scheduler_switch',
+      type: "POST", 
+      cache: false,
+      data: {switch:ret, item_id:id},
+      dataType: "json",
+      success: function (data) {
+        make_list(data.list)
+        if (data.ret) {
+          tmp = (ret) ? 'IN' : 'OUT';
+          $.notify('<strong>Success.. '+ tmp + ' Scheduler</strong>', {
+            type: 'success'
+          });
+        } else {
+          $.notify('<strong>실패</strong>', {
+            type: 'warning'
+          });
+        }
+      }
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>    
+{% endblock %}

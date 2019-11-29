@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('쇼 분석', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    
+    {{ macros.m_tab_content_start('쇼 분석', true) }}
+      <form id="form_search" class="form-inline" style="text-align:left">
+        <div class="container-fluid">
+          <div class="row show-grid">
+            <div class="col-md-12 form-inline">
+              <div id="section_list_div"></div>
+              <button id="start_show_analyze_btn" class="btn btn-sm btn-outline-success">분석</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(2, macros.m_strong('NO')) }}
+      {{ macros.m_col(1, macros.m_strong('Season')) }}
+      {{ macros.m_col(2, macros.m_strong('Episode Info')) }}
+      {{ macros.m_col(2, macros.m_strong('Status')) }}
+      {{ macros.m_col(5, macros.m_strong('Info')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+
+      <div id="analyze_show_div"></div>
+    {{ macros.m_tab_content_end() }}
+  </div>
+
+  
+</div> <!--전체-->
+
+<!-- 쇼 분석 파일 목록 -->
+{{ macros.m_modal_start('analyze_show_file_list_modal', 'File List', 'modal-lg') }}
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(2, macros.m_strong('ID')) }}
+  {{ macros.m_col(8, macros.m_strong('File')) }}
+  {{ macros.m_col(2, macros.m_strong('Action')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <div id="analyze_show_file_list_div"></div>
+{{ macros.m_modal_end() }}
+
+
+<script type="text/javascript">
+var current_data = {};
+
+$(document).ready(function(){
+  var package_name = 'plex';
+
+  $.ajax({
+    url: '/' + package_name + '/ajax/load_tool',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data
+      make_section_list(data.sections)
+      if (data.analyze_show != null) make_analyze_show(data.analyze_show)
+    }
+  });
+
+  /*
+  $("body").on('click', '#start_show_analyze_btn', function(e){
+    e.preventDefault();
+    key = document.getElementById("section_list").value
+    $.ajax({
+      url: '/' + package_name + '/ajax/analyze_show',
+      type: "POST", 
+      cache: false,
+      data:{key:key},
+      dataType: "json",
+      success: function (data) {
+        current_data.analyze_show = data
+        m_modal(data)
+        make_analyze_show(data)
+      }
+    });
+  });
+  */
+
+  $("body").on('click', '#start_show_analyze_btn', function(e){
+    e.preventDefault();
+    key = document.getElementById("section_list").value
+    
+    var search_word = $("#search").val();
+    if(typeof(EventSource)!=="undefined") {
+      var source=new EventSource('/' + package_name + '/ajax/analyze_show_event?key=' + key);
+      document.getElementById("analyze_show_div").innerHTML = "";
+      $.notify('<strong>분석시작</strong>', {
+        type: 'success'
+      });
+      source.onmessage=function(event) {
+        if (event.data == -1) {
+          $.notify('<strong>분석완료</strong>', {
+	            type: 'success'
+            });
+          source.close();
+        }
+        else {
+          data = JSON.parse(event.data);
+          if (current_data.analyze_show == null) {
+            current_data.analyze_show = []
+          }
+          current_data.analyze_show.push(data)
+          if ((data.index+1)%10 == 0) {
+            $.notify('<strong> '+ (data.index+1) + ' / ' + (data.total) +' 분석중</strong>', {
+	            type: 'success'
+            });
+          }
+          str = make_analyze_show2(data)
+          document.getElementById("analyze_show_div").innerHTML += str;
+        }
+      };
+    }
+  });
+
+
+  $("body").on('click', '#file_modal_btn', function(e){
+    e.preventDefault();
+    type = $(this).data('type')
+    season_key = $(this).data('id')
+    show = current_data.analyze_show
+
+    for (i in show) {
+      for (j in show[i].seasons) {
+        if (show[i].seasons[j].season_key == season_key) {
+          data = show[i].seasons[j]
+          break;
+        }
+      }
+    }
+    if (data == null) {
+      console.log('null')
+    } else {
+      if (type == 'index') {
+        target = data.episode_index_list
+      } else {
+        target = data.episode_air_list
+      }
+      str = '';
+      for (k in target) {
+        for (l in data.episodes[target[k]]) {
+          str += m_row_start(padding='1');
+          if (l == 0) {
+            str += m_col(2, target[k]);
+          } else {
+            str += m_col(2, '');
+          }
+          str += m_col(8, data.episodes[target[k]][l]['file']);
+          tmp = m_button('open_url_btn', 'Play', [{'key':'url', 'value':data.episodes[target[k]][l]['part']}]);      
+          tmp = m_button_group(tmp)
+          str += m_col(2, tmp);
+          str += m_row_end();
+        }
+        if (k != data.length -1) str += m_hr(margin=0);
+      }
+      document.getElementById("analyze_show_file_list_div").innerHTML = str;
+      $('#analyze_show_file_list_modal').modal()
+    }
+  });
+});
+
+
+function make_section_list(data) {
+  prev = null
+  if (document.getElementById("section_list") != null) 
+    prev = document.getElementById("section_list").value
+  str = '<select id="section_list" name="section_list" class="form-control form-control-sm">'
+  for(var i in data) {
+    if (data[i].type=='show') {
+      str += '<option value="'+ data[i].key+'">'
+      str += data[i].title
+      str += "</option>"
+    }
+  }
+  str += "</select>"
+  document.getElementById("section_list_div").innerHTML = str;
+  if ( prev != null)
+    document.getElementById("section_list").value = prev
+}
+
+
+function make_analyze_show(show) {
+  str = ''
+  for (i in show) {
+    str += make_analyze_show2(show[i])
+  }
+  document.getElementById("analyze_show_div").innerHTML = str;
+}
+
+
+//하나의 쇼
+function make_analyze_show2(show) {
+  str = ''
+  for (j in show.seasons) {
+    str += m_row_start();
+    tmp = ''
+    if (show.seasons[j].poster != null) {
+      tmp = '<img src="' + show.seasons[j].poster + '" class="img-fluid"><br>'
+    }
+    tmp += '<strong>'+show.title+'</strong>'
+    str += m_col(2, tmp);
+    
+    str += m_col(1, '' + show.seasons[j].season_number);
+    tmp = '총 에피소드 : ' +show.seasons[j].episode_count + '<br><br>'
+    tmp += '회차 에피소드 : ' +show.seasons[j].epi_count_index + '<br>'
+    if (show.seasons[j].epi_count_index != 0) {
+      tmp += '(최소:' + show.seasons[j].epi_min + ' 최대:' +show.seasons[j].epi_max + ')<br>'
+    }
+    tmp += '<br>'
+    tmp += '날짜 에피소드 : ' +show.seasons[j].epi_count_date + '<br>'
+
+    str += m_col(2, tmp);
+    if (show.seasons[j].status == 0 || show.seasons[j].status == 2) {
+      tmp = '정상'
+    } else if (show.seasons[j].status == 4 || show.seasons[j].status == 6) {
+      tmp = '<strong><span style="color: blue">정상 + 날짜 에피소드</span></strong>'
+    } else if (show.seasons[j].status == 1 || show.seasons[j].status == 3) {
+      tmp = '<strong><span style="color: red">비어있음</span></strong>'
+    } else if (show.seasons[j].status == 5 || show.seasons[j].status == 7) {
+      tmp = '<strong><span style="color: red">비어있음 + 날짜 에피소드</span></strong>'
+    } else if (show.seasons[j].status == 8) {
+      tmp = '전체 날짜 에피소드'
+    } else if (show.seasons[j].status == 9) {
+      tmp = '<strong><span style="color: red">확인필요</span></strong>'
+    } else if (show.seasons[j].status == 14) {
+      tmp = '<strong><span style="color: red">확인필요 + 날짜 에피소드</span></strong>'
+    }
+    str += m_col(2, tmp);
+    //str += m_col(2, show.seasons[j].status);
+    tmp = '<strong>요약</strong><br>' + show.seasons[j].msg + '<br><br>'
+    if (show.seasons[j].empty_episode_no != null) {
+      tmp += '<strong>비어있는 회차 : </strong>' + show.seasons[j].empty_episode_no.length + '건 - ' + show.seasons[j].empty_episode_no + '<br><br>'
+    }
+    
+    if (show.seasons[j].status != 8 && show.seasons[j].episode_air_list.length != 0) {
+      tmp += '<strong>날짜 에피소드 : </strong>' + show.seasons[j].episode_air_list.length + '건 - ' + show.seasons[j].episode_air_list + '<br><br>'
+    }
+
+    if (show.seasons[j].duplicate_list.length > 0) {
+      tmp += '<strong>중복 에피소드 : </strong>' + show.seasons[j].duplicate_list.length + '건 - '
+      tmp += show.seasons[j].duplicate_list + '<br><br>'
+    }
+
+    if (show.seasons[j].daum_info != null) {
+      tmp += '<strong>Daum</strong><br>'
+      if (show.seasons[j].daum_info.status == 1) {
+        tmp += '<strong><span style="color: blue">종영</span></strong>'
+      } else if (show.seasons[j].daum_info.status == 2) {
+        tmp += '<strong><span style="color: blue">방송예정</span></strong>'  
+      }
+      tmp += ' 1일' + show.seasons[j].daum_info.episode_count_one_day + '회 방송<br>'
+      
+      tmp += show.seasons[j].daum_info.studio + ' '
+      tmp += show.seasons[j].daum_info.genre + ' '
+      tmp += show.seasons[j].daum_info.broadcast_info + ' '
+      tmp += show.seasons[j].daum_info.broadcast_term + '<br>'
+      tmp += '에피소드 정보 : ' + Object.keys(show.seasons[j].daum_info.episode_list_json).length + '건'
+      tmp += '<br><br>'
+    }
+
+    tmp1 = m_button('file_modal_btn', '회차', [{'key':'id', 'value':show.seasons[j].season_key}, {'key':'type', 'value':'index'}]);
+    tmp1 += m_button('file_modal_btn', '날짜', [{'key':'id', 'value':show.seasons[j].season_key}, {'key':'type', 'value':'date'}]);
+
+
+    tmp1 += m_button('open_url_btn', 'PLEX', [{'key':'url', 'value':'https://app.plex.tv/desktop#!/server/' + current_data.plex_server_hash + '/details?key=' + show.seasons[j].season_key}]);
+
+    if ( show.seasons[j].daum_info != null ) {
+      tmp2 = 'https://search.daum.net/search?w=tv&q='+ show.title +'&irk='+show.seasons[j].daum_info.daum_id+'&irt=tv-program&DA=TVP';
+      tmp1 += m_button('open_url_btn', 'DAUM', [{'key':'url', 'value':tmp2}]);
+    }
+    //tmp += m_button('item_setting_btn', '설정', [{'key':'id', 'value':data[i].id}]);
+    
+    tmp1 = m_button_group(tmp1)
+
+    //tmp1 += "<pre>"+JSON.stringify(show.seasons[j].daum_info, null, 2) + "</pre>"
+    str += m_col(4, tmp + tmp1);
+    str += m_row_end();
+    if (j != show.seasons -1) str += m_hr();
+    
+  }
+  return str
+}
+
+
+
+
+
+</script>    
+{% endblock %}

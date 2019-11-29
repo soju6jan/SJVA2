@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+  <style>
+    .tab-pane {
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      border-radius: 0px 0px 5px 5px;
+      padding: 10px;
+    }
+    .nav-tabs { margin-bottom: 0; }
+  </style>
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('이전', true) }}
+      {{ macros.m_tab_head('실시간', false) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('이전', true) }}
+      <div>
+        <textarea id="log" class="col-md-12" rows="30" disabled style="visibility:hidden"></textarea>
+      </div>
+    {{ macros.m_tab_content_end() }}
+    
+    {{ macros.m_tab_content_start('실시간', false) }}
+      <div>
+        <textarea id="add" class="col-md-12" rows="30" disabled style="visibility:visible"></textarea>
+      </div>
+      
+      <div class="form-inline">
+        <label class="form-check-label" for="auto_scroll">자동 스크롤</label>
+        <input id="auto_scroll" name="auto_scroll" class="form-control form-control-sm" type="checkbox" data-toggle="toggle" checked>
+        <span class='text-left' style="padding-left:25px; padding-top:0px">
+          <button id="clear" class="btn btn-sm btn-outline-success">리셋</button>
+        </span>
+      </div>
+    {{ macros.m_tab_content_end() }}
+
+  </div>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  function ResizeTextArea() {
+    ClientHeight = window.innerHeight
+    $("#log").height(ClientHeight-240);
+    $("#add").height(ClientHeight-260);
+  }
+  $(window).resize(function() {
+    ResizeTextArea();
+  });
+  ResizeTextArea()
+})
+
+$(document).ready(function(){
+  $('#loading').show();
+  var protocol = window.location.protocol;
+  var socket = io.connect(protocol + "//" + document.domain + ":" + location.port + "/log");
+  //var socket = io.connect("http://" + document.domain + ":" + location.port + "/log", {transports:['websocket']},  {'force new connection': true});
+
+  socket.emit("start", {'package':'{{package}}'} );
+  
+  socket.on('on_start', function(data){
+    document.getElementById("log").innerHTML += data.data;
+    document.getElementById("log").scrollTop = document.getElementById("log").scrollHeight;
+    document.getElementById("log").style.visibility = 'visible';
+    $('#loading').hide();
+  });
+
+  socket.on('add', function(data){
+    if (data.package == "{{package}}") {
+      var chk = $('#auto_scroll').is(":checked");
+      document.getElementById("add").innerHTML += data.data;
+      if (chk) document.getElementById("add").scrollTop = document.getElementById("add").scrollHeight;
+    }
+  });
+
+  $("#clear").click(function(e) {
+    e.preventDefault(); 
+    document.getElementById("add").innerHTML = '';
+  });
+
+  $("#auto_scroll").click(function(){
+    var chk = $(this).is(":checked");//.attr('checked');
+  });
+});
+</script>    
+{% endblock %}

@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block content %}
+<script src="{{ url_for('static', filename='js/hls.js') }}"></script>  
+<style type="text/css">
+  .my_hover:hover{
+    background-color: #ffff00;
+    transition: all 0.01s ease-in-out;
+  }
+</style>
+<div>
+  {{ macros.m_button_group([['custom_load_btn', '저장 목록 읽기'], ['custom_auto_btn', '자동 설정'], ['custom_reset_btn', '모두 해제'], ['custom_save_btn', '저장']])}}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_row_end() }}
+
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(1,  macros.m_strong('Idx')) }}
+  {{ macros.m_col(1,  macros.m_strong('Icon')) }}
+  {{ macros.m_col(2,  macros.m_strong('pooq')) }}
+  {{ macros.m_col(2,  macros.m_strong('tving')) }}
+  {{ macros.m_col(2,  macros.m_strong('oksusu')) }}
+  {{ macros.m_col(2,  macros.m_strong('videoportal')) }}
+  {{ macros.m_col(2,  macros.m_strong('everyon')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <form id="custom_form" name="custom_form">
+  <div id="list_div"></div>
+  </form>
+</div>
+
+<script type="text/javascript">
+var package_name = 'klive';
+var current_data = null;
+var ddns = "{{arg['ddns']}}"
+
+
+$(document).ready(function(){
+  $.ajax({
+    url: '/' + package_name + '/ajax/custom',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_list(data, 'saved')
+    }
+  });
+});
+
+$("body").on('click', '#custom_save_btn', function(e){
+  e.preventDefault();
+  var formData = get_formdata('#custom_form');
+  $.ajax({
+    url: '/' + package_name + '/ajax/custom_save',
+    type: "POST", 
+    cache: false,
+    data:formData,
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        $.notify('<strong>'+data.data+'개 채널을 저장하였습니다.</strong>', {
+          type: 'success'
+        });
+        $.ajax({
+          url: '/' + package_name + '/ajax/custom',
+          type: "POST", 
+          cache: false,
+          data: {},
+          dataType: "json",
+          success: function (data) {
+            current_data = data;
+            make_list(data, 'saved')
+          }
+        });
+      } else {
+        $.notify('<strong>실패</strong><br>'+data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$("body").on('click', '#custom_reset_btn', function(e){
+  e.preventDefault();
+  make_list(current_data, 'reset')
+});
+
+$("body").on('click', '#custom_auto_btn', function(e){
+  e.preventDefault();
+  make_list(current_data, 'auto')
+});
+
+$("body").on('click', '#custom_load_btn', function(e){
+  e.preventDefault();
+  make_list(current_data, 'saved')
+});
+
+
+
+
+
+function make_list(ret, how) {
+  //console.log(ret)
+  str = '';
+  data = ret.list
+  var site_use = [(ret.setting.use_pooq=='True'), (ret.setting.use_tving=='True'), (ret.setting.use_oksusu=='True'), (ret.setting.use_videoportal=='True'), (ret.setting.use_everyon=='True')];
+  for (i in data) {
+    //str += m_row_start_hover(0);
+    str += m_row_start_hover();
+    str += m_col(1, parseInt(i)+1);
+    //tmp = '<br><img src="' + data[i].icon + '" height="30px">'
+    tmp = data[i].name
+    str += m_col(1, tmp);
+    
+    var site = [
+      ['pooq', data[i].pooq_name, data[i].pooq_id, data[i].pooq_number],
+      ['tving', data[i].tving_name, data[i].tving_id, data[i].tving_number],
+      ['oksusu', data[i].oksusu_name, data[i].oksusu_id, data[i].oksusu_number],
+      ['videoportal', data[i].videoportal_name, data[i].videoportal_id, data[i].videoportal_number],
+      ['everyon', data[i].everyon_name, data[i].everyon_id, data[i].everyon_number]
+    ]
+
+
+    for (j in site) {
+      if (site[j][1] != null && site_use[j]) {
+        tmp_id = data[i].id + '|' + data[i].name+'|' + site[j][0] +'|' + site[j][2] + '|' + site[j][1] + '|' + site[j][3]
+        if (how == 'auto') {
+          tmp_id = data[i].id + '|' + data[i].name+'|' + site[j][0] +'|' + site[j][2] + '|' + site[j][1] + '|' + '0'
+          if (site[j][0] == data[i].auto) {
+            tmp = '<label class="checkbox-inline"><input type="checkbox" name="'+tmp_id+'" checked>'+site[j][1]+'</label><br>'
+          } else {
+            tmp = '<label class="checkbox-inline"><input type="checkbox" name="'+tmp_id +'">'+site[j][1]+'</label><br>'
+          }
+        } else if (how == 'saved') {
+          //console.log(site[j])
+          if (site[j][3] != null) {
+            tmp = '<label class="checkbox-inline"><input type="checkbox" name="'+tmp_id+'" checked>'+site[j][1]+'(' +site[j][3] +')'+'</label><br>'
+          } else {
+            tmp = '<label class="checkbox-inline"><input type="checkbox" name="'+tmp_id +'">'+site[j][1]+'</label><br>'
+          }
+        } else {
+          tmp = '<label class="checkbox-inline"><input type="checkbox" name="'+tmp_id +'">'+site[j][1]+'</label><br>'
+        }
+        url = ddns + "/klive/api/url.m3u8?m=web_play&s=" + site[j][0] + "&i=" + site[j][2]
+        tmp2 = m_button('global_link_btn', 'Open', [{'key':'url', 'value':url}]);
+        tmp2 = m_button_group(tmp2)
+        str += m_col(2, tmp+tmp2);
+      } else {
+        str += m_col(2, '');
+      }
+    }
+    
+    tmp = ''
+    tmp += m_button('web_play_btn', 'Play', [{'key':'source', 'value':data[i].source}, {'key':'source_id', 'value':data[i].source_id}]);
+    url = ddns + "/klive/api/url.m3u8?m=web_play&s=" + data[i].source + "&i=" + data[i].source_id
+    tmp += m_button('global_link_btn', 'Open', [{'key':'url', 'value':url}]);
+    tmp = m_button_group(tmp)
+    //str += m_col(2, tmp)
+
+    str += m_row_end();
+    
+    
+    if (i != data.length -1) str += m_hr(0);
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+
+</script>    
+{% endblock %}

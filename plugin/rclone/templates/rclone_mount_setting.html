@@ -1,0 +1,402 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--
+<div>
+<ul class="nav nav-pills bg-light shadow text-dark" >
+    <li class="nav-item"><a class="nav-link active" href="/rclone/mount_setting">설정</a></li>
+    <li class="nav-item"><a class="nav-link " href="/rlcone/mount_log">로그</a></li>
+  </ul>
+<div class="d-inline-block"></div>
+-->
+
+{{ macros.m_row_start() }}  
+{{ macros.m_button('mount_add_btn', '마운트 추가') }}
+{{ macros.m_row_end() }}  
+
+{{ macros.m_hr_head_top() }}
+{{ macros.m_row_start('0') }}
+{{ macros.m_col(2, macros.m_strong('Name')) }}
+{{ macros.m_col(2, macros.m_strong('Remote')) }}
+{{ macros.m_col(2, macros.m_strong('Local')) }}
+{{ macros.m_col(4, macros.m_strong('Option')) }}
+{{ macros.m_col(2, macros.m_strong('Action')) }}
+{{ macros.m_row_end() }}
+{{ macros.m_hr_head_bottom() }}
+
+<div id="mount_list_div"></div>
+</div>
+
+<!-- 마운트 모달 -->
+{{ macros.m_modal_start('mount_add_modal', 'Mount Setting', 'modal-lg') }}
+  <form id='mount_setting'>
+  {{ macros.setting_input_text('mount_name', 'Name', desc='로그 파일 이름. 없을시 ID') }}
+  {{ macros.setting_select('mount_remote', 'Remote', [], col='6')}}
+  {{ macros.setting_input_text_and_buttons('mount_remote_path', 'Remote Path', [['mount_ls_btn', '폴더확인'], ['mount_ls_toggle_btn', 'Toggle']], value='/') }}
+
+  {{ macros.setting_top(padding='0') }}
+  <div id="ls_div" class="collapse" style="padding-left:20px;"></div>
+  {{ macros.setting_bottom(padding_top='0') }}
+
+  {{ macros.setting_input_text_and_buttons('mount_local_path', 'Local Path', [['mount_local_ls_btn', '폴더확인'], ['mount_local_ls_toggle_btn', 'Toggle']], value='') }}
+
+  {{ macros.setting_top(padding='0') }}
+  <div id="local_ls_div" class="collapse" style="padding-left:20px;"></div>
+  {{ macros.setting_bottom(padding_top='0') }}
+
+  {{ macros.setting_input_textarea('mount_option', '마운트 옵션', value='', row='10') }}
+  
+  {{ macros.setting_checkbox('auto_start', '시작시 마운트', 'true', desc='스케쥴링 작업에 포함할 경우 체크') }}  
+  {{ macros.setting_button([['mount_save_btn', '저장'], ['mount_remove_btn', '삭제']]) }}
+
+  </form>
+{{ macros.m_modal_end() }}
+<!-- END 작업추가 모달 -->
+
+
+<script type="text/javascript">
+var package_name = 'rclone';
+var current_data = null;
+var default_option = "{{ arg['option'] }}"
+
+$(document).ready(function(){
+  $('#mount_ls_btn').attr("data-target", "#ls_div");
+  $('#mount_ls_toggle_btn').attr("data-target", "#ls_div");
+  $('#mount_local_ls_btn').attr("data-target", "#local_ls_div");
+  $('#mount_local_ls_toggle_btn').attr("data-target", "#local_ls_div");
+  //set_command_type('move')
+  
+  // 페이지 로딩
+  $.ajax({
+    url: '/' + package_name + '/ajax/load_mounts',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      //console.log(data)
+      //make_remotes_list(data.remotes);
+      make_mount_list(data.mounts);
+    }
+  });
+});
+
+
+// 작업추가 버튼
+$("body").on('click', '#mount_add_btn', function(e){
+  e.preventDefault();
+  $('#mount_save_btn').data("id", "-1");
+  var str = '';
+  for (i in current_data.remotes) {
+    str += '<option value="'+current_data.remotes[i].name+'">'+current_data.remotes[i].name+'</option>'
+  }
+  //tmp = document.querySelectorAll('[id^="job_type"]')
+  //console.log(tmp)
+  //for (i in tmp)
+  //  tmp[i].disabled = true;
+  document.getElementById('mount_remote').innerHTML = str;
+  document.getElementById('mount_name').value = "";
+  document.getElementById('mount_remote_path').value = "/";
+  document.getElementById('mount_local_path').value = "";
+
+  document.getElementById('mount_option').value = default_option;
+  document.getElementById('mount_remove_btn').disabled = true; 
+  document.getElementById('mount_save_btn').disabled = false;
+  document.getElementById('mount_add_modal_title').innerHTML = "마운트 추가"
+  $("#mount_add_modal").modal();
+}); 
+
+$("body").on('click', '#mount_ls_btn', function(e){
+  e.preventDefault();
+  remote = document.getElementById('mount_remote').value;
+  remote_path = document.getElementById('mount_remote_path').value;
+  $.ajax({
+    url: '/' + package_name + '/ajax/remote_ls',
+    type: "POST", 
+    cache: false,
+    data:{remote:remote, remote_path:remote_path},
+    dataType: "json",
+    success: function (data) {
+      $('#ls_div').collapse('show')
+      document.getElementById('ls_div').innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+    }
+  });
+}); 
+
+// ls 버튼
+$("body").on('click', '#mount_local_ls_btn', function(e){
+    e.preventDefault();
+    local_path = document.getElementById('mount_local_path').value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/local_ls',
+      type: "POST", 
+      cache: false,
+      data:{local_path:local_path},
+      dataType: "json",
+      success: function (data) {
+        $('#local_ls_div').collapse('show')
+        document.getElementById('local_ls_div').innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+      }
+    });
+  }); 
+
+
+// ls 토글 버튼
+$("body").on('click', '#mount_ls_toggle_btn', function(e){
+  e.preventDefault();
+  $('#ls_div').collapse('toggle');
+}); 
+
+// local ls 토글 버튼
+$("body").on('click', '#mount_local_ls_toggle_btn', function(e){
+  e.preventDefault();
+  $('#local_ls_div').collapse('toggle');
+}); 
+
+
+/*
+function make_remotes_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    str += m_col(1, (parseInt(i)+1));
+    str += m_col(2, data[i].name);
+    str += m_col(1, data[i].type);
+    tmp = ''
+    for (key in data[i]) {
+      tmp += m_row_start(padding="0");
+      if (key != 'type') {
+        tmp += m_col(3, key, align='right');
+        tmp += m_col(9, data[i][key]);
+      }
+      tmp += m_row_end();
+    }
+    str += m_col(8, tmp);
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("remotes_list_div").innerHTML = str;
+}
+*/
+
+
+
+// 마운트 저장 버튼
+$("body").on('click', '#mount_save_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  var formData = get_formdata('#mount_setting');
+  formData += '&id=' + id;
+  $.ajax({
+    url: '/' + package_name + '/ajax/mount_save',
+    type: "POST", 
+    cache: false,
+    data:formData,
+    success: function (data) {
+      current_data = data;
+      //make_remotes_list(data.remotes);
+      make_mount_list(data.mounts);
+      if (data.ret == 'success')  {
+        $("#mount_add_modal").modal('hide');
+        $.notify('<strong>설정을 저장하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>저장 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+// 마운트 삭제 버튼
+$("body").on('click', '#mount_remove_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  console.log(id)
+  $.ajax({
+    url: '/' + package_name + '/ajax/mount_remove',
+    type: "POST", 
+    cache: false,
+    data:{id:id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_mount_list(data.mounts);
+      if (data.ret == 'success') {
+        $("#mount_add_modal").modal('hide');
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>삭제 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+function make_mount_list(data) {
+  str = ''
+  for (i in data) {
+    console.log(data[i])
+    str += m_row_start();
+    //str += m_col(1, data[i].id);
+    if (data[i].name == '') {
+      tmp = data[i].id
+    } else {
+      tmp = data[i].name
+    }
+    str += m_col(2, tmp);
+
+    tmp = data[i].remote + ':' + data[i].remote_path
+    str += m_col(2, tmp);
+    
+    str += m_col(2, data[i].local_path);
+    str += m_col(4, data[i].option);
+
+    tmp = m_button('mount_setting_btn', '수정', [{'key':'id', 'value':data[i].id}]);
+    if (data[i].current_status == false) {
+      tmp += m_button('mount_execute_btn', '마운트 실행', [{'key':'id', 'value':data[i].id}]);
+    } else {
+      tmp += m_button('mount_stop_btn', '마운트 중지', [{'key':'id', 'value':data[i].id}]);
+    }
+    tmp += m_button('mount_log_btn', 'Log', [{'key':'id', 'value':data[i].id}]);
+    tmp = m_button_group(tmp)
+    str += m_col(2, tmp);
+    
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("mount_list_div").innerHTML = str;
+}
+
+
+// 작업 실행 버튼
+$("body").on('click', '#mount_execute_btn', function(e) {
+  e.preventDefault();
+  id = $('#mount_execute_btn').data('id')
+  $.ajax({
+    url: '/' + package_name + '/ajax/mount_execute',
+    type: "POST", 
+    cache: false,
+    data:{id:id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_mount_list(data.mounts);
+      if (data.ret == 'success') {
+        $.notify('<strong>마운트하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>마운트 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+// 작업 실행 버튼
+$("body").on('click', '#mount_stop_btn', function(e) {
+  e.preventDefault();
+  id = $('#mount_stop_btn').data('id')
+  $.ajax({
+    url: '/' + package_name + '/ajax/mount_stop',
+    type: "POST", 
+    cache: false,
+    data:{id:id},
+    dataType: "json",
+    success: function (data) {
+      console.log(data)
+      current_data = data;
+      make_mount_list(data.mounts);
+      if (data.ret == 'success') {
+        $.notify('<strong>중지하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>중지 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+// 작업 수정 버튼
+$("body").on('click', '#mount_setting_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  console.log(id)
+  var select_mount = null;
+  for (i in current_data.mounts) {
+    if (current_data.mounts[i].id == id) {
+      select_mount = current_data.mounts[i];
+      break;
+    }
+  }
+  if (select_mount == null) return;
+  //console.log(select_mount)
+  $('#mount_save_btn').data("id", id);
+  $('#mount_remove_btn').data("id", id);
+  
+  document.getElementById('mount_remove_btn').disabled = false; 
+
+  var str = '';
+  for (i in current_data.remotes) {
+    str += '<option value="'+current_data.remotes[i].name+'">'+current_data.remotes[i].name+'</option>'
+  }
+  document.getElementById('mount_remote').innerHTML = str;
+  
+  document.getElementById('mount_name').value = select_mount.name;
+  document.getElementById('mount_remote').value = select_mount.remote;
+  document.getElementById('mount_remote_path').value = select_mount.remote_path;
+  document.getElementById('mount_local_path').value = select_mount.local_path;
+  document.getElementById('mount_option').value = select_mount.option;
+  //document.getElementById('auto_start').value = select_mount.remote_path;
+
+  if (select_mount.auto_start) {
+    //document.getElementById("item_auto_start").value = 'on';
+    $('#auto_start').bootstrapToggle('on')
+  } else {
+    $('#auto_start').bootstrapToggle('off')
+  }
+  document.getElementById('mount_add_modal_title').innerHTML = "마운트 수정"
+  
+  $("#mount_add_modal").modal();
+  
+});
+
+// 로그
+$("body").on('click', '#mount_log_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id')
+  $.ajax({
+    url: '/' + package_name + '/ajax/get_log',
+    type: "POST", 
+    cache: false,
+    data:{type:'mount', id:id},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        m_modal(data.data, '로그')
+      } else {
+        $.notify('<strong>실패</strong><br>'+data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+</script>    
+{% endblock %}

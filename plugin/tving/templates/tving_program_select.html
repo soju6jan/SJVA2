@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+{% block content %}
+<style type="text/css">
+  .my_hover:hover{
+    background-color: #ffff00;
+    transition: all 0.01s ease-in-out;
+  }
+</style>
+
+<ul class="nav nav-pills bg-light shadow text-dark" >
+  <li class="nav-item"><a class="nav-link" href="/tving/program/setting">설정</a></li>
+  <li class="nav-item"><a class="nav-link active" href="/tving/program/select">선택</a></li>
+  <li class="nav-item"><a class="nav-link" href="/tving/program/list">목록</a></li>
+</ul>
+<div class="d-inline-block"></div>
+
+<form id='program_list'>
+{{ macros.setting_input_text_and_buttons('url', 'URL or Code', [['analyze', '분석'], ['go_tving', '티빙']], desc='URL & Program Code & Episode Code') }}
+</form>
+<form id="program_auto_form">
+<div id='detail1'></div>
+<div id="more"></div>
+<form>
+ 
+
+<script type="text/javascript">
+var package_name = 'tving';
+var current_data = null;
+
+$(document).ready(function(){
+  //$('input[name=login_type]')[0].checked = true;
+  if ( "{{arg['code']}}" != "None" ) {
+    episode = $(this).data('episode');
+    document.getElementById("url").value = "{{arg['code']}}";
+    document.getElementById("analyze").click();
+  }
+});
+
+
+$("body").on('click', '#go_tving', function(e){
+  e.preventDefault();
+  window.open('https://www.tving.com', '_blank'); 
+});
+
+//분석
+$("#analyze").click(function(e) {
+  e.preventDefault();
+  if ($("#url").val() == "") {
+    $.notify('<strong>URL이나 Code를 입력하세요.</strong>', {
+      type: 'warning'
+    });
+    return;
+  }
+  $.ajax({
+    url: '/' + package_name + '/ajax/analyze',
+    type: "POST", 
+    cache: false,
+    data: {url: $("#url").val()},
+    dataType: "json",
+    success: function (data) {
+      if (data['url_type'] == 'None') {
+        $.notify('<strong>유효한 값이 아닙니다.</strong>', {
+          type: 'warning'
+        });
+      } else if (data['url_type'] == 'episode') {
+        if (data.ret) {
+          e.preventDefault();
+          program = data.data.program_code
+          document.getElementById("url").value = program;
+          document.getElementById("analyze").click();
+        } else {
+          $.notify('<strong>'+data.data.message+'</strong>', {
+            type: 'warning'
+          });
+        }
+      } else if (data['url_type'] == 'program') {
+        make_program_page(data);
+      }
+    }
+  });
+});
+
+
+// 프로그램 More 버튼
+$("body").on('click', '#more_btn', function(e){
+  e.preventDefault();
+  code = $(this).data('code');
+  page = parseInt($(this).data('page')) + 1;
+  $.ajax({
+    url: '/' + package_name + '/ajax/program_page',
+    type: "POST", 
+    cache: false,
+    data: {code:code, page:page},
+    dataType: "json",
+    success: function (data) {
+      make_program_page(data);
+    }
+  });
+});
+
+
+
+function make_program_page(ret) {
+  str = '';
+  if (ret.page == '1') {
+    tmp = '<div class="form-inline">'
+    tmp += m_button('check_download_btn', '선택 다운로드 추가', []);
+    tmp += m_button('all_check_on_btn', '전체 선택', []);
+    tmp += m_button('all_check_off_btn', '전체 해체', []);
+    tmp += '&nbsp;&nbsp;&nbsp;&nbsp;<select id="all_quality" name="all_quality" class="form-control form-control-sm">'
+        tmp += `<option value="stream70">2160p</option>`
+        tmp += `<option value="stream50">1080p</option>`
+        tmp += `<option value="stream40">720p</option>`
+        tmp += `<option value="stream30">480p</option>`
+        tmp += `<option value="stream25">270p</option>`
+      tmp += `</select>`
+    tmp += '</div>'
+    tmp += m_button('all_quality_btn', '전체 화질 적용', []);
+    tmp = m_button_group(tmp)
+    str += tmp
+  }
+
+  data = ret.data.body.result
+  str += '<hr>';
+  for (i in data) {
+    //m_modal(data[i])
+    str += m_row_start();
+    tmp = '<img src="http://image.tving.com' + data[i].episode.image[0].url + '" class="img-fluid">'
+    str += m_col(3, tmp)
+    tmp = '<strong>' + data[i].vod_name.ko+ '</strong>';
+    tmp += '<br>';
+    tmp += data[i].episode.broadcast_date + '<br><p></p>';
+    if ( data[i].episode.synopsis.ko != null)
+      tmp += '<p>' + data[i].episode.synopsis.ko.replace('\n', '<br>') + '</p>';
+    
+    tmp += '<div class="form-inline">'
+    //tmp += '<input id="check_id'+ret.page+'_'+i+''" name="check_id'+ret.page+'_'+i+''" 
+    tmp += '<input id="checkbox_'+data[i].episode.code+'" name="checkbox_'+data[i].episode.code+'" type="checkbox" checked data-toggle="toggle" data-on="선 택" data-off="-" data-onstyle="success" data-offstyle="danger" data-size="small">&nbsp;&nbsp;&nbsp;&nbsp;'
+
+    if (data[i].episode.stream_meta_info != null) {
+      console.log(data[i].episode.code+data[i].episode.stream_meta_info)
+      tmp += '<select id="select_'+data[i].episode.code+'" name="select_'+data[i].episode.code+'" class="form-control form-control-sm">'
+      if (data[i].episode.stream_meta_info.indexOf('stream70') != -1) 
+        tmp += `<option value="stream70">2160p</option>`
+      if (data[i].episode.stream_meta_info.indexOf('stream50') != -1) 
+        tmp += `<option value="stream50">1080p</option>`
+      if (data[i].episode.stream_meta_info.indexOf('stream40') != -1) 
+        tmp += `<option value="stream40">720p</option>`
+      if (data[i].episode.stream_meta_info.indexOf('stream30') != -1) 
+        tmp += `<option value="stream30">480p</option>`
+      if (data[i].episode.stream_meta_info.indexOf('stream25') != -1) 
+        tmp += `<option value="stream25">270p</option>`
+      tmp += `</select>&nbsp;&nbsp;&nbsp;&nbsp;`
+    }
+
+    
+    tmp += m_button('insert_download_btn', '다운로드 추가', [{'key':'code', 'value':data[i].episode.code}])
+    //tmp += '<button id="" name="submit" class="btn btn-sm  btn-outline-success" data-episode="'+data[i].episode.code + '">다운로드 추가</button>';
+
+    tmp += '</div>'
+
+    str += m_col(9, tmp)
+    str += m_row_end();
+    
+    if (i != data.length -1) str += m_hr(0);
+
+  }
+  str += "<div id='detail"+(parseInt(ret.page)+1)+"'></div>"
+  document.getElementById("detail"+parseInt(ret.page)).innerHTML = str;
+  
+  if (ret.data.body.has_more == 'Y') {
+    str = '<div class="d-inline-block"></div><form>';
+    str += '<button id="more_btn" class="btn btn-outline-secondary btn-lg btn-block" type="button" data-code="'+ret.code+'" data-page="'+ret.page+'">More</button>'
+    str += '</form>';
+    document.getElementById("more").innerHTML = str;
+  } else {
+    document.getElementById("more").innerHTML = '';
+  }
+  $('input[id^="checkbox_"]').bootstrapToggle()
+}
+
+$("body").on('click', '#all_check_on_btn', function(e){
+  e.preventDefault();
+  $('input[id^="checkbox_"]').bootstrapToggle('on')
+});
+
+$("body").on('click', '#all_check_off_btn', function(e){
+  e.preventDefault();
+  $('input[id^="checkbox_"]').bootstrapToggle('off')
+});
+
+$("body").on('click', '#all_quality_btn', function(e){
+  e.preventDefault();
+  v = document.getElementById("all_quality").value
+  //console.log(v)
+  
+  tmp = $('select[id^="select_"]')
+  //tmp.val(v)
+  for (i in tmp) {
+    //console.log(tmp[i][0].options)
+    for(j in tmp[i]) {
+      if (tmp[i][j] == null) 
+        break
+
+      if (v == tmp[i][j].value)  {
+        //tmp[i].val(v)
+        tmp[i].value = v
+        break
+      }
+    }
+  }
+
+});
+
+
+
+// 하나씩 다운로드 추가
+$("body").on('click', '#insert_download_btn', function(e){
+  e.preventDefault();
+  code = $(this).data('code');
+  quality = document.getElementById('select_'+code).value
+  $.ajax({
+    url: '/' + package_name + '/ajax/download_program',
+    type: "POST", 
+    cache: false,
+    data: {code:code, quality:quality},
+    dataType: "json",
+    success: function (data) {
+      if (data == 'success') {
+        $.notify('<strong>다운로드를 추가 하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+$("body").on('click', '#check_download_btn', function(e){
+  e.preventDefault();
+  all = $('input[id^="checkbox_"]')
+  str = ""
+  for (i in all) {
+    if (all[i].checked){
+      code = all[i].id.split('_')[1]
+      $('#quality_'+code).value
+      quality = $('#select_'+code).val()
+      str += code+"_"+quality+","
+    }
+  }
+  if (str == "") {
+    $.notify('<strong>선택하세요.</strong>', {
+      type: 'warning'
+    });
+    return
+  }
+
+  $.ajax({
+    url: '/' + package_name + '/ajax/download_program_check',
+    type: "POST", 
+    cache: false,
+    data: {data:str},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        $.notify('<strong>'+data.log+'개를 추가하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>'+data.log+'</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+
+});
+
+
+
+
+</script>    
+{% endblock %}

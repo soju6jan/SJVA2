@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form id="form_search" class="form-inline" style="text-align:left">
+  <div class="container-fluid">
+    <div class="row show-grid">
+      <div class="col-md-12 form-inline">
+        <div class="col-md-12 form-inline " style="align-items:left; text-align:left;">
+          <div class="col-md-2" style="align-items:left; text-align:left;">
+            <div id="type_list_div">
+              <select id="type_list" name="type_list" class="form-control form-control-sm">
+                <option value="all">all</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4" style="align-items:left; text-align:left;">
+            <input id="search_word" name="search_word" class="form-control form-control-sm w-100" type="text" placeholder="검색어. 2개 이상 일 경우 구분자 + 예)720p+NEXT " aria-label="Search">
+          </div>
+          <div class="col-md-1" style="align-items:left; text-align:left;">
+            <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+          </div>
+          <div class="col-md-5" style="align-items:left; text-align:left;">
+              <div id="rss_url_div">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div id='page1'></div>
+
+{{ macros.m_hr_head_top() }}
+{{ macros.m_row_start('0') }}
+{{ macros.m_col(1,  macros.m_strong('ID')) }}
+{{ macros.m_col(1,  macros.m_strong('Type')) }}
+{{ macros.m_col(4,  macros.m_strong('Title')) }}
+{{ macros.m_col(6,  macros.m_strong('More')) }}
+{{ macros.m_row_end() }}
+{{ macros.m_hr_head_bottom() }}
+<div id="list_div"></div>
+<div id='page2'></div>
+
+<script type="text/javascript">
+var package_name = 'rss';
+var current_data = null;
+var ddns = "{{arg['ddns']}}"
+var is_available_normal_download = ("{{arg['is_available_normal_download']}}" == 'True')
+
+$(document).ready(function(){
+  request_search('1');
+});
+
+$("#search").click(function(e) {
+  e.preventDefault();
+  request_search('1');
+});
+
+$("body").on('click', '#page', function(e){
+  e.preventDefault();
+  request_search($(this).data('page'));
+});
+
+$("body").on('click', '#add_download_btn', function(e) {
+  e.preventDefault();
+  download_url = $(this).data('hash');
+  $.ajax({
+    url: '/downloader/ajax/add_download',
+    type: "POST", 
+    cache: false,
+    data: {download_url:download_url},
+    dataType: "json",
+    success: function (data) {
+      show_result_add_download(data);
+    }
+  });
+});
+
+
+
+function request_search(page) {
+  var formData = get_formdata('#form_search')
+  formData += '&page=' + page;
+  $.ajax({
+    url: '/' + package_name + '/ajax/bot_list',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      window.scrollTo(0,0);
+      make_type_list(data.type_list)
+      make_list(data.list)
+      make_page_html(data.paging)
+    }
+  });
+}  
+
+function make_type_list(data) {
+  prev = null
+  if (document.getElementById("type_list") != null) 
+    prev = document.getElementById("type_list").value
+  str = '<select id="type_list" name="type_list" class="form-control form-control-sm">'
+  for(var i in data) {
+    str += '<option value="'+ data[i][0]+'">'
+    str += data[i][0]
+    str += "</option>"
+    if ( prev == data[i][0] ) {
+      rss_url = data[i][1]
+    }
+  }
+  str += "</select>"
+  search = document.getElementById("search_word").value;
+  if (search != '') {
+    rss_url += '?search=' + search
+  }
+  document.getElementById("type_list_div").innerHTML = str;
+  if ( prev != null) {
+    document.getElementById("type_list").value = prev
+    tmp = '<a href="'+rss_url +'" target="_blank">' + rss_url + "</a>";
+    document.getElementById("rss_url_div").innerHTML = tmp;
+  }
+}
+
+/*
+$("body").on('change', '#type_list', function(e){
+  e.preventDefault();
+  t = document.getElementById("type_list").value;
+  for(var i in current_data.type_list) {
+    if (current_data.type_list[i][0] == t) {
+      tmp = '<a href="'+current_data.type_list[i][1] +'" target="_blank">' + current_data.type_list[i][1] + "</a>";
+      document.getElementById("rss_url_div").innerHTML = tmp;
+      break;
+    }
+  }
+});
+*/
+
+function make_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    str += m_col(1, data[i].id);
+    str += m_col(1, data[i].rss_type);
+    str += m_col(4, data[i].title);
+    //tmp = '<a href="' + data[i].magnet + ' target="_blank">' + data[i].magnet + '</a>';    
+    //str += m_col(3, tmp);
+
+    //tmp1 = '<pre>';
+    tmp1 = ''
+    for (var j in data[i].files) {
+      if (data[i].files[j].link != '') {
+        tmp1 += '<a href="/rss/download_bot/' + data[i].files[j].id+ '">' + data[i].files[j].filename + '</a><br>';
+      }
+      if (data[i].files[j].magnet != '') {
+        tmp1 += '<a href="'+data[i].files[j].magnet + '">' + data[i].files[j].magnet + '</a><br>';
+      }
+
+      tmp = ''
+      if ( data[i].files[j].magnet != '') {
+        tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+      } else {
+        if (is_available_normal_download) {
+          tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id }]);
+        }
+        tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id}]);
+      }
+
+      tmp = m_button_group(tmp)
+      tmp1 += tmp;
+      if (j != data[i].files.length-1) {
+        tmp1 += m_hr();
+      }
+      //str += m_col(3, tmp1);
+    }
+    //tmp1 += '</pre>'
+    str += m_col(6, tmp1);
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+</script>    
+{% endblock %}

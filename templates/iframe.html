@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row" style="align-items: center; text-align: center;">
+  
+      <iframe id="iframe" class="embed-responsive"  src="" frameborder="0" scrolling="yes" allowfullscreen></iframe>
+  <a id='link' href="" target="_blank">새창으로 열기</a>
+</div>
+
+<script type="text/javascript">
+
+
+
+
+  $(document).ready(function() {
+    var url = "{{site}}"
+    var protocol = window.location.protocol;
+    console.log(protocol)
+    tmp = url
+    $('#iframe').attr('src', tmp)
+    $('#link').attr('href', tmp)
+    if (tmp.search('flaskfilemanager') != -1) {
+      if (protocol == 'https:' && tmp.search('http:') != -1)  {
+        tmp = tmp.replace('http:', 'https:')
+        $('#iframe').attr('src', tmp)
+        $('#link').attr('href', tmp)
+        //window.location.reload();
+      }
+    }
+    
+
+
+    function Resize() {
+      ClientHeight = window.innerHeight
+      $("#iframe").height(ClientHeight-150);
+    }
+    $(window).resize(function() {
+      Resize();
+    });
+    Resize()
+  })
+</script> 
+
+{% endblock %}

@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form id="form_search" class="form-inline" style="text-align:left">
+  <div class="container-fluid">
+    <div class="row show-grid">
+      <div class="col-md-4 form-inline">
+        <div class="custom-control custom-radio col-md-3" style="align-items:left; text-align:left;">
+          <input id="site_radio" type="radio" name="radio" value="site" class="custom-control-input" checked>
+          <label class="custom-control-label" for="site_radio">기본</label>
+        </div>
+        <div class="col-md-5" style="align-items:left; text-align:left;">
+          <div id="site_select_div"></div>
+        </div>
+        <div class="col-md-4" style="align-items:left; text-align:left;">
+          <div id="board_select_div">
+            <select id="board_select" name="board_select" class="form-control form-control-sm"> \
+              <option value="all">전체</option>';
+            </select>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-md-3 form-inline " style="align-items:left; text-align:left;">
+        <div class="col-md-4" style="align-items:left; text-align:left;">
+          <div class="custom-control custom-radio">
+            <input id="group_radio" type="radio" name="radio" value="group" class="custom-control-input">
+            <label class="custom-control-label" for="group_radio">그룹</label>
+          </div>
+        </div>
+        <div class="col-md-8" style="align-items:left; text-align:left;">
+          <div id="group_select_div">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5 form-inline " style="align-items:left; text-align:left;">
+        <div class="col-md-3" style="align-items:left; text-align:left;">
+          <select id="search_select" name="search_select" class="form-control form-control-sm">
+            <option value="title">제목</option>
+            <option value="filename">파일명</option>
+            <option value="magnet">magnet</option>
+          </select>
+        </div>
+        <div class="col-md-7" style="align-items:left; text-align:left;">
+          <input id="search_word" name="search_word" class="form-control form-control-sm w-100" type="text" placeholder="예)720p+NEXT" aria-label="Search">
+        </div>
+        <div class="col-md-2" style="align-items:left; text-align:left;">
+          <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</form>
+<div id='page1'></div>
+{{ macros.m_hr_head_top() }}
+{{ macros.m_row_start('0') }}
+{{ macros.m_col(1,  macros.m_strong('ID')) }}
+{{ macros.m_col(2,  macros.m_strong('Created Time')) }}
+{{ macros.m_col(1,  macros.m_strong('Site')) }}
+{{ macros.m_col(2,  macros.m_strong('Board Info')) }}
+{{ macros.m_col(6,  macros.m_strong('Feed Info')) }}
+{{ macros.m_row_end() }}
+{{ macros.m_hr_head_bottom() }}
+<div id="list_div"></div>
+<div id='page2'></div>
+
+<script type="text/javascript">
+var currentData = null;
+var ddns = "{{arg['ddns']}}"
+var is_available_normal_download = ("{{arg['is_available_normal_download']}}" == 'True')
+var first_search_word = "{{arg['search_word']}}"
+$(document).ready(function(){
+  if ( first_search_word != "None" ) {
+    document.getElementById("search_word").value = first_search_word;
+  }
+  $.ajax({
+    url: '/rss/ajax/list',
+    type: "POST",
+    cache: false,
+    data: {load:true, search_word:first_search_word},
+    dataType: "json",
+    success: function (data) {
+      currentData = data;
+      make_list_html(data.list);
+      make_page_html(data.paging);
+      make_form(data.info);
+    }
+  });
+
+  $("#search").click(function(e) {
+    e.preventDefault();
+    request_search('1');
+  });
+
+  // pageing
+  $("body").on('click', '#page', function(e){
+    e.preventDefault();
+    request_search($(this).data('page'));
+  });
+
+  $("body").on('change', '#site_select', function(e){
+  //$("#site_select").change(function(e){
+    e.preventDefault();
+    site = document.getElementById("site_select").value;
+    $("#board_select").empty();
+    str = '<select id="board_select" name="board_select" class="form-control form-control-sm"> \
+            <option value="all">전체</option>';
+                
+    for(var i in currentData.info.board[site]) {
+      str += '<option value="' + currentData.info.board[site][i] + '">' + currentData.info.board[site][i] + '</option>';
+    }
+    str += '</select>';
+    document.getElementById("board_select_div").innerHTML = str;
+  });
+
+  $("body").on('change', '#site_radio', function(e){
+  //$("#site_select").change(function(e){
+    e.preventDefault();
+    if ( $('#site_radio').is(':checked') ) {
+      document.getElementById("group_select").setAttribute("disabled","disabled");
+      document.getElementById("site_select").removeAttribute("disabled");
+       document.getElementById("board_select").removeAttribute("disabled");
+     }
+  });
+
+  $("body").on('change', '#group_radio', function(e){
+  //$("#site_select").change(function(e){
+    e.preventDefault();
+    if ( $('#group_radio').is(':checked') ) {
+      document.getElementById("group_select").removeAttribute("disabled");
+      document.getElementById("site_select").setAttribute("disabled","disabled");
+      document.getElementById("board_select").setAttribute("disabled","disabled");
+    }
+  });
+
+  $("body").on('click', '#add_download_btn', function(e) {
+    e.preventDefault();
+    download_url = $(this).data('hash');
+    $.ajax({
+      url: '/downloader/ajax/add_download',
+      type: "POST", 
+      cache: false,
+      data: {download_url:download_url},
+      dataType: "json",
+      success: function (data) {
+        show_result_add_download(data);
+      }
+    });
+  });
+
+
+  
+
+});
+
+
+
+
+
+
+function make_list_html(data) {
+  str = '';
+  for(var i in data) {
+    str += m_row_start();
+    str += m_col(1, data[i].id);
+    str += m_col(2, data[i].created_time);
+    str += m_col(1, data[i].site);
+    str += m_col(2, data[i].board + '<br>' + data[i].board_id);
+
+    tmp = '';
+    tmp += '<a href="'+data[i].url +'" target="_blank">' + data[i].title + '</a>'
+    tmp += '<br><hr style="width: 100%; margin-bottom:4px; margin-top:4px; bottom=0px;" />';
+
+    for (var j in data[i].files) {
+      if (data[i].files[j].link != '') {
+        tmp += '<a href="/rss/download/' + data[i].files[j].id+ '">' + data[i].files[j].filename + '</a><br>';
+      }
+      if (data[i].files[j].magnet != '') {
+        tmp += '<a href="'+data[i].files[j].magnet + '">' + data[i].files[j].magnet + '</a><br>';
+      }
+        
+      tmp1 = ''
+      if ( data[i].files[j].magnet != '') {
+        tmp1 += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        tmp1 += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        tmp1 += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+      } else {
+        if (is_available_normal_download) {
+          tmp1 += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/rss/download/' + data[i].files[j].id }]);
+        }
+        tmp1 += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/rss/download/' + data[i].files[j].id}]);
+      }
+
+      tmp1 = m_button_group(tmp1)
+      tmp += tmp1
+
+      if (j != data[i].files.length-1) {
+        tmp += m_hr();
+      }
+    }
+    //tmp += '</pre>';
+    str += m_col(6, tmp);
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+
+
+function request_search(page) {
+  var formData = $('#form_search').serialize(); 
+  formData += '&site_radio=' + $('#site_radio').is(':checked')
+  formData += '&page=' + page;
+  $.ajax({
+    url: '/rss/ajax/list',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (data) {
+      make_list_html(data.list);
+      make_page_html(data.paging);
+    }
+  });
+}
+  
+function make_form(data) {
+  str = '<select id="site_select" name="site_select" class="form-control form-control-sm">';
+  str += '<option value="all">전체</option>';
+  for(var i in data.site) {
+    str += '<option value="' + data.site[i] + '">' + data.site[i] + '</option>';
+  }
+  str += '</select>';
+  document.getElementById("site_select_div").innerHTML = str;
+
+  str = '<select id="group_select" name="group_select" class="form-control form-control-sm" disabled> \
+              <option value="all">전체</option>'
+  for(var i in data.group) {
+    str += '<option value="' + data.group[i].groupname + '">' + data.group[i].groupname + '</option>';
+  }
+  str += '</select>';
+  document.getElementById("group_select_div").innerHTML = str;
+
+}
+
+
+
+</script>    
+{% endblock %}

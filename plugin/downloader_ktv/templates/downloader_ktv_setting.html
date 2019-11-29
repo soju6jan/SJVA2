@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+<div>
+  
+      {{ macros.setting_scheduler_button(arg['scheduler'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+      {{ macros.setting_input_int('interval', '스케쥴링 실행 주기', value=arg['interval'], min='1', placeholder='10', desc='minute 단위') }}
+      {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 사용 설정합니다.') }}
+      
+      {{ macros.setting_radio('telegram_invoke_action', '텔레그램 수신시', ['실행하지 않음', '스케쥴링 중에만 실행', '스케쥴링 상태가 아니더라도 실행']) }}
+
+      {{ macros.setting_radio('torrent_program', '토렌트 프로그램', ['Transmission', 'DownloadStation'], value=arg['torrent_program']) }}
+      {{ macros.setting_input_text('path', '다운로드 경로', value=arg['path'], desc='토렌트 프로그램에 맞는 경로를 입력해야 합니다.') }}
+      {{ macros.setting_checkbox('use_plex_data', 'Plex 연동', value=arg['use_plex_data'], desc=['On : Plex와 연동하여 다운여부를 판단합니다.', '1. 라이브러리에 있는 방송. 다운로드 모드와 무관', ' - 비어 있는 에피소드 : 자동 다운로드', ' - 이미 있는 에피소드 : 다운로드 안함', '2. 라이브러리에 없는 방송 : 다운로드 모드의 설정에 따라 결정']) }}
+      <div id="use_plex_data_div" class="collapse">
+      {{ macros.setting_checkbox('one_episode_multifile', '에피소드 파일 중복 허용', value=arg['one_episode_multifile'], desc='On : 이미 에피소드 파일이 있더라도 다시 받습니다.') }}
+      </div>
+      {{ macros.setting_radio('download_mode', '다운로드 모드', ['블랙리스트', '화이트리스트'], value=arg['download_mode']) }}
+      <div id="blacklist_div" class="collapse">
+      {{ macros.setting_input_textarea('except_program', '제외 프로그램', value=arg['except_program'], desc=['이 곳에 있는 항목이 프로그램에 이름에 포함되어 있으면 제외합니다.', ', 또는 Enter로 구분']) }}
+      </div>
+      <div id="whitelist_div" class="collapse">
+      {{ macros.setting_input_textarea('whitelist_program', '포함 프로그램', value=arg['whitelist_program'], desc=['이 곳에 있는 항목이 프로그램에 이름에 포함되어 있으면 다운로드합니다.', ', 또는 Enter로 구분']) }}
+      {{ macros.setting_checkbox('whitelist_first_episode_download', '첫회 받기', value=arg['whitelist_first_episode_download'], desc='On : 포함 프로그램에 방송이 없어도 첫 에피소드를 다운로드합니다.') }}
+      </div>
+      {{ macros.setting_checkbox('send_telegram', '텔레그램 메시지', value=arg['send_telegram']) }}
+      {{ macros.setting_button([['setting_save', '저장']]) }}
+      </form>
+      {{ macros.m_hr() }}
+      {{ macros.setting_button([['one_execute_btn', '1회 실행']], left='1회 실행' ) }}
+      {{ macros.setting_button([['reset_db_btn', '목록 전체 지우기']], left='DB정리' ) }}
+      {{ macros.setting_button([['reset_last_index_btn', 'Index 초기화']], left='Index 초기화', desc=['DB에 저장된 Index를 지웁니다', '최초 시작처럼 7일 이내 데이터를 모두 처리합니다.']) }}
+    
+
+<script type="text/javascript">
+var package_name = 'downloader_ktv';
+var current_data = null;
+var download_mode = "{{arg['download_mode']}}";
+var telegram_invoke_action = "{{arg['telegram_invoke_action']}}"
+$(document).ready(function(){
+  // 로딩
+  set_download_mode(download_mode)
+  use_collapse("use_plex_data")
+  set_telegram_action_radio(telegram_invoke_action);
+});
+
+// 사용 on / off
+$('#scheduler').change(function() {
+  var ret = $(this).prop('checked');
+  $.ajax({
+    url: '/'+package_name+'/ajax/scheduler',
+    type: "POST", 
+    cache: false,
+    data: {scheduler : ret},
+    dataType: "json",
+    success: function (list) {
+    }
+  });
+});
+
+//설정 저장
+$("#setting_save").click(function(e) {
+  e.preventDefault();
+  var formData = get_formdata('#setting');
+  $.ajax({
+    url: '/'+package_name+'/ajax/setting_save',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (ret) {
+      if (ret) {
+        $.notify('<strong>설정을 저장하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$('input[type=radio][name=download_mode]').change(function() {
+  set_download_mode(this.value);
+});
+
+$('#use_plex_data').change(function() {
+  use_collapse('use_plex_data');
+});
+
+function set_download_mode(type) {
+  $('input[name=download_mode]')[parseInt(type)].checked = true;
+
+  if ( type == '0') {
+    $('#blacklist_div').collapse('show')
+    $('#whitelist_div').collapse('hide')
+  } else {
+    $('#blacklist_div').collapse('hide')
+    $('#whitelist_div').collapse('show')
+  }
+}
+
+$("#one_execute_btn").click(function(e) {
+//$("body").on('click', '#one_execute_btn', function(e){
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/one_execute',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (ret) {
+      if (ret=='scheduler' || ret=='thread') {
+        $.notify('<strong>작업을 시작하였습니다. ('+ret+')</strong>', {
+          type: 'success'
+        });
+      } else if (ret == 'is_running') {
+        $.notify('<strong>작업중입니다.</strong>', {
+          type: 'warning'
+        });
+      } else {
+        $.notify('<strong>작업 시작에 실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$("#reset_last_index_btn").click(function(e) {
+//$("body").on('click', '#one_execute_btn', function(e){
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/reset_last_index',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (ret) {
+      if (ret) {
+        $.notify('<strong>초기화 하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>작업 시작에 실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+
+
+$("body").on('click', '#reset_db_btn', function(e){
+  e.preventDefault();
+  document.getElementById("confirm_title").innerHTML = "DB 삭제";
+  document.getElementById("confirm_body").innerHTML = "전체 목록을 삭제 하시겠습니까?";
+  $('#confirm_button').attr('onclick', "db_delete();");
+  $("#confirm_modal").modal();
+  return;
+});
+
+function db_delete() {
+  $.ajax({
+    url: '/' + package_name + '/ajax/reset_db',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>삭제에 실패하였습니다.</strong>',{
+          type: 'warning'
+        });
+      }
+    }
+  });
+}
+
+$('input[type=radio][name=telegram_invoke_action]').change(function() {
+  set_telegram_action_radio(this.value);
+});
+
+function set_telegram_action_radio(type) {
+  $('input[name=telegram_invoke_action]')[parseInt(type)].checked = true;
+}
+
+
+
+</script>    
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <!-- 일반 -->
+    {{ macros.m_tab_content_start('일반', true) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_input_text('tvh_username', 'USERNAME', col='3', value=arg['tvh_username'], desc=['']) }}
+        {{ macros.setting_input_text('tvh_password', 'PASSWORD', col='3', value=arg['tvh_password'], desc=[''], type='password') }}
+        {{ macros.setting_input_text_and_buttons('tvh_url', 'URL', [['go_btn', 'Go'], ['server_info_btn', '버전확인']], value=arg['tvh_url'], col='9', placeholder='', desc=['예) http://192.168.0.15:9981']) }}
+        
+        {{ macros.m_hr() }}
+        {{ macros.setting_input_text('tvh_auth', '인증코드', col='6', value=arg['tvh_auth'], desc=['설정 - 사용자 - 암호 화면에서 Persistent authentication 을 활성화 한 후 코드 입력', 'Plyaer에서 사용']) }}
+        {{ macros.setting_input_text('player_profile', 'Player 기본 profile', col='6', value=arg['player_profile']) }}
+        {{ macros.setting_input_text('plex_profile', 'PLEX DVR profile', col='6', value=arg['plex_profile']) }}
+
+        {{ macros.setting_button([['global_setting_save_btn', '저장']]) }}
+      </form>
+        {{ macros.m_hr() }}
+        {{ macros.info_text('', 'PLEX DVR 주소', arg['ddns'] + '/tvheadend/proxy') }}
+        {{ macros.info_text('', 'PLEX DVR XMLTV', arg['ddns'] + '/epg/xml/tvheadend') }}
+        {{ macros.info_text('', 'M3U', arg['ddns'] + '/tvheadend/api/m3u?profile=[PROFILE]', desc=['예) ' + arg['ddns'] + '/tvheadend/api/m3u?profile=pass']) }}
+    {{ macros.m_tab_content_end() }}
+
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+<script type="text/javascript">
+var package_name = 'tvheadend';
+var current_data = null;
+
+$(document).ready(function(){
+});
+
+
+$("body").on('click', '#go_btn', function(e){
+  e.preventDefault();
+  url = document.getElementById("tvh_url").value
+  window.open(url, "_blank");
+});
+
+$("body").on('click', '#server_info_btn', function(e){
+  e.preventDefault();
+  tvh_url = document.getElementById("tvh_url").value
+  tvh_username = document.getElementById("tvh_username").value
+  tvh_password = document.getElementById("tvh_password").value
+
+  $.ajax({
+    url: '/' + package_name + '/ajax/server_info',
+    type: "POST", 
+    cache: false,
+    data: {tvh_username:tvh_username, tvh_password:tvh_password, tvh_url:tvh_url},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        //m_modal(data.data)
+        $.notify('<strong>SW Version : '+data.data.sw_version+'</strong>',{
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>실패하였습니다.</strong><br>' + data.data,{
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+</script>    
+{% endblock %}

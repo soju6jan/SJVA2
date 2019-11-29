@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form id="form_search" class="form-inline" style="text-align:left">
+  <div class="container-fluid">
+    <div class="row show-grid">
+      <div class="col-md-12 form-inline">
+        <div class="col-md-12 form-inline " style="align-items:left; text-align:left;">
+          <div class="col-md-2" style="align-items:left; text-align:left;">
+            <select id="request_type" name="request_type" class="form-control form-control-sm">
+              <option value="all">전체</option>
+              <option value="web">웹</option>
+              <option value="rss">RSS</option>
+              <option value="tv">TV</option>
+              <option value="movie">Movie</option>
+            </select>
+          </div>
+          <div class="col-md-8" style="align-items:left; text-align:left;">
+            <input id="search_word" name="search_word" class="form-control form-control-sm w-100" type="text" placeholder="검색어" aria-label="Search">
+          </div>
+          <div class="col-md-2" style="align-items:left; text-align:left;">
+            <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div id='page1'></div>
+
+{{ macros.m_hr_head_top() }}
+{{ macros.m_row_start('0') }}
+{{ macros.m_col(2,  macros.m_strong('Info')) }}
+{{ macros.m_col(1,  macros.m_strong('Status')) }}
+{{ macros.m_col(5,  macros.m_strong('Title')) }}
+{{ macros.m_col(2,  macros.m_strong('Time')) }}
+{{ macros.m_col(2,  macros.m_strong('Path')) }}
+{{ macros.m_row_end() }}
+{{ macros.m_hr_head_bottom() }}
+<div id="list_div"></div>
+<div id='page2'></div>
+
+<script type="text/javascript">
+var package_name = 'downloader';
+var current_data = null;
+
+$(document).ready(function(){
+  request_search('1');
+});
+
+$("#search").click(function(e) {
+  e.preventDefault();
+  request_search('1');
+});
+
+$("body").on('click', '#page', function(e){
+  e.preventDefault();
+  request_search($(this).data('page'));
+});
+
+// 아이템 실행 버튼
+$("body").on('click', '#json_btn', function(e){
+  e.preventDefault();
+  id = $(this).data('id');
+  for(var i in current_data.list) {
+    if (current_data.list[i].id == id) {
+      m_modal(current_data.list[i].json)
+      break;
+    }
+  }
+});
+
+function request_search(page) {
+  var formData = get_formdata('#form_search')
+  formData += '&page=' + page;
+  $.ajax({
+    url: '/' + package_name + '/ajax/filelist',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      window.scrollTo(0,0);
+      make_list(data.list)
+      make_page_html(data.paging)
+    }
+  });
+}  
+
+function make_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    tmp = data[i].id + ' - ' + data[i].request_type
+    if (data[i].request_sub_type != '') {
+      tmp += ' & ' + data[i].request_sub_type
+    }
+    str += m_col(2, tmp);
+    tmp2 = ''  
+    if (data[i].status == 'completed') {
+      tmp = '완료'
+      if (data[i].title != '')
+        tmp2 = data[i].title + '<br>'
+    } else if (data[i].status == 'completed') {
+      tmp = '대기'
+      if (data[i].title != '')
+        tmp2 = data[i].title + '<br>'
+    } else if (data[i].status == 'downloading') { 
+      tmp = '<span class="text-info"><strong>다운로드중</strong></span>'
+      if (data[i].title != '')
+        tmp2 = '<span class="text-info"><strong>'+data[i].title+'</strong></span><br>'
+    } else {
+      if (data[i].status == 'stopped') {
+        tmp = '정지'
+      } else if (data[i].status == 'request') {
+        tmp = '요청'
+      } else {
+        tmp = data[i].status
+      }
+      tmp = '<span class="text-warning"><strong>'+tmp+'</strong></span><br>'
+      if (data[i].title != '')
+        tmp2 = '<span class="text-warning"><strong>'+data[i].title+'</strong></span><br>'
+    }
+    tmp2 +='<a href="'+data[i].download_url +'">' + data[i].download_url + '</a>'
+    str += m_col2(1, tmp);
+    str += m_col(5, tmp2 );
+
+    tmp = data[i].created_time + ' (시작)'
+    if (data[i].completed_time != '')
+      tmp += '<br>' + data[i].completed_time + ' (종료)'
+    if (data[i].timedelta != '') {
+      tmp += '<br>' + data[i].timedelta
+    }
+    str += m_col(2, tmp);
+    
+    if (data[i].torrent_program == '0') {
+      tmp = '트랜스미션'
+    } else {
+      tmp = '다운로드스테이션'
+    }
+    tmp += '<br>' + data[i].download_path
+    str += m_col(2, tmp);
+    /*
+    str += m_col(1, data[i].json.download_url);
+    if (data[i].json.except_line_count == null) {
+      tmp = '-'
+    } else {
+      tmp = data[i].json.except_line_count
+    }
+    str += m_col(1, tmp);
+   
+    tmp = m_button('json_btn', 'JSON', [{'key':'id', 'value':data[i].id}]);
+    str += m_col(1, tmp);
+    */
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+
+</script>    
+{% endblock %}

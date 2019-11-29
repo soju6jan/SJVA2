@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block content %}
+<script src="{{ url_for('static', filename='js/hls.js') }}"></script>  
+<style type="text/css">
+  .my_hover:hover{
+    background-color: #ffff00;
+    transition: all 0.01s ease-in-out;
+  }
+</style>
+<div>
+  {{ macros.m_button_group([['get_saved_custom_btn', '다시 읽기'], ['custom_auto_btn', '자동 채널 번호 부여'], ['custom_edit_save_btn', '저장']])}}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_row_end() }}
+
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(1,  macros.m_strong('Idx')) }}
+  {{ macros.m_col(2,  macros.m_strong('Source')) }}
+  {{ macros.m_col(1,  macros.m_strong('Source ID')) }}
+  {{ macros.m_col(2,  macros.m_strong('Name')) }}
+  {{ macros.m_col(2,  macros.m_strong('Quality')) }}
+  {{ macros.m_col(1,  macros.m_strong('Number')) }}
+  {{ macros.m_col(3,  macros.m_strong('Action')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <form id="custom_form" name="custom_form">
+  <div id="list_div"></div>
+  </form>
+</div>
+
+<script type="text/javascript">
+var package_name = 'klive';
+var current_data = null;
+var ddns = "{{arg['ddns']}}"
+
+
+$(document).ready(function(){
+  $.ajax({
+    url: '/' + package_name + '/ajax/get_saved_custom',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_list(data, 'saved')
+    }
+  });
+});
+
+$("body").on('click', '#custom_edit_save_btn', function(e){
+  e.preventDefault();
+  var formData = get_formdata('#custom_form');
+  $.ajax({
+    url: '/' + package_name + '/ajax/custom_edit_save',
+    type: "POST", 
+    cache: false,
+    data:formData,
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>저장하였습니다.</strong>', {
+          type: 'success'
+        });
+        current_data = data;
+        make_list(data, 'saved')
+      } else {
+        $.notify('<strong>실패</strong><br>'+data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+
+$("body").on('click', '#custom_auto_btn', function(e){
+  e.preventDefault();
+  make_list(current_data, 'auto')
+});
+
+$("body").on('click', '#get_saved_custom_btn', function(e){
+  e.preventDefault();
+  make_list(current_data, 'saved')
+});
+
+$("body").on('click', '#delete_btn', function(e){
+  e.preventDefault();
+  data_id = $(this).data('id')
+  $.ajax({
+    url: '/' + package_name + '/ajax/custom_delete',
+    type: "POST", 
+    cache: false,
+    data:{id:data_id},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+        current_data = data;
+        make_list(data, 'saved')
+      } else {
+        $.notify('<strong>실패</strong><br>'+data.data, {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+$("body").on('click', '#up_btn', function(e){
+  e.preventDefault();
+  target_id = $(this).data('index')
+  target = current_data[target_id]
+  if (target_id != 0) {
+    current_data.splice(target_id, 1);
+    current_data.splice(target_id-1, 0, target);
+  }
+  make_list(current_data, 'saved')
+});
+
+$("body").on('click', '#down_btn', function(e){
+  e.preventDefault();
+  target_id = $(this).data('index')
+  target = current_data[target_id]
+  if (current_data.length -1 != target_id) {
+    current_data.splice(target_id, 1);
+    current_data.splice(target_id+1, 0, target);
+  }
+  make_list(current_data, 'saved')
+});
+
+
+
+
+
+
+
+function make_list(data, how) {
+  str = '';
+  channel_number = 0
+  for (i in data) {
+    str += m_row_start_hover();
+    str += m_col(1, parseInt(i)+1);
+    str += m_col(2, data[i].source)
+    str += m_col(1, data[i].source_id)
+    str += m_col(2, data[i].title)
+
+    tmp_id = data[i].source + '|' + data[i].source_id
+    tmp = ""
+    if (data[i].source == 'pooq' || data[i].source == 'tving' || data[i].source == 'oksusu') {
+      tmp_quality_id = tmp_id + '|quality'
+      tmp = '<select id="'+tmp_quality_id+'" name="'+tmp_quality_id+'" class="form-control form-control-sm">'
+      arr = ['default', 'FHD', 'HD', 'SD']
+      for (j in arr) {
+        if (data[i].quality == arr[j]) {
+          tmp += '<option value="' + arr[j] + '" selected>' + arr[j] + '</option>' 
+        } else {
+          tmp += '<option value="' + arr[j] + '">' + arr[j] + '</option>'
+        }
+      }
+      tmp += '</select>'
+    } else {
+      tmp += data[i].quality
+    }
+    str += m_col(2, tmp)
+
+    tmp_number_id = tmp_id + '|number'
+    if (how == 'saved') {
+      tmp = '<input id="'+tmp_number_id+'" name="'+tmp_number_id+'" type="number" class="form-control form-control-sm" min="0" value="'+data[i].number+'">'
+    } else if (how == 'auto') {
+      //if (data[i].number == 0) {
+        channel_number += 1
+        tmp = '<input id="'+tmp_number_id+'" name="'+tmp_number_id+'" type="number" class="form-control form-control-sm" min="0" value="'+channel_number+'">'
+      //} else {
+      //  tmp = '<input id="'+tmp_number_id+'" name="'+tmp_number_id+'" type="number" class="form-control form-control-sm" min="0" value="'+data[i].number+'">'
+      //}
+    }
+    str += m_col(1, tmp)
+
+    tmp = ''
+    tmp += m_button('up_btn', 'UP', [{'key':'index', 'value':i}]);
+    tmp += m_button('down_btn', 'DOWN', [{'key':'index', 'value':i}]);
+    tmp += m_button('delete_btn', '삭제', [{'key':'id', 'value':tmp_id}]);
+    url = ddns + "/klive/api/url.m3u8?m=web_play&s=" + data[i].source + "&i=" + data[i].source_id + '&q=' + data[i].quality
+    tmp += m_button('global_link_btn', 'Open', [{'key':'url', 'value':url}]);
+    tmp = m_button_group(tmp)
+    str += m_col(3, tmp)
+
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr(0);
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+
+</script>    
+{% endblock %}

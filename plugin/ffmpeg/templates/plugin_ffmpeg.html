@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if sub == 'setting' %}
+  <div>
+    {{ macros.setting_input_text_and_buttons('ffmpeg_path', 'FFMPEG 경로', [['ffmpeg_version', '버전확인']], value=arg['ffmpeg_path']) }}
+    <form id="setting">
+    {{ macros.setting_input_text('temp_path', '임시 폴더', value=arg['temp_path'], placeholder='임시 폴더 경로', desc='다운로드 파일이 임시로 저장될 폴더 입니다.') }}
+    {{ macros.setting_input_text('save_path', '저장 폴더', value=arg['save_path'], placeholder='저장 폴더 경로', desc='정상적으로 완료된 파일이 이동할 폴더 입니다.') }}
+    {{ macros.setting_input_int('max_pf_count', '허용 Packet Fail 수', value=arg['max_pf_count'], min='0', placeholder='0', desc=['이 값보다 Packet Fail 횟수가 더 많으면 실패처리 합니다.', '0일 경우 Packet Fail이 발생하면 바로 실패처리.']) }}
+    
+    {{ macros.setting_checkbox('if_fail_remove_tmp_file', '임시 파일', arg['if_fail_remove_tmp_file'], desc='On : 실패시 임시 파일 자동 삭제') }}
+    {{ macros.setting_button([['setting_save', '저장']]) }}
+    </form>
+  </div>
+{% elif sub == 'download' %}
+  <div>
+    {{ macros.setting_input_text('url', 'URL', placeholder='http:// 주소', desc='비디오 파일 주소 or m3u8 주소') }}
+    {{ macros.setting_input_text('filename', '파일명', value=arg) }}
+    {{ macros.setting_button([['download_start', '다운로드']]) }}
+  </div>
+{% endif %} 
+
+<script type="text/javascript">
+var package_name = 'ffmpeg';
+
+$(document).ready(function(){
+  //설정 저장
+  $("#setting_save").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정을 저장하지 못하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  //버전
+  $("#ffmpeg_version").click(function(e) {
+    e.preventDefault(); 
+    $.ajax({
+      url: '/ffmpeg/ajax/ffmpeg_version',
+      type: "POST", 
+      cache: false,
+      data:{  },
+      dataType: "json",
+      success: function (list) {
+        var str = '';
+        for (var i = 0; i < list.length; i++) {
+          str += "<div>" + list[i] + "</div>";
+        }
+        document.getElementById("modal_title").innerHTML = "ffmpeg -version";
+        document.getElementById("modal_body").innerHTML = str;
+        //$("#modal_title").innerHTML = 
+        //$("#modal_body").innerHTML = list;
+        $("#large_modal").modal();
+      }
+    });
+  });
+
+  //다운로드시작
+  $("#download_start").click(function(e) {
+    e.preventDefault();
+    if ($("#url").val().startsWith('http') == false) {
+      $.notify('<strong>URL을 입력하세요.</strong>', {
+        type: 'warning'
+      });
+      return;
+    }
+    $.ajax({
+      url: '/ffmpeg/ajax/download',
+      type: "POST", 
+      cache: false,
+      data: {url: $("#url").val(), filename: $("#filename").val()},
+      dataType: "json",
+      success: function (data) {
+        $.notify('<strong>분석중..</strong>', {
+          type: 'info'
+        });
+      }
+    });
+  });
+});
+</script>    
+{% endblock %}

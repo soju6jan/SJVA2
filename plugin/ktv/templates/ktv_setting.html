@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  {{ macros.setting_scheduler_button(arg['is_include'], arg['is_running']) }}
+  <form id='setting' name='setting'>
+    {{ macros.setting_input_int('interval', '파일 처리 실행 주기', value=arg['interval'], min='1', placeholder='2', desc='minute 단위') }}
+    {{ macros.setting_input_int('interval_upload', '원격파일 체크 실행 주기', value=arg['interval'], min='1', placeholder='3', desc='minute 단위') }}
+    {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+    {{ macros.setting_input_text('not_ktv_move_folder_name', 'no ktv 폴더', value=arg['not_ktv_move_folder_name'], col='3', desc=['국내 영상파일이 아닐 경우 이동할 폴더 이름', '다운로드 폴더안에 생성']) }}
+    {{ macros.setting_input_text('manual_folder_name', 'manual 폴더', value=arg['manual_folder_name'], col='3', desc=['대상 폴더가 2개 이상일 경우 파일이 이동할 폴더 이름', '다운로드 폴더안에 생성']) }}
+    {{ macros.setting_input_text('no_daum_folder_name', 'no daum 폴더', value=arg['no_daum_folder_name'], col='3', desc=['Daum 쇼 정보가 없을 경우 이동할 장르레벨 폴더 이름', '첫번째 라이브러리 폴더 루트에 생성']) }}
+    {{ macros.setting_input_text('download_path', '다운로드 폴더', value=arg['download_path'], col='9', desc=['다운로드 감시 폴더','라이브러리 정보가 있고 값 변경시 RClone 플러그인 정보는 수동으로 변경해야합니다.']) }}
+    {{ macros.setting_input_text('except_partial', '파일처리 예외', value=arg['except_partial'], col='9', desc=['이 값이 포함된 파일은 파일처리를 하지 않습니다.', '구분자 ,']) }}
+    {{ macros.setting_input_text('except_genre_remove_epi_number', '회차 삭제 예외 장르', value=arg['except_genre_remove_epi_number'], col='9', desc=['설정된 장르는 Daum에 회차정보가 없어도 파일명에서 회차 정보를 삭제하지 않습니다. ', 'all 입력시 항상 회차 정보를 삭제하지 않습니다.', '구분자 ,']) }}
+    {{ macros.setting_checkbox('telegram', '텔레그램', value=arg['telegram']) }}
+    {{ macros.setting_button([['setting_save_btn', '저장']]) }}
+    {{ macros.m_hr() }}
+    {{ macros.setting_button([['reset_db_btn', '저장 목록 초기화']], left='DB 정리' ) }}
+    {{ macros.m_hr() }}
+    {{ macros.setting_button([['add_library_btn', '라이브러리 폴더 정보 추가']]) }}
+    {{ macros.setting_top('라이브러리') }}
+    <div id="library_list_div" style="padding-left:10px"></div>
+    {{ macros.setting_bottom() }}
+    
+  </form>
+</div> <!--전체-->
+
+
+<!-- 원격 모달 -->
+{{ macros.m_modal_start('library_modal', '라이브러리 폴더', 'modal-lg') }}
+  <form id="library_setting">
+  <input id="library_id" name="library_id" type="hidden"/>
+  {{ macros.setting_radio('library_type', '타입', ['로컬', 'RClone']) }}
+  {{ macros.setting_input_text('library_path', '라이브러리 폴더', placeholder='예)/mnt/gdrive/video/[방송중]', desc=['라이브러리 폴더 경로', '장르 폴더 - 쇼 폴더 구조', 'RClone에 업로드 하려면 마운트후 마운트 경로 입력']) }}
+  <div id="rclone_setting_div" class="collapse">
+
+  {{ macros.setting_input_text('rclone_path', 'RClone Path', placeholder='예)gdrive:/video/[방송중]', desc=['RClone일 경우 입력', '라이브러리 폴더의 RClone 경로']) }}
+  </div>
+
+  {{ macros.setting_input_text('replace_for_plex_source', 'Plex 경로. source', placeholder='예)/mnt/gdrive/video') }}
+  {{ macros.setting_input_text('replace_for_plex_target', 'target', placeholder='예)Z:\\video', desc=['Plex Server에서의 라이브러리 폴더 경로', '라이브러리 폴더에서 source->target으로 변경한 후 스캔명령전송']) }}
+  {{ macros.setting_input_int('index', '탐색 순위', min='1', desc=['라이브러리 탐색 순위', '같은 장르가 있을 경우 먼저 탐색되는 폴더에 새로운 쇼를 저장합니다.']) }}
+  </form>
+  {{ macros.setting_button([['library_save_btn', '저장'], ['library_remove_btn', '삭제']]) }}
+
+
+  </form>
+{{ macros.m_modal_end() }}
+<!-- END 작업추가 모달 -->
+
+
+<script type="text/javascript">
+var package_name = 'ktv';
+var current_data = null;
+
+$(document).ready(function(){
+  set_library_type(0);
+  // 페이지 로딩
+  $.ajax({
+    url: '/' + package_name + '/ajax/library_list',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data
+      make_library_list(data.library_list)
+    }
+  });
+
+  //설정 저장
+  $("#setting_save_btn").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  // 스케쥴링 on / off
+  $('#scheduler').change(function() {
+    var ret = $(this).prop('checked');
+    $.ajax({
+      url: '/' + package_name + '/ajax/scheduler',
+      type: "POST", 
+      cache: false,
+      data: {scheduler : ret},
+      dataType: "json",
+      success: function (list) {
+      }
+    });
+  });
+
+  
+  $("body").on('click', '#add_library_btn', function(e){
+    e.preventDefault();
+    document.getElementById("library_modal_title").innerHTML = '라이브러리 폴더 추가';
+    set_library_type(0)
+    document.getElementById("library_path").value = '';
+    document.getElementById("rclone_path").value = '';
+    document.getElementById("replace_for_plex_source").value = '';
+    document.getElementById("replace_for_plex_target").value = '';
+    document.getElementById("index").value = 1;
+    document.getElementById("library_id").value = -1;
+    $("#library_modal").modal();
+  });
+
+  $("body").on('click', '#library_setting_btn', function(e){
+    e.preventDefault();
+    id = $(this).data('id')
+    for (i in current_data.library_list) {
+      if (id == current_data.library_list[i].id) {
+        document.getElementById("library_modal_title").innerHTML = '라이브러리 폴더 수정';
+        set_library_type(current_data.library_list[i].library_type)
+        document.getElementById("library_path").value = current_data.library_list[i].library_path;
+        document.getElementById("rclone_path").value = current_data.library_list[i].rclone_path;
+        document.getElementById("replace_for_plex_source").value = current_data.library_list[i].replace_for_plex_source;
+        document.getElementById("replace_for_plex_target").value = current_data.library_list[i].replace_for_plex_target;
+        document.getElementById("index").value = current_data.library_list[i].index;
+        document.getElementById("library_id").value = current_data.library_list[i].id;
+        $("#library_modal").modal();
+        break
+      }
+    }
+  });
+
+  
+
+
+
+  $("body").on('click', '#library_save_btn', function(e){
+    e.preventDefault();
+    if (document.getElementById("library_path").value=='' || document.getElementById("replace_for_plex_source").value=='' || document.getElementById("replace_for_plex_target").value=='') {
+      $.notify('<strong>라이브러리 폴더, PLEX source, target 값이 없습니다.<br>잘 모르시는 경우 라이브러리 폴더 값을 source, target에 입력하세요</strong>', {
+        type: 'warning'
+      });
+      return
+    }
+    
+    var formData = get_formdata('#library_setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/library_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (data) {
+        current_data = data
+        if (data.ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+          $("#library_modal").modal('hide');
+          make_library_list(data.library_list)
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  $("body").on('click', '#library_remove_btn', function(e){
+    e.preventDefault();
+    library_id = document.getElementById("library_id").value = current_data.library_list[i].id;
+    $.ajax({
+      url: '/' + package_name + '/ajax/library_remove',
+      type: "POST", 
+      cache: false,
+      data: {library_id:library_id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data
+        if (data.ret) {
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+          $("#library_modal").modal('hide');
+          make_library_list(data.library_list)
+        } else {
+          $.notify('<strong>삭제에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  $("body").on('click', '#reset_db_btn', function(e){
+    e.preventDefault();
+    document.getElementById("confirm_title").innerHTML = "DB 삭제";
+    document.getElementById("confirm_body").innerHTML = "전체 처리결과 내용을 삭제 하시겠습니까?";
+    $('#confirm_button').attr('onclick', "db_delete();");
+    $("#confirm_modal").modal();
+    return;
+  });
+
+  
+
+  $('input[type=radio][name=library_type]').change(function() {
+    set_library_type(this.value);
+  });
+
+
+
+
+
+
+
+
+
+
+
+  function set_library_type(type) {
+    $('input[name=library_type]')[parseInt(type)].checked = true;
+    if ( type == '0') {
+      document.getElementById("rclone_path").disabled = true;
+      
+      $('#rclone_setting_div').collapse('hide')
+    } else {
+      document.getElementById("rclone_path").disabled = false;
+      $('#rclone_setting_div').collapse('show')
+    }
+  }
+
+  function make_library_list(data) {
+    str = '';
+    for (i in data) {
+      str += m_hr();
+      str += m_row_start(padding="1");
+      str += m_col(3, '순위', align='right');
+      str += m_col(9, data[i].index);
+      str += m_row_end();
+
+      str += m_row_start(padding="1");
+      str += m_col(3, '타입', align='right');
+      if (data[i].library_type == 0) {
+        tmp = '로컬'
+      } else {
+        tmp = '원격'
+      }
+      str += m_col(9, tmp);
+      str += m_row_end();
+
+      str += m_row_start(padding="1");
+      str += m_col(3, '라이브러리 폴더', align='right');
+      str += m_col(9, data[i].library_path);
+      str += m_row_end();
+
+      if (data[i].library_type != 0) {
+        str += m_row_start(padding="1");
+        str += m_col(3, 'RClone 경로', align='right');
+        str += m_col(9, data[i].rclone_path);
+        str += m_row_end();
+      }
+
+      str += m_row_start(padding="1");
+      str += m_col(3, 'Plex 경로. source', align='right');
+      str += m_col(9, data[i].replace_for_plex_source);
+      str += m_row_end();
+
+      str += m_row_start(padding="1");
+      str += m_col(3, 'Plex 경로. target', align='right');
+      str += m_col(9, data[i].replace_for_plex_target);
+      str += m_row_end();
+      
+      str += m_row_start(padding="1");
+      str += m_col(3, '');
+      tmp = m_button('library_setting_btn', '수정', [{'key':'id', 'value':data[i].id}]);
+      tmp = m_button_group(tmp)
+      str += m_col(9, tmp);
+      str += m_row_end();
+    }
+    document.getElementById("library_list_div").innerHTML = str;
+  }
+
+
+});
+
+
+function db_delete() {
+  $.ajax({
+    url: '/' + package_name + '/ajax/reset_db',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>삭제에 실패하였습니다.</strong>',{
+          type: 'warning'
+        });
+      }
+    }
+  });
+}
+
+</script>    
+{% endblock %}

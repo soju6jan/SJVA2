@@ -1,0 +1,11 @@
+[Unit]
+Description=SJVA
+
+[Service]
+Environment=
+WorkingDirectory=/root/SJVA/
+ExecStart=/root/SJVA/my_start.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

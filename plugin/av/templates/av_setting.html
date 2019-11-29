@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <!-- 일반 -->
+    {{ macros.m_tab_content_start('일반', true) }}
+      {{ macros.setting_scheduler_button(arg['is_include'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_input_int('interval', '파일 처리 실행 주기', value=arg['interval'], min='1', placeholder='2', desc='minute 단위') }}
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        {{ macros.setting_input_int('web_page_size', '웹 페이지당 게시물 수', value=arg['web_page_size'], min='1', placeholder='30') }}
+        {{ macros.setting_checkbox('include_original_filename', '원본 파일명 포함', value=arg['include_original_filename'], desc=['On : 파일명 변경시  원본파일명을 포함합니다.', '내용은 같으나 품질이 다른 영상 처리시 유용합니다.']) }}
+
+        {{ macros.m_hr() }}
+        {{ macros.setting_checkbox('censored_use', 'Censored 사용', value=arg['censored_use']) }}
+        <div id="censored_use_div" class="collapse" style="">
+        {{ macros.setting_input_text('censored_download_path', 'Censored 다운로드 경로', desc=['Censored 영상을 다운받은 경로입니다.', '2개 이상일 경우 , 구분자'], value=arg['censored_download_path']) }}
+
+        {{ macros.setting_input_text('censored_target_path', 'Censored 라이브러리 경로', desc=['Censored 영상 파일이 정리될 폴더입니다.', '2개 이상일 경우 , 구분자'], value=arg['censored_target_path']) }}
+        {{ macros.setting_input_text('censored_temp_path', 'Censored 임시 경로', desc=['파일명 변경을 하지 못하는 영상 파일이 이동할 폴더입니다.'], value=arg['censored_temp_path']) }}
+        {{ macros.setting_input_int('censored_min_size', 'Censored 최소 크기', value=arg['censored_min_size'], placeholder='300', desc=['메가단위']) }}
+        </div>
+        
+        {{ macros.m_hr() }}
+        {{ macros.setting_checkbox('uncensored_use', 'Uncensored 사용', value=arg['uncensored_use']) }}
+        <div id="uncensored_use_div" class="collapse" style="">
+        {{ macros.setting_input_text('uncensored_download_path', 'Uncensored 다운로드 경로', desc=['Uncensored 영상을 다운받은 경로입니다.', '2개 이상일 경우 , 구분자'], value=arg['uncensored_download_path']) }}
+
+        {{ macros.setting_input_text('uncensored_target_path', 'Uncensored 라이브러리 경로', desc=['Uncensored 영상 파일이 정리될 폴더입니다.', '2개 이상일 경우 , 구분자'], value=arg['uncensored_target_path']) }}
+        {{ macros.setting_input_int('uncensored_min_size', 'Uncensored 최소 크기', value=arg['uncensored_min_size'], placeholder='300', desc=['메가단위']) }}
+        </div>
+
+        {{ macros.m_hr() }}
+        {{ macros.setting_checkbox('normal1_use', '일반1 사용', value=arg['normal1_use']) }}
+        <div id="normal1_use_div" class="collapse" style="">
+        {{ macros.setting_input_text('normal1_download_path', '일반1 다운로드 경로', desc=['일반1 영상을 다운받은 경로입니다.', '2개 이상일 경우 , 구분자'], value=arg['normal1_download_path']) }}
+        {{ macros.setting_input_text('normal1_target_path', '일반1 라이브러리 경로', desc=['일반1 영상 파일이 정리될 폴더입니다.'], value=arg['normal1_target_path']) }}
+        {{ macros.setting_input_int('normal1_min_size', '일반1 최소 크기', value=arg['normal1_min_size'], placeholder='100', desc=['메가단위']) }}
+        </div>
+
+        {{ macros.m_hr() }}
+        {{ macros.setting_checkbox('normal2_use', '일반2 사용', value=arg['normal2_use']) }}
+        <div id="normal2_use_div" class="collapse" style="">
+        {{ macros.setting_input_text('normal2_download_path', '일반2 다운로드 경로', desc=['일반2 영상을 다운받은 경로입니다.', '2개 이상일 경우 , 구분자'], value=arg['normal2_download_path']) }}
+        {{ macros.setting_input_text('normal2_target_path', '일반2 라이브러리 경로', desc=['일반2 영상 파일이 정리될 폴더입니다.'], value=arg['normal2_target_path']) }}
+        {{ macros.setting_input_int('normal2_min_size', '일반2 최소 크기', value=arg['normal1_min_size'], placeholder='100', desc=['메가단위']) }}
+        </div>
+
+        {{ macros.m_hr() }}
+        {{ macros.setting_button([['setting_save_btn', '저장']]) }}
+        {{ macros.m_hr() }}
+        {{ macros.setting_button([['reset_db_btn', '처리결과 전체 지우기']], left='DB정리' ) }}
+        
+      </form>
+    {{ macros.m_tab_content_end() }}
+    
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+
+<script type="text/javascript">
+var package_name = 'av';
+var current_data = null;
+
+$(document).ready(function(){
+  use_collapse("censored_use")
+  use_collapse("uncensored_use")
+  use_collapse("normal1_use")
+  use_collapse("normal2_use")
+  
+  $('#censored_use').change(function() {
+    use_collapse('censored_use');
+  });
+  $('#uncensored_use').change(function() {
+    use_collapse('uncensored_use');
+  });
+  $('#normal1_use').change(function() {
+    use_collapse('normal1_use');
+  });
+  $('#normal2_use').change(function() {
+    use_collapse('normal2_use');
+  });
+  
+  // 스케쥴링 on / off
+  $('#scheduler').change(function() {
+    var ret = $(this).prop('checked');
+    $.ajax({
+      url: '/' + package_name + '/ajax/scheduler',
+      type: "POST", 
+      cache: false,
+      data: {scheduler : ret},
+      dataType: "json",
+      success: function (list) {
+      }
+    });
+  });
+
+  //설정 저장
+  $("#setting_save_btn").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  
+  $("body").on('click', '#reset_db_btn', function(e){
+    e.preventDefault();
+    document.getElementById("confirm_title").innerHTML = "DB 삭제";
+    document.getElementById("confirm_body").innerHTML = "전체 처리결과 내용을 삭제 하시겠습니까?";
+    $('#confirm_button').attr('onclick', "db_delete();");
+    $("#confirm_modal").modal();
+    return;
+  });
+  
+
+});
+
+
+
+function db_delete() {
+  $.ajax({
+    url: '/' + package_name + '/ajax/reset_db',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>삭제에 실패하였습니다.</strong>',{
+          type: 'warning'
+        });
+      }
+    }
+  });
+}
+
+
+
+
+
+</script>    
+{% endblock %}

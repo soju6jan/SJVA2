@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('일반', true) }}
+      {{ macros.setting_scheduler_button(arg['is_include'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        {{ macros.setting_checkbox('process_rss', '토렌트', value=arg['process_rss'], desc='On : 토렌트 데이터를 수신하여 저장') }}
+        <div id="process_rss_div" class="collapse">
+        {{ macros.setting_input_text('process_rss_type', '수신 타입', value=arg['process_rss_type'], desc=['all인 경우 모두 받음. 구분자 ,', 'TV : drama, ent, dacu, etc', '영화 : movie', 'AV : av_censored, av_uncensored, av_west', '기타 : music, user' ]) }}
+        </div>
+        {{ macros.setting_checkbox('process_offcloud', 'Offcloud 캐쉬 정보', value=arg['process_offcloud'], desc='On : Offcloud 캐쉬 데이터를 수신하여 저장') }}
+        {{ macros.setting_checkbox('send_notify', '수신정보 알림', value=arg['send_notify'], desc='On : On 상태인 데이터가 수신될 때 알림.') }}
+        {{ macros.setting_checkbox('disable_notification', '알람 Disable', value=arg['disable_notification'], desc='On : 알람 소리 없이 메시지를 수신합니다.') }}
+        {{ macros.m_hr() }}
+        {{ macros.setting_input_text('bot_token', 'Bot Token', value=arg['bot_token']) }}
+        {{ macros.setting_input_text_and_buttons('chat_id', 'My Chat ID', [['test_btn', '테스트']], value=arg['chat_id'], col='9', desc=['사용자가 먼저 봇과 대화를 시작하여야 합니다.', '(대화창이 있을 경우에만 알림 수신)']) }}
+        {{ macros.setting_button([['setting_save_btn', '저장']]) }}
+        </form>
+        {{ macros.m_hr() }}
+        {{ macros.setting_button([['open_url1_btn', 'BotFather'], ['open_url2_btn', 'SJVA Bot Channel'], ['open_url3_btn', 'SJVA Bot Channel 관리 봇']]) }}
+    {{ macros.m_tab_content_end() }}
+  </div>
+</div> <!--전체-->
+
+<script type="text/javascript">
+var current_data = null;
+var package_name = 'telegram_bot';
+
+$(document).ready(function(){
+  
+  use_collapse("process_rss")
+
+  $('#process_rss').change(function() {
+    use_collapse('process_rss');
+  });
+  // 스케쥴링 on / off
+  $('#scheduler').change(function() {
+    var ret = $(this).prop('checked');
+    if (!ret) {
+      $.notify('<strong>텔레그램 봇은 중단 할 수 없습니다.</strong>', {
+        type: 'warning'
+      });
+      $('#scheduler').bootstrapToggle('on')
+      return
+    }
+    $.ajax({
+      url: '/' + package_name + '/ajax/scheduler',
+      type: "POST", 
+      cache: false,
+      data: {scheduler : ret},
+      dataType: "json",
+      success: function (list) {
+      }
+    });
+  });
+
+
+  // 서버 목록
+  $("body").on('click', '#test_btn', function(e){
+    e.preventDefault();
+    bot_token = document.getElementById("bot_token").value;
+    chat_id = document.getElementById("chat_id").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/test',
+      type: "POST", 
+      cache: false,
+      data:{bot_token:bot_token, chat_id:chat_id},
+      dataType: "json",
+      success: function (ret) {
+        if (ret == 'success') {
+          $.notify('<strong>전송 하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>전송에 실패하였습니다.<br>'+ret+'</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  //설정 저장
+  $("#setting_save_btn").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  $("body").on('click', '#open_url1_btn', function(e){
+    e.preventDefault();
+    window.open("https://t.me/BotFather", "_blank");
+  });
+
+  $("body").on('click', '#open_url2_btn', function(e){
+    e.preventDefault();
+    window.open("{{arg['bot_channel_url']}}", "_blank");
+  });
+
+  $("body").on('click', '#open_url3_btn', function(e){
+    e.preventDefault();
+    window.open("https://t.me/super_sjva_bot", "_blank");
+  });
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  // 서버 목록
+  $("body").on('click', '#server_list_btn', function(e){
+    e.preventDefault();
+    id = document.getElementById("id").value;
+    pw = document.getElementById("pw").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/server_list',
+      type: "POST", 
+      cache: false,
+      data:{id:id, pw:pw},
+      dataType: "json",
+      success: function (data) {
+        m_modal(data, '서버목록');
+        $("#sever_select_div").empty();
+        str = `  
+          <div class="row" style="padding-top: 10px; padding-bottom:10px; align-items: center;">
+            <div class="col-sm-3 set-left">
+              <strong>서버선택</strong>
+            </div>
+            <div class="col-sm-9">
+              <div class="input-group col-sm-6">
+                <select id="server_name" name="server_name" class="form-control form-control-sm">`
+        for(var i in data) {
+          str += '<option value="' + data[i] + '">' + data[i]+ '</option>';
+        }
+        str += `                  
+                </select>
+                <span class="text-left" style="padding-left:5px; padding-top:0px">
+                  <button id="server_connect_btn" class="btn btn-sm btn-outline-success">서버확인</button>
+                </span>
+              </div>
+            </div>
+          </div>`
+        document.getElementById("sever_select_div").innerHTML = str;
+      }
+    });
+  });
+
+
+  
+
+
+  // select에서 서버 선택하여 연결
+  $("body").on('click', '#server_connect_btn', function(e){
+    e.preventDefault();
+    server_name = document.getElementById("server_name").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/connect_by_name',
+      type: "POST", 
+      cache: false,
+      data:{server_name:server_name},
+      dataType: "json",
+      success: function (data) {
+        document.getElementById("server_url").value = data[0];
+        document.getElementById("server_token").value = data[1];
+        document.getElementById("machineIdentifier").value = data[2];
+      }
+    });
+  });
+
+  // url, token으로 연결
+  $("body").on('click', '#server_connect_by_token_btn', function(e){
+    e.preventDefault();
+    server_url = document.getElementById("server_url").value;
+    server_token = document.getElementById("server_token").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/connect_by_url',
+      type: "POST", 
+      cache: false,
+      data:{server_url:server_url, server_token:server_token},
+      dataType: "json",
+      success: function (data) {
+        if (data == 'fail' || data=='') {
+          $.notify('<strong>서버확인 실패</strong>', {
+	          type: 'warning'
+          });
+        } else {
+          $.notify('<strong>서버확인 성공. 총 라이브러리 :'+ data+'개</strong>', {
+	          type: 'success'
+          });
+        }
+      }
+    });
+  });
+
+  // sjva plugin
+  $("body").on('click', '#sjva_plugin_test_btn', function(e){
+    e.preventDefault();
+    server_url = document.getElementById("server_url").value;
+    server_token = document.getElementById("server_token").value;
+    $.ajax({
+      url: '/' + package_name + '/ajax/get_sjva_version',
+      type: "POST", 
+      cache: false,
+      data:{server_url:server_url, server_token:server_token},
+      dataType: "json",
+      success: function (data) {
+        if (data == 'fail' || data=='') {
+          $.notify('<strong>Plex에 SJVA 플러그인이 설치되어 있지 않습니다.</strong>', {
+	          type: 'warning'
+          });
+        } else {
+          $.notify('<strong>플러그인 버전:'+ data+'</strong>', {
+	          type: 'success'
+          });
+        }
+      }
+    });
+  });
+
+  $("body").on('click', '#download_plugin_btn', function(e){
+    e.preventDefault();
+    window.location.href='https://github.com/soju6jan/SJVA.bundle/archive/master.zip';
+  });
+
+  // 웹 접속
+  $("body").on('click', '#web_connect_btn', function(e){
+    e.preventDefault();
+    url = 'https://app.plex.tv/desktop#!/server/' + document.getElementById("machineIdentifier").value
+    window.open(url, "_blank");
+  });
+  
+  
+
+
+});
+
+
+
+
+
+
+</script>    
+{% endblock %}

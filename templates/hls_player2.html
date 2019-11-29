@@ -1,0 +1,59 @@
+
+<html>
+    <head>
+      <title>Hls.js demo - basic usage</title>
+    </head>
+  
+    <body>
+        <script src="{{ url_for('static', filename='js/hls.js') }}"></script> 
+        
+    
+        <center>
+            <h1>Hls.js demo - basic usage</h1>
+            <video height="600" id="video" controls></video>
+        </center>
+  
+        <script>
+          
+          var url = "{{url}}"
+          // 되는거
+          //url = "http://192.168.0.11:9801/url?mode=url&type=KBS&id=11"
+          //url = "http://192.168.0.11:9801/url?mode=url&type=TVING&id=C00551" //됨
+          //url = "http://192.168.0.11:9801/url?mode=url&type=EVERYON&id=1076"
+          //url = "http://192.168.0.11:9801/url?mode=url&type=OKSUSU&id=240"
+          
+          // 안되는거          
+          //url = "http://192.168.0.11:9801/url?mode=url&type=POOQ&id=K01"
+          //url = "http://192.168.0.11:9801/url?mode=url&type=VIDEOPORTAL&id=747"
+          //url = "http://1.214.67.12:80/74701.m3u8?AdaptiveType=HLS&SessionID=362edbfa-ba07-4889-bc7c-77f99373b4f4&VOD_RequestID=v2M2-0101-1010-7272-5050-000020190711224554;LTE;720p;WIFI&ALBUM_ID=747&ma=D0:17:C2:CE:D7:A1&APPNAME=hdtv"
+          //url = "http://hls.live.kbskme.gscdn.com/www_1tv/_definst_/1tv_5.stream/playlist.m3u8?_lsu_sa_=3395183a7c6d37139d8557413551d83a33d86c125e8914356ca4aa37f0343219fcd07ea33b839963bc8e3305aeb503ca4d3db947f02babaa01b3b4698e7ca902908e04ee2519a9289ab34dc14d19c237"
+          
+
+          if(Hls.isSupported()) {
+            var video = document.getElementById('video');
+            var hls = new Hls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED,function() {
+              video.play();
+          });
+         }
+         // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+         // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+         // This is using the built-in support of the plain video element, without using hls.js.
+          else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = url;
+            video.addEventListener('canplay',function() {
+              video.play();
+            });
+          }
+        </script>
+  
+    <!-- injected in netlify post processing step -->
+  <div style="position: absolute; top: 5px; right: 5px;">
+    <a rel="noopener" href="https://www.netlify.com" target="_blank"><img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" /></a>
+  </div></body>
+  </html>
+  
+  
+  

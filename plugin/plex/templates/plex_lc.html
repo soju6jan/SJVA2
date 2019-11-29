@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('설정', true) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_checkbox('use_lc', '사용', value=arg['use_lc'], desc=None) }}
+        {{ macros.setting_input_textarea('lc_json', 'JSON', value=arg['lc_json'], row='30', desc=['Live Channels 에 보여줄 Plex 라이브러리에 관한 정보', '임시']) }}
+        {{ macros.setting_button([['global_setting_save_btn', '저장']]) }}
+
+      </form>
+    {{ macros.m_tab_content_end() }}
+  </div>
+</div> <!--전체-->
+
+<script type="text/javascript">
+var current_data = null;
+var package_name = 'plex';
+
+$(document).ready(function(){
+
+});
+
+</script>    
+{% endblock %}

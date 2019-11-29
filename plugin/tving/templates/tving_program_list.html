@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+
+<ul class="nav nav-pills bg-light shadow text-dark" >
+  <li class="nav-item"><a class="nav-link" href="/tving/program/setting">설정</a></li>
+  <li class="nav-item"><a class="nav-link " href="/tving/program/select">선택</a></li>
+  <li class="nav-item"><a class="nav-link active" href="/tving/program/list">목록</a></li>
+</ul>
+<div class="d-inline-block"></div>
+
+<div>
+  {{ macros.m_button_group([['reset_btn', '초기화'], ['delete_completed_btn', '완료 목록 삭제'], ['go_ffmpeg_btn', 'Go FFMPEG']])}}
+
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_row_end() }}
+
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(1,  macros.m_strong('Idx')) }}
+  {{ macros.m_col(2,  macros.m_strong('CreatedTime')) }}
+  {{ macros.m_col(1,  macros.m_strong('Quality')) }}
+  {{ macros.m_col(3,  macros.m_strong('Title')) }}
+  {{ macros.m_col(3,  macros.m_strong('Status')) }}
+  {{ macros.m_col(2,  macros.m_strong('Action')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <div id="download_list_div"></div>
+</div> <!--전체-->
+
+
+<script type="text/javascript">
+var package_name = 'tving';
+var current_data = null;
+
+$(document).ready(function(){
+  var protocol = window.location.protocol;
+  socket = io.connect(protocol + "//" + document.domain + ":" + location.port + "/" + package_name);
+
+  socket.on('on_connect', function(data){
+    if (data != null) {
+      on_start(data);
+    }
+  });
+
+  socket.on('status', function(data){
+    on_status(data)
+  });
+
+  socket.on('list_refresh', function(data){
+    on_start(data)
+  });
+});
+
+function on_start(data) {
+  make_download_list(data)
+}
+
+function on_status(data) {
+  tmp = document.getElementById("progress_"+data.plugin_id)
+  if (tmp != null) {
+    document.getElementById("progress_"+data.plugin_id).style.width = data.data.percent+ '%';
+    document.getElementById("progress_"+data.plugin_id+"_label").innerHTML = data.status + "(" + data.data.percent + "%)";
+  }
+}
+
+function make_download_list(data) {
+  str = '';
+  for (i in data) {
+    str += m_row_start();
+    str += m_col(1, data[i].entity_id);
+    str += m_col(2, data[i].created_time);
+    
+    if (data[i].quality == 'stream70') {
+      tmp = '2160p'
+    } else if (data[i].quality == 'stream50') {
+      tmp = '1080p'
+    } else if (data[i].quality == 'stream40') {
+      tmp = '720p'
+    } else if (data[i].quality == 'stream30') {
+      tmp = '480p'
+    } else if (data[i].quality == 'stream25') {
+      tmp = '270p'
+    }
+    str += m_col(1, tmp);
+    tmp = data[i].json_data.body.content.episode_name
+    str += m_col(3, tmp);
+
+    label = data[i].ffmpeg_status_kor
+    if (data[i].ffmpeg_percent != 0) {
+      label += '(' + data[i].ffmpeg_percent + '%)'
+    }
+
+    tmp = m_progress('progress_'+data[i].entity_id, data[i].ffmpeg_percent,  label)
+    str += m_col(3, tmp);
+    tmp = m_button('program_cancel_btn', '취소', [{'key':'id', 'value':data[i].entity_id}]);
+    tmp += m_button('program_readd_btn', '재추가', [{'key':'id', 'value':data[i].entity_id}]);
+    tmp += m_button('program_stop_btn', '중지', [{'key':'id', 'value':data[i].entity_id}]);
+    tmp = m_button_group(tmp)
+    str += m_col(2, tmp)
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr(0);
+  }
+  document.getElementById("download_list_div").innerHTML = str;
+}
+
+
+
+$("body").on('click', '#program_cancel_btn', function(e){
+  e.preventDefault();
+  entity_id = $(this).data('id')
+  send_data = {'command':'cancel', 'entity_id':entity_id}
+  program_auto_command(send_data)
+});
+
+$("body").on('click', '#program_readd_btn', function(e){
+  e.preventDefault();
+  entity_id = $(this).data('id')
+  send_data = {'command':'readd', 'entity_id':entity_id}
+  program_auto_command(send_data)
+});
+
+$("body").on('click', '#program_stop_btn', function(e){
+  e.preventDefault();
+  entity_id = $(this).data('id')
+  send_data = {'command':'stop', 'entity_id':entity_id}
+  program_auto_command(send_data)
+});
+
+$("body").on('click', '#reset_btn', function(e){
+  e.preventDefault();
+  entity_id = $(this).data('id')
+  send_data = {'command':'reset', 'entity_id':-1}
+  program_auto_command(send_data)
+});
+
+$("body").on('click', '#delete_completed_btn', function(e){
+  e.preventDefault();
+  entity_id = $(this).data('id')
+  send_data = {'command':'delete_completed', 'entity_id':-1}
+  program_auto_command(send_data)
+});
+
+
+
+function program_auto_command(data) {
+  $.ajax({
+    url: '/' + package_name + '/ajax/program_auto_command',
+    type: "POST", 
+    cache: false,
+    data: data,
+    dataType: "json",
+    success: function (ret) {
+      console.log(ret)
+      if (ret.ret == 'notify') {
+        $.notify('<strong>'+ ret.log +'</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+}
+
+$("body").on('click', '#go_ffmpeg_btn', function(e){
+  e.preventDefault();
+  $(location).attr('href', '/ffmpeg')
+});
+
+
+
+
+
+</script>    
+{% endblock %}

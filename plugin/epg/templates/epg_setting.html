@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <!-- 일반 -->
+    {{ macros.m_tab_content_start('일반', true) }}
+      {{ macros.info_text_go_button('tvheadend', 'EPG for Tvheadend', [['delete_tvh_btn', '삭제']], value=arg['tvheadend']) }}
+      {{ macros.info_text_go_button('klive', 'EPG for KLive', [['delete_klive_btn', '삭제']], value=arg['klive']) }}
+      {{ macros.info_text_go_button('klive_lc', 'KLive for Live Channels', [['delete_klive_lc_btn', '삭제']], value=arg['klive_lc']) }}
+      {{ macros.info_text_go_button('plex_lc', 'Plex for Live Channels', [['delete_plex_lc_btn', '삭제']], value=arg['plex_lc']) }}
+      
+    {{ macros.m_tab_content_end() }}
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+<script type="text/javascript">
+var package_name = 'epg';
+var current_data = null;
+
+$(document).ready(function(){
+});
+
+$("body").on('click', '#delete_tvh_btn', function(e){
+  e.preventDefault();
+  delete_xml('tvheadend')
+});
+
+$("body").on('click', '#delete_klive_btn', function(e){
+  e.preventDefault();
+  delete_xml('tvheadend')
+});
+
+$("body").on('click', '#delete_klive_lc_btn', function(e){
+  e.preventDefault();
+  delete_xml('klive_lc')
+});
+
+$("body").on('click', '#delete_plex_lc_btn', function(e){
+  e.preventDefault();
+  delete_xml('plex_lc')
+});
+
+function delete_xml(filename) {
+  $.ajax({
+    url: '/' + package_name + '/ajax/delete_xml',
+    type: "POST", 
+    cache: false,
+    data:{filename:filename},
+    dataType: "json",
+    success: function (data) {
+      if (data == 'success') {
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else if (data == 'no') {
+        $.notify('<strong>파일이 없습니다.</strong>', {
+          type: 'warning'
+        });
+      } else {
+        $.notify('<strong>실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+}
+</script>    
+{% endblock %}

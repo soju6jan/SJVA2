@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head2('normal', '일반', true) }}
+      {{ macros.m_tab_head2('api', 'API', false) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('normal', true) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_checkbox('use_pooq', 'pooq', value=arg['use_pooq'], desc=None) }}
+        <div id="use_pooq_div" class="collapse">
+          {{ macros.setting_input_text('pooq_id', 'pooq ID', col='3', value=arg['pooq_id']) }}
+          {{ macros.setting_input_text('pooq_pw', 'pooq PW', col='3', value=arg['pooq_pw'], type='password') }}
+          {{ macros.setting_select('pooq_quality', 'pooq 화질', [['FHD','FHD'], ['HD','HD'], ['SD', 'SD']], col='3', value=arg['pooq_quality'])}}
+          {{ macros.setting_radio('pooq_streaming_type', 'pooq 스트리밍 타입', ['직접연결', 'SJVA사용', 'Redirect'], value=arg['pooq_streaming_type']) }}
+        </div>
+
+        {{ macros.setting_checkbox('use_tving', 'tving', value=arg['use_tving'], desc=None) }}
+        <div id="use_tving_div" class="collapse">
+          {{ macros.setting_input_text('tving_id', 'tving ID', col='3', value=arg['tving_id']) }}
+          {{ macros.setting_input_text('tving_pw', 'tving PW', col='3', value=arg['tving_pw'], type='password') }}
+          {{ macros.setting_select('tving_quality', 'tving 화질', [['FHD','FHD'], ['HD','HD'], ['SD', 'SD']], col='3', value=arg['tving_quality'])}}
+        </div>
+
+        {{ macros.setting_checkbox('use_oksusu', 'oksusu', value=arg['use_oksusu'], desc=None) }}
+        <div id="use_oksusu_div" class="collapse">
+          {{ macros.setting_input_text('oksusu_id', 'oksusu ID', col='3', value=arg['oksusu_id']) }}
+          {{ macros.setting_input_text('oksusu_pw', 'oksusu PW', col='3', value=arg['oksusu_pw'], type='password') }}
+          {{ macros.setting_select('oksusu_quality', 'oksusu 화질', [['FHD','FHD'], ['HD','HD'], ['SD', 'SD']], col='3', value=arg['oksusu_quality'])}}
+        </div>
+
+        {{ macros.setting_checkbox('use_videoportal', 'videoportal', value=arg['use_videoportal'], desc=None) }}
+        {{ macros.setting_checkbox('use_everyon', 'everyon', value=arg['use_everyon'], desc=None) }}
+        {{ macros.m_hr() }}
+        {{ macros.setting_checkbox('use_token', '토큰 사용', value=arg['use_token'], desc=None) }}
+        {{ macros.setting_checkbox('use_klive_lc', 'Live Channels 사용', value=arg['use_klive_lc'], desc=None) }}
+        
+        {{ macros.setting_button([['global_setting_save_btn', '저장']]) }}
+      </form>
+    {{ macros.m_tab_content_end() }}
+    {{ macros.m_tab_content_start('api', false) }}
+      {{ macros.info_text_go('api_m3u', 'M3U', value=arg['api_m3u'], desc=['Custom 채널에 대한 M3U']) }}
+      {{ macros.info_text_go('api_m3utvh', 'M3U for Tvheadend', value=arg['api_m3utvh'], desc=['Tvheand 채널 등록시 사용하는 M3U']) }}
+      {{ macros.info_text_go('xmltv', 'XMLTV', value=arg['xmltv'], desc=['일반 EPG']) }}
+      {{ macros.info_text_go('api_m3uall', 'M3U (All)', value=arg['api_m3uall']) }}
+      {{ macros.info_text_go('plex_proxy', 'Plex Proxy', value=arg['plex_proxy']) }}
+      
+    {{ macros.m_tab_content_end() }}
+</div>
+
+ 
+<script type="text/javascript">
+var package_name = 'klive';
+var current_data = null;
+
+$(document).ready(function(){
+  use_collapse("use_pooq")
+  use_collapse("use_tving")
+  use_collapse("use_oksusu")
+});
+
+$('#use_pooq').change(function() {
+  use_collapse('use_pooq');
+});
+$('#use_tving').change(function() {
+  use_collapse('use_tving');
+});
+$('#use_oksusu').change(function() {
+  use_collapse('use_oksusu');
+});
+
+
+</script>    
+{% endblock %}

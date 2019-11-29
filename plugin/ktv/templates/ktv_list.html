@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form id="form_search" class="form-inline" style="text-align:left">
+  <div class="container-fluid">
+    <div class="row show-grid">
+      <div class="col-md-12 form-inline">
+        <div class="col-md-12 form-inline " style="align-items:left; text-align:left;">
+          <div class="col-md-10" style="align-items:left; text-align:left;">
+            <input id="search_word" name="search_word" class="form-control form-control-sm w-100" type="text" placeholder="검색어" aria-label="Search">
+          </div>
+          <div class="col-md-2" style="align-items:left; text-align:left;">
+            <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div id='page1'></div>
+
+{{ macros.m_hr_head_top() }}
+{{ macros.m_row_start('0') }}
+{{ macros.m_col(1,  macros.m_strong('ID')) }}
+{{ macros.m_col(2,  macros.m_strong('Name')) }}
+{{ macros.m_col(3,  macros.m_strong('Time')) }}
+{{ macros.m_col(6,  macros.m_strong('Info')) }}
+{{ macros.m_row_end() }}
+{{ macros.m_hr_head_bottom() }}
+<div id="list_div"></div>
+<div id='page2'></div>
+
+<script type="text/javascript">
+var package_name = 'ktv';
+var current_data = null;
+
+$(document).ready(function(){
+  request_search('1');
+});
+
+$("#search").click(function(e) {
+  e.preventDefault();
+  request_search('1');
+});
+
+$("body").on('click', '#page', function(e){
+  e.preventDefault();
+  request_search($(this).data('page'));
+});
+
+
+function request_search(page) {
+  var formData = get_formdata('#form_search')
+  formData += '&page=' + page;
+  $.ajax({
+    url: '/' + package_name + '/ajax/filelist',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      window.scrollTo(0,0);
+      make_list(data.list)
+      make_page_html(data.paging)
+    }
+  });
+}  
+
+function make_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    tmp = data[i].id + '<br>'
+    if (data[i].move_type == 0) {
+      tmp += '로컬'
+    } else {
+      tmp += '원격'
+    }
+    str += m_col(1, tmp);
+
+    tmp1 = ''
+    if (data[i].plex_image != null) {
+      tmp1 = '<img src="' + data[i].plex_image + '" class="img-fluid"><br>' + data[i].plex_title
+    }
+    str += m_col(2, tmp1);
+
+    tmp = data[i].created_time + '<strong> (생성)</strong><br>';
+    tmp += data[i].send_command_time  + '<strong> (스캔요청)</strong><br>';
+    if (data[i].scan_time != null && data[i].scan_time != '')
+      tmp += data[i].scan_time + '<strong> (스캔완료)</strong>';
+    
+    str += m_col(3, tmp);
+    
+    tmp = '<strong><li>원본 : </strong>' + data[i].original_filename + '<br>'
+    tmp += '<strong><li>파일명 : </strong>' + data[i].filename + '<br>'
+    tmp += '<strong><li>Plex 경로 : </strong>' + data[i].plex_abspath + '<hr>'
+    if (data[i].log != null) {
+      tmp += '<pre>' + data[i].log.replace('<', '&lt;').replace('>', '&gt;') + '</pre>'
+      tmp += '<hr>'
+    }
+    tmp1 = ''
+    if (data[i].plex_part != null)  {
+      tmp1 = m_button('global_link_btn', '재생', [{'key':'url', 'value':data[i].plex_part}]);
+      tmp1 += m_button('global_link_btn', 'PLEX', [{'key':'url', 'value':'https://app.plex.tv/desktop#!/server/' + current_data.plex_server_hash + '/details?key=/library/metadata/' + data[i].plex_show_id}]);
+      tmp1 = m_button_group(tmp1)
+    }
+    str += m_col(6, tmp+tmp1);
+    
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+
+</script>    
+{% endblock %}
