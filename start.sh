@@ -10,13 +10,13 @@ do
         pip install -r update_requirements.txt
     fi
     export FLASK_APP=sjva.py
-    #if [ ! -d "./migrations" ] && [ -f "./data/db/sjva.db" ]; then
-    #    python -OO -m flask db init
-    #fi
-    #if [ -d "./migrations" ]; then
-    #    python -OO -m flask db migrate
-    #    python -OO -m flask db upgrade
-    #fi
+    if [ ! -d "./migrations" ] && [ -f "./data/db/sjva.db" ]; then
+        python -OO -m flask db init
+    fi
+    if [ -d "./migrations" ]; then
+        python -OO -m flask db migrate
+        python -OO -m flask db upgrade
+    fi
     nohup sh /app/consumer_start.sh &
     python -OO sjva.py 0 ${COUNT}
     RESULT=$?
