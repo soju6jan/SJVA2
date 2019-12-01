@@ -15,6 +15,11 @@ except:
 ######################################
 # docker_start.sh 에 site.db로 되어 있어 migration 안되고 있음
 try:
+        print sys.argv[0]
+        print sys.argv[0]
+        print sys.argv[0]
+
+
     #if sys.argv[0].startswith('sjva.py'):
         try:
             if platform.system() != 'Windows':
