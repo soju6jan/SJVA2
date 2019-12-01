@@ -5,6 +5,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lib'))
+import platform
 
 try:
     from gevent import monkey;monkey.patch_all()
@@ -15,23 +16,15 @@ except:
 ######################################
 # docker_start.sh 에 site.db로 되어 있어 migration 안되고 있음
 try:
-        print sys.argv[0]
-        print sys.argv[0]
-        print sys.argv[0]
-
-
-    #if sys.argv[0].startswith('sjva.py'):
+    if sys.argv[0].startswith('sjva.py'):
         try:
             if platform.system() != 'Windows':
                 custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')
-                print 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-                print custom
                 os.system("chmod 777 -R %s" % custom)
                 custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin')
-                print custom
                 os.system("chmod 777 -R %s" % custom)
         except:
-            pass
+            print('Exception:%s', e)
 except Exception, e:
     print('Exception:%s', e)
 
