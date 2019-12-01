@@ -23,9 +23,11 @@ try:
     #if sys.argv[0].startswith('sjva.py'):
         try:
             if platform.system() != 'Windows':
-                custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')    
+                custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')
+                print custom
                 os.system("chmod 777 -R %s" % custom)
-                custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin')    
+                custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin')
+                print custom
                 os.system("chmod 777 -R %s" % custom)
         except:
             pass
