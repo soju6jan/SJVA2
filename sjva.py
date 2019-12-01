@@ -24,6 +24,7 @@ try:
         try:
             if platform.system() != 'Windows':
                 custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')
+                print 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
                 print custom
                 os.system("chmod 777 -R %s" % custom)
                 custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin')
