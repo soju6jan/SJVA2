@@ -45,7 +45,7 @@ telepot==12.7
 tqdm==4.31.1
 transmissionrpc==0.11
 tzlocal==1.5.1
-urllib3==1.24.1
+urllib3==1.24.2
 websocket-client==0.56.0
 Werkzeug==0.15.2
 youtube-dl==2019.5.11
