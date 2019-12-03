@@ -7,7 +7,8 @@ celery-worker 변경 작업
   * SMI to SRT
 - 토렌트
   * RSS
-  
+
+https://filebrowser.xyz/
 
 
 ##### ■ 0.1.10.7 (2019-11-19) #####
