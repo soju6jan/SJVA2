@@ -5,6 +5,7 @@ while [ 1 ];
 do
     git reset --hard HEAD
     git pull
+    chmod +x .
     chmod -R +x ./bin
     if [ ! -d "./data/custom" ]; then
         chmod -R +x ./data/custom
@@ -21,8 +22,7 @@ do
         python -OO -m flask db migrate
         python -OO -m flask db upgrade
     fi
-    chmod +x /app/worker_start.sh
-    nohup sh /app/worker_start.sh &
+    nohup sh ./worker_start.sh &
     python -OO sjva.py 0 ${COUNT}
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
