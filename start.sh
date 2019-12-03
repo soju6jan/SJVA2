@@ -21,6 +21,7 @@ do
         python -OO -m flask db migrate
         python -OO -m flask db upgrade
     fi
+    chmod +x ./worker_start.sh
     nohup sh ./worker_start.sh &
     python -OO sjva.py 0 ${COUNT}
     RESULT=$?
