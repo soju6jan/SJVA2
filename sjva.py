@@ -34,7 +34,8 @@ import framework
 import system
    
 app = framework.app
-huey = framework.huey
+#huey = framework.huey
+celery = framework.celery
 
 def start_app():
     for i in range(10):

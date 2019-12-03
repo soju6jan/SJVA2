@@ -5,6 +5,10 @@ while [ 1 ];
 do
     git reset --hard HEAD
     git pull
+    chmod -R +x ./bin
+    if [ ! -d "./data/custom" ]; then
+        chmod -R +x ./data/custom
+    fi
     FILENAME="update_requirements.txt"
     if [ -f "$FILENAME" ] ; then
         pip install -r update_requirements.txt
@@ -17,7 +21,7 @@ do
         python -OO -m flask db migrate
         python -OO -m flask db upgrade
     fi
-    nohup sh /app/consumer_start.sh &
+    nohup sh ./worker_start.sh &
     python -OO sjva.py 0 ${COUNT}
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
