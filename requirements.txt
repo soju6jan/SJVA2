@@ -57,3 +57,4 @@ guessit==3.0.4
 celery[redis]
 huey
 mock
+flower

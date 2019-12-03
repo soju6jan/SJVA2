@@ -1,5 +1,6 @@
 #! /bin/sh
 nohup redis-server &
+nohup python -OO ./venv/bin/celery -A sjva.celery flower &
 COUNT=0
 while [ 1 ];
 do
