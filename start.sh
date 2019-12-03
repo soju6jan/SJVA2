@@ -5,8 +5,8 @@ while [ 1 ];
 do
     git reset --hard HEAD
     git pull
-    chmod +x .
-    chmod -R +x ./bin
+    chmod 777 .
+    chmod -R 777 ./bin
     if [ ! -d "./data/custom" ]; then
         chmod -R +x ./data/custom
     fi
