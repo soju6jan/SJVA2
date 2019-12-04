@@ -2,9 +2,9 @@
 export REDIS_PORT="46379"
 export FILEBROWSER_PORT="9998"
 export CELERY_MONOTORING_PORT="9997"
-nohup redis-server ${REDIS_PORT} &
+nohup redis-server --port ${REDIS_PORT} &
 chmod +x ./bin/Linux/filebrowser
-nohup filebrowser -p ${FILEBROWSER_PORT} -r / &
+nohup ./bin/Linux/filebrowser -p ${FILEBROWSER_PORT} -r / &
 COUNT=0
 while [ 1 ];
 do
