@@ -1,5 +1,10 @@
 #! /bin/sh
-nohup redis-server &
+export REDIS_PORT="46379"
+export CELERY_MONOTORING_PORT="9997"
+export FILEBROWSER_PORT="9998"
+nohup redis-server ${REDIS_PORT} &
+chmod +x ./bin/Linux/filebrowser
+nohup redis-server -p ${FILEBROWSER_PORT} -r / &
 COUNT=0
 while [ 1 ];
 do
