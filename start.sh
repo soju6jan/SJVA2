@@ -27,6 +27,14 @@ do
         python -OO -m flask db migrate
         python -OO -m flask db upgrade
     fi
+    while [ 1 ];
+    do
+        if [ -f "./data/db/sjva.db" ] ; then
+            break
+        fi
+        echo 'WAIT.. sjva.db'
+        sleep 1
+    done
     nohup sh ./worker_start.sh &
     python -OO sjva.py 0 ${COUNT}
     RESULT=$?
