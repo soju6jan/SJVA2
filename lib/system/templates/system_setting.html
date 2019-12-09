@@ -1,4 +1,14 @@
 {% extends "base.html" %}
+{% block wide_menu %}
+<!--<ul class="nav nav-pills  bg-light shadow text-dark" >
+  <li class="nav-item"><span class="nav-link">시스템</span></li>
+  <li class="nav-item"><a class="nav-link active" href="/system/setting">설정</a></li>
+  <li class="nav-item"><a class="nav-link " href="/system/telegram">텔레그램 봇</a></li>
+  <li class="nav-item"><a class="nav-link" href="/system/plugin">저장된 TV</a></li>
+  <li class="nav-item"><a class="nav-link" href="/system/common">로그 확인</a></li>
+</ul>-->
+{% endblock %}
+
 {% block content %}
 <style type="text/css">
   .my_hover:hover{
@@ -11,7 +21,7 @@
   <nav>  
     {{ macros.m_tab_head_start() }}
       {{ macros.m_tab_head2('normal', '일반', true) }}
-      {{ macros.m_tab_head2('advanced', '기타', false) }}
+      {{ macros.m_tab_head2('advanced', 'Advanced', false) }}
       {{ macros.m_tab_head2('web', '웹', false) }}
       {{ macros.m_tab_head2('menu', '메뉴', false) }}
       {{ macros.m_tab_head2('link', '링크', false) }}
@@ -27,17 +37,14 @@
         <div id="use_login_false_div" class="collapse"></div>
         <div id="use_login_true_div" class="collapse">
         {{ macros.setting_input_text('id', '로그인 ID', value=arg['id'], desc=['초기값은 sjva입니다.'], col='3') }}
-
         {{ macros.setting_input_text('pw', '로그인 암호', value=arg['pw'], col='3', type='password', desc=['초기값은 sjva입니다.']) }}
         </div>
         {{ macros.setting_input_int('port', 'Port', value=arg['port'], min='1', placeholder='Port', desc=['포트 번호입니다.', '네이티브 설치 혹은 도커  네트워크 타입이 호스트일 경우 반영됩니다.', '도커 브릿지 모드인 경우는 docker run -p 옵션에서 변경하시기 바랍니다.', '경고 : -p 브릿지 모드로 사용중 일 경우 9999번을 절대 변경하지 마세요.']) }}
-
         {{ macros.setting_input_text_and_buttons('ddns', 'DDNS', [['ddns_test_btn', '테스트']], value=arg['ddns'], desc=['외부에서 접근시 사용할 DDNS', 'RSS, Plex Callback, KLive 등에서 URL생성시 사용합니다.', '테스트 버튼 클릭 후 버전을 확인 할 수 있어야 합니다.']) }}
-
+        {{ macros.setting_input_text_and_buttons('url_filebrowser', 'URL FileBrowser', [['go_filebrowser_btn', 'GO']], value=arg['url_filebrowser']) }}
+        {{ macros.setting_input_text_and_buttons('url_celery_monitoring', 'URL Celery Monitoring', [['go_celery_monitoring_btn', 'GO']], value=arg['url_celery_monitoring']) }}
         {{ macros.setting_input_int('auto_restart_hour', '자동 재시작 시간', value=arg['auto_restart_hour'], min='0', desc=['자동 재시작 시간입니다.', '0이면 재시작 안함.']) }}
-
         {{ macros.setting_select('log_level', '로그 레벨', [['10', 'DEBUG'],['20', 'INFO'],['30', 'WARNING'],['40', 'ERROR'], ['50', 'CRITICAL'] ], value=arg['log_level'], col='3') }}
-
         {{ macros.setting_button([['setting_save', '저장']]) }}
       </form>
     </form>
@@ -474,6 +481,19 @@ $("body").on('click', '#selenium_go_btn', function(e){
   url = document.getElementById('selenium_remote_url').value
   window.open(url, "_blank");
 });
+
+$("body").on('click', '#go_filebrowser_btn', function(e){
+  e.preventDefault();
+  url = document.getElementById('url_filebrowser').value
+  window.open(url, "_blank");
+});
+
+$("body").on('click', '#go_celery_monitoring_btn', function(e){
+  e.preventDefault();
+  url = document.getElementById('url_celery_monitoring').value
+  window.open(url, "_blank");
+});
+
 
 $("body").on('click', '#selenium_manual_go_btn', function(e){
   e.preventDefault();
