@@ -1,0 +1,341 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  <nav> 
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('설정', false) }}
+      {{ macros.m_tab_head('다운로드', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>  
+
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('다운로드', true) }}
+      <form>
+        {{ macros.setting_input_text_and_buttons('url', 'URL or Code', [['analyze', '분석'], ['go_pooq', '푹']], desc='URL & Program Code & Episode Code & Movie Code') }}
+      </form>
+      <div id='detail'></div>
+      <div id="more"></div>
+    {{ macros.m_tab_content_end() }}
+  
+    {{ macros.m_tab_content_start('설정', false) }}
+      <form>
+      {{ macros.setting_input_text('id', 'ID', value=arg['id'], col='3') }}
+      {{ macros.setting_input_text_and_buttons('pw', '암호', [['login', '확인']], value=arg['pw'], col='4', type='password') }}
+      {{ macros.setting_select('quality', '기본 화질', [['FHD', 'FHD'], ['HD', 'HD'], ['SD', 'SD']], col='3', value=arg['quality']) }}
+      {{ macros.setting_input_text('save_path', '저장 폴더', value=arg['save_path'], desc='정상적으로 완료된 파일이 이동할 폴더 입니다. ') }}
+      {{ macros.setting_input_int('max_pf_count', '허용 Packet Fail 수', value=arg['max_pf_count'], min='0', desc=['이 값보다 Packet Fail 횟수가 더 많으면 실패처리 합니다.', '0 : Packet Fail이 발생하면 바로 실패처리.', '-1 : 실패처리 하지 않음.']) }}
+      {{ macros.setting_button([['setting_save_btn', '저장']]) }}
+      </form>
+    {{ macros.m_tab_content_end() }}
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  
+
+  //설정 저장
+  $("#setting_save_btn").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: '/pooq/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data:{ id : $("#id").val(), pw:$("#pw").val(), quality: $("#quality").val(), save_path:$("#save_path").val(), max_pf_count : $("#max_pf_count").val(), max_retry_count : $("#max_retry_count").val()},
+      dataType: "json",
+
+      success: function (ret) {
+        if (ret == 0) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else if (ret == 1) {
+          $.notify('<strong>설정과 로그인 정보를 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else if (ret == 2) {
+          $.notify('<strong>설정을 저장하였으나 로그인에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  //로그인 인증
+  $("#login").click(function(e) {
+    e.preventDefault(); 
+    $.ajax({
+      url: '/pooq/ajax/login',
+      type: "POST", 
+      cache: false,
+      data: {id:$("#id").val(), pw:$("#pw").val()},
+      dataType: "json",
+      success: function (list) {
+        document.getElementById("modal_title").innerHTML = "Login Result";
+        document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(list, null, 2) + "</pre>";
+        $("#large_modal").modal();
+      }
+    });
+  });
+
+  //분석
+  $("#analyze").click(function(e) {
+    e.preventDefault();
+    if ($("#url").val() == "") {
+      $.notify('<strong>URL이나 Code를 입력하세요.</strong>', {
+        type: 'warning'
+      });
+      return;
+    }
+    $.ajax({
+      url: '/pooq/ajax/analyze',
+      type: "POST", 
+      cache: false,
+      data: {url: $("#url").val()},
+      dataType: "json",
+      success: function (data) {
+        if (data['url_type'] == 'None') {
+          $.notify('<strong>유효한 값이 아닙니다.</strong>', {
+            type: 'warning'
+          });
+        } else if (data['url_type'] == 'episode') {
+          if (data.ret) {
+            //document.getElementById("modal_title").innerHTML = "Login Result";
+            //document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+            //$("#large_modal").modal();
+            str = '<hr>';
+            str += '<div class="row">';
+            str += '<div class="col-sm-3">'
+            str += '<img src="' + data.data.poster_url + '" class="img-fluid">'
+            str += '</div>';
+            str += '<div class="col-sm-9">'
+            //str += '<pre style="word-break:break-all;">'
+            str += '<div>';
+            str += '<strong>' + data.data.program_name + '  ' + data.data.frequency + '회</strong><br>';
+            str += data.data.json.result.airDate + '  ' + data.data.json.result.airingInfo + '<br><p>';
+            if ( data.data.json.result.description != null)
+              str += '<p>' + data.data.json.result.description.replace('\n', '<br>') + '<p>';
+            str += '파일명 : ' + data.data.filename;
+            str += '</div>';
+            //str += '</pre>'
+            //str += '</div>';
+            //str += '<div class="col-sm-9">'
+            str += '<div>';
+            str += '<span><button id="episode_download_start" name="submit" class="btn btn-sm  btn-outline-success" data-url="'+data.data.signedUrl+'" data-filename="'+data.data.filename+'">다운로드</button></span>';
+            str += '<span style="padding-left:10px;"><button id="program_search" name="submit" class="btn btn-sm  btn-outline-success" data-program="'+data.data.program_code+'">프로그램 검색</button></span>';
+            str += '</div>';
+            str += '</div>';
+            str += '</div>';
+
+            document.getElementById("detail").innerHTML = str;
+            document.getElementById("more").innerHTML = '';
+          } else {
+            $.notify('<strong>'+data.data.message+'</strong>', {
+              type: 'warning'
+            });
+          }
+        } else if (data['url_type'] == 'program') {
+          //document.getElementById("modal_title").innerHTML = "Login Result";
+          //document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data.data, null, 2) + "</pre>";
+          //$("#large_modal").modal();
+          make_program_page(data);
+        } else if (data['url_type'] == 'movie') {
+            str = '<hr>';
+            str += '<div class="row">';
+            str += '<div class="col-sm-3">'
+            str += '<img src="' + data.data.result.image + '" class="img-fluid">'
+            str += '</div>';
+            str += '<div class="col-sm-9">'
+            //str += '<pre style="word-break:break-all;">'
+            str += '<div>';
+            str += '<strong>' + data.data.result.title + '</strong><br><p>';
+            str += data.data.result.genere + ' ' + data.data.result.releaseDate + ' ' + data.data.result.runningTime + '분 ' + data.data.result.nation;
+            if ( data.data.result.description != null)
+              str += '<p>' + data.data.result.description.replace('\n', '<br>') + '<p>';
+            //str += '파일명 : ' + data.data.filename;
+            if (data.data.result.isDrm == 'Y') {
+              str += '<span style="color:red">DRM</span>'
+            }
+            str += '</div>';
+            //str += '</pre>'
+            //str += '</div>';
+            //str += '<div class="col-sm-9">'
+            str += '<div>';
+            if (data.data.result.isDrm != 'Y') {
+              str += '<span><button id="movie_download_start" name="submit" class="btn btn-sm  btn-outline-success" data-id="'+data.data.result.id+'">세부 정보</button></span><span style="padding-left:10px;">';
+            } else {
+              str += '<span>'
+            }
+            str += '<button id="daum_search" name="submit" class="btn btn-sm  btn-outline-success" data-movie="'+data.data.result.title+'">Daum 검색</button></span>';
+            str += '</div>';
+            str += '<div id="movie_download_div"></div>'
+            str += '</div>';
+            str += '</div>';
+
+            document.getElementById("detail").innerHTML = str;
+            document.getElementById("more").innerHTML = '';
+        }
+      }
+    });
+  });
+
+  //에피소드 다운로드 시작
+  $("body").on('click', '#episode_download_start', function(e){
+    e.preventDefault();
+    url = $(this).data('url');
+    filename = $(this).data('filename');
+    $.ajax({
+      url: '/pooq/ajax/episode_download_url',
+      type: "POST", 
+      cache: false,
+      data: {url:url, filename:filename},
+      dataType: "json",
+      success: function (list) {
+        //document.getElementById("modal_title").innerHTML = "Login Result";
+        //document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(list, null, 2) + "</pre>";
+        //$("#large_modal").modal();
+      }
+    });
+  });
+
+  // 프로그램 More 버튼
+  $("body").on('click', '#more_btn', function(e){
+    e.preventDefault();
+    code = $(this).data('code');
+    page = parseInt($(this).data('page')) + 1;
+    $.ajax({
+      url: '/pooq/ajax/program_page',
+      type: "POST", 
+      cache: false,
+      data: {code:code, page:page},
+      dataType: "json",
+      success: function (data) {
+        make_program_page(data);
+      }
+    });
+  });
+
+  // 에피소드 서치
+  $("body").on('click', '#episode_search', function(e){
+    e.preventDefault();
+    episode = $(this).data('episode');
+    document.getElementById("url").value = episode;
+    document.getElementById("analyze").click();
+  });
+
+  // 프로그램 서치
+  $("body").on('click', '#program_search', function(e){
+    e.preventDefault();
+    program = $(this).data('program');
+    document.getElementById("url").value = program;
+    document.getElementById("analyze").click();
+  });
+  
+  $("#go_pooq").click(function(e) {
+    e.preventDefault();
+    window.open('http://www.pooq.co.kr', '_blank'); 
+  });
+
+  // 영화 다운
+  $("body").on('click', '#movie_download_start', function(e){
+    e.preventDefault();
+    id = $(this).data('id');
+    $.ajax({
+      url: '/pooq/ajax/movie_detail',
+      type: "POST", 
+      cache: false,
+      data: {id:id},
+      dataType: "json",
+      success: function (data) {
+        /*
+        document.getElementById("modal_title").innerHTML = "Login Result";
+        document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+        $("#large_modal").modal();
+        */
+        if (data.ret) {
+          if (data.data.json.result.isPreview == 'Y') {
+            str = '<span style="color:red">권한이 없습니다.</span>'
+          } else {
+            str = '<div style="padding-top:20px"><p>';
+            str += '파일명 : ' + data.data.filename;
+            str += '</p></div>';
+            str += '<div><span><button id="episode_download_start" name="submit" class="btn btn-sm  btn-outline-success" data-url="'+data.data.json.result.signedUrl+'" data-filename="'+data.data.filename+'">다운로드</button></span></div>';
+          }
+          document.getElementById("movie_download_div").innerHTML = str;
+        } else {
+          $.notify('<strong>'+data.message+'</strong>', {
+            type: 'warning'
+          });
+        }
+        //make_program_page(data);
+      }
+    });
+  });
+
+  // 다음 영화 검색
+  $("body").on('click', '#daum_search', function(e){
+    e.preventDefault();
+    movie = $(this).data('movie');
+    window.open('https://search.daum.net/search?w=tot&q=' + movie, '_blank'); 
+  });
+  
+
+  // 쿼리로 시작. 자동에서
+  if ( "{{arg['code']}}" != "None" ) {
+    episode = $(this).data('episode');
+    document.getElementById("url").value = "{{arg['code']}}";
+    document.getElementById("analyze").click();
+  }
+});
+
+
+function make_program_page(data) {
+  str = '';
+  for (var i = 0; i < data.data.length; i++) {
+    str += '<hr>';
+    str += '<div class="row">';
+    str += '<div class="col-sm-3">'
+    str += '<img src="' + data.data[i].image + '" class="img-fluid">'
+    str += '</div>';
+    str += '<div class="col-sm-9">'
+    str += '<div>';
+    str += '<strong>' + data.data[i].title + '  ' + data.data[i].episodeNo + '회</strong>';
+    if (data.data[i].isQvod == 'Y') {
+      str += '<span style="color:red"> 퀵VOD</span>'
+    }
+    str += '<br>';
+    str += data.data[i].airDate + '<br><p></p>';
+    if ( data.data[i].description != null)
+      str += '<p>' + data.data[i].description.replace('\n', '<br>') + '</p>';
+    //str += '파일명 : ' + data.data.filename;
+    str += '</div>';
+    //str += '</pre>'
+    //str += '</div>';
+    //str += '<div class="col-sm-9">'
+    str += '<div>';
+    str += '<button id="episode_search" name="submit" class="btn btn-sm  btn-outline-success" data-episode="'+data.data[i].id+'.' +data.data[i].cornerId + '">에피소드</button>';
+    str += '</div>';
+    str += '</div>';
+    str += '</div>';
+  }
+  if (data.page == '1') {
+    document.getElementById("detail").innerHTML = str;
+  } else {
+    document.getElementById("detail").innerHTML += str;
+  }
+  
+  if (data.data.length >= 30) {
+    str = '<div class="d-inline-block"></div><form>';
+    str += '<button id="more_btn" class="btn btn-outline-secondary btn-lg btn-block" type="button" data-code="'+data.code+'" data-page="'+data.page+'">More</button>'
+    str += '</form>';
+    document.getElementById("more").innerHTML = str;
+  } else {
+    document.getElementById("more").innerHTML = '';
+  }
+}
+  
+</script>    
+{% endblock %}
