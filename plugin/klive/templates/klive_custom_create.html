@@ -42,6 +42,7 @@ $(document).ready(function(){
     data: {},
     dataType: "json",
     success: function (data) {
+      console.log(data)
       current_data = data;
       make_list(data, 'saved')
     }
