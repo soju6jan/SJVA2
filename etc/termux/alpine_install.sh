@@ -1,4 +1,5 @@
 #!/bin/sh
+#
 apk add --no-cache git
 cd /home
 git clone https://github.com/soju6jan/SJVA2.git
@@ -16,9 +17,9 @@ rm -rf /var/cache/apk/*
 mv /home/SJVA2/etc/termux/my_start.sh /home/SJVA2/my_start.sh
 chmod 777 /home/SJVA2/my_start.sh
 mv /home/SJVA2/etc/termux/alpine_profile2 /root/.profile
-rm -rf /home/SJVA2/bind/Windows
-rm -rf /home/SJVA2/bind/Linux
-rm -rf /home/SJVA2/bind/Darwin
+rm -rf /home/SJVA2/bin/Windows
+rm -rf /home/SJVA2/bin/Linux
+rm -rf /home/SJVA2/bin/Darwin
 mv /home/SJVA2/etc/termux/gitignore /home/SJVA2/bin/.gitignore
 echo "SJVA Install Completed.."
 
