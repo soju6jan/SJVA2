@@ -21,7 +21,7 @@ set COUNT=0
         python -OO -m flask db migrate
         python -OO -m flask db upgrade
     )
-    python -OO sjva.py 0 %COUNT%
+    python -OO sjva.py 0 %COUNT% no_celery
     echo PYTHON EXIT CODE : %errorlevel%..............
     set res=F
     if errorlevel == 1 set res=T
