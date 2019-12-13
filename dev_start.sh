@@ -10,7 +10,7 @@ do
     #    python -OO -m flask db migrate
     #    python -OO -m flask db upgrade
     #fi
-    python -OO sjva.py 0 ${COUNT} debug no_celery
+    python -OO sjva.py 0 ${COUNT} debug
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
     if [ "$RESULT" = "0" ]; then
