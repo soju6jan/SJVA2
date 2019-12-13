@@ -12,3 +12,13 @@ apk --update add tzdata
 cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 apk del tzdata
 rm -rf /var/cache/apk/*
+
+mv /home/SJVA2/etc/termux/my_start.sh /home/SJVA2/my_start.sh
+chmod 777 /home/SJVA2/my_start.sh
+mv /home/SJVA2/etc/termux/alpine_profile2 /root/.profile
+rm -rf /home/SJVA2/bind/Windows
+rm -rf /home/SJVA2/bind/Linux
+rm -rf /home/SJVA2/bind/Darwin
+mv /home/SJVA2/etc/termux/gitignore /home/SJVA2/bin/.gitignore
+echo "SJVA Install Completed.."
+
