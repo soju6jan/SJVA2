@@ -249,6 +249,23 @@
   {{ setting_bottom(desc) }}
 {% endmacro %}
 
+{% macro select(id, options, col='3', value=None) %}
+  <div class="input-group col-sm-{{col}}" style="padding-left:0px; padding-top:0px">
+    
+    <select id="{{id}}" name="{{id}}" class="form-control form-control-sm">
+      {% for item in options %}
+        {% if value is not none and value == item[0] %}
+        <option value="{{ item[0] }}" selected>{{item[1]}}</option>
+        {% else %}
+        <option value="{{ item[0] }}">{{item[1]}}</option>
+        {% endif %}
+            
+      {% endfor %}
+    </select>
+  </div>
+{% endmacro %}
+
+
 <!-- select + 버튼  -->
 {% macro setting_select_and_buttons(id, title, options, buttons, col='9', desc=None, value=None) %}
   {{ setting_top(title) }}

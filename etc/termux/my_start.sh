@@ -1,5 +1,6 @@
 #! /bin/sh
 export FILEBROWSER_PORT="9998"
+export SJVA_RUNNING_TYPE="termux"
 chmod +x ./bin/LinuxArm/filebrowser
 nohup ./bin/LinuxArm/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
 COUNT=0

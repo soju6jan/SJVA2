@@ -14,6 +14,7 @@
       {{ macros.info_text_go_button('klive', 'EPG for KLive', [['delete_klive_btn', '삭제']], value=arg['klive']) }}
       {{ macros.info_text_go_button('klive_lc', 'KLive for Live Channels', [['delete_klive_lc_btn', '삭제']], value=arg['klive_lc']) }}
       {{ macros.info_text_go_button('plex_lc', 'Plex for Live Channels', [['delete_plex_lc_btn', '삭제']], value=arg['plex_lc']) }}
+      {{ macros.info_text_go_button('hdhomerun', 'EPG for HDHomerun', [['delete_hdhomerun_btn', '삭제']], value=arg['hdhomerun']) }}
       
     {{ macros.m_tab_content_end() }}
   </div><!--tab-content-->
@@ -46,6 +47,12 @@ $("body").on('click', '#delete_plex_lc_btn', function(e){
   e.preventDefault();
   delete_xml('plex_lc')
 });
+
+$("body").on('click', '#delete_hdhomerun_btn', function(e){
+  e.preventDefault();
+  delete_xml('hdhomerun')
+});
+
 
 function delete_xml(filename) {
   $.ajax({
