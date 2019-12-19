@@ -45,6 +45,7 @@ var package_name = 'rss';
 var current_data = null;
 var ddns = "{{arg['ddns']}}"
 var is_available_normal_download = ("{{arg['is_available_normal_download']}}" == 'True')
+var is_torrent_info_installed = ("{{arg['is_torrent_info_installed']}}" == 'True')
 
 $(document).ready(function(){
   request_search('1');
@@ -161,11 +162,18 @@ function make_list(data) {
         tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
         tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
         tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        if (is_torrent_info_installed) {
+          tmp += m_button('torrent_info_btn', '토렌트 정보 확인', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+          //tmp += m_button('torrent_info_btn', '토렌트 정보 확인', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id}]);
+        }
       } else {
         if (is_available_normal_download) {
           tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id }]);
         }
         tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id}]);
+        if (is_torrent_info_installed) {
+          tmp += m_button('torrent_info_btn', '토렌트 정보 확인', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id}]);
+        }
       }
 
       tmp = m_button_group(tmp)
@@ -182,5 +190,22 @@ function make_list(data) {
   }
   document.getElementById("list_div").innerHTML = str;
 }
+
+
+$("body").on('click', '#torrent_info_btn', function(e) {
+  e.preventDefault();
+  hash = $(this).data('hash');
+  $.ajax({
+    url: '/'+package_name+'/ajax/torrent_info',
+    type: "POST", 
+    cache: false,
+    data: {hash:hash},
+    dataType: "json",
+    success: function (data) {
+      m_modal(data, "토렌트 정보")
+    }
+  });
+});
+
 </script>    
 {% endblock %}

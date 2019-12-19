@@ -67,10 +67,13 @@
 <div id='page2'></div>
 
 <script type="text/javascript">
+var package_name = 'rss';
 var currentData = null;
 var ddns = "{{arg['ddns']}}"
 var is_available_normal_download = ("{{arg['is_available_normal_download']}}" == 'True')
 var first_search_word = "{{arg['search_word']}}"
+var is_torrent_info_installed = ("{{arg['is_torrent_info_installed']}}" == 'True')
+
 $(document).ready(function(){
   if ( first_search_word != "None" ) {
     document.getElementById("search_word").value = first_search_word;
@@ -186,12 +189,19 @@ function make_list_html(data) {
         tmp1 += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
         tmp1 += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
         tmp1 += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        if (is_torrent_info_installed) {
+          tmp1 += m_button('torrent_info_btn', '토렌트 정보 확인', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        }
       } else {
         if (is_available_normal_download) {
           tmp1 += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/rss/download/' + data[i].files[j].id }]);
         }
         tmp1 += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/rss/download/' + data[i].files[j].id}]);
+        if (is_torrent_info_installed) {
+          tmp1 += m_button('torrent_info_btn', '토렌트 정보 확인', [{'key':'hash', 'value':ddns+'/rss/download/' + data[i].files[j].id}]);
+        }
       }
+      
 
       tmp1 = m_button_group(tmp1)
       tmp += tmp1
@@ -246,7 +256,20 @@ function make_form(data) {
 
 }
 
-
+$("body").on('click', '#torrent_info_btn', function(e) {
+  e.preventDefault();
+  hash = $(this).data('hash');
+  $.ajax({
+    url: '/'+package_name+'/ajax/torrent_info',
+    type: "POST", 
+    cache: false,
+    data: {hash:hash},
+    dataType: "json",
+    success: function (data) {
+      m_modal(data, "토렌트 정보")
+    }
+  });
+});
 
 </script>    
 {% endblock %}
