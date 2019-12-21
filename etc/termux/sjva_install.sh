@@ -10,9 +10,10 @@ curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/my_s
 mv my_start.sh ./TermuxAlpine/home/SJVA2/
 chmod +x ./TermuxAlpine/home/SJVA2/my_start.sh
 curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/sjva.db_
-mv sjva.db_ ./TermuxAlpine/home/SJVA2/data/db/
+mv sjva.db_ ./TermuxAlpine/home/SJVA2/data/db/sjva.db
 cd $HOME
 curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/termux_bash_profile
 mv termux_bash_profile ~/.profile
 echo 'SJVA copy completed.. Re-run Termux.'
+echo 'Input exit'
 
