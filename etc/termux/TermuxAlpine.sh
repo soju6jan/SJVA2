@@ -90,10 +90,11 @@ checkdeps() {
 # URLs of all possibls architectures
 
 seturl() {
-	ALPINE_VER=$(curl -s http://dl-cdn.alpinelinux.org/alpine/v3.10/releases/$SETARCH/latest-releases.yaml | grep -m 1 -o version.* | sed -e 's/[^0-9.]*//g' -e 's/-$//')
-	if [ -z "$ALPINE_VER" ] ; then
-		exit 1
-	fi
+	#ALPINE_VER=$(curl -s http://dl-cdn.alpinelinux.org/alpine/v3.10/releases/$SETARCH/latest-releases.yaml | grep -m 1 -o version.* | sed -e 's/[^0-9.]*//g' -e 's/-$//')
+	#if [ -z "$ALPINE_VER" ] ; then
+	#	exit 1
+	#fi
+    ALPINE_VER="3.10.3"
 	ALPINE_URL="http://dl-cdn.alpinelinux.org/alpine/v3.10/releases/$SETARCH/alpine-minirootfs-$ALPINE_VER-$SETARCH.tar.gz"
 }
 
