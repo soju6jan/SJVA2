@@ -15,4 +15,4 @@ cd $HOME
 curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/termux_bash_profile
 mv termux_bash_profile ~/.profile
 echo 'SJVA copy completed.. Re-run Termux.'
-bash exit
+
