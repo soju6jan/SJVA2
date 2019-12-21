@@ -1,21 +1,17 @@
 #!/bin/bash
-
-curl -LO https://drive.google.com/file/d/1sVMz1iH-cVaZKWjoi_H8cxto3GtuYHVX/view?usp=sharing
-
-
-#cd $HOME
-#curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/termux_bash_profile
-#mv termux_bash_profile ~/.profile
-
-#curl -LO https://raw.githubusercontent.com/Hax4us/TermuxAlpine/master/TermuxAlpine.sh
-#bash TermuxAlpine.sh
-
-#curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/alpine_install.sh
-#mv alpine_install.sh /data/data/com.termux/files/usr/share/TermuxAlpine/home/alpine_install.sh
-
-#curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/alpine_profile1
-#mv alpine_profile1 /data/data/com.termux/files/usr/share/TermuxAlpine/root/.profile
-
-startalpine
-
-
+cd $HOME
+cd ../usr/share
+pkg -y install proot
+curl -LO https://soju6jan.com/file/TermuxAlpine.tar.gz
+tar -zxvf TermuxAlpine.tar.gz
+rm TermuxAlpine.tar.gz
+mv TermuxAlpine/startalpine ../bin
+curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/my_start.sh
+mv my_start.sh ./TermuxAlpine/home/SJVA2/
+curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/sjva.db_
+mv sjva.db_ ./TermuxAlpine/home/SJVA2/data/db/
+cd $HOME
+curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/termux_bash_profile
+mv termux_bash_profile ~/.profile
+echo 'SJVA copy completed.. Rerun Termux'
+exit
