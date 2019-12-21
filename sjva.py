@@ -10,7 +10,7 @@ import platform
 try:
     from gevent import monkey;monkey.patch_all()
 except:
-    print 'not monkey'
+    print('not monkey')
 
 
 ######################################
@@ -41,25 +41,25 @@ def start_app():
     for i in range(10):
         try:
             framework.socketio.run(app, host='0.0.0.0', port=app.config['config']['port'])
-            print 'EXIT CODE : %s' % framework.exit_code
+            print('EXIT CODE : %s' % framework.exit_code)
             if framework.exit_code != -1:
                 sys.exit(framework.exit_code)
                 break
             else:
-                print 'framework.exit_code is -1'
+                print('framework.exit_code is -1')
             break
         except Exception as e:
-            print e
+            print(str(e))
             import time
             time.sleep(10*i)
             continue
         except KeyboardInterrupt:
-            print 'KeyboardInterrupt !!'
-    print 'start_app() end'
+            print('KeyboardInterrupt !!')
+    print('start_app() end')
 
 if __name__ == '__main__':
     try:
         start_app()
     except Exception as e:
-        print e
+        print(str(e))
         
