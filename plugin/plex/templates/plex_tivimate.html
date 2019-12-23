@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  <form id='setting' name='setting'>
+    {{ macros.setting_input_textarea('tivimate_json', 'JSON', value=arg['tivimate_json'], row='30', desc=['Tivimate JSON']) }}
+    {{ macros.setting_button([['global_setting_save_btn', '저장']]) }}
+
+  </form>
+</div> <!--전체-->
+
+<script type="text/javascript">
+var current_data = null;
+var package_name = 'plex';
+
+$(document).ready(function(){
+
+});
+
+</script>    
+{% endblock %}
