@@ -10,7 +10,7 @@ export CELERY_MONOTORING_PORT="9997"
 if [ ! -z "${no_filebrowser}" ]; then
     chmod +x ./bin/Linux/filebrowser
     nohup ./bin/Linux/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
-
+fi
 COUNT=0
 while [ 1 ];
 do
