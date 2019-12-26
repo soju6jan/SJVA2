@@ -2,9 +2,15 @@
 export REDIS_PORT="46379"
 export FILEBROWSER_PORT="9998"
 export CELERY_MONOTORING_PORT="9997"
-nohup redis-server --port ${REDIS_PORT} &
-chmod +x ./bin/Linux/filebrowser
-nohup ./bin/Linux/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
+#nohup redis-server --port ${REDIS_PORT} &
+#chmod +x ./bin/Linux/filebrowser
+#nohup ./bin/Linux/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
+
+[ ! -z "${no_celery}" ] && nohup redis-server --port ${REDIS_PORT} &
+if [ ! -z "${no_filebrowser}" ]; then
+    chmod +x ./bin/Linux/filebrowser
+    nohup ./bin/Linux/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
+
 COUNT=0
 while [ 1 ];
 do
@@ -35,8 +41,8 @@ do
     #    echo 'WAIT.. sjva.db'
     #    sleep 1
     #done
-    nohup sh ./worker_start.sh &
-    python -OO sjva.py 0 ${COUNT}
+    [ ! -z "${no_celery}" ] && nohup sh ./worker_start.sh &
+    python -OO sjva.py 0 ${COUNT} ${no_celery+no_celery}
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
     if [ "$RESULT" = "0" ]; then
