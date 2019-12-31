@@ -85,3 +85,26 @@
     {% endfor %}
   {% endfor %}
 {% endmacro %}
+
+
+
+{% macro menu_sub() %}
+  {% set menu = request.full_path | get_menu %}
+  {% set plugin_menu = menu[0] | get_plugin_menu %}
+  {% if plugin_menu != None %}
+    {% if 'sub2' in plugin_menu and plugin_menu['sub2'] != None %}
+      {% if menu[1] in plugin_menu['sub2'] %}
+        <ul class="nav nav-pills bg-light shadow text-dark" >
+        {% for sub_menu in plugin_menu['sub2'][menu[1]] %}
+          {% if sub_menu[0] == menu[2] %}
+            <li class="nav-item"><a class="nav-link active" href="/{{ menu[0] }}/{{ menu[1] }}/{{ sub_menu[0] }}">{{sub_menu[1]}}</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="/{{ menu[0] }}/{{ menu[1] }}/{{ sub_menu[0] }}">{{sub_menu[1]}}</a></li>
+          {% endif %}          
+        {% endfor %}
+        </ul>
+        <div class="d-inline-block"></div>
+      {% endif %}  
+    {% endif %}  
+  {% endif %}
+{% endmacro %}

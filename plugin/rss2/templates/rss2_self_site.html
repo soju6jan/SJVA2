@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(1,  macros.m_strong('ID')) }}
+  {{ macros.m_col(2,  macros.m_strong('Site')) }}
+  {{ macros.m_col(2,  macros.m_strong('Info')) }}
+  {{ macros.m_col(7,  macros.m_strong('Detail')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <div id="site_list_div">
+</div> <!--전체-->
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name'] }}";
+var current_data;
+
+
+$(document).ready(function(){
+  // 로딩
+  $.ajax({
+    url: '/'+ package_name + '/ajax/load_site',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_site_list(data.site);
+    }
+  });
+});
+
+
+$("body").on('click', '#json_btn', function(e){
+  e.preventDefault();
+  site = $(this).data('site');
+  for( var i in current_data.site) {
+    if ( current_data.site[i].NAME == site) {
+      document.getElementById("modal_title").innerHTML = "JSON";
+      document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(current_data.site[i], null, 2) + "</pre>";
+      $("#large_modal").modal();
+    }
+  }
+});
+
+$("body").on('click', '#test_btn', function(e){
+  e.preventDefault();
+  site = $(this).data('site');
+  board_id = document.getElementById("board_id_"+site).value;
+  if (board_id == '') {
+    $.notify('<strong>게시판 ID를 입력하세요.</strong>', {
+      type: 'warning'
+    });
+  } else {
+    $.ajax({
+      url: '/'+ package_name + '/ajax/test',
+      type: "POST", 
+      cache: false,
+      data:{sitename:site, board_id:board_id},
+      dataType: "json",
+      success: function (data) {
+        m_modal(data, '테스트')
+      }
+    });
+  }
+});
+
+function make_site_list(data) {
+  str = ''
+  for(var i in data) {
+    str += m_row_start();
+    str += m_col(1, parseInt(i)+1);
+    str += '\
+        <div class="col-sm-2"> \
+          <strong>' + data[i].NAME + '</strong><br> \
+          <a href="' + data[i].TORRENT_SITE_URL + '" target="_blank">' + data[i].TORRENT_SITE_URL + '</a> \
+          <br></div> \
+        <div class="col-sm-2" style="text-align: left;"> \
+          ' + data[i].CLASS + '<br>';
+    if (data[i].IS_AVAILABLE_DOWNLOAD == 'false') {
+      str += '<span style="color:red">마그넷만 가능</span>';
+    } else {
+      str += '<span style="color:blue">파일 다운로드 가능</span>';
+    }
+    str += '<br>' + data[i].type;
+    str += ' \
+        </div> \
+        <div class="col-sm-7">';
+    str += '<pre>';
+    for (var j in data[i].DESCRIPTION) {
+      str += data[i].DESCRIPTION[j];
+      if (j != data[i].DESCRIPTION.length -1)
+        str += '<br>';
+    }
+    str += '</pre>';
+    str += ' \
+          <div class="input-group col-sm-6" style="padding-left:0px"> \
+            <input id="board_id_' + data[i].NAME + '" type="text" class="form-control form-control-sm" placeholder="게시판 ID" > \
+            <span class="text-left" > \
+              <button id="test_btn" class="btn btn-sm btn-outline-success" data-site="' + data[i].NAME + '">테스트</button> \
+              <button id="json_btn" class="btn btn-sm btn-outline-success" data-site="' + data[i].NAME + '">JSON</button>';
+    if (data.type == 'sjva') {
+      str += '<button id="remove_btn" class="btn btn-sm btn-outline-success" data-site="' + data[i].NAME + '">삭제</button>';
+    }
+    str += ' \
+            </span> \
+          </div> \
+        </div>'
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("site_list_div").innerHTML = str;
+}
+
+</script>    
+{% endblock %}

@@ -1,4 +1,4 @@
-{% from "menu.html" import menu, left with context %}
+{% from "menu.html" import menu, left, menu_sub with context %}
 {% import "macro.html" as macros %}
 <!DOCTYPE html>
 <html>
@@ -191,7 +191,9 @@
       {% block wide_menu %}{% endblock %}
       <!--</nav>-->
       <main role="main" class="container">
+        
         <div class="d-inline-block"></div>
+        {{ menu_sub() }}
         <div>
           {% block content %}{% endblock %}
         </div>
@@ -430,6 +432,7 @@ function humanFileSize(bytes) {
     } while(Math.abs(bytes) >= thresh && u < units.length - 1);
     return bytes.toFixed(1)+' '+units[u];
 }
+
 
 
 

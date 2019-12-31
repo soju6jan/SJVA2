@@ -1,0 +1,714 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  <nav>  
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-site-tab" data-toggle="tab" href="#nav-site" role="tab" aria-controls="nav-site" aria-selected="true">사이트</a>
+      <a class="nav-item nav-link" id="nav-scheduler-tab" data-toggle="tab" href="#nav-scheduler" role="tab" aria-controls="nav-scheduler" aria-selected="false">스케쥴링</a>
+      <a class="nav-item nav-link" id="nav-group-tab" data-toggle="tab" href="#nav-group" role="tab" aria-controls="nav-group" aria-selected="false">그룹</a>
+      <a class="nav-item nav-link" id="nav-normal-tab" data-toggle="tab" href="#nav-normal" role="tab" aria-controls="nav-normal" aria-selected="false">일반</a>
+    </div>
+  </nav>  
+
+  <div class="tab-content" id="nav-tabContent">
+
+    <!-- 사이트 -->
+    <div class="tab-pane fade show active" id="nav-site" role="tabpanel" aria-labelledby="nav-site-tab">
+      <!--
+      <div class='row'>
+        <div class='col-sm-12' style="align-items: left; text-align: left;">
+          <div class="btn-group btn-group-sm flex-wrap mr-2" role="group">
+            <button id="basic_search" class="btn btn-outline-success">사이트 직접 추가</button>
+            <button id="basic_search" class="btn btn-outline-success">제공 목록 새로고침</button>
+          </div>
+        </div>
+      </div>
+      -->
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1,  macros.m_strong('ID')) }}
+      {{ macros.m_col(2,  macros.m_strong('Site')) }}
+      {{ macros.m_col(2,  macros.m_strong('Info')) }}
+      {{ macros.m_col(7,  macros.m_strong('Detail')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+      <div id="site_list_div">
+      </div>
+      
+    </div> <!--tab-pane-->
+  
+    <!-- 스케쥴링 -->
+    <div class="tab-pane fade show" id="nav-scheduler" role="tabpanel" aria-labelledby="nav-scheduler-tab">
+      {{ macros.m_row_start() }}  
+      {{ macros.m_button('scheduler_add_btn', '작업 추가') }}
+      {{ macros.m_row_end() }}  
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1, macros.m_strong('ID')) }}
+      {{ macros.m_col(2, macros.m_strong('Site')) }}
+      {{ macros.m_col(2, macros.m_strong('Board')) }}
+      {{ macros.m_col(7, macros.m_strong('Last Feed')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+      <div id="scheduler_list_div"></div>
+    </div> <!--tab-pane-->
+    
+    <!-- 그룹 -->
+    <div class="tab-pane fade show" id="nav-group" role="tabpanel" aria-labelledby="nav-group-tab">
+      {{ macros.m_row_start() }}  
+      {{ macros.m_button('group_add_btn', '그룹 추가') }}
+      {{ macros.m_row_end() }}  
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1, macros.m_strong('ID')) }}
+      {{ macros.m_col(2, macros.m_strong('Group Name')) }}
+      {{ macros.m_col(4, macros.m_strong('Board')) }}
+      {{ macros.m_col(5, macros.m_strong('Last Feed')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+      <div id="group_list_div"></div>
+    </div> <!--tab-pane-->
+
+    
+     <!-- 일반 -->
+    <div class="tab-pane fade" id="nav-normal" role="tabpanel" aria-labelledby="nav-normal-tab">
+      {{ macros.setting_scheduler_button(arg['scheduler'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_input_int('interval', '스케쥴링 실행 주기', value=arg['interval'], min='1', placeholder='10', desc='minute 단위') }}
+    
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        {{ macros.setting_input_int('feed_count', 'RSS 피드 수', value=arg['feed_count'], min='1', placeholder='100') }}
+        {{ macros.setting_input_int('web_page_size', '웹 페이지당 게시물 수', value=arg['web_page_size'], min='1', placeholder='30') }}
+        
+        {{ macros.setting_checkbox('use_proxy', 'Proxy 사용', value=arg['use_proxy'], desc='On : HTTP Proxy 사용시') }}
+        {{ macros.setting_input_text('proxy_url', 'Proxy URL', value=arg['proxy_url']) }}
+
+        {{ macros.setting_button([['setting_save', '저장']]) }}
+      </form>
+
+    </div> <!--tab-pane-->
+
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="add_job_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal_title">작업 추가</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" id="modal_body" style="word-break:break-all;">
+        {{ macros.setting_top('사이트') }}
+        <div id="site_list_option" class="input-group col-sm-6">
+        </div>
+        {{ macros.setting_bottom() }}
+        {{ macros.setting_input_text('board_id', '게시판 ID', value=arg['id'], col='6') }}
+      </div>
+      <div class="modal-footer">
+        <button id="add_job_save_btn" type="button" class="btn btn-primary">저장</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="add_group_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal_title">그룹 추가</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" id="modal_body" style="word-break:break-all;">
+        {{ macros.setting_input_text('add_group_text', '그룹명', col='6') }}
+      </div>
+      <div class="modal-footer">
+        <button id="add_group_save_btn" type="button" class="btn btn-primary">저장</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="add_group_child_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal_title">목록 추가</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" id="modal_body" style="word-break:break-all;">
+        {{ macros.setting_top('사이트') }}
+        <div id="site_list_on_group_option" class="input-group col-sm-6">
+        </div>
+        {{ macros.setting_bottom() }}
+        {{ macros.setting_top('게시판') }}
+        <div id="board_select_on_group_div" class="input-group col-sm-6">
+        </div>
+        {{ macros.setting_bottom() }}
+      </div>
+      <div class="modal-footer">
+        <button id="add_group_child_save_btn" type="button" class="btn btn-primary">저장</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var current_data;
+var current_group_id;
+
+
+$(document).ready(function(){
+  // 로딩
+  $.ajax({
+    url: '/rss/ajax/setting',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_site_list(data.site);
+      make_scheduler_list(data.scheduler);
+      make_group_list(data.group);
+    }
+  });
+
+  ////////////////////////////////////////// 사이트 설정
+  // JSON 버튼
+  $("body").on('click', '#json_btn', function(e){
+    e.preventDefault();
+    site = $(this).data('site');
+    for( var i in current_data.site) {
+      if ( current_data.site[i].NAME == site) {
+        document.getElementById("modal_title").innerHTML = "JSON";
+        document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(current_data.site[i], null, 2) + "</pre>";
+        $("#large_modal").modal();
+      }
+    }
+  });
+
+  // 테스트 버튼
+  $("body").on('click', '#test_btn', function(e){
+    e.preventDefault();
+    site = $(this).data('site');
+    board_id = document.getElementById("board_id_"+site).value;
+    if (board_id == '') {
+      $.notify('<strong>게시판 ID를 입력하세요.</strong>', {
+        type: 'warning'
+      });
+    } else {
+      $.ajax({
+        url: '/rss/ajax/test',
+        type: "POST", 
+        cache: false,
+        data:{sitename:site, board_id:board_id},
+        dataType: "json",
+        success: function (data) {
+          document.getElementById("modal_title").innerHTML = "JSON";
+          document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+          $("#large_modal").modal();
+        }
+      });
+    }
+  });
+
+  ////////////////////////////////////////// 스케쥴링 설정
+  // 스케쥴 추가
+  $("#scheduler_add_btn").click(function(e) {
+    e.preventDefault();
+    var data = current_data.site;
+    str = '<select id="site_select" name="site_select" class="form-control form-control-sm" value="'+ data[0].NAME+'">';
+    for (var i in data) {
+      str += '<option value="'+ data[i].NAME +'">'+data[i].NAME+'</option>';
+    }
+    document.getElementById("site_list_option").innerHTML = str;            
+
+    $("#add_job_modal").modal();
+  });
+
+  $("#add_job_save_btn").click(function(e) {
+    e.preventDefault();
+    sitename = document.getElementById("site_select").value;
+    board_id = document.getElementById("board_id").value;
+    $.ajax({
+      url: '/rss/ajax/add_scheduler',
+      type: "POST", 
+      cache: false,
+      data:{sitename:sitename, board_id:board_id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        if (data.ret == 'success') {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+          $("#add_job_modal").modal('hide');
+        } else if (data.ret == 'already_exist') {
+          $.notify('<strong>이미 존재합니다.</strong>', {
+	          type: 'warning'
+          });
+          $("#add_job_modal").modal('hide');
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+          $("#add_job_modal").modal('hide');
+        }
+        make_scheduler_list(data.scheduler);
+      }
+    });
+  });
+
+
+  //설정 저장
+  $("#setting_save").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/rss/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  // 스케쥴링 on / off
+  $('#scheduler').change(function() {
+    var ret = $(this).prop('checked');
+    $.ajax({
+      url: '/rss/ajax/scheduler',
+      type: "POST", 
+      cache: false,
+      data: { scheduler : ret},
+      dataType: "json",
+      success: function (list) {
+      }
+    });
+  });
+
+  
+
+
+  ////////////////////////////////////////////// 그룹
+  $("#group_add_btn").click(function(e) {
+    e.preventDefault();
+    $("#add_group_modal").modal();
+  });
+
+  $("#add_group_save_btn").click(function(e) {
+    e.preventDefault();
+    groupname = document.getElementById("add_group_text").value;
+    $.ajax({
+      url: '/rss/ajax/add_group',
+      type: "POST", 
+      cache: false,
+      data:{groupname:groupname},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        if (data.ret == 'success') {
+          $.notify('<strong>저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+          $("#add_group_modal").modal('hide');
+        } else if (data.ret == 'already_exist') {
+          $.notify('<strong>이미 존재합니다.</strong>', {
+	          type: 'warning'
+          });
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+          $("#add_group_modal").modal('hide');
+        }
+        make_group_list(data.group);
+      }
+    });
+  });
+
+  // 그룹 자식 추가 버튼
+  $("body").on('click', '#add_group_child_btn', function(e){
+    e.preventDefault();
+    var data = current_data.site;
+    current_group_id = $(this).data('id');
+    str = '<select id="site_select_on_group" name="site_select_on_group" class="form-control form-control-sm" value="'+ data[0].NAME+'">';
+    for (var i in data) {
+      str += '<option value="'+ data[i].NAME +'">'+data[i].NAME+'</option>';
+    }
+    document.getElementById("site_list_on_group_option").innerHTML = str;      //document.getElementById("site_select_on_group").value = current_data.site[0].NAME  
+    $('#site_select_on_group').trigger('change');
+    $("#add_group_child_modal").modal();
+  });
+
+  // 그룹 자식 추가 모달에서 그룹 변경 이벤트
+  $("body").on('change', '#site_select_on_group', function(e){
+  //$("#site_select").change(function(e){
+    e.preventDefault();
+    site = document.getElementById("site_select_on_group").value;
+    $("#board_select_on_group").empty();
+    str = '<select id="board_select_on_group" name="board_select_on_group" class="form-control form-control-sm">';
+    for(var i in current_data.info.board[site]) {
+      str += '<option value="' + current_data.info.board[site][i] + '">' + current_data.info.board[site][i] + '</option>';
+    }
+    str += '</select>';
+    document.getElementById("board_select_on_group_div").innerHTML = str;
+  });
+
+  $("#add_group_child_save_btn").click(function(e) {
+    e.preventDefault();
+    sitename = document.getElementById("site_select_on_group").value;
+    boardname = document.getElementById("board_select_on_group").value;
+    $.ajax({
+      url: '/rss/ajax/add_group_child',
+      type: "POST", 
+      cache: false,
+      data:{group_id:current_group_id, sitename:sitename, boardname:boardname},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        $("#add_group_child_modal").modal('hide');
+        if (data.ret == 'success') {
+          $.notify('<strong>저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else if (data.ret == 'already_exist') {
+          $.notify('<strong>이미 존재합니다.</strong>', {
+	          type: 'warning'
+          });
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+        make_group_list(data.group);
+      }
+    });
+  });
+
+  // 그룹 삭제 버튼
+  $("body").on('click', '#remove_group_btn', function(e){
+    e.preventDefault();
+    group_id = $(this).data('id');
+    $.ajax({
+      url: '/rss/ajax/remove_group',
+      type: "POST", 
+      cache: false,
+      data:{group_id:group_id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        if (data.ret == 'success') {
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else if (data.ret == 'not_exist') {
+          $.notify('<strong>존재하지 않습니다.</strong>', {
+	          type: 'warning'
+          });
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+        make_group_list(data.group);
+      }
+    });
+  });
+
+  // 그룹 자식 삭제 버튼
+  $("body").on('click', '#remove_group_child_btn', function(e){
+    e.preventDefault();
+    group_id = $(this).data('id');
+    child_id = $(this).data('child_id');
+    $.ajax({
+      url: '/rss/ajax/remove_group_child',
+      type: "POST", 
+      cache: false,
+      data:{group_id:group_id, child_id:child_id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        if (data.ret == 'success') {
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else if (data.ret == 'not_exist') {
+          $.notify('<strong>존재하지 않습니다.</strong>', {
+	          type: 'warning'
+          });
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+        make_group_list(data.group);
+      }
+    });
+  });
+  
+  
+});
+
+
+
+
+function make_site_list(data) {
+  str = ''
+  for(var i in data) {
+    str += m_row_start();
+    str += m_col(1, parseInt(i)+1);
+    str += '\
+        <div class="col-sm-2"> \
+          <strong>' + data[i].NAME + '</strong><br> \
+          <a href="' + data[i].TORRENT_SITE_URL + '" target="_blank">' + data[i].TORRENT_SITE_URL + '</a> \
+          <br></div> \
+        <div class="col-sm-2" style="text-align: left;"> \
+          ' + data[i].CLASS + '<br>';
+    if (data[i].IS_AVAILABLE_DOWNLOAD == 'false') {
+      str += '<span style="color:red">마그넷만 가능</span>';
+    } else {
+      str += '<span style="color:blue">파일 다운로드 가능</span>';
+    }
+    str += '<br>' + data[i].type;
+    str += ' \
+        </div> \
+        <div class="col-sm-7">';
+    //str += '<pre>' + JSON.stringify(data[i], null, 2) + '</pre>';
+    str += '<pre>';
+    for (var j in data[i].DESCRIPTION) {
+      str += data[i].DESCRIPTION[j];
+      if (j != data[i].DESCRIPTION.length -1)
+        str += '<br>';
+    }
+    str += '</pre>';
+    str += ' \
+          <div class="input-group col-sm-6" style="padding-left:0px"> \
+            <input id="board_id_' + data[i].NAME + '" type="text" class="form-control form-control-sm" placeholder="게시판 ID" > \
+            <span class="text-left" > \
+              <button id="test_btn" class="btn btn-sm btn-outline-success" data-site="' + data[i].NAME + '">테스트</button> \
+              <button id="json_btn" class="btn btn-sm btn-outline-success" data-site="' + data[i].NAME + '">JSON</button>';
+    if (data.type == 'sjva') {
+      str += '<button id="remove_btn" class="btn btn-sm btn-outline-success" data-site="' + data[i].NAME + '">삭제</button>';
+    }
+    str += ' \
+            </span> \
+          </div> \
+        </div>'
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("site_list_div").innerHTML = str;
+}
+
+function make_scheduler_list(data) {
+  str = ''
+  for(var i in data) {
+    str += ' \
+      <div class="row"> \
+        <div class="col-sm-1" style="text-align: center;" style="padding-top:0px; padding-bottom:0px">'
+    str += data[i].id;
+    str += '\
+        </div> \
+        <div class="col-sm-4" style="text-align:left;" style="padding-top:0px; padding-bottom:0px"> \
+          <div class="row"> \
+            <div class="col-sm-6" style="text-align:left; padding-top:0px; padding-bottom:0px"> \
+              <strong><a href="'+ data[i].TORRENT_SITE_URL +'" target="_blank">' + data[i].sitename + '</a></strong><br> \
+              </div> \
+            <div class="col-sm-6" style="text-align: left;" style="padding-top:0px; padding-bottom:0px"> \
+              ' + '<a href="'+ data[i].board_url+'" target="_blank">'+ data[i].board_id + '</a>  \
+            </div> \
+          </div> \
+          <div class="row"><div class="col-sm-12" style="text-align:left; padding-top:0px; padding-bottom:0px"> \
+            <a href="' + data[i].rss2 + '" target="_blank">' + data[i].rss2 + '</a>\
+          </div></div> \
+        </div>'
+    str += '<div class="col-sm-7" style="text-align:left; padding-top:0px; padding-bottom:0px">';
+    //str += '<pre>' + JSON.stringify(data[i], null, 2) + '</pre>';
+    str += '<pre>';
+    if (data[i].last != null) {
+      str += '제목 : ' + data[i].last.title + '<br>';
+      if (data[i].one_day_more) {
+        str += '<strong><span style="color:red">입력시간 : ' +data[i].last_create_time + '</span></strong>';
+      } else {
+        str += '입력시간 : ' + data[i].last_create_time;
+      }
+        
+
+      
+    } else {
+      str += '데이터 없음';
+    }
+    str += '</pre>';
+    tmp = m_button('remove_scheduler_btn', '스케쥴 삭제', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('remove_db_btn', 'DB 삭제', [{'key':'id', 'value':data[i].id}]);
+    tmp = m_button_group(tmp)
+    str += tmp
+    str += ' \
+        </div> \
+      </div> \
+      <hr>';
+  }
+  document.getElementById("scheduler_list_div").innerHTML = str;
+}
+
+$("body").on('click', '#remove_scheduler_btn', function(e){
+  e.preventDefault();
+  db_id = $(this).data('id');
+  document.getElementById("confirm_title").innerHTML = "스케쥴 삭제";
+  document.getElementById("confirm_body").innerHTML = "스케쥴과 관련 DB를 삭제 하시겠습니까?";
+  $('#confirm_button').attr('onclick', "do_delete_scheduler(db_id);");
+  $("#confirm_modal").modal();
+  return;
+});
+
+$("body").on('click', '#remove_db_btn', function(e){
+  e.preventDefault();
+  db_id = $(this).data('id');
+  document.getElementById("confirm_title").innerHTML = "DB 초기화";
+  document.getElementById("confirm_body").innerHTML = "DB에 저장된 해당 게시판 데이터를 삭제 하시겠습니까?";
+  $('#confirm_button').attr('onclick', "do_delete_scheduler_db(db_id);");
+  $("#confirm_modal").modal();
+  return;
+});
+
+// 스케쥴러 삭제 버튼
+function do_delete_scheduler(db_id) {
+  $.ajax({
+    url: '/rss/ajax/remove_scheduler',
+    type: "POST", 
+    cache: false,
+    data:{db_id:db_id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      if (data.ret == 'success') {
+        $.notify('<strong>삭제 하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+      make_scheduler_list(data.scheduler);
+      make_group_list(data.group);
+    }
+  });
+}
+
+// db 삭제 버튼
+function do_delete_scheduler_db(db_id) {
+  $.ajax({
+    url: '/rss/ajax/remove_scheduler_db',
+    type: "POST", 
+    cache: false,
+    data:{db_id:db_id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      if (data.ret == 'success') {
+        $.notify('<strong>DB를 초기화 하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>DB 초기화에 실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+      make_scheduler_list(data.scheduler);
+      make_group_list(data.group);
+    }
+  });
+}
+
+
+function make_group_list(data) {
+  str = ''
+  
+  for(var i in data) {
+    str += ' \
+      <div class="row"> \
+        <div class="col-sm-1" style="text-align: center;" style="padding-top:0px; padding-bottom:0px">'
+    str += data[i].id;
+    str += '\
+        </div> \
+        <div class="col-sm-2" style="padding-top:0px; padding-bottom:0px"> \
+          <strong>' + data[i].groupname + '</strong><p></p>'
+    str += ' \
+          <div class="btn-group btn-group-sm" role="group" > \
+            <button id="remove_group_btn" class="btn btn-sm btn-outline-success" data-id="' + data[i].id + '">그룹 삭제</button> \
+            <button id="add_group_child_btn" class="btn btn-sm btn-outline-success" data-id="' + data[i].id + '">목록 추가</button> \
+          </div> \
+        </div>'
+    
+    str += ' \
+        <div class="col-sm-4" style="text-align: left;" style="padding-top:0px; padding-bottom:0px">';
+    for (var j in data[i].schedulers) {
+      str += '<div class="row col-sm-12">'
+      str += '<div class="col-sm-5" style="text-align:left;" style="padding-top:0px; padding-bottom:0px">' + data[i].schedulers[j].sitename + '</div>'
+      str += '<div class="col-sm-5" style="text-align: left;" style="padding-top:0px; padding-bottom:0px">' + data[i].schedulers[j].board_id + '</div>'
+      str += '<div class="col-sm-2" style="text-align: left;" style="padding-top:0px; padding-bottom:0px"><button id="remove_group_child_btn" class="btn btn-sm btn-outline-success" data-id="' + data[i].id + '" data-child_id="'+data[i].schedulers[j].id+'">삭제</button></div>'
+      str += '</div>';
+      if (j != data[i].schedulers.length -1)
+        str += '<hr style="width: 100%; margin-bottom:1px; margin-top:1px;" />'
+    }
+    str += '</div>';
+
+    str += ' \
+        <div class="col-sm-5 form-inline" style="padding-top:0px; padding-bottom:0px"> \
+          <input id="query" name="query" class="form-control form-control-sm w-100" type="text" placeholder="쿼리" aria-label="Search"> \
+          <button id="sava_group_child_query_btn" class="btn btn-sm btn-outline-success" data-id="' + data[i].id + '">저장</button> \
+        </div> \
+      </div>'
+    
+    str += '<div class="row"><div class="col-sm-1"></div> \
+    <div class="col-sm-11" style="text-align: left;" style="padding-top:0px; padding-bottom:0px"><a href="'+data[i].rss+'" target="_blank">'+data[i].rss+ '</a></div> \
+      </div> \
+      <hr>';
+  }
+  document.getElementById("group_list_div").innerHTML = str;
+}
+
+
+
+</script>    
+{% endblock %}

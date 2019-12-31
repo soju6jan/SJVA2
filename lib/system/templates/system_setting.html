@@ -90,8 +90,6 @@
         {{ macros.setting_button_with_info([['menu_toggle_btn', 'Toggle', [{'key':'category', 'value':'vod'}]]], left='VOD', desc=None) }}
           <div id="menu_vod_div" class="collapse">
             {{ macros.setting_checkbox('use_plugin_ffmpeg', 'FFMPEG', value=arg['use_plugin_ffmpeg']) }}
-            {{ macros.setting_checkbox('use_plugin_pooq', '푹', value=arg['use_plugin_pooq']) }}
-            {{ macros.setting_checkbox('use_plugin_tving', '티빙', value=arg['use_plugin_tving']) }}
           </div>
       {% endif %}
       {% if arg['use_category_file_process'] == 'True' %}

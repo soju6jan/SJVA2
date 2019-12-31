@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  {{ macros.m_row_start() }}  
+  {{ macros.m_button('scheduler_add_btn', '작업 추가') }}
+  {{ macros.m_row_end() }}  
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(1, macros.m_strong('ID')) }}
+  {{ macros.m_col(2, macros.m_strong('Site')) }}
+  {{ macros.m_col(2, macros.m_strong('Board')) }}
+  {{ macros.m_col(7, macros.m_strong('Last Feed')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <div id="scheduler_list_div"></div>
+</div> <!--전체-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="add_job_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal_title">작업 추가</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" id="modal_body" style="word-break:break-all;">
+        {{ macros.setting_top('사이트') }}
+        <div id="site_list_option" class="input-group col-sm-6">
+        </div>
+        {{ macros.setting_bottom() }}
+        {{ macros.setting_input_text('board_id', '게시판 ID', value=arg['id'], col='6') }}
+      </div>
+      <div class="modal-footer">
+        <button id="add_job_save_btn" type="button" class="btn btn-primary">저장</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name'] }}";
+var current_data;
+
+
+$(document).ready(function(){
+  // 로딩
+  $.ajax({
+    url: '/' + package_name + '/ajax/load_scheduler',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_scheduler_list(data.scheduler);
+    }
+  });
+});
+
+  
+
+
+// 스케쥴 추가
+$("#scheduler_add_btn").click(function(e) {
+  e.preventDefault();
+  var data = current_data.site;
+  str = '<select id="site_select" name="site_select" class="form-control form-control-sm" value="'+ data[0].NAME+'">';
+  for (var i in data) {
+    str += '<option value="'+ data[i].NAME +'">'+data[i].NAME+'</option>';
+  }
+  document.getElementById("site_list_option").innerHTML = str;            
+  $("#add_job_modal").modal();
+});
+
+
+
+$("#add_job_save_btn").click(function(e) {
+  e.preventDefault();
+  sitename = document.getElementById("site_select").value;
+  board_id = document.getElementById("board_id").value;
+  $.ajax({
+    url: '/' + package_name + '/ajax/add_scheduler',
+    type: "POST", 
+    cache: false,
+    data:{sitename:sitename, board_id:board_id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      if (data.ret == 'success') {
+        $.notify('<strong>설정을 저장하였습니다.</strong>', {
+          type: 'success'
+        });
+        $("#add_job_modal").modal('hide');
+      } else if (data.ret == 'already_exist') {
+        $.notify('<strong>이미 존재합니다.</strong>', {
+          type: 'warning'
+        });
+        $("#add_job_modal").modal('hide');
+      } else if (data.ret == 'fail') {
+        $.notify('<strong>실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+        $("#add_job_modal").modal('hide');
+      }
+      make_scheduler_list(data.scheduler);
+    }
+  });
+});
+
+function make_scheduler_list(data) {
+  str = ''
+  for(var i in data) {
+    str += ' \
+      <div class="row"> \
+        <div class="col-sm-1" style="text-align: center;" style="padding-top:0px; padding-bottom:0px">'
+    str += data[i].id;
+    str += '\
+        </div> \
+        <div class="col-sm-4" style="text-align:left;" style="padding-top:0px; padding-bottom:0px"> \
+          <div class="row"> \
+            <div class="col-sm-6" style="text-align:left; padding-top:0px; padding-bottom:0px"> \
+              <strong><a href="'+ data[i].TORRENT_SITE_URL +'" target="_blank">' + data[i].sitename + '</a></strong><br> \
+              </div> \
+            <div class="col-sm-6" style="text-align: left;" style="padding-top:0px; padding-bottom:0px"> \
+              ' + '<a href="'+ data[i].board_url+'" target="_blank">'+ data[i].board_id + '</a>  \
+            </div> \
+          </div> \
+          <div class="row"><div class="col-sm-12" style="text-align:left; padding-top:0px; padding-bottom:0px"> \
+            <a href="' + data[i].rss2 + '" target="_blank">' + data[i].rss2 + '</a>\
+          </div></div> \
+        </div>'
+    str += '<div class="col-sm-7" style="text-align:left; padding-top:0px; padding-bottom:0px">';
+    //str += '<pre>' + JSON.stringify(data[i], null, 2) + '</pre>';
+    str += '<pre>';
+    if (data[i].last != null) {
+      str += '제목 : ' + data[i].last.title + '<br>';
+      if (data[i].one_day_more) {
+        str += '<strong><span style="color:red">입력시간 : ' +data[i].last_create_time + '</span></strong>';
+      } else {
+        str += '입력시간 : ' + data[i].last_create_time;
+      }
+        
+
+      
+    } else {
+      str += '데이터 없음';
+    }
+    str += '</pre>';
+    tmp = m_button('remove_scheduler_btn', '스케쥴 삭제', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('remove_db_btn', 'DB 삭제', [{'key':'id', 'value':data[i].id}]);
+    tmp = m_button_group(tmp)
+    str += tmp
+    str += ' \
+        </div> \
+      </div> \
+      <hr>';
+  }
+  document.getElementById("scheduler_list_div").innerHTML = str;
+}
+
+$("body").on('click', '#remove_scheduler_btn', function(e){
+  e.preventDefault();
+  db_id = $(this).data('id');
+  document.getElementById("confirm_title").innerHTML = "스케쥴 삭제";
+  document.getElementById("confirm_body").innerHTML = "스케쥴과 관련 DB를 삭제 하시겠습니까?";
+  $('#confirm_button').attr('onclick', "do_delete_scheduler(db_id);");
+  $("#confirm_modal").modal();
+  return;
+});
+
+$("body").on('click', '#remove_db_btn', function(e){
+  e.preventDefault();
+  db_id = $(this).data('id');
+  document.getElementById("confirm_title").innerHTML = "DB 초기화";
+  document.getElementById("confirm_body").innerHTML = "DB에 저장된 해당 게시판 데이터를 삭제 하시겠습니까?";
+  $('#confirm_button').attr('onclick', "do_delete_scheduler_db(db_id);");
+  $("#confirm_modal").modal();
+  return;
+});
+
+// 스케쥴러 삭제 버튼
+function do_delete_scheduler(db_id) {
+  $.ajax({
+    url: '/' + package_name + '/ajax/remove_scheduler',
+    type: "POST", 
+    cache: false,
+    data:{db_id:db_id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      if (data.ret == 'success') {
+        $.notify('<strong>삭제 하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+      make_scheduler_list(data.scheduler);
+    }
+  });
+}
+
+// db 삭제 버튼
+function do_delete_scheduler_db(db_id) {
+  $.ajax({
+    url: '/' + package_name + '/ajax/remove_scheduler_db',
+    type: "POST", 
+    cache: false,
+    data:{db_id:db_id},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      if (data.ret == 'success') {
+        $.notify('<strong>DB를 초기화 하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>DB 초기화에 실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+      make_scheduler_list(data.scheduler);
+    }
+  });
+}
+
+
+</script>    
+{% endblock %}
