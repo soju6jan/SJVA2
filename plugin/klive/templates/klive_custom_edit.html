@@ -15,11 +15,12 @@
   {{ macros.m_hr_head_top() }}
   {{ macros.m_row_start('0') }}
   {{ macros.m_col(1,  macros.m_strong('Idx')) }}
-  {{ macros.m_col(2,  macros.m_strong('Source')) }}
+  {{ macros.m_col(1,  macros.m_strong('Source')) }}
   {{ macros.m_col(1,  macros.m_strong('Source ID')) }}
   {{ macros.m_col(2,  macros.m_strong('Name')) }}
-  {{ macros.m_col(2,  macros.m_strong('Quality')) }}
+  {{ macros.m_col(1,  macros.m_strong('Quality')) }}
   {{ macros.m_col(1,  macros.m_strong('Number')) }}
+  {{ macros.m_col(2,  macros.m_strong('Group')) }}
   {{ macros.m_col(3,  macros.m_strong('Action')) }}
   {{ macros.m_row_end() }}
   {{ macros.m_hr_head_bottom() }}
@@ -145,7 +146,7 @@ function make_list(data, how) {
   for (i in data) {
     str += m_row_start_hover();
     str += m_col(1, parseInt(i)+1);
-    str += m_col(2, data[i].source)
+    str += m_col(1, data[i].source)
     str += m_col(1, data[i].source_id)
     str += m_col(2, data[i].title)
 
@@ -166,7 +167,7 @@ function make_list(data, how) {
     } else {
       tmp += data[i].quality
     }
-    str += m_col(2, tmp)
+    str += m_col(1, tmp)
 
     tmp_number_id = tmp_id + '|number'
     if (how == 'saved') {
@@ -180,6 +181,9 @@ function make_list(data, how) {
       //}
     }
     str += m_col(1, tmp)
+    tmp_group_id = tmp_id + '|group'
+    tmp = '<input id="'+tmp_group_id+'" name="'+tmp_group_id+'" type="text" class="form-control form-control-sm" value="'+data[i].json.group+'">'
+    str += m_col(2, tmp)
 
     tmp = ''
     tmp += m_button('up_btn', 'UP', [{'key':'index', 'value':i}]);
