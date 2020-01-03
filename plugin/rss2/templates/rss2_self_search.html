@@ -172,8 +172,10 @@ function make_list_html(data) {
     tmp = data[i].created_time
     tmp += '<br>' + data[i].site
     tmp += '<br>' + data[i].board
-    tmp += '<br>' + data[i].board_id
-
+    if (data[i].board_id != null && data[i].board_id != '')
+      tmp += '<br>' + data[i].board_id
+    else
+      tmp += '<br>' + data[i].board_char_id
     str += m_col(2, tmp);
 
     str2 = m_row_start(0)
@@ -190,45 +192,53 @@ function make_list_html(data) {
       str2 += m_col(10, data[i].title)
       str2 += m_row_end()
     }
-    str2 += '<br>';
-
-    for (j in data[i].magnet) {
-      str2 += m_row_start(0)
-      str2 += m_col(2, '마그넷', 'right')
-      tmp = ''
-      if (data[i].torrent_info != null) {
-        tmp += data[i].torrent_info[j].name + '<br>'
+   
+    if (data[i].magnet != null) {
+      str2 += '<br>';
+      for (j in data[i].magnet) {
+        str2 += m_row_start(0)
+        str2 += m_col(2, '마그넷', 'right')
+        tmp = ''
+        if (data[i].torrent_info != null) {
+          // 없을 수 있음.
+          //tmp += data[i].torrent_info[j].name + '<br>'
+          for (k in data[i].torrent_info) {
+            if ( data[i].torrent_info[k].magnet_uri.startsWith(data[i].magnet[j]) ) {
+              tmp += data[i].torrent_info[k].name + '<br>'
+            }
+          }
+        }
+        tmp += '<a href="'+data[i].magnet[j] + '">' + data[i].magnet[j] + '</a><br>';
+        tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].magnet[j]}]);
+        tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].magnet[j]}]);
+        tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].magnet[j]}]);
+        if (is_torrent_info_installed) {
+          tmp += m_button('torrent_info_btn', '토렌트 정보 요청', [{'key':'hash', 'value':data[i].magnet[j]}]);
+        }
+        if (data[i].torrent_info != null) {
+          tmp += m_button('torrent_info_show_btn', 'JSON', [{'key':'index', 'value':i+'_'+j}]);
+        }
+        str2 += m_col(10, tmp)
+        str2 += m_row_end()
+        if (j != data[i].magnet.length -1) str2 += '<br>';
       }
-      tmp += '<a href="'+data[i].magnet[j] + '">' + data[i].magnet[j] + '</a><br>';
-      tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].magnet[j]}]);
-      tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].magnet[j]}]);
-      tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].magnet[j]}]);
-      if (is_torrent_info_installed) {
-        tmp += m_button('torrent_info_btn', '토렌트 정보 요청', [{'key':'hash', 'value':data[i].magnet[j]}]);
-      }
-      if (data[i].torrent_info != null) {
-        tmp += m_button('torrent_info_btn', 'JSON', [{'key':'index', 'value':data[i].id+'_'+j}]);
-      }
-      str2 += m_col(10, tmp)
-      str2 += m_row_end()
-      if (j != data[i].magnet.length -1) str2 += '<br>';
     }
 
-    if (data[i].files.length > 0 ) 
+    if (data[i].files != null) {
       str2 += '<br>';
-    
-    for (j in data[i].files) {
-      str2 += m_row_start(0)
-      str2 += m_col(2, '첨부파일', 'right')
-      tmp = '<a href="'+ddns+'/'+package_name+'/api/download/' + data[i].id + '|'+ j + '">' + data[i].files[j][1] + '</a><br>';
-      if (is_available_normal_download) {
-        tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/' + data[i].id + '|'+ j }]);
+      for (j in data[i].files) {
+        str2 += m_row_start(0)
+        str2 += m_col(2, '첨부파일', 'right')
+        tmp = '<a href="'+ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j + '">' + data[i].files[j][1] + '</a><br>';
+        if (is_available_normal_download) {
+          tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j }]);
+        }
+        tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j }]);
+        tmp += '<br>'
+        str2 += m_col(10, tmp)
+        str2 += m_row_end()
+        if (j != data[i].files.length -1) str2 += '<br>';
       }
-      tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/' + data[i].id + '|'+ j }]);
-      tmp += '<br>'
-      str2 += m_col(10, tmp)
-      str2 += m_row_end()
-      if (j != data[i].files.length -1) str2 += '<br>';
     }
 
     str += m_col(9, str2);
@@ -289,6 +299,19 @@ $("body").on('click', '#torrent_info_btn', function(e) {
       m_modal(data, "토렌트 정보")
     }
   });
+});
+
+$("body").on('click', '#torrent_info_show_btn', function(e) {
+  e.preventDefault();
+  index = $(this).data('index');
+  data = current_data.list
+  console.log(data)
+  tmp = index.split('_')
+  
+  i = parseInt(tmp[0])
+  j = parseInt(tmp[0])
+  
+  m_modal(data[i].torrent_info[j], "저장된 토렌트 정보")
 });
 
 </script>    
