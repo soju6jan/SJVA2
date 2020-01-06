@@ -62,9 +62,12 @@ function m_hr_black() {
 // 체크박스는 자바로 하면 on/off 스크립트가 안먹힘.
 
 
-function m_modal(data='EMPTY', title='JSON') {
+function m_modal(data='EMPTY', title='JSON', json=true) {
   document.getElementById("modal_title").innerHTML = title;
-  document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+  if (json) {
+    data = JSON.stringify(data, null, 2);
+  }
+  document.getElementById("modal_body").innerHTML = "<pre>"+ data + "</pre>";;
   $("#large_modal").modal();
 }
 

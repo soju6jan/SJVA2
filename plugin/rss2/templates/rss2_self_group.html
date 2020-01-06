@@ -102,7 +102,7 @@ $("#add_group_save_btn").click(function(e) {
   e.preventDefault();
   groupname = document.getElementById("add_group_text").value;
   $.ajax({
-    url: '/rss/ajax/add_group',
+    url: '/' + package_name + '/ajax/add_group',
     type: "POST", 
     cache: false,
     data:{groupname:groupname},
@@ -132,11 +132,12 @@ $("#add_group_save_btn").click(function(e) {
 // 그룹 자식 추가 버튼
 $("body").on('click', '#add_group_child_btn', function(e){
   e.preventDefault();
+  console.log(current_data)
   var data = current_data.site;
   current_group_id = $(this).data('id');
-  str = '<select id="site_select_on_group" name="site_select_on_group" class="form-control form-control-sm" value="'+ data[0].NAME+'">';
+  str = '<select id="site_select_on_group" name="site_select_on_group" class="form-control form-control-sm" value="'+ data[0].info.NAME+'">';
   for (var i in data) {
-    str += '<option value="'+ data[i].NAME +'">'+data[i].NAME+'</option>';
+    str += '<option value="'+ data[i].info.NAME +'">'+data[i].info.NAME+'</option>';
   }
   document.getElementById("site_list_on_group_option").innerHTML = str;
   $('#site_select_on_group').trigger('change');
@@ -145,7 +146,6 @@ $("body").on('click', '#add_group_child_btn', function(e){
 
 
 $("body").on('change', '#site_select_on_group', function(e){
-//$("#site_select").change(function(e){
   e.preventDefault();
   site = document.getElementById("site_select_on_group").value;
   $("#board_select_on_group").empty();
@@ -162,7 +162,7 @@ $("#add_group_child_save_btn").click(function(e) {
   sitename = document.getElementById("site_select_on_group").value;
   boardname = document.getElementById("board_select_on_group").value;
   $.ajax({
-    url: '/rss/ajax/add_group_child',
+    url: '/' + package_name + '/ajax/add_group_child',
     type: "POST", 
     cache: false,
     data:{group_id:current_group_id, sitename:sitename, boardname:boardname},
@@ -193,7 +193,7 @@ $("body").on('click', '#remove_group_btn', function(e){
   e.preventDefault();
   group_id = $(this).data('id');
   $.ajax({
-    url: '/rss/ajax/remove_group',
+    url: '/' + package_name + '/ajax/remove_group',
     type: "POST", 
     cache: false,
     data:{group_id:group_id},
@@ -224,7 +224,7 @@ $("body").on('click', '#remove_group_child_btn', function(e){
   group_id = $(this).data('id');
   child_id = $(this).data('child_id');
   $.ajax({
-    url: '/rss/ajax/remove_group_child',
+    url: '/' + package_name + '/ajax/remove_group_child',
     type: "POST", 
     cache: false,
     data:{group_id:group_id, child_id:child_id},

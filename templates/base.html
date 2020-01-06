@@ -22,7 +22,7 @@
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/bootstrap-notify.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/custom10.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/sjva_ui2.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/sjva_ui4.js') }}"></script>
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
         <!-- 토글 -->
@@ -286,7 +286,6 @@ $('#global_scheduler').change(function() {
 $("#global_setting_save_btn").click(function(e) {
   e.preventDefault();
   var formData = get_formdata('#setting');
-  console.log(package_name)
   $.ajax({
     url: '/'+package_name+'/ajax/setting_save',
     type: "POST", 

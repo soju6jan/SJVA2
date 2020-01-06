@@ -42,6 +42,7 @@
 {{ macros.m_modal_start('gdrive_add_modal', 'GDrive 추가', 'modal-lg') }}
   <form id='gdrive_setting'>
   {{ macros.setting_input_text('gdrive_name', 'GDrive 이름', desc='json 파일 이름', col='3') }}
+  {{ macros.setting_select('account_type', '계정 유형', [['1', '@sjva.me'],['2', '@knou.ac.kr'],['99', '{ROOT}/data/db/client_secret.json 사용'],['0', 'GSuite 아닌 계정']], value='99', col='9') }}
   {{ macros.setting_button([['auth_btn', '계정선택 및 인증']]) }}
   {{ macros.setting_input_text('gdrive_code', 'Code', desc='복사한 코드 붙여넣기') }}
   {{ macros.setting_input_text('gdrive_path', '경로 매칭 (GDrive)', placeholder='내 드라이브', value='내 드라이브', desc=['경로 매칭', 'GDrive 는 "내 드라이브" 가 루트를 의미하며 폴더 구분자는 "/"', '예)내 드라이브 or 내 드라이브/video']) }}
@@ -82,14 +83,22 @@ $(document).ready(function(){
   // 계정선택 인증
   $("body").on('click', '#auth_btn', function(e){
     e.preventDefault();
+    account_type = document.getElementById("account_type").value
+    
     $.ajax({
       url: '/' + package_name + '/ajax/make_token',
       type: "POST", 
       cache: false,
-      data:{},
+      data:{account_type:account_type},
       dataType: "json",
       success: function (data) {
-        window.open(data, "_blank");
+        if (data == '99_not_exist') {
+          $.notify('<strong>client_secret.json 파일이 없습니다. </strong>', {
+	          type: 'warning'
+          });
+        } else {
+          window.open(data, "_blank");
+        }
       }
     });
   });
