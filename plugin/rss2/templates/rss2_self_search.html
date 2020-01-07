@@ -166,7 +166,7 @@ $("body").on('click', '#add_download_btn', function(e) {
 function make_list_html(data) {
   str = '';
   for(var i in data) {
-    console.log(data[i])
+    //console.log(data[i])
     str += m_row_start();
     str += m_col(1, data[i].id);
     tmp = data[i].created_time
@@ -305,7 +305,7 @@ $("body").on('click', '#torrent_info_show_btn', function(e) {
   e.preventDefault();
   index = $(this).data('index');
   data = current_data.list
-  console.log(data)
+  //console.log(data)
   tmp = index.split('_')
   
   i = parseInt(tmp[0])

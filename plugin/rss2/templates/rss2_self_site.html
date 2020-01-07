@@ -134,7 +134,6 @@ $("body").on('click', '#content_btn', function(e){
   e.preventDefault();
   index = $(this).data('index');
   tmp = current_data.site[index].content;
-  tmp = tmp.replace('\n', '<br>')
   m_modal(tmp, 'Content', false)
 });
 
@@ -142,9 +141,10 @@ $("body").on('click', '#content_btn', function(e){
 
 $("body").on('click', '#my_site_add_btn', function(e){
   e.preventDefault();
+  document.getElementById("modal_site_id").value = "-1";
+  document.getElementById("modal_site_index").value = "-1";
+  document.getElementById("modal_site_json").value = "";
   $("#site_modal").modal();
-  //document.getElementById("site_list_option").innerHTML = str;            
-  
 });
 
 $("body").on('click', '#site_edit_btn', function(e){
@@ -176,6 +176,7 @@ $("body").on('click', '#modal_json_test_btn', function(e){
   }
 });
 
+
 $("body").on('click', '#modal_save_btn', function(e){
   e.preventDefault();
   var formData = get_formdata('#site_form');
@@ -198,23 +199,24 @@ $("body").on('click', '#modal_save_btn', function(e){
     dataType: "json",
     success: function (data) {
       current_data = data;
-      if (data.ret == 'success') {
-        $.notify('<strong>설정을 저장하였습니다.</strong>', {
+      if (data.ret == 'exception') {
+        document.getElementById("modal_log").value = "저장에 실패하였습니다.\n"
+        return;
+      } else if (data.ret == 'exist') {
+        document.getElementById("modal_log").value = "같은 이름의 정보가 이미 있습니다.\n"
+        return;
+      }
+      if (data.ret == 'edit_success') {
+        $.notify('<strong>수정하였습니다.</strong>', {
           type: 'success'
         });
-        $("#add_job_modal").modal('hide');
-      } else if (data.ret == 'already_exist') {
-        $.notify('<strong>이미 존재합니다.</strong>', {
-          type: 'warning'
+      } else if (data.ret == 'add_success') {
+        $.notify('<strong>추가하였습니다.</strong>', {
+          type: 'success'
         });
-        $("#add_job_modal").modal('hide');
-      } else if (data.ret == 'fail') {
-        $.notify('<strong>실패하였습니다.</strong>', {
-          type: 'warning'
-        });
-        $("#add_job_modal").modal('hide');
       }
-      make_scheduler_list(data.scheduler);
+      make_site_list();
+      $("#site_modal").modal('hide');
     }
   });
 });
@@ -225,14 +227,14 @@ function make_site_list() {
   data = current_data.site
   str = ''
   for(var i in data) {
-    //console.log(data[i])
+    console.log(data[i])
     str += m_row_start();
     tmp = data[i].id;
     str += m_col(1, tmp);
 
     tmp = data[i].info_type;
     str += m_col(1, tmp);
-    tmp = '<strong><a href="'+data[i].info.TORRENT_SITE_URL+'">' + data[i].info.NAME + '</a></strong><br>';
+    tmp = '<strong><a href="'+data[i].info.TORRENT_SITE_URL+'" target="_blank">' + data[i].info.NAME + '</a></strong><br>';
 
     if (data[i].info.DOWNLOAD_REGEX == null) {
       tmp += '<span style="color:red">마그넷만 가능</span>';

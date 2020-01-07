@@ -19,7 +19,6 @@
 
 
 <!-- Modal -->
-
 <div class="modal fade" id="add_group_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -64,17 +63,13 @@
 </div>
 
 
-
-
 <script type="text/javascript">
 var package_name = "{{arg['package_name'] }}";
-
 var current_data;
 var current_group_id;
 
 
 $(document).ready(function(){
-  // 로딩
   $.ajax({
     url: '/'+package_name+'/ajax/load_group',
     type: "POST", 
@@ -87,9 +82,6 @@ $(document).ready(function(){
     }
   });
 });
-
-
-  
 
 
 
@@ -132,7 +124,7 @@ $("#add_group_save_btn").click(function(e) {
 // 그룹 자식 추가 버튼
 $("body").on('click', '#add_group_child_btn', function(e){
   e.preventDefault();
-  console.log(current_data)
+  //console.log(current_data)
   var data = current_data.site;
   current_group_id = $(this).data('id');
   str = '<select id="site_select_on_group" name="site_select_on_group" class="form-control form-control-sm" value="'+ data[0].info.NAME+'">';
@@ -250,52 +242,35 @@ $("body").on('click', '#remove_group_child_btn', function(e){
 });
   
 
-
 function make_group_list(data) {
   str = ''
-  
   for(var i in data) {
-    str += ' \
-      <div class="row"> \
-        <div class="col-sm-1" style="text-align: center;" style="padding-top:0px; padding-bottom:0px">'
-    str += data[i].id;
-    str += '\
-        </div> \
-        <div class="col-sm-2" style="padding-top:0px; padding-bottom:0px"> \
-          <strong>' + data[i].groupname + '</strong><p></p>'
-    str += ' \
-          <div class="btn-group btn-group-sm" role="group" > \
-            <button id="remove_group_btn" class="btn btn-sm btn-outline-success" data-id="' + data[i].id + '">그룹 삭제</button> \
-            <button id="add_group_child_btn" class="btn btn-sm btn-outline-success" data-id="' + data[i].id + '">목록 추가</button> \
-          </div> \
-        </div>'
-    
-    str += ' \
-        <div class="col-sm-4" style="text-align: left;" style="padding-top:0px; padding-bottom:0px">';
-    for (var j in data[i].schedulers) {
-      str += '<div class="row col-sm-12">'
-      str += '<div class="col-sm-5" style="text-align:left;" style="padding-top:0px; padding-bottom:0px">' + data[i].schedulers[j].sitename + '</div>'
-      str += '<div class="col-sm-5" style="text-align: left;" style="padding-top:0px; padding-bottom:0px">' + data[i].schedulers[j].board_id + '</div>'
-      str += '<div class="col-sm-2" style="text-align: left;" style="padding-top:0px; padding-bottom:0px"><button id="remove_group_child_btn" class="btn btn-sm btn-outline-success" data-id="' + data[i].id + '" data-child_id="'+data[i].schedulers[j].id+'">삭제</button></div>'
-      str += '</div>';
-      if (j != data[i].schedulers.length -1)
-        str += '<hr style="width: 100%; margin-bottom:1px; margin-top:1px;" />'
-    }
-    str += '</div>';
+    //console.log(data[i])
+    str += m_row_start();
+    str += m_col(1, data[i].id);
 
-    str += ' \
-        <div class="col-sm-5 form-inline" style="padding-top:0px; padding-bottom:0px"> \
-          <input id="query" name="query" class="form-control form-control-sm w-100" type="text" placeholder="쿼리" aria-label="Search"> \
-          <button id="sava_group_child_query_btn" class="btn btn-sm btn-outline-success" data-id="' + data[i].id + '">저장</button> \
-        </div> \
-      </div>'
+    tmp = m_button('remove_group_btn', '그룹 삭제', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('add_group_child_btn', '목록 추가', [{'key':'id', 'value':data[i].id}]);
+    tmp = m_button_group(tmp)
+    str += m_col(3, tmp);
     
-    str += '<div class="row"><div class="col-sm-1"></div> \
-    <div class="col-sm-11" style="text-align: left;" style="padding-top:0px; padding-bottom:0px"><a href="'+data[i].rss+'" target="_blank">'+data[i].rss+ '</a></div> \
-      </div> \
-      <hr>';
+    tmp = ''
+    for (var j in data[i].schedulers) {
+      tmp += m_row_start(0);
+      tmp += m_col(5, data[i].schedulers[j].sitename);
+      tmp += m_col(5, data[i].schedulers[j].board_id);
+      tmp2 = m_button('remove_group_child_btn', '삭제', [{'key':'id', 'value':data[i].id}, {'key':'child_id', 'value':data[i].schedulers[j].id}]);
+
+      tmp += m_col(2, tmp2);
+      tmp += m_row_end();
+      //if (j != data[i].schedulers.length -1)
+        tmp += m_hr();
+    }
+    tmp += '<a href="'+data[i].rss+'" target="_blank">'+data[i].rss+ '</a>'
+    str += m_col(8, tmp);
   }
   document.getElementById("group_list_div").innerHTML = str;
 }
+
 </script>    
 {% endblock %}

@@ -27,6 +27,7 @@
       </div>
       <div class="modal-body" id="modal_body" style="word-break:break-all;">
         <form id="job_form" name="job_form">
+        <input type="hidden" name="modal_scheduler_id" id="modal_scheduler_id" value="-1">
         {{ macros.setting_top('사이트') }}
         <div id="site_list_option" class="input-group col-sm-6">
         </div>
@@ -68,19 +69,46 @@ $(document).ready(function(){
 });
 
 // 스케쥴 추가
-$("#scheduler_add_btn").click(function(e) {
+$("body").on('click', '#scheduler_add_btn', function(e){
   e.preventDefault();
   var data = current_data.site;
   str = '<select id="site_id_select" name="site_id_select" class="form-control form-control-sm" value="'+ data[0].id+'">';
   for (var i in data) {
     str += '<option value="'+ data[i].id +'">'+data[i].info.NAME+'</option>';
   }
-  document.getElementById("site_list_option").innerHTML = str;            
+  document.getElementById('board_id').removeAttribute("disabled");
+
+  document.getElementById("site_list_option").innerHTML = str; 
+  document.getElementById("modal_scheduler_id").value = "-1";
+  $('#include_scheduler').bootstrapToggle('on')
+  $('#use_torrent_info').bootstrapToggle('off')
+  $('#use_proxy').bootstrapToggle('off')
+  $("#add_job_modal").modal();
+});
+
+// 스케쥴 수정
+$("body").on('click', '#scheduler_edit_btn', function(e){
+  e.preventDefault();
+  index = $(this).data('index');
+  scheduler_id = $(this).data('id');
+
+  var data = current_data.site;
+  str = '<select id="site_id_select" name="site_id_select" class="form-control form-control-sm" disabled value="'+ data[0].id+'">';
+  for (var i in data) {
+    str += '<option value="'+ data[i].id +'" '+((data[i].info.NAME == current_data.scheduler[index].sitename) ? "selected" : '')+'>'+data[i].info.NAME+'</option>';
+  }
+  document.getElementById("modal_scheduler_id").value = scheduler_id;
+  document.getElementById("site_list_option").innerHTML = str;
+  document.getElementById("board_id").value = current_data.scheduler[index].board_id;
+  document.getElementById('board_id').setAttribute("disabled","disabled");
+  $('#include_scheduler').bootstrapToggle((current_data.scheduler[index].include_scheduler) ? "on" : "off");
+  $('#use_torrent_info').bootstrapToggle(((current_data.scheduler[index].use_torrent_info) ? "on" : "off"));
+  $('#use_proxy').bootstrapToggle(((current_data.scheduler[index].use_proxy) ? "on" : "off"));
   $("#add_job_modal").modal();
 });
 
 
-$("#add_job_save_btn").click(function(e) {
+$("body").on('click', '#add_job_save_btn', function(e){
   e.preventDefault();
   var formData = get_formdata('#job_form');
   $.ajax({
@@ -92,11 +120,17 @@ $("#add_job_save_btn").click(function(e) {
     success: function (data) {
       current_data = data;
       if (data.ret == 'success') {
-        $.notify('<strong>설정을 저장하였습니다.</strong>', {
+        $.notify('<strong>스케쥴링을 저장하였습니다.</strong>', {
           type: 'success'
         });
         $("#add_job_modal").modal('hide');
-      } else if (data.ret == 'already_exist') {
+      } else if (data.ret == 'success_update') {
+        $.notify('<strong>스케쥴링을 수정하였습니다.</strong>', {
+          type: 'success'
+        });
+        $("#add_job_modal").modal('hide');
+      }
+       else if (data.ret == 'already_exist') {
         $.notify('<strong>이미 존재합니다.</strong>', {
           type: 'warning'
         });
@@ -126,9 +160,9 @@ function make_scheduler_list(data) {
     tmp += '<strong><a href="'+ data[i].broad_url +'" target="_blank">' + data[i].board_id + '</a></strong>';
     str += m_col(2, tmp);
 
-    tmp2 = m_row_start(0);
-    tmp2 += m_col(6, "스케쥴링<br>Proxy<br>토렌트", 'right');
-    tmp2 += m_col(6, ((data[i].include_scheduler) ? "포함" : "미포함") + '<br>'+ ((data[i].use_proxy) ? "사용" : "사용안함") +'<br>'+((data[i].use_torrent_info) ? "사용" : "사용안함"));
+    tmp2 = m_row_start(2);
+    tmp2 += m_col2(6, "스케쥴링<br>토렌트정보<br>Proxy", 'right');
+    tmp2 += m_col2(6, ((data[i].include_scheduler) ? "포함" : "미포함") + '<br>'+((data[i].use_torrent_info) ? "사용" : "사용안함") + '<br>'+ ((data[i].use_proxy) ? "사용" : "사용안함"));
     tmp2 += m_row_end();
     str += m_col(2, tmp2);
 
@@ -145,6 +179,7 @@ function make_scheduler_list(data) {
     }
     tmp += '<br><br>'
     tmp2 = '' 
+    tmp2 += m_button('scheduler_edit_btn', '스케쥴 수정', [{'key':'id', 'value':data[i].id}, {'key':'index', 'value':i}]);
     tmp2 += m_button('remove_scheduler_btn', '스케쥴 삭제', [{'key':'id', 'value':data[i].id}]);
     tmp2 += m_button('remove_db_btn', 'DB 삭제', [{'key':'id', 'value':data[i].id}]);
     tmp2 = m_button_group(tmp2)
