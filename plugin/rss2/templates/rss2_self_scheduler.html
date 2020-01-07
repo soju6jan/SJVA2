@@ -33,7 +33,7 @@
         </div>
         {{ macros.setting_bottom() }}
         {{ macros.setting_input_text('board_id', '게시판 ID', value=arg['board_id'], col='6') }}
-        {{ macros.setting_checkbox('include_scheduler', '스케쥴링에 포함', value='On',desc='On : HTTP Proxy 사용시') }}
+        {{ macros.setting_checkbox('include_scheduler', '스케쥴링에 포함', value='On') }}
         {{ macros.setting_checkbox('use_torrent_info', 'Torrent Info 사용', value='', desc=['On : 크롤링시 토렌트 세부 정보를 가져옵니다.', 'RSS 생성시 첫번째 토렌트 정보의 제목을 피드의 제목으로 사용하기 때문에 사이트 자체의 제목이 지저분한 게시판에 사용할 때 유용합니다.', '이치로님의 Torrent Info 플러그인이 설치되어 있어야 합니다.', '주의) 토렌트 접근 기록이 남을 수 있으며 스케쥴링 시간이 오래 걸립니다.']) }}
         {{ macros.setting_checkbox('use_proxy', 'Proxy 사용', value='', desc='On : HTTP Proxy 사용시') }}        
         </form>
