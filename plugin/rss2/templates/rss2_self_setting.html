@@ -22,6 +22,9 @@
     {{ macros.setting_button([['global_setting_save_btn', '저장']]) }}
     {{ macros.m_hr() }}
     {{ macros.setting_button([['global_one_execute_btn', '1회 실행']], left='1회 실행' ) }}
+    {% if arg['server'] %}
+    {{ macros.setting_button([['server_test_btn', '서버 테스트']]) }}
+    {% endif %}
     {{ macros.setting_button([['global_reset_db_btn', '목록 전체 지우기']], left='DB정리' ) }}
   </form>
 </div> <!--전체-->
@@ -32,5 +35,23 @@ var package_name = "{{arg['package_name'] }}";
 $(document).ready(function(){
 });
 
+
+
+$("body").on('click', '#server_test_btn', function(e){
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/server_test',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      m_modal(data);
+    }
+  });
+});
+
 </script>    
 {% endblock %}
+
+
