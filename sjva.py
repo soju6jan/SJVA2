@@ -25,6 +25,21 @@ try:
                 os.system("chmod 777 -R %s" % custom)
         except:
             print('Exception:%s', e)
+
+
+        server_plugin_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')
+        change_plugin = ['manamoa_sjva']
+        for t in change_plugin:
+            try:
+                tmp = os.path.join(server_plugin_path, t)
+                if os.path.exists(tmp):
+                    os.rename(tmp, tmp.replace('_sjva', ''))
+                    #shutil.move(tmp, tmp.replace('_sjva', 'sjva'))
+            except Exception as e:
+                logger.error('Exception:%s', e)
+                logger.error(traceback.format_exc())
+
+
 except Exception, e:
     print('Exception:%s', e)
 
