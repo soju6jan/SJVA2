@@ -215,6 +215,7 @@ function make_list_html(data) {
         if (is_torrent_info_installed) {
           tmp += m_button('torrent_info_btn', '토렌트 정보 요청', [{'key':'hash', 'value':data[i].magnet[j]}]);
         }
+        console.log(data[i].torrent_info)
         if (data[i].torrent_info != null) {
           tmp += m_button('torrent_info_show_btn', 'JSON', [{'key':'index', 'value':i+'_'+j}]);
         }
