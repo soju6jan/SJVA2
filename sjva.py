@@ -28,7 +28,7 @@ try:
 
 
         server_plugin_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')
-        change_plugin = ['manamoa_sjva']
+        change_plugin = ['manamoa_sjva', 'syno_index_sjva']
         for t in change_plugin:
             try:
                 tmp = os.path.join(server_plugin_path, t)
