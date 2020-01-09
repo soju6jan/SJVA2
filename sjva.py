@@ -21,25 +21,25 @@ try:
     print(sys.argv)
     print(sys.argv)
     server_plugin_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')
-        #change_plugin = ['manamoa_sjva', 'syno_index_sjva', 'launcher_xteve_sjva', 'launcher_calibre_web', 'launcher_gateone_sjva', 'launcher_greentunnel_sjva', 'launcher_guacamole_sjva', 'launcher_tautulli_sjva', 'launcher_torrssen2_sjva']
-        tmp2 = os.path.listdir(server_plugin_path)
-        print('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ')
-        print(tmp2)
-        for t in tmp2:
-            try:
-                if not t.endswith('_sjva'):
-                    continue
-                tmp = os.path.join(server_plugin_path, t)
-                print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    #change_plugin = ['manamoa_sjva', 'syno_index_sjva', 'launcher_xteve_sjva', 'launcher_calibre_web', 'launcher_gateone_sjva', 'launcher_greentunnel_sjva', 'launcher_guacamole_sjva', 'launcher_tautulli_sjva', 'launcher_torrssen2_sjva']
+    tmp2 = os.path.listdir(server_plugin_path)
+    print('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ')
+    print(tmp2)
+    for t in tmp2:
+        try:
+            if not t.endswith('_sjva'):
+                continue
+            tmp = os.path.join(server_plugin_path, t)
+            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
-                print(tmp)
-                if os.path.exists(tmp):
-                    os.rename(tmp, tmp.replace('_sjva', ''))
-                    #shutil.move(tmp, tmp.replace('_sjva', 'sjva'))
-            except Exception as e:
-                logger.error('Exception:%s', e)
-                logger.error(traceback.format_exc())
-                
+            print(tmp)
+            if os.path.exists(tmp):
+                os.rename(tmp, tmp.replace('_sjva', ''))
+                #shutil.move(tmp, tmp.replace('_sjva', 'sjva'))
+        except Exception as e:
+            logger.error('Exception:%s', e)
+            logger.error(traceback.format_exc())
+            
     if sys.argv[0].startswith('sjva.py'):
         try:
             if platform.system() != 'Windows':
