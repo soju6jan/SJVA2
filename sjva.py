@@ -35,6 +35,9 @@ try:
                 if not t.endswith('_sjva'):
                     continue
                 tmp = os.path.join(server_plugin_path, t)
+                print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+
+                print(tmp)
                 if os.path.exists(tmp):
                     os.rename(tmp, tmp.replace('_sjva', ''))
                     #shutil.move(tmp, tmp.replace('_sjva', 'sjva'))
