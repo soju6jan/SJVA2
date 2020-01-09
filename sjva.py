@@ -28,9 +28,12 @@ try:
 
 
         server_plugin_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')
-        change_plugin = ['manamoa_sjva', 'syno_index_sjva', 'launcher_xteve_sjva', 'launcher_calibre_web', 'launcher_gateone_sjva', 'launcher_greentunnel_sjva', 'launcher_guacamole_sjva', 'launcher_tautulli_sjva', 'launcher_torrssen2_sjva']
-        for t in change_plugin:
+        #change_plugin = ['manamoa_sjva', 'syno_index_sjva', 'launcher_xteve_sjva', 'launcher_calibre_web', 'launcher_gateone_sjva', 'launcher_greentunnel_sjva', 'launcher_guacamole_sjva', 'launcher_tautulli_sjva', 'launcher_torrssen2_sjva']
+        tmp = os.path.listdir(server_plugin_path)
+        for t in tmp:
             try:
+                if not t.endswith('_sjva'):
+                    continue
                 tmp = os.path.join(server_plugin_path, t)
                 if os.path.exists(tmp):
                     os.rename(tmp, tmp.replace('_sjva', ''))
