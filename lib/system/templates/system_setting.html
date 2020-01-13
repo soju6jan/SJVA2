@@ -40,7 +40,7 @@
         {{ macros.setting_input_text('pw', '로그인 암호', value=arg['pw'], col='3', type='password', desc=['초기값은 sjva입니다.']) }}
         </div>
         {{ macros.setting_input_int('port', 'Port', value=arg['port'], min='1', placeholder='Port', desc=['포트 번호입니다.', '네이티브 설치 혹은 도커  네트워크 타입이 호스트일 경우 반영됩니다.', '도커 브릿지 모드인 경우는 docker run -p 옵션에서 변경하시기 바랍니다.', '경고 : -p 브릿지 모드로 사용중 일 경우 9999번을 절대 변경하지 마세요.']) }}
-        {{ macros.setting_input_text_and_buttons('ddns', 'DDNS', [['ddns_test_btn', '테스트']], value=arg['ddns'], desc=['외부에서 접근시 사용할 DDNS', 'RSS, Plex Callback, KLive 등에서 URL생성시 사용합니다.', '테스트 버튼 클릭 후 버전을 확인 할 수 있어야 합니다.']) }}
+        {{ macros.setting_input_text_and_buttons('ddns', 'DDNS', [['ddns_test_btn', '테스트']], value=arg['ddns'], desc=['외부에서 접근시 사용할 DDNS. http:// 나 https:// 로 시작해야합니다.', 'RSS, Plex Callback, KLive 등에서 URL생성시 사용합니다.', '테스트 버튼 클릭 후 버전을 확인 할 수 있어야 합니다.']) }}
         {{ macros.setting_input_text_and_buttons('url_filebrowser', 'URL FileBrowser', [['go_filebrowser_btn', 'GO']], value=arg['url_filebrowser']) }}
         {{ macros.setting_input_text_and_buttons('url_celery_monitoring', 'URL Celery Monitoring', [['go_celery_monitoring_btn', 'GO']], value=arg['url_celery_monitoring']) }}
         {{ macros.setting_input_int('auto_restart_hour', '자동 재시작 시간', value=arg['auto_restart_hour'], min='0', desc=['자동 재시작 시간입니다.', '0이면 재시작 안함.']) }}
