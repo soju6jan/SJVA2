@@ -248,10 +248,11 @@ function make_group_list(data) {
     str += m_row_start();
     str += m_col(1, data[i].id);
 
+    
     tmp = m_button('remove_group_btn', '그룹 삭제', [{'key':'id', 'value':data[i].id}]);
     tmp += m_button('add_group_child_btn', '목록 추가', [{'key':'id', 'value':data[i].id}]);
     tmp = m_button_group(tmp)
-    str += m_col(3, tmp);
+    str += m_col(3, data[i].groupname + '<br>' + tmp);
     
     tmp = ''
     for (var j in data[i].schedulers) {
@@ -268,6 +269,7 @@ function make_group_list(data) {
     tmp += '<a href="'+data[i].rss+'" target="_blank">'+data[i].rss+ '</a>'
     str += m_col(8, tmp);
     str += m_row_end();
+    if (i != data.length -1) str += m_hr();
   }
   document.getElementById("group_list_div").innerHTML = str;
 }
