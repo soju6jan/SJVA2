@@ -240,17 +240,18 @@ function make_list(data) {
   //console.log(data)
   str = '';
   for (i in data) {
-    //console.log(data[i])
+    console.log(data[i])
+    if (data[i].download_status == null) data[i].download_status = '';
     str += m_row_start();
-    tmp = '<img src="' + data[i].feed.daum_poster_url + '" class="img-fluid">'
+    tmp = '<img src="' + data[i].daum_poster_url + '" class="img-fluid">'
     str += m_col(2, tmp);
     right = m_row_start();
     manual = ''
-    if (data[i].status.startsWith('True_manual_')) {
-      data[i].status = data[i].status.replace('True_manual_', '')
+    if (data[i].download_status.startsWith('True_manual_')) {
+      data[i].download_status = data[i].download_status.replace('True_manual_', '')
       manual = ' - 수동요청'
     }
-    if (data[i].status.startsWith('True')) {
+    if (data[i].download_status.startsWith('True')) {
       tmp = '✔요청 '
     } else {
       tmp = '⛔패스 '
@@ -269,35 +270,35 @@ function make_list(data) {
     } else {
       tmp += '(PLEX 프로그램❌) '
     }
-    if (data[i].status == 'True_by_plex_in_lib_multi_epi') {
+    if (data[i].download_status == 'True_by_plex_in_lib_multi_epi') {
       tmp += '에피소드 멀티파일'
-    } else if (data[i].status == 'False_by_plex_in_one_epi') {
+    } else if (data[i].download_status == 'False_by_plex_in_one_epi') {
       tmp += '에피소드 이미 있음'
-    } else if (data[i].status == 'True_by_plex_in_lib_no_epi') {
+    } else if (data[i].download_status == 'True_by_plex_in_lib_no_epi') {
       tmp += '에피소드 없음'
-    } else if (data[i].status == 'True_blacklist') {
+    } else if (data[i].download_status == 'True_blacklist') {
       tmp += '블랙리스트에 없음'
-    } else if (data[i].status == 'False_whitelist') {
+    } else if (data[i].download_status == 'False_whitelist') {
       tmp += '화이트리스트에 없음'
-    } else if (data[i].status == 'False_except_program') {
+    } else if (data[i].download_status == 'False_except_program') {
       tmp += '블랙리스트'
-    } else if (data[i].status == 'True_whitelist_program') {
+    } else if (data[i].download_status == 'True_whitelist_program') {
       tmp += '화이트리스트'
-    } else if (data[i].status == 'True_whitelist_first_epi') {
+    } else if (data[i].download_status == 'True_whitelist_first_epi') {
       tmp += '첫번째 에피소드'
     } else {
       tmp = ''
     }
     tmp += manual
     tmp = '<b>상태 : </b>' + tmp
-    tmp += '<br><b>방송 : </b>' + data[i].feed.daum_title + '(' + data[i].feed.daum_genre + ')'
-    if (data[i].feed.file_number != -1) {
-      tmp += ', ' + data[i].feed.file_number + '회'
+    tmp += '<br><b>방송 : </b>' + data[i].daum_title + '(' + data[i].daum_genre + ')'
+    if (data[i].filename_number != -1) {
+      tmp += ', ' + data[i].filename_number + '회'
     }
-    tmp += ', ' + data[i].feed.file_date
-    tmp += '<br><b>Feed 제목 : </b>' + data[i].feed.title
-    tmp += '<br><b>Feed URL : </b>' + '<a href="' + data[i].feed.url + '" target="_blank">' + data[i].feed.url + '</a>'
-    tmp += '<br><b></b>' + '<a href="' + data[i].feed.magnet + '" target="_blank">' + data[i].feed.magnet + '</a>'
+    tmp += ', ' + data[i].filename_date
+    tmp += '<br><b>Feed 제목 : </b>' + data[i].filename
+    tmp += '<br><b>Feed URL : </b>' + '<a href="' + data[i].filename + '" target="_blank">' + data[i].filename + '</a>'
+    tmp += '<br><b></b>' + '<a href="' + data[i].magnet + '" target="_blank">' + data[i].magnet + '</a>'
     right += m_col(6, tmp);
     tmp = ''
     if (data[i].downloader_item != null) {
@@ -310,7 +311,7 @@ function make_list(data) {
       tmp += '<br><b>다운로드 경로 : </b>' + data[i].downloader_item.download_path
     }
     right += m_col(3, tmp);
-    tmp = data[i].feed.created_time + ' (텔레그램 수신)'
+    tmp = data[i].created_time + ' (텔레그램 수신)'
     tmp += '<br>' + data[i].created_time + ' (다운여부 판단)'
     if (data[i].downloader_item != null) {
       tmp += '<br>' + data[i].downloader_item.created_time + ' (다운로드 요청)'
@@ -326,20 +327,20 @@ function make_list(data) {
     tmp = ''
     if (data[i].plex_key != null)
       tmp += m_button('global_link_btn', 'Open PLEX', [{'key':'url', 'value':'https://app.plex.tv/desktop#!/server/' + current_data.plex_server_hash + '/details?key=' + data[i].plex_key}]);
-    tmp += m_button('global_link_btn', 'Daum 검색', [{'key':'url', 'value':'https://search.daum.net/search?w=tv&q='+data[i].feed.daum_title+'&irk='+data[i].feed.daum_id+'&irt=tv-program&DA=TVP'}]);
+    tmp += m_button('global_link_btn', 'Daum 검색', [{'key':'url', 'value':'https://search.daum.net/search?w=tv&q='+data[i].daum_title+'&irk='+data[i].daum_id+'&irt=tv-program&DA=TVP'}]);
     tmp += m_button('json_btn', 'JSON', [{'key':'id', 'value':data[i].id}]);
-    tmp += m_button('rss_search_btn', 'RSS 검색', [{'key':'id', 'value':data[i].feed.daum_title}]);
-    tmp += m_button('self_search_btn', '목록 검색', [{'key':'id', 'value':data[i].feed.daum_title}]);
+    tmp += m_button('rss_search_btn', 'RSS 검색', [{'key':'id', 'value':data[i].daum_title}]);
+    tmp += m_button('self_search_btn', '목록 검색', [{'key':'id', 'value':data[i].daum_title}]);
     tmp += m_button('plex_refresh_btn', 'PLEX 정보 새로고침', [{'key':'id', 'value':data[i].id}]);
     tmp += m_button('remove_btn', '삭제', [{'key':'id', 'value':data[i].id}]);
     tmp2 = m_button_group(tmp)
 
-    tmp = m_button('except_program_btn', '제외프로그램 추가', [{'key':'id', 'value':data[i].feed.daum_title}]);
-    tmp += m_button('whitelist_program_btn', '포함프로그램 추가', [{'key':'id', 'value':data[i].feed.daum_title}]);
+    tmp = m_button('except_program_btn', '제외프로그램 추가', [{'key':'id', 'value':data[i].daum_title}]);
+    tmp += m_button('whitelist_program_btn', '포함프로그램 추가', [{'key':'id', 'value':data[i].daum_title}]);
     
     tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'id', 'value':data[i].id}]);
-    tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].feed.magnet}]);
-    tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬', [{'key':'hash', 'value':data[i].feed.magnet}]);
+    tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].magnet}]);
+    tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬', [{'key':'hash', 'value':data[i].magnet}]);
     tmp2 += m_button_group(tmp)
     right += m_col(12, tmp2)
 
