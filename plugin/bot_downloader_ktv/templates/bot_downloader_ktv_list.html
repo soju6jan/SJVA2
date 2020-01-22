@@ -290,7 +290,7 @@ function make_list(data) {
       tmp = ''
     }
     tmp += manual
-    tmp = '<b>상태 : </b>' + tmp
+    tmp = '<b>상태 : </b>' + data[i].download_status
     tmp += '<br><b>방송 : </b>' + data[i].daum_title + '(' + data[i].daum_genre + ')'
     if (data[i].filename_number != -1) {
       tmp += ', ' + data[i].filename_number + '회'
@@ -300,6 +300,8 @@ function make_list(data) {
     tmp += '<br><b>Feed URL : </b>' + '<a href="' + data[i].filename + '" target="_blank">' + data[i].filename + '</a>'
     tmp += '<br><b></b>' + '<a href="' + data[i].magnet + '" target="_blank">' + data[i].magnet + '</a>'
     right += m_col(6, tmp);
+
+    
     tmp = ''
     if (data[i].downloader_item != null) {
       if (data[i].downloader_item.status=='completed') status = '완료';
