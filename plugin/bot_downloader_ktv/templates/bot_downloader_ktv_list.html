@@ -2,45 +2,42 @@
 {% block content %}
  
 <div>
-  
-    <form id="form_search" class="form-inline" style="text-align:left">
-      <div class="container-fluid">
-        <div class="row show-grid">
-          <span class="col-md-4">
-            <select id="order" name="order" class="form-control form-control-sm">
-              <option value="desc">최근순</option>
-              <option value="asc">오래된순</option>
-            </select>
-            <select id="option" name="option" class="form-control form-control-sm">
-              <option value="all">전체</option>
-              <option value="request_True">요청</option>
-              <option value="request_False">패스</option>
-              <option value="by_plex_on">PLEX 프로그램⭕</option>
-              <option value="by_plex_off">PLEX 프로그램❌</option>
-              <option value="by_plex_episode_off">PLEX 에피소드❌</option>
-            </select>
-          </span>
-          <span class="col-md-8">
-            <input id="search_word" name="search_word" class="form-control form-control-sm w-75" type="text" placeholder="프로그램명" aria-label="Search">
-            <button id="search" class="btn btn-sm btn-outline-success">검색</button>
-            <button id="reset_btn" class="btn btn-sm btn-outline-success">리셋</button>
-          </span>
-        </div>
+  <form id="form_search" class="form-inline" style="text-align:left">
+    <div class="container-fluid">
+      <div class="row show-grid">
+        <span class="col-md-4">
+          <select id="order" name="order" class="form-control form-control-sm">
+            <option value="desc">최근순</option>
+            <option value="asc">오래된순</option>
+          </select>
+          <select id="option" name="option" class="form-control form-control-sm">
+            <option value="all">전체</option>
+            <option value="request_True">요청</option>
+            <option value="request_False">패스</option>
+            <option value="by_plex_on">PLEX 프로그램⭕</option>
+            <option value="by_plex_off">PLEX 프로그램❌</option>
+            <option value="by_plex_episode_off">PLEX 에피소드❌</option>
+          </select>
+        </span>
+        <span class="col-md-8">
+          <input id="search_word" name="search_word" class="form-control form-control-sm w-75" type="text" placeholder="프로그램명" aria-label="Search">
+          <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+          <button id="reset_btn" class="btn btn-sm btn-outline-success">리셋</button>
+        </span>
       </div>
-    </form>
-    <div id='page1'></div>
-    {{ macros.m_hr_head_top() }}
-    {{ macros.m_row_start('0') }}
-    {{ macros.m_col(2,  macros.m_strong('Poster')) }}
-    {{ macros.m_col(6,  macros.m_strong('Status')) }}
-    {{ macros.m_col(2,  macros.m_strong('Downloader')) }}
-    {{ macros.m_col(2,  macros.m_strong('Time')) }}
-    {{ macros.m_row_end() }}
-    {{ macros.m_hr_head_bottom() }}
-    <div id="list_div"></div>
-    <div id='page2'></div>
-    
-   
+    </div>
+  </form>
+  <div id='page1'></div>
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(2,  macros.m_strong('Poster')) }}
+  {{ macros.m_col(6,  macros.m_strong('Status')) }}
+  {{ macros.m_col(2,  macros.m_strong('Downloader')) }}
+  {{ macros.m_col(2,  macros.m_strong('Time')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <div id="list_div"></div>
+  <div id='page2'></div>
 </div>
 
 <script type="text/javascript">
@@ -290,7 +287,12 @@ function make_list(data) {
       tmp = ''
     }
     tmp += manual
-    tmp = '<b>상태 : </b>' + data[i].download_status
+    tmp = '<b>상태 : </b>';
+    if ( data[i].download_status == '' ) {
+      tmp += '--'
+    } else {
+      tmp += data[i].download_status;
+    }
     tmp += '<br><b>방송 : </b>' + data[i].daum_title + '(' + data[i].daum_genre + ')'
     if (data[i].filename_number != -1) {
       tmp += ', ' + data[i].filename_number + '회'
@@ -301,7 +303,7 @@ function make_list(data) {
     tmp += '<br><b></b>' + '<a href="' + data[i].magnet + '" target="_blank">' + data[i].magnet + '</a>'
     right += m_col(6, tmp);
 
-    
+
     tmp = ''
     if (data[i].downloader_item != null) {
       if (data[i].downloader_item.status=='completed') status = '완료';
