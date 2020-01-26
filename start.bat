@@ -10,17 +10,6 @@ set COUNT=0
     if exist %FILENAME% (
         pip install -r %FILENAME%
     )
-    set FLASK_APP=sjva.py
-    set res=T
-    if exist ".\migrations\" set res=F
-    if not exist ".\data\db\sjva.db" set res=F
-    if "%res%"=="T" (
-        python -OO -m flask db init
-    )
-    if exist ".\migrations\" (
-        python -OO -m flask db migrate
-        python -OO -m flask db upgrade
-    )
     python -OO sjva.py 0 %COUNT% no_celery
     echo PYTHON EXIT CODE : %errorlevel%..............
     set res=F
