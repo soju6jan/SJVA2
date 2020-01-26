@@ -240,7 +240,10 @@ function make_list(data) {
     console.log(data[i])
     if (data[i].download_status == null) data[i].download_status = '';
     str += m_row_start();
-    tmp = '<img src="' + data[i].daum_poster_url + '" class="img-fluid">'
+    if ( data[i].daum_poster_url != null)
+      tmp = '<img src="' + data[i].daum_poster_url + '" class="img-fluid">'
+    else 
+      tmp = ''
     str += m_col(2, tmp);
     right = m_row_start();
     manual = ''
@@ -284,23 +287,31 @@ function make_list(data) {
     } else if (data[i].download_status == 'True_whitelist_first_epi') {
       tmp += '첫번째 에피소드'
     } else {
-      tmp = ''
+      tmp += data[i].download_status
     }
     tmp += manual
-    tmp = '<b>상태 : </b>';
+    /*
+    tmp += '<b>Desc : </b>';
     if ( data[i].download_status == '' ) {
       tmp += '--'
     } else {
       tmp += data[i].download_status;
     }
-    tmp += '<br><b>방송 : </b>' + data[i].daum_title + '(' + data[i].daum_genre + ')'
-    if (data[i].filename_number != -1) {
-      tmp += ', ' + data[i].filename_number + '회'
+    */
+    if (data[i].daum_title != null) {
+      tmp += '<br><b>방송 : </b>' + '<a href="https://search.daum.net/search?w=tv&q='+data[i].daum_title+'&irk='+data[i].daum_id+'&irt=tv-program&DA=TVP">'+ data[i].daum_title + '</a>' + '(' + data[i].daum_genre + ')'
+      if (data[i].filename_number != -1) {
+        tmp += ', ' + data[i].filename_number + '회'
+      }
+      tmp += ', ' + data[i].filename_date
+    } else {
+      tmp += '<br><b>방송 : </b>검색 실패'
     }
-    tmp += ', ' + data[i].filename_date
-    tmp += '<br><b>Feed 제목 : </b>' + data[i].filename
-    tmp += '<br><b>Feed URL : </b>' + '<a href="' + data[i].filename + '" target="_blank">' + data[i].filename + '</a>'
+    
+    tmp += '<br><b>파일 : </b>' + data[i].filename
+    //tmp += '<br><b>Feed URL : </b>' + '<a href="' + data[i].filename + '" target="_blank">' + data[i].filename + '</a>'
     tmp += '<br><b></b>' + '<a href="' + data[i].magnet + '" target="_blank">' + data[i].magnet + '</a>'
+    
     right += m_col(6, tmp);
 
 
@@ -316,7 +327,9 @@ function make_list(data) {
     }
     right += m_col(3, tmp);
     tmp = data[i].created_time + ' (텔레그램 수신)'
-    tmp += '<br>' + data[i].created_time + ' (다운여부 판단)'
+    if (data[i].download_check_time != null) {
+      tmp += '<br>' + data[i].download_check_time + ' (다운여부 판단)'
+    } 
     if (data[i].downloader_item != null) {
       tmp += '<br>' + data[i].downloader_item.created_time + ' (다운로드 요청)'
       if (data[i].downloader_item.completed_time != '') {
@@ -331,7 +344,6 @@ function make_list(data) {
     tmp = ''
     if (data[i].plex_key != null)
       tmp += m_button('global_link_btn', 'Open PLEX', [{'key':'url', 'value':'https://app.plex.tv/desktop#!/server/' + current_data.plex_server_hash + '/details?key=' + data[i].plex_key}]);
-    tmp += m_button('global_link_btn', 'Daum 검색', [{'key':'url', 'value':'https://search.daum.net/search?w=tv&q='+data[i].daum_title+'&irk='+data[i].daum_id+'&irt=tv-program&DA=TVP'}]);
     tmp += m_button('json_btn', 'JSON', [{'key':'id', 'value':data[i].id}]);
     tmp += m_button('rss_search_btn', 'RSS 검색', [{'key':'id', 'value':data[i].daum_title}]);
     tmp += m_button('self_search_btn', '목록 검색', [{'key':'id', 'value':data[i].daum_title}]);
