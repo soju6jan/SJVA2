@@ -52,9 +52,9 @@
         {{ macros.setting_input_text('condition_quality', '화질', value=arg['condition_quality'], desc=['다운받을 화질 목록입니다(p제외). 구분자 | ', '빈칸인 경우 검사하지 않습니다.']) }}
         {{ macros.setting_input_text('condition_include_keyword', '단어 포함', value=arg['condition_include_keyword'], desc=['이 단어 중 하나라도 포함되어 있다면 다운로드합니다. 릴리즈명에 대한 옵션입니다. 구분자 |', '빈칸인 경우 검사하지 않습니다.']) }}
         {{ macros.setting_input_text('condition_except_keyword', '단어 제외', value=arg['condition_except_keyword'], desc=['이 단어 중 하나라도 포함되어 있다면 다운로드 하지 않습니다. 릴리즈명에 대한 옵션입니다. 구분자 |', '빈칸인 경우 검사하지 않습니다.']) }}
-        {{ macros.setting_checkbox('use_wait_1080', '1080 대기', value=arg['use_wait_1080'], desc=['On : 조건에 의해 다운받기로 결정되었지만 720p 화잘인 경우 1080p 영상 정보가 들어올 때까지 다운로드 시작을 연기합니다.']) }}
+        {{ macros.setting_checkbox('use_wait_1080', '1080p가 아닌 경우 대기', value=arg['use_wait_1080'], desc=['On : 조건에 의해 다운받기로 결정되었지만 화질이 1080p가 아닌 경우 판단을 지연합니다.']) }}
         <div id="use_wait_1080_div" class="collapse">
-          {{ macros.setting_input_int('use_wait_1080_time', '연기 시간', value=arg['use_wait_1080_time'], desc=['이 시간 동안 기다려도 1080p 영상 정보를 못 받은 경우 다운로드를 시작합니다.', 'minute 단위']) }}
+          {{ macros.setting_input_int('use_wait_1080_time', '판단 지연 시간', value=arg['use_wait_1080_time'], desc=['이 시간 후에는 화질에 상관없이 조건에 맞으면 다운로드를 시작합니다.', 'minute 단위']) }}
         </div>
 
       {{ macros.m_tab_content_end() }}
