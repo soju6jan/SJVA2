@@ -1,0 +1,398 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+<div>
+  <form id="form_search" class="form-inline" style="text-align:left">
+    <div class="container-fluid">
+      <div class="row show-grid">
+        <span class="col-md-4">
+          <select id="order" name="order" class="form-control form-control-sm">
+            <option value="desc">최근순</option>
+            <option value="asc">오래된순</option>
+          </select>
+          <select id="option" name="option" class="form-control form-control-sm">
+            <option value="all">전체</option>
+            <option value="request_True">요청</option>
+            <option value="request_False">패스</option>
+            <option value="by_plex_on">PLEX 프로그램⭕</option>
+            <option value="by_plex_off">PLEX 프로그램❌</option>
+            <option value="by_plex_episode_off">PLEX 에피소드❌</option>
+          </select>
+        </span>
+        <span class="col-md-8">
+          <input id="search_word" name="search_word" class="form-control form-control-sm w-75" type="text" placeholder="프로그램명" aria-label="Search">
+          <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+          <button id="reset_btn" class="btn btn-sm btn-outline-success">리셋</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <div id='page1'></div>
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(2,  macros.m_strong('Poster')) }}
+  {{ macros.m_col(5,  macros.m_strong('Info')) }}
+  {{ macros.m_col(3,  macros.m_strong('Downloader')) }}
+  {{ macros.m_col(2,  macros.m_strong('Time')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <div id="list_div"></div>
+  <div id='page2'></div>
+</div>
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name'] }}";
+var current_data = null;
+var is_torrent_info_installed = ("{{arg['is_torrent_info_installed']}}" == 'True')
+
+$(document).ready(function(){
+  request_search('1');
+});
+
+$("#search").click(function(e) {
+  e.preventDefault();
+  request_search('1');
+});
+
+$("body").on('click', '#page', function(e){
+  e.preventDefault();
+  request_search($(this).data('page'));
+});
+
+$("#reset_btn").click(function(e) {
+  e.preventDefault();
+  document.getElementById("order").value = 'desc';
+  document.getElementById("option").value = 'all';
+  document.getElementById("search_word").value = '';
+  request_search('1')
+});
+
+$("body").on('click', '#json_btn', function(e){
+  e.preventDefault();
+  var id = $(this).data('id');
+  for (i in current_data.list) {
+    if (current_data.list[i].id == id) {
+      m_modal(current_data.list[i])
+    }
+  }
+});
+
+$("body").on('click', '#self_search_btn', function(e){
+  e.preventDefault();
+  var search_word = $(this).data('id');
+  document.getElementById("search_word").value = search_word;
+  request_search('1')
+});
+
+$("body").on('click', '#except_program_btn', function(e){
+  e.preventDefault();
+  var program = $(this).data('id');
+  $.ajax({
+    url: '/'+package_name+'/ajax/add_program',
+    type: "POST", 
+    cache: false,
+    data: {except_program:program},
+    dataType: "json",
+    success: function (data) {
+      except_result_process(data);
+    }
+  });
+});
+
+$("body").on('click', '#whitelist_program_btn', function(e){
+  e.preventDefault();
+  var program = $(this).data('id');
+  $.ajax({
+    url: '/'+package_name+'/ajax/add_program',
+    type: "POST", 
+    cache: false,
+    data: {whitelist_program:program},
+    dataType: "json",
+    success: function (data) {
+      except_result_process(data);
+    }
+  });
+});
+
+$("body").on('click', '#add_download_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id');
+  $.ajax({
+    url: '/'+package_name+'/ajax/add_download',
+    type: "POST", 
+    cache: false,
+    data: {id:id},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>다운로드 추가하였습니다.</strong>', {
+          type: 'success'
+        });
+        request_search(current_data.paging.current_page, false)
+      } else {
+        $.notify('<strong>다운로드 추가에 실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$("body").on('click', '#plex_refresh_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id');
+  $.ajax({
+    url: '/'+package_name+'/ajax/plex_refresh',
+    type: "POST", 
+    cache: false,
+    data: {id:id},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>변경되었습니다.</strong>', {
+          type: 'success'
+        });
+        request_search(current_data.paging.current_page, false)
+      } else {
+        $.notify('<strong>변경되지 않았습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$("body").on('click', '#remove_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id');
+  $.ajax({
+    url: '/'+package_name+'/ajax/remove',
+    type: "POST", 
+    cache: false,
+    data: {id:id},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>삭제되었습니다.</strong>', {
+          type: 'success'
+        });
+        request_search(current_data.paging.current_page, false)
+      } else {
+        $.notify('<strong>삭제 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+function request_search(page, move_top=true) {
+  var formData = get_formdata('#form_search')
+  formData += '&page=' + page;
+  $.ajax({
+    url: '/' + package_name + '/ajax/list',
+    type: "POST", 
+    cache: false,
+    data: formData,
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      if (move_top)
+        window.scrollTo(0,0);
+      make_list(data.list)
+      make_page_html(data.paging)
+    }
+  });
+}
+
+function except_result_process(data) {
+  if ( data == 1) {
+    $.notify('<strong>추가하였습니다.</strong>', {
+      type: 'success'
+    });
+  } else if ( data == 0) {
+    $.notify('<strong>이미 설정되어 있습니다.</strong>', {
+      type: 'warning'
+    });
+  } else {
+    $.notify('<strong>Exception</strong>', {
+      type: 'warning'
+    });
+  }
+}
+
+function make_list(data) {
+  //console.log(data)
+  str = '';
+  for (i in data) {
+    //console.log(data[i])
+    if (data[i].download_status == null) data[i].download_status = '';
+    str += m_row_start();
+    if ( data[i].daum_poster_url != null)
+      tmp = '<img src="' + data[i].daum_poster_url + '" class="img-fluid">'
+    else 
+      tmp = ''
+    str += m_col(2, tmp);
+    right = m_row_start();
+    manual = ''
+    if (data[i].download_status.startsWith('True_manual_')) {
+      data[i].download_status = data[i].download_status.replace('True_manual_', '')
+      manual = ' - 수동요청'
+    }
+    if (data[i].download_status.startsWith('True')) {
+      tmp = '✔요청 '
+    } else if (data[i].download_status.startsWith('False')) {
+      tmp = '⛔패스 '
+    } else if (data[i].download_status.startsWith('Delay')) {
+      tmp = '🕛대기 '
+    } else {
+      tmp = '판단 이전 '
+    }
+
+    if (data[i].plex_key != null) {
+      if (data[i].plex_key.startsWith('/')) {
+        tmp += '(PLEX 프로그램⭕) '
+      } else if (data[i].plex_key.startsWith('P')) {
+        tmp += '(PLEX 프로그램⭕ 에피소드❌) '
+        data[i].plex_key = data[i].plex_key.substring(1)
+      } else if (data[i].plex_key.startsWith('E')) {
+        tmp += '(PLEX 프로그램⭕ 에피소드⭕) '
+        data[i].plex_key = data[i].plex_key.substring(1)
+      }
+    } else {
+      tmp += '(PLEX 프로그램❌) '
+    }
+    if (data[i].download_status == 'True_by_plex_in_lib_multi_epi') {
+      tmp += '에피소드 멀티파일'
+    } else if (data[i].download_status == 'False_by_plex_in_one_epi') {
+      tmp += '에피소드 이미 있음'
+    } else if (data[i].download_status == 'True_by_plex_in_lib_no_epi') {
+      tmp += '에피소드 없음'
+    } else if (data[i].download_status == 'True_blacklist') {
+      tmp += '블랙리스트에 없음'
+    } else if (data[i].download_status == 'False_whitelist') {
+      tmp += '화이트리스트에 없음'
+    } else if (data[i].download_status == 'False_except_program') {
+      tmp += '블랙리스트 프로그램'
+    } else if (data[i].download_status == 'True_whitelist_program') {
+      tmp += '화이트리스트'
+    } else if (data[i].download_status == 'True_whitelist_first_epi') {
+      tmp += '첫번째 에피소드'
+    } else if (data[i].download_status == 'False_no_meta') {
+      tmp += 'Daum 검색 실패'
+    } else if (data[i].download_status == 'False_except_genre') {
+      tmp += '블랙리스트 장르'
+    } else if (data[i].download_status == 'True_whitelist_genre') {
+      tmp += '화이트리스트 장르'
+    } else if (data[i].download_status == 'False_not_allow_duplicate_episode') {
+      tmp += '중복 제외'
+    } else if (data[i].download_status == 'False_exist_download_quality') {
+      tmp += '동일 화질 받음'
+    } else if (data[i].download_status == 'False_not_match_condition_quality') {
+      tmp += '화질 조건 불일치'
+    } else if (data[i].download_status == 'False_not_match_condition_include_keyword') {
+      tmp += '단어 포함 조건'
+    } else if (data[i].download_status == 'False_match_condition_except_keyword') {
+      tmp += '단어 제외 조건'
+    } else {
+      tmp += data[i].download_status
+    }
+    tmp += manual
+
+    if (data[i].daum_title != null) {
+      tmp += '<br><b>방송 : </b>' + '<a href="https://search.daum.net/search?w=tv&q='+data[i].daum_title+'&irk='+data[i].daum_id+'&irt=tv-program&DA=TVP">'+ data[i].daum_title + '</a>' + '(' + data[i].daum_genre + ')'
+      if (data[i].filename_number != -1) {
+        tmp += ', ' + data[i].filename_number + '회'
+      }
+      tmp += ', ' + data[i].filename_date
+    } else {
+      tmp += '<br><b>방송 : </b>검색 실패'
+    }
+    
+    tmp += '<br><b>파일 : </b>' + data[i].filename
+
+    tmp += '<br><b>마그넷 : </b>' + '<a href="' + data[i].magnet + '" target="_blank">' + data[i].magnet + '</a>'
+    tmp += '<br><b>파일처리 후 파일명 : </b>' + ((data[i].filename_rule == data[i].filename) ? '동일' : data[i].filename_rule);
+    if ( data[i].log != '') {
+      tmp += '<br><b>로그</b><br><pre>'+ data[i].log + '</pre>'
+    }
+    right += m_col(6, tmp);
+
+
+    tmp = ''
+    if (data[i].downloader_item != null) {
+      if (data[i].downloader_item.status=='completed') status = '완료';
+      else if (data[i].downloader_item.status=='downloading') status = '다운로드중';
+      else if (data[i].downloader_item.status=='request') status = '요청';
+      else if (data[i].downloader_item.status=='download pending') status = '대기';
+      else status = data[i].downloader_item.status
+      tmp += '<br><b>다운로드 상태 : </b>' + status
+      tmp += '<br><b>다운로드 경로 : </b>' + data[i].downloader_item.download_path
+    }
+    right += m_col(3, tmp);
+    tmp = data[i].created_time + ' (텔레그램 수신)'
+    if (data[i].download_check_time != null) {
+      tmp += '<br>' + data[i].download_check_time + ' (다운여부 판단)'
+    } 
+    if (data[i].downloader_item != null) {
+      tmp += '<br>' + data[i].downloader_item.created_time + ' (다운로드 요청)'
+      if (data[i].downloader_item.completed_time != '') {
+        tmp += '<br>' + data[i].downloader_item.completed_time + ' (다운로드 완료)' 
+        tmp += '<br>' + data[i].downloader_item.timedelta + ' (다운로드 시간)'
+      }
+    } 
+    right += m_col(3, tmp);
+    right += m_row_end();
+    right += m_row_start();
+    
+    tmp = ''
+    if (data[i].plex_key != null)
+      tmp += m_button('global_link_btn', 'Open PLEX', [{'key':'url', 'value':'https://app.plex.tv/desktop#!/server/' + current_data.plex_server_hash + '/details?key=' + data[i].plex_key}]);
+    tmp += m_button('json_btn', 'JSON', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('self_search_btn', '목록 검색', [{'key':'id', 'value':data[i].daum_title}]);
+    tmp += m_button('plex_refresh_btn', 'PLEX 정보 새로고침', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('remove_btn', '삭제', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'id', 'value':data[i].id}]);
+    tmp2 = m_button_group(tmp)
+
+    tmp = m_button('except_program_btn', '제외프로그램 추가', [{'key':'id', 'value':data[i].daum_title}]);
+    tmp += m_button('whitelist_program_btn', '포함프로그램 추가', [{'key':'id', 'value':data[i].daum_title}]);
+    
+    
+    tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].magnet}]);
+    tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬', [{'key':'hash', 'value':data[i].magnet}]);
+    if (is_torrent_info_installed) {
+      tmp += m_button('torrent_info_btn', 'Torrent Info', [{'key':'hash', 'value':data[i].magnet}]);
+    }
+
+    tmp2 += m_button_group(tmp)
+    right += m_col(12, tmp2)
+
+    right += m_row_end();
+
+    str += m_col(10, right)
+
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+$("body").on('click', '#torrent_info_btn', function(e) {
+  e.preventDefault();
+  hash = $(this).data('hash');
+  $.ajax({
+    url: '/'+package_name+'/ajax/torrent_info',
+    type: "POST", 
+    cache: false,
+    data: {hash:hash},
+    dataType: "json",
+    success: function (data) {
+      m_modal(data, "토렌트 정보")
+    }
+  });
+});
+
+</script>    
+{% endblock %}

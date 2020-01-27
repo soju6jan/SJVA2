@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+<div>
+  {{ macros.m_button_group([['global_setting_save_btn', '설정 저장']])}}
+  {{ macros.m_row_start('5') }}
+  {{ macros.m_row_end() }}
+  <nav>  
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head2('normal', '일반', true) }}
+      {{ macros.m_tab_head2('condition', '다운로드 조건', false) }}
+      {{ macros.m_tab_head2('action', '기타', false) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+    <form id='setting' name='setting'>  
+    <div class="tab-content" id="nav-tabContent">
+
+      {{ macros.m_tab_content_start('normal', true) }}
+        {{ macros.setting_global_scheduler_button(arg['scheduler'], arg['is_running']) }}
+        
+        {{ macros.setting_input_int('interval', '스케쥴링 실행 주기', value=arg['interval'], min='1', placeholder='10', desc='minute 단위') }}
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 사용 설정합니다.') }}
+      
+        {{ macros.setting_radio('telegram_invoke_action', '텔레그램 수신시', ['실행하지 않음', '스케쥴링 중에만 실행', '스케쥴링 상태가 아니더라도 실행']) }}
+        {{ macros.setting_input_int('delay_time', '판단 지연 시간', value=arg['delay_time'], min='1', placeholder='10', desc=['설정된 시간만큼 다운로드 여부 판단을 지연합니다.', 'VOD 기능을 같이 사용하는 분들을 위한 기능으로 동일 에피소드가 VOD보다 토렌트가 먼저 배포될 경우 토렌트를 받지 않고자 할때 사용합니다.', '0 : 위 텔레그램 수신시 설정한 옵션에 따라 바로 실행됩니다.', '그외 : 수신된 시간 + 설정시간 < 현재시간 인 경우 다운여부 판단', 'minute 단위' ]) }}
+
+        {{ macros.setting_radio('torrent_program', '토렌트 프로그램', ['Transmission', 'DownloadStation'], value=arg['torrent_program']) }}
+        {{ macros.setting_input_text('path', '다운로드 경로', value=arg['path'], desc='토렌트 프로그램에 맞는 경로를 입력해야 합니다.') }}
+        {{ macros.setting_checkbox('receive_info_send_telegram', '정보 수신시 텔레그램', value=arg['receive_info_send_telegram'], desc=['On: 토렌트 정보 수신한 내용을 텔레그램으로 발송합니다.']) }}
+        {{ macros.setting_checkbox('download_start_send_telegram', '다운 시작시 텔레그램', value=arg['download_start_send_telegram'], desc=['On: 조건에 의해 다운로드가 시작되면 텔레그램으로 알려줍니다.']) }}
+      {{ macros.m_tab_content_end() }}
+
+      {{ macros.m_tab_content_start('condition', false) }}
+        {{ macros.setting_checkbox('use_plex_data', 'Plex 연동', value=arg['use_plex_data'], desc=['On : Plex와 연동하여 다운여부를 판단합니다.', '1. 라이브러리에 있는 방송. 다운로드 모드와 무관', ' - 비어 있는 에피소드 : 자동 다운로드', ' - 이미 있는 에피소드 : 다운로드 안함', '2. 라이브러리에 없는 방송 : 다운로드 모드의 설정에 따라 결정']) }}
+        <div id="use_plex_data_div" class="collapse">
+          {{ macros.setting_checkbox('one_episode_multifile', '에피소드 파일 중복 허용', value=arg['one_episode_multifile'], desc='On : 이미 에피소드 파일이 있더라도 다시 받습니다.') }}
+        </div>
+        {{ macros.setting_radio('download_mode', '다운로드 모드', ['블랙리스트', '화이트리스트'], value=arg['download_mode']) }}
+        <div id="blacklist_div" class="collapse">
+          {{ macros.setting_input_text('except_genre', '제외 장르', value=arg['except_genre'], desc=['지정한 장르는 다운로드 하지 않습니다. 빈칸인 경우 모두 다운로드', '구분자 |']) }}
+          {{ macros.setting_input_textarea('except_program', '제외 프로그램', value=arg['except_program'], desc=['이 곳에 있는 항목이 프로그램에 이름에 포함되어 있으면 다운로드 하지 않습니다.', '구분자 |']) }}
+        </div>
+        <div id="whitelist_div" class="collapse">
+          {{ macros.setting_input_text('whitelist_genre', '포함 장르', value=arg['whitelist_genre'], desc=['지정한 장르는 모두 다운로드합니다. 빈칸인 경우 모두 다운로드. 구분자 |']) }}
+          {{ macros.setting_input_textarea('whitelist_program', '포함 프로그램', value=arg['whitelist_program'], desc=['이 곳에 있는 항목이 프로그램에 이름에 포함되어 있으면 다운로드합니다. 구분자 |']) }}
+          {{ macros.setting_checkbox('whitelist_first_episode_download', '첫회 받기', value=arg['whitelist_first_episode_download'], desc='On : 포함 프로그램에 방송이 없어도 첫 에피소드를 다운로드합니다.') }}
+        </div>
+        {{ macros.m_hr() }}
+        {{ macros.info_text('', '2단계', value='위의 조건에 의해 다운로드 받기로 한 파일에 대한 세부 조건') }}
+        {{ macros.setting_radio('condition_duplicate_download', '동일 에피소드 다운로드', ['Off', 'On', '화질 향상시'], value=arg['condition_duplicate_download'], desc=['이미 다운로드한 에피소드와 동일한 에피소드 정보 수신시 행동에 대한 조건입니다.']) }}
+
+        {{ macros.setting_input_text('condition_quality', '화질', value=arg['condition_quality'], desc=['다운받을 화질 목록입니다(p제외). 구분자 | ', '빈칸인 경우 검사하지 않습니다.']) }}
+        {{ macros.setting_input_text('condition_include_keyword', '단어 포함', value=arg['condition_include_keyword'], desc=['이 단어 중 하나라도 포함되어 있다면 다운로드합니다. 릴리즈명에 대한 옵션입니다. 구분자 |', '빈칸인 경우 검사하지 않습니다.']) }}
+        {{ macros.setting_input_text('condition_except_keyword', '단어 제외', value=arg['condition_except_keyword'], desc=['이 단어 중 하나라도 포함되어 있다면 다운로드 하지 않습니다. 릴리즈명에 대한 옵션입니다. 구분자 |', '빈칸인 경우 검사하지 않습니다.']) }}
+        {{ macros.setting_checkbox('use_wait_1080', '1080p가 아닌 경우 대기', value=arg['use_wait_1080'], desc=['On : 조건에 의해 다운받기로 결정되었지만 화질이 1080p가 아닌 경우 판단을 지연합니다.']) }}
+        <div id="use_wait_1080_div" class="collapse">
+          {{ macros.setting_input_int('use_wait_1080_time', '판단 지연 시간', value=arg['use_wait_1080_time'], desc=['이 시간 후에는 화질에 상관없이 조건에 맞으면 다운로드를 시작합니다.', 'minute 단위']) }}
+        </div>
+
+      {{ macros.m_tab_content_end() }}
+      {{ macros.m_tab_content_start('action', false) }}
+        {{ macros.setting_button([['global_one_execute_btn', '1회 실행']], left='1회 실행' ) }}
+        {{ macros.setting_button([['global_reset_db_btn', '목록 전체 지우기']], left='DB정리' ) }}
+        {{ macros.info_text_and_buttons('last_id', '마지막 ID', [['reset_last_index_btn', 'ID 초기화']], value='마지막 ID : ' + arg['last_id'], desc=['DB에 저장된 Index를 지웁니다', '최초 시작처럼 7일 이내 데이터를 모두 처리합니다.']) }}
+      {{ macros.m_tab_content_end() }}  
+    </div><!--tab-content-->
+    </form>
+  </div><!--전체-->
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name'] }}";
+var current_data = null;
+var download_mode = "{{arg['download_mode']}}";
+var telegram_invoke_action = "{{arg['telegram_invoke_action']}}"
+$(document).ready(function(){
+  // 로딩
+  set_download_mode(download_mode);
+  use_collapse("use_plex_data");
+  use_collapse("use_wait_1080");
+  set_telegram_action_radio(telegram_invoke_action);
+});
+
+
+$('input[type=radio][name=download_mode]').change(function() {
+  set_download_mode(this.value);
+});
+
+$('#use_plex_data').change(function() {
+  use_collapse('use_plex_data');
+});
+
+$('#use_wait_1080').change(function() {
+  use_collapse('use_wait_1080');
+});
+
+
+function set_download_mode(type) {
+  $('input[name=download_mode]')[parseInt(type)].checked = true;
+
+  if ( type == '0') {
+    $('#blacklist_div').collapse('show')
+    $('#whitelist_div').collapse('hide')
+  } else {
+    $('#blacklist_div').collapse('hide')
+    $('#whitelist_div').collapse('show')
+  }
+}
+
+
+$("#reset_last_index_btn").click(function(e) {
+//$("body").on('click', '#one_execute_btn', function(e){
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/reset_last_index',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (ret) {
+      if (ret) {
+        $.notify('<strong>초기화 하였습니다.</strong>', {
+          type: 'success'
+        });
+        
+      } else {
+        $.notify('<strong>작업 시작에 실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+
+$('input[type=radio][name=telegram_invoke_action]').change(function() {
+  set_telegram_action_radio(this.value);
+});
+
+function set_telegram_action_radio(type) {
+  $('input[name=telegram_invoke_action]')[parseInt(type)].checked = true;
+}
+
+
+
+</script>    
+{% endblock %}
