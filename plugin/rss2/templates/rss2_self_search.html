@@ -213,7 +213,7 @@ function make_list_html(data) {
         tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].magnet[j]}]);
         tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].magnet[j]}]);
         if (is_torrent_info_installed) {
-          tmp += m_button('torrent_info_btn', '토렌트 정보 요청', [{'key':'hash', 'value':data[i].magnet[j]}]);
+          tmp += m_button('torrent_info_btn', 'Torrent Info', [{'key':'hash', 'value':data[i].magnet[j]}]);
         }
         //console.log(data[i].torrent_info)
         if (data[i].torrent_info != null) {
