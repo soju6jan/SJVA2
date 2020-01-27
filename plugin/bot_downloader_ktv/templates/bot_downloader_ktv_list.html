@@ -261,7 +261,9 @@ function make_list(data) {
         data[i].plex_key = data[i].plex_key.substring(1)
       }
     } else {
-      tmp += '(PLEX 프로그램❌) '
+      if (data[i].download_status != '') {
+        tmp += '(PLEX 프로그램❌) '
+      }
     }
     if (data[i].download_status == 'True_by_plex_in_lib_multi_epi') {
       tmp += '에피소드 멀티파일'
@@ -314,7 +316,7 @@ function make_list(data) {
 
     tmp += '<br><b>마그넷 : </b>' + '<a href="' + data[i].magnet + '" target="_blank">' + data[i].magnet + '</a>'
     tmp += '<br><b>파일처리 후 파일명 : </b>' + ((data[i].filename_rule == data[i].filename) ? '동일' : data[i].filename_rule);
-    if ( data[i].log != '') {
+    if ( data[i].log != '' && data[i].log != null) {
       tmp += '<br><b>로그</b><br><pre>'+ data[i].log + '</pre>'
     }
     right += m_col(6, tmp);
