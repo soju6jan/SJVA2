@@ -14,6 +14,9 @@ fi
 COUNT=0
 while [ 1 ];
 do
+    if [ -f "./git/index.lock" ]; then
+        rm -f ./git/index.lock
+    fi
     git reset --hard HEAD
     git pull
     chmod 777 .
