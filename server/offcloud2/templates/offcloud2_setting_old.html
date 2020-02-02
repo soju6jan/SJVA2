@@ -1,0 +1,629 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <nav> 
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', false) }}
+      {{ macros.m_tab_head('작업', true) }}
+    {{ macros.m_tab_head_end() }} 
+  </nav>  
+  <div class="tab-content" id="nav-tabContent">
+     <!-- 일반 -->
+     {{ macros.m_tab_content_start('일반', false) }}
+      {{ macros.setting_scheduler_button(arg['is_include'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_input_int('interval', '스케쥴링 실행 주기', value=arg['interval'], min='1', placeholder='10', desc='minute 단위') }}
+    
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        {{ macros.setting_input_text_and_buttons('apikey', 'API Key', [['apikey_btn', '확인']], value=arg['apikey'], desc='https://offcloud.com/#/account') }}
+        {{ macros.setting_input_int('web_page_size', '웹 페이지당 게시물 수', value=arg['web_page_size'], min='1', placeholder='30') }}
+        {{ macros.setting_button([['setting_save', '저장']]) }}
+      </form>
+    {{ macros.m_tab_content_end() }}
+
+    <!-- 작업 -->
+    {{ macros.m_tab_content_start('작업', true) }}
+      {{ macros.m_row_start() }}  
+      {{ macros.m_button('add_job_btn', '작업 추가') }}
+      {{ macros.m_row_end() }}  
+
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1, macros.m_strong('ID')) }}
+      {{ macros.m_col(5, macros.m_strong('RSS Info')) }}
+      {{ macros.m_col(5, macros.m_strong('Offcloud Info')) }}
+      {{ macros.m_col(1, macros.m_strong('Action')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+      <div id="job_list_div"></div>
+    {{ macros.m_tab_content_end() }}
+
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+<!-- Modal -->
+{{ macros.m_modal_start('job_modal', '작업 추가', 'modal-lg') }}
+  <form id="job_form">
+  {{ macros.setting_top('RSS URL') }}
+    <div class="input-group col-sm-9">
+      <input id="job_rss_url" name="job_rss_url" type="text" class="form-control form-control-sm" placeholder="" >
+      <span class='text-left' style="padding-left:10px; padding-top:0px">
+        <button id="job_test_rss_btn" class="btn btn-sm btn-outline-success">링크</button>
+      </span>
+    </div>
+  {{ macros.setting_bottom() }}
+
+  {{ macros.setting_input_int('job_interval', 'RSS 갱신 주기', min='1', placeholder='10', desc='minute 단위', value='10') }}
+
+  {{ macros.setting_checkbox('job_auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+
+  {{ macros.setting_input_text('job_include_keyword', '포함 검색어', desc=['검색어가 포함되어 있으면 다운로드 합니다.', '값이 없으면 전체 목록을 다운로드 합니다.', ',으로 구분하며 각 검색어는 OR 조건으로 동작합니다.'], placeholder='예) 720p, 1080p, NEXT') }}
+
+  {{ macros.setting_input_text('job_exclude_keyword', '제외 검색어', desc=['검색어가 포함되어 있으면 다운로드 하지 않습니다.', ',으로 구분'], placeholder='예) 360p, 뉴스') }}
+
+  {{ macros.setting_checkbox('job_use_daum', 'Daum 검색 사용', desc='국내 TV 영상인 경우에만 사용') }}
+  
+  {{ macros.setting_checkbox('job_except_if_not_exist_in_daum', '미검색시 다운로드 제외') }}
+
+  {{ macros.setting_input_text('job_include_genre', '포함 장르', placeholder='예) 드라마, 예능', desc=['일치하는 장르만 다운 받습니다.', '값이 없으면 전체 장르를 다운로드 합니다']) }}
+
+  {{ macros.setting_input_text('job_exclude_genre', '제외 장르', placeholder='예) 중국드라마') }}
+  <hr>
+  {{ macros.setting_input_text('job_account', 'Account', col='4', desc=['Offcloud Remote accounts의 Username']) }}
+  
+  {{ macros.setting_input_text('job_default_folderid', '기본 Folder ID') }}
+  
+  {{ macros.setting_top('Folder ID 목록') }}
+  <div class="input-group col-sm-9">
+    <div class="row col-sm-12" class="padding-left:10px">
+      <button id="job_add_keyword_folderid_btn" class="btn btn-sm btn-outline-success">+</button>
+    </div>
+    <div class="row col-sm-12 form-inline">
+        <div class="col-sm-5" style="text-align:left;padding:0px;">키워드</div>
+        <div class="col-sm-5" style="text-align:left;padding:0px;">FolderID</div>
+    </div>
+    <div id="reset_div">
+      <div id="add_child_folderid_div">
+      </div>
+    </div>
+  </div>
+  {{ macros.setting_bottom(desc='키워드 포함시 저장될 Folder ID') }}
+  </form>
+{{ macros.m_modal_end() }}
+
+
+
+
+
+<script type="text/javascript">
+var package_name = 'offcloud';
+var current_data;
+var current_group_id;
+
+function add_child_folderid_div(i) {
+  str = ' \
+  <div id="div_job_child_'+i+'" data-id="'+i+'"> \
+    <div class="row col-sm-12 form-inline"> \
+      <div class="col-sm-5" style="text-align:left;padding:0px;"> \
+        <input id="job_child_keyword_'+i+'" name="job_child_keyword_'+i+'" type="text" class="form-control form-control-sm w-100" placeholder="">  \
+      </div> \
+      <div class="col-sm-5" style="text-align:left;padding:0px;"> \
+        <input id="job_child_folderid_'+i+'" name="job_child_folderid_'+i+'" type="text" class="form-control form-control-sm w-100" placeholder=""> \
+      </div> \
+      <div class="col-sm-2" style="text-align:left;padding:0px;"> \
+        <button id="remove_job_child_btn" class="btn btn-sm btn-outline-success" data-id="'+i+'">삭제</button> \
+      </div> \
+    </div> \
+  </div> \
+  <div id="add_child_folderid_div"></div> \
+  ';
+  //document.getElementById("add_child_folderid_div").innerHTML += str;
+  document.getElementById("add_child_folderid_div").outerHTML = str;
+}
+
+
+$(document).ready(function(){
+  $.ajax({
+    url: '/' + package_name + '/ajax/job_list',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      document.getElementById("modal_title").innerHTML = "JSON";
+      document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+      $("#large_modal").modal();
+      make_job_list(data.jobs);
+    }
+  });
+
+
+  $("body").on('click', '#apikey_btn', function(e){
+    e.preventDefault();
+    apikey = document.getElementById("apikey").value;
+    if (apikey == '') {
+      $.notify('<strong>APIKEY를 입력하세요</strong>', {
+        type: 'warning'
+      });
+      return;
+    }
+    $.ajax({
+        url: '/offcloud/ajax/apikey',
+        type: "POST", 
+        cache: false,
+        data:{apikey:apikey},
+        dataType: "json",
+        success: function (data) {
+          document.getElementById("modal_title").innerHTML = "JSON";
+          document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+          $("#large_modal").modal();
+        }
+      });
+  });
+
+  //설정 저장
+  $("#setting_save").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  // 스케쥴링 on / off
+  $('#scheduler').change(function() {
+    var ret = $(this).prop('checked');
+    $.ajax({
+      url: '/' + package_name + '/ajax/scheduler',
+      type: "POST", 
+      cache: false,
+      data: { scheduler : ret},
+      dataType: "json",
+      success: function (list) {
+      }
+    });
+  });
+
+  // 작업추가 버튼
+  $("body").on('click', '#add_job_btn', function(e){
+    e.preventDefault();
+    document.getElementById("reset_div").innerHTML = '<div id="add_child_folderid_div"></div>';
+    $("#job_modal").modal();
+  });
+
+  // 키워드별 폴더 추가버튼
+  $("body").on('click', '#job_add_keyword_folderid_btn', function(e){
+    e.preventDefault();
+    var tags = $('div[id^="div_job_child_"]');
+
+    if (tags.length == 0) {
+      add_child_folderid_div(0)
+    } else {
+      lastid = $(tags[tags.length-1]).data('id');
+      console.log(lastid)
+      add_child_folderid_div ( parseInt(lastid) + 1);
+    }
+  });
+
+  // 키워드별 폴더 항목별 삭제버튼
+  $("body").on('click', '#remove_job_child_btn', function(e){
+    e.preventDefault();
+    id = $(this).data('id');
+    document.getElementById("div_job_child_"+id).remove();
+  });
+
+  
+
+
+
+
+  // 잡 저장 버튼.. 추가일수도, 수정일수도..
+  $("#job_save_btn").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#job_form');
+    console.log(formData)
+    $.ajax({
+      url: '/offcloud/ajax/save_job',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (data) {
+        if (data.ret == 'success') {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+          $("#job_modal").modal('hide');
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+          //$("#job_modal").modal('hide');
+        }
+      }
+    });
+  });
+
+
+  
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ////////////////////////////////////////// 사이트 설정
+  // JSON 버튼
+  $("body").on('click', '#json_btn', function(e){
+    e.preventDefault();
+    site = $(this).data('site');
+    for( var i in current_data.site) {
+      if ( current_data.site[i].NAME == site) {
+        document.getElementById("modal_title").innerHTML = "JSON";
+        document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(current_data.site[i], null, 2) + "</pre>";
+        $("#large_modal").modal();
+      }
+    }
+  });
+
+  // 테스트 버튼
+  $("body").on('click', '#test_btn', function(e){
+    e.preventDefault();
+    site = $(this).data('site');
+    board_id = document.getElementById("board_id_"+site).value;
+    if (board_id == '') {
+      $.notify('<strong>게시판 ID를 입력하세요.</strong>', {
+        type: 'warning'
+      });
+    } else {
+      $.ajax({
+        url: '/rss/ajax/test',
+        type: "POST", 
+        cache: false,
+        data:{sitename:site, board_id:board_id},
+        dataType: "json",
+        success: function (data) {
+          document.getElementById("modal_title").innerHTML = "JSON";
+          document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+          $("#large_modal").modal();
+        }
+      });
+    }
+  });
+
+  ////////////////////////////////////////// 스케쥴링 설정
+  // 스케쥴 추가
+  $("#scheduler_add_btn").click(function(e) {
+    e.preventDefault();
+    var data = current_data.site;
+    str = '<select id="site_select" name="site_select" class="form-control form-control-sm" value="'+ data[0].NAME+'">';
+    for (var i in data) {
+      str += '<option value="'+ data[i].NAME +'">'+data[i].NAME+'</option>';
+    }
+    document.getElementById("site_list_option").innerHTML = str;            
+
+    $("#add_job_modal").modal();
+  });
+
+  
+  
+
+  // 스케쥴러 삭제 버튼
+  $("body").on('click', '#remove_scheduler_btn', function(e){
+    e.preventDefault();
+    db_id = $(this).data('id');
+    $.ajax({
+      url: '/rss/ajax/remove_scheduler',
+      type: "POST", 
+      cache: false,
+      data:{db_id:db_id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        if (data.ret == 'success') {
+          $.notify('<strong>삭제 하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+        make_scheduler_list(data.scheduler);
+        make_group_list(data.group);
+      }
+    });
+  });
+
+
+  ////////////////////////////////////////////// 그룹
+  $("#group_add_btn").click(function(e) {
+    e.preventDefault();
+    $("#add_group_modal").modal();
+  });
+
+  $("#add_group_save_btn").click(function(e) {
+    e.preventDefault();
+    groupname = document.getElementById("add_group_text").value;
+    $.ajax({
+      url: '/rss/ajax/add_group',
+      type: "POST", 
+      cache: false,
+      data:{groupname:groupname},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        if (data.ret == 'success') {
+          $.notify('<strong>저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+          $("#add_group_modal").modal('hide');
+        } else if (data.ret == 'already_exist') {
+          $.notify('<strong>이미 존재합니다.</strong>', {
+	          type: 'warning'
+          });
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+          $("#add_group_modal").modal('hide');
+        }
+        make_group_list(data.group);
+      }
+    });
+  });
+
+  // 그룹 자식 추가 버튼
+  $("body").on('click', '#add_group_child_btn', function(e){
+    e.preventDefault();
+    var data = current_data.site;
+    current_group_id = $(this).data('id');
+    str = '<select id="site_select_on_group" name="site_select_on_group" class="form-control form-control-sm" value="'+ data[0].NAME+'">';
+    for (var i in data) {
+      str += '<option value="'+ data[i].NAME +'">'+data[i].NAME+'</option>';
+    }
+    document.getElementById("site_list_on_group_option").innerHTML = str;      //document.getElementById("site_select_on_group").value = current_data.site[0].NAME  
+    $('#site_select_on_group').trigger('change');
+    $("#add_group_child_modal").modal();
+  });
+
+  // 그룹 자식 추가 모달에서 그룹 변경 이벤트
+  $("body").on('change', '#site_select_on_group', function(e){
+  //$("#site_select").change(function(e){
+    e.preventDefault();
+    site = document.getElementById("site_select_on_group").value;
+    $("#board_select_on_group").empty();
+    str = '<select id="board_select_on_group" name="board_select_on_group" class="form-control form-control-sm">';
+    for(var i in current_data.info.board[site]) {
+      str += '<option value="' + current_data.info.board[site][i] + '">' + current_data.info.board[site][i] + '</option>';
+    }
+    str += '</select>';
+    document.getElementById("board_select_on_group_div").innerHTML = str;
+  });
+
+  $("#add_group_child_save_btn").click(function(e) {
+    e.preventDefault();
+    sitename = document.getElementById("site_select_on_group").value;
+    boardname = document.getElementById("board_select_on_group").value;
+    $.ajax({
+      url: '/rss/ajax/add_group_child',
+      type: "POST", 
+      cache: false,
+      data:{group_id:current_group_id, sitename:sitename, boardname:boardname},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        $("#add_group_child_modal").modal('hide');
+        if (data.ret == 'success') {
+          $.notify('<strong>저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else if (data.ret == 'already_exist') {
+          $.notify('<strong>이미 존재합니다.</strong>', {
+	          type: 'warning'
+          });
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+        make_group_list(data.group);
+      }
+    });
+  });
+
+  // 그룹 삭제 버튼
+  $("body").on('click', '#remove_group_btn', function(e){
+    e.preventDefault();
+    group_id = $(this).data('id');
+    $.ajax({
+      url: '/rss/ajax/remove_group',
+      type: "POST", 
+      cache: false,
+      data:{group_id:group_id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        if (data.ret == 'success') {
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else if (data.ret == 'not_exist') {
+          $.notify('<strong>존재하지 않습니다.</strong>', {
+	          type: 'warning'
+          });
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+        make_group_list(data.group);
+      }
+    });
+  });
+
+  // 그룹 자식 삭제 버튼
+  $("body").on('click', '#remove_group_child_btn', function(e){
+    e.preventDefault();
+    group_id = $(this).data('id');
+    child_id = $(this).data('child_id');
+    $.ajax({
+      url: '/rss/ajax/remove_group_child',
+      type: "POST", 
+      cache: false,
+      data:{group_id:group_id, child_id:child_id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data;
+        if (data.ret == 'success') {
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else if (data.ret == 'not_exist') {
+          $.notify('<strong>존재하지 않습니다.</strong>', {
+	          type: 'warning'
+          });
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+        make_group_list(data.group);
+      }
+    });
+  });
+  
+  ////////////////////////////////////////// 일반
+  //설정 저장
+  $("#setting_normal_save").click(function(e) {
+    e.preventDefault();
+    var formData = $('#setting_normal').serialize(); 
+    $.ajax({
+      url: '/rss/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+});
+
+
+function make_job_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    str += m_col(1, data[i].id);
+    if (data[i].name == '') {
+      tmp = 'ID : ' + data[i].id
+    } else {
+      tmp = data[i].name
+    }
+    str += m_col(1, tmp);
+    if (data[i].job_type == '0') {
+      tmp = '사용자'
+    } else {
+      tmp = '플러그인'
+    }
+    str += m_col(1, tmp);
+    str += m_col(1, data[i].command);
+
+    tmp = data[i].local_path + '<br>' + data[i].remote + ':' + data[i].remote_path
+    str += m_col(3, tmp);
+    
+    tmp = data[i].last_run_time + '<br>' + data[i].last_file_count + '개 파일'
+    str += m_col(2, tmp)
+    if (data[i].is_scheduling) {
+      tmp = '포함'
+    } else {
+      tmp = '미포함'
+    }
+    str += m_col(1, tmp)
+
+    tmp = m_button('job_execute_btn', '실행', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('job_setting_btn', '수정', [{'key':'id', 'value':data[i].id}]);
+    tmp = m_button_group(tmp)
+    str += m_col(2, tmp);
+    
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("job_list_div").innerHTML = str;
+}
+
+
+</script>    
+{% endblock %}
