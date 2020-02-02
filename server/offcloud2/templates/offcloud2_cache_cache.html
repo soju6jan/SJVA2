@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <form id="cache_setting">
+    {{ macros.setting_input_text_and_buttons('hash', 'Hash', [['cache_btn', '캐쉬여부 확인']], value='', desc='마그넷 or hash') }}
+    {{ macros.setting_input_text('remoteOptionId', 'RemoteOptionID', value=arg['default_remoteOptionId']) }}
+    {{ macros.setting_input_text('folder_id', 'FolderID', value=arg['default_folder_id']) }}
+    {{ macros.setting_button([['cache_download_btn', '다운로드 추가']]) }}
+  </form>
+</div>
+
+
+
+<script type="text/javascript">
+var package_name = 'offcloud';
+var current_data;
+
+
+$(document).ready(function(){
+  $("body").on('click', '#cache_btn', function(e){
+    e.preventDefault();
+    hash = document.getElementById("hash").value;
+    if (hash == '') {
+      $.notify('<strong>hash를 입력하세요</strong>', {
+        type: 'warning'
+      });
+      return;
+    }
+    $.ajax({
+      url: '/' + package_name + '/ajax/hash',
+      type: "POST", 
+      cache: false,
+      data:{hash:hash},
+      dataType: "json",
+      success: function (data) {
+        if (data == 'true') {
+          $.notify('<strong>캐쉬 되어 있습니다.</strong>', {
+            type: 'success'
+          });
+        } else if (data == 'false') {
+          $.notify('<strong>캐쉬 되어 있지 않습니다.</strong>', {
+            type: 'warning'
+          });
+        } else if (data == 'fail') {
+          $.notify('<strong>캐쉬 확인 실패</strong>', {
+            type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  $("body").on('click', '#cache_download_btn', function(e){
+    e.preventDefault();
+    var formData = get_formdata('#cache_setting');
+    $.ajax({
+        url: '/' + package_name + '/ajax/cache_download',
+        type: "POST", 
+        cache: false,
+        data:formData,
+        dataType: "json",
+        success: function (data) {
+          document.getElementById("modal_title").innerHTML = "JSON";
+          document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+          $("#large_modal").modal();
+        }
+      });
+  });
+
+
+  if ( "{{arg['magnet']}}" != "None" ) {
+    document.getElementById("hash").value = "{{arg['magnet']}}";
+    document.getElementById("cache_btn").click();
+  }
+});
+
+</script>    
+{% endblock %}

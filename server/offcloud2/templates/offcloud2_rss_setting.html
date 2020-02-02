@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <nav> 
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', false) }}
+      {{ macros.m_tab_head('작업', true) }}
+    {{ macros.m_tab_head_end() }} 
+  </nav>  
+  <div class="tab-content" id="nav-tabContent">
+     <!-- 일반 -->
+     {{ macros.m_tab_content_start('일반', false) }}
+      {{ macros.setting_scheduler_button(arg['is_include'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_input_int('interval', '스케쥴링 실행 주기', value=arg['interval'], min='1', placeholder='10', desc='minute 단위') }}
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        {{ macros.setting_input_text_and_buttons('apikey', 'API Key', [['apikey_btn', '확인']], value=arg['apikey'], desc='https://offcloud.com/#/account') }}
+        {{ macros.setting_input_int('web_page_size', '웹 페이지당 게시물 수', value=arg['web_page_size'], min='1', placeholder='30') }}
+        {{ macros.setting_input_text('default_remoteOptionId', 'Default RemoteOptionID', value=arg['default_remoteOptionId'],desc='Cache에서 다운로드 받을 계정') }}
+        {{ macros.setting_input_text('default_folder_id', 'Default FolderID', value=arg['default_folder_id'],desc='Default RemoteOptionID 계정의 폴더 ID') }}
+        {{ macros.setting_checkbox('request_http_start_link', 'http 링크 리모트 추가', value=arg['request_http_start_link'], desc=['On : 마그넷이 아닌 http로 시작하고 =.torrent 끝나지 않는 링크도 다운로드 요청합니다.', '링크가 토렌트 파일인 경우 =.torrent로 끝나도록 해야합니다.', '자막 파일을 같이 받을 경우 유용.']) }}
+
+        {{ macros.setting_button([['setting_save', '저장']]) }}
+      </form>
+      {{ macros.m_hr() }}
+      {{ macros.setting_button([['global_one_execute_btn', '1회 실행']], left='1회 실행' ) }}
+      {{ macros.setting_button([['global_reset_db_btn', '목록 전체 지우기']], left='DB정리' ) }}
+    {{ macros.m_tab_content_end() }}
+
+    <!-- 작업 -->
+    {{ macros.m_tab_content_start('작업', true) }}
+      {{ macros.m_row_start() }}  
+      {{ macros.m_button('add_job_btn', '작업 추가') }}
+      {{ macros.m_row_end() }}  
+
+      {{ macros.m_hr_head_top() }}
+      {{ macros.m_row_start('0') }}
+      {{ macros.m_col(1, macros.m_strong('ID')) }}
+      {{ macros.m_col(4, macros.m_strong('RSS')) }}
+      {{ macros.m_col(1, macros.m_strong('Interval')) }}
+      {{ macros.m_col(1, macros.m_strong('Account')) }}
+      {{ macros.m_col(4, macros.m_strong('Folder ID')) }}
+      {{ macros.m_col(1, macros.m_strong('Action')) }}
+      {{ macros.m_row_end() }}
+      {{ macros.m_hr_head_bottom() }}
+      <div id="job_list_div"></div>
+    {{ macros.m_tab_content_end() }}
+
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+<!-- Modal -->
+{{ macros.m_modal_start('job_modal', '작업 추가', 'modal-lg') }}
+  <form id="job_form">
+  <input type="hidden" id="job_id" name="job_id"/>
+  {{ macros.setting_input_text_and_buttons('job_rss_url', 'RSS URL', [['job_test_rss_btn', '링크']]) }}
+
+  {{ macros.setting_input_text('job_account', 'Account', col='4', desc=['Offcloud Remote accounts의 Username']) }}
+  
+  {{ macros.setting_input_text('job_default_folderid', '기본 Folder ID') }}
+  
+  {{ macros.setting_button([['job_save_btn', '저장'], ['job_remove_btn', '삭제']]) }}
+  </form>
+{{ macros.m_modal_end() }}
+
+
+
+
+
+<script type="text/javascript">
+var package_name = 'offcloud';
+var current_data;
+
+$(document).ready(function(){
+  $.ajax({
+    url: '/' + package_name + '/ajax/job_list',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_job_list(data.jobs);
+    }
+  });
+
+
+  $("body").on('click', '#apikey_btn', function(e){
+    e.preventDefault();
+    apikey = document.getElementById("apikey").value;
+    if (apikey == '') {
+      $.notify('<strong>APIKEY를 입력하세요</strong>', {
+        type: 'warning'
+      });
+      return;
+    }
+    $.ajax({
+        url: '/offcloud/ajax/apikey',
+        type: "POST", 
+        cache: false,
+        data:{apikey:apikey},
+        dataType: "json",
+        success: function (data) {
+          document.getElementById("modal_title").innerHTML = "JSON";
+          document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+          $("#large_modal").modal();
+        }
+      });
+  });
+
+  //설정 저장
+  $("#setting_save").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#setting');
+    $.ajax({
+      url: '/' + package_name + '/ajax/setting_save',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (ret) {
+        if (ret) {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+        } else {
+          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+        }
+      }
+    });
+  });
+
+  // 스케쥴링 on / off
+  $('#scheduler').change(function() {
+    var ret = $(this).prop('checked');
+    $.ajax({
+      url: '/' + package_name + '/ajax/scheduler',
+      type: "POST", 
+      cache: false,
+      data: { scheduler : ret},
+      dataType: "json",
+      success: function (list) {
+      }
+    });
+  });
+
+  // 작업추가 버튼
+  $("body").on('click', '#add_job_btn', function(e){
+    e.preventDefault();
+    document.getElementById("job_id").value = -1
+    document.getElementById("job_rss_url").value = ''
+    document.getElementById("job_account").value = ''
+    document.getElementById("job_default_folderid").value = ''
+    document.getElementById("job_remove_btn").disabled = true;
+    $("#job_modal").modal();
+  });
+
+  // 잡 저장 버튼.. 추가일수도, 수정일수도..
+  $("#job_save_btn").click(function(e) {
+    e.preventDefault();
+    var formData = get_formdata('#job_form');
+    $.ajax({
+      url: '/offcloud/ajax/save_job',
+      type: "POST", 
+      cache: false,
+      data: formData,
+      dataType: "json",
+      success: function (data) {
+        current_data = data
+        make_job_list(data.jobs)
+        if (data.ret == 'success') {
+          $.notify('<strong>설정을 저장하였습니다.</strong>', {
+	          type: 'success'
+          });
+          $("#job_modal").modal('hide');
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>실패하였습니다.</strong>', {
+	          type: 'warning'
+          });
+          //$("#job_modal").modal('hide');
+        }
+      }
+    });
+  });
+
+  // 잡 수정버튼
+  $("body").on('click', '#job_setting_btn', function(e){
+    e.preventDefault();
+    id = $(this).data('id')
+    for (i in current_data.jobs) {
+      if (id == current_data.jobs[i].id) {
+        document.getElementById("job_id").value = current_data.jobs[i].id;
+        document.getElementById("job_rss_url").value = current_data.jobs[i].rss_url;
+        document.getElementById("job_account").value = current_data.jobs[i].account;
+        document.getElementById("job_default_folderid").value = current_data.jobs[i].default_folderid;
+        document.getElementById("job_remove_btn").disabled = false;
+        break
+      }
+    }
+    $("#job_modal").modal();
+  });
+
+  // 잡 삭제 버튼
+  $("body").on('click', '#job_remove_btn', function(e){
+    e.preventDefault();
+    id = document.getElementById("job_id").value
+    $.ajax({
+      url: '/' + package_name + '/ajax/job_remove',
+      type: "POST", 
+      cache: false,
+      data: {id:id},
+      dataType: "json",
+      success: function (data) {
+        current_data = data
+        make_job_list(data.jobs)
+        if (data.ret == 'success') {
+          $.notify('<strong>삭제하였습니다.</strong>', {
+	          type: 'success'
+          });
+          $("#job_modal").modal('hide');
+        } else if (data.ret == 'fail') {
+          $.notify('<strong>삭제 실패</strong>', {
+	          type: 'warning'
+          });
+          //$("#job_modal").modal('hide');
+        }
+      }
+    });
+  });
+
+  // 잡 삭제 버튼
+  $("body").on('click', '#job_test_rss_btn', function(e){
+    e.preventDefault();
+    url = document.getElementById("job_rss_url").value
+    window.open(url, "_blank");
+  });
+});
+
+function make_job_list(data) {
+  str = ''
+  for (i in data) {
+    str += m_row_start();
+    str += m_col(1, data[i].id);
+
+    str += m_col(4, data[i].rss_url);
+    str += m_col(1, data[i].interval);
+    //str += m_col(1, data[i].auto_start);
+    str += m_col(1, data[i].account);
+    str += m_col(4, data[i].default_folderid);
+
+    tmp = m_button('job_setting_btn', '수정', [{'key':'id', 'value':data[i].id}]);
+    tmp = m_button_group(tmp)
+    str += m_col(1, tmp);
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("job_list_div").innerHTML = str;
+}
+
+
+</script>    
+{% endblock %}
