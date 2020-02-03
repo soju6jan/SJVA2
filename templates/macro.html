@@ -289,6 +289,16 @@
   {{ setting_bottom(desc) }}
 {% endmacro %}
 
+{% macro setting_select_empty(id, title, col='9', desc=None, value=None) %}
+  {{ setting_top(title) }}
+  <div class="input-group col-sm-{{col}}">
+    <select id="{{id}}" name="{{id}}" class="form-control form-control-sm">
+      <div id="{{id}}_div" name="{{id}}_div"></div>
+    </select>
+  </div>
+  {{ setting_bottom(desc) }}
+{% endmacro %}
+
 
 {% macro setting_input_textarea(id, left, value='', col='9', row='3', desc='', disabled=False) %}
   {{ setting_top(left) }}

@@ -4,70 +4,17 @@
   {{ macros.m_button_group([['global_setting_save_btn', '설정 저장']])}}
   {{ macros.m_row_start('5') }}
   {{ macros.m_row_end() }}
-  <nav> 
-    {{ macros.m_tab_head_start() }}
-      {{ macros.m_tab_head2('normal', '일반', false) }}
-      {{ macros.m_tab_head2('action', '기타', true) }}
-    {{ macros.m_tab_head_end() }} 
-  </nav>  
   <form id='setting' name='setting'>
-  <div class="tab-content" id="nav-tabContent">
-     <!-- 일반 -->
-     {{ macros.m_tab_content_start('normal', false) }}
-        {{ macros.setting_input_text('default_username', '기본 계정', value=arg['default_username'],desc='기본 다운로드 계정이름. 계정설정의 Username') }}
-        {{ macros.setting_input_text('default_folder_id', '기본 경로', value=arg['default_folder_id'],desc='기본 다운로드 경로.') }}
-        {{ macros.setting_checkbox('request_http_start_link', 'http 링크 리모트 추가', value=arg['request_http_start_link'], desc=['On : 마그넷이 아닌 http로 시작하고 =.torrent 끝나지 않는 링크도 다운로드 요청합니다.', '링크가 토렌트 파일인 경우 =.torrent로 끝나도록 해야합니다.', '자막 파일을 같이 받을 경우 유용.']) }}
-
-        
-      {{ macros.m_hr() }}
-      {{ macros.setting_button([['global_one_execute_btn', '1회 실행']], left='1회 실행' ) }}
-      {{ macros.setting_button([['global_reset_db_btn', '목록 전체 지우기']], left='DB정리' ) }}
-    {{ macros.m_tab_content_end() }}
-
-    {{ macros.m_tab_content_start('작업', true) }}
-      {{ macros.m_row_start() }}  
-      {{ macros.m_button('add_job_btn', '작업 추가') }}
-      {{ macros.m_row_end() }}  
-
-      {{ macros.m_hr_head_top() }}
-      {{ macros.m_row_start('0') }}
-      {{ macros.m_col(1, macros.m_strong('ID')) }}
-      {{ macros.m_col(4, macros.m_strong('RSS')) }}
-      {{ macros.m_col(1, macros.m_strong('Interval')) }}
-      {{ macros.m_col(1, macros.m_strong('Account')) }}
-      {{ macros.m_col(4, macros.m_strong('Folder ID')) }}
-      {{ macros.m_col(1, macros.m_strong('Action')) }}
-      {{ macros.m_row_end() }}
-      {{ macros.m_hr_head_bottom() }}
-      <div id="job_list_div"></div>
-    {{ macros.m_tab_content_end() }}
-
+  {{ macros.setting_select_empty('default_username', '기본 계정', desc='기본 다운로드 계정이름. 계정설정의 Username') }}
+  {{ macros.setting_input_text('default_folder_id', '기본 경로', value=arg['default_folder_id'],desc='기본 다운로드 경로.') }}
   </div><!--tab-content-->
-  </form>
 </div> <!--전체-->
 
 
-<!-- Modal -->
-{{ macros.m_modal_start('job_modal', '작업 추가', 'modal-lg') }}
-  <form id="job_form">
-  <input type="hidden" id="job_id" name="job_id"/>
-  {{ macros.setting_input_text_and_buttons('job_rss_url', 'RSS URL', [['job_test_rss_btn', '링크']]) }}
-
-  {{ macros.setting_input_text('job_account', 'Account', col='4', desc=['Offcloud Remote accounts의 Username']) }}
-  
-  {{ macros.setting_input_text('job_default_folderid', '기본 Folder ID') }}
-  
-  {{ macros.setting_button([['job_save_btn', '저장'], ['job_remove_btn', '삭제']]) }}
-  </form>
-{{ macros.m_modal_end() }}
-
-
-
-
-
 <script type="text/javascript">
-var package_name = 'offcloud';
+var package_name = "{{arg['package_name'] }}";
 var current_data;
+
 
 $(document).ready(function(){
   $.ajax({
