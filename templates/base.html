@@ -282,6 +282,19 @@ $('#global_scheduler').change(function() {
   });
 });
 
+$('#global_scheduler_sub').change(function() {
+  var ret = $(this).prop('checked');
+  $.ajax({
+    url: '/'+package_name+'/ajax/scheduler',
+    type: "POST", 
+    cache: false,
+    data: {scheduler : ret, sub:sub},
+    dataType: "json",
+    success: function (list) {
+    }
+  });
+});
+
 //설정 저장
 $("#global_setting_save_btn").click(function(e) {
   e.preventDefault();
@@ -333,6 +346,32 @@ $("#global_one_execute_btn").click(function(e) {
   });
 });
   
+$("#global_one_execute_sub_btn").click(function(e) {
+//$("body").on('click', '#one_execute_btn', function(e){
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/one_execute',
+    type: "POST", 
+    cache: false,
+    data: {sub:sub},
+    dataType: "json",
+    success: function (ret) {
+      if (ret=='scheduler' || ret=='thread') {
+        $.notify('<strong>작업을 시작하였습니다. ('+ret+')</strong>', {
+          type: 'success'
+        });
+      } else if (ret == 'is_running') {
+        $.notify('<strong>작업중입니다.</strong>', {
+          type: 'warning'
+        });
+      } else {
+        $.notify('<strong>작업 시작에 실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
   
 $("body").on('click', '#global_reset_db_btn', function(e){
   e.preventDefault();
@@ -349,6 +388,36 @@ function global_db_delete() {
     type: "POST", 
     cache: false,
     data: {},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>삭제에 실패하였습니다.</strong>',{
+          type: 'warning'
+        });
+      }
+    }
+  });
+}
+
+$("body").on('click', '#global_reset_db_sub_btn', function(e){
+  e.preventDefault();
+  document.getElementById("confirm_title").innerHTML = "DB 삭제";
+  document.getElementById("confirm_body").innerHTML = "전체 목록을 삭제 하시겠습니까?";
+  $('#confirm_button').attr('onclick', "global_db_delete_sub();");
+  $("#confirm_modal").modal();
+  return;
+});
+  
+function global_db_delete_sub() {
+  $.ajax({
+    url: '/' + package_name + '/ajax/reset_db',
+    type: "POST", 
+    cache: false,
+    data: {sub:sub},
     dataType: "json",
     success: function (data) {
       if (data) {

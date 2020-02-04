@@ -1,209 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-  {{ macros.m_button_group([['global_setting_save_btn', '설정 저장']])}}
-  {{ macros.m_row_start('5') }}
-  {{ macros.m_row_end() }}
   <form id='setting' name='setting'>
-  {{ macros.setting_select_empty('default_username', '기본 계정', desc='기본 다운로드 계정이름. 계정설정의 Username') }}
-  {{ macros.setting_input_text('default_folder_id', '기본 경로', value=arg['default_folder_id'],desc='기본 다운로드 경로.') }}
+  {{ macros.setting_select_empty('default_username', '기본 계정', desc='기본 다운로드 계정이름. 계정설정의 Username', col='6') }}
+  {{ macros.setting_input_text('default_folder_id', '기본 Folder ID', value=arg['default_folder_id'],desc='타플러그인에서 요청시 포함. 생략시 계정의 기본 값 사용') }}
+  {{ macros.setting_button([['global_setting_save_btn', '설정 저장']]) }}
+  </form>
   </div><!--tab-content-->
 </div> <!--전체-->
 
 
 <script type="text/javascript">
 var package_name = "{{arg['package_name'] }}";
+var default_username = "{{arg['default_username']}}"
 var current_data;
 
 
 $(document).ready(function(){
   $.ajax({
-    url: '/' + package_name + '/ajax/job_list',
+    url: '/' + package_name + '/ajax/accounts',
     type: "POST", 
     cache: false,
     data:{},
     dataType: "json",
     success: function (data) {
       current_data = data;
-      make_job_list(data.jobs);
+      make_select(data);
     }
-  });
-
-
-  $("body").on('click', '#apikey_btn', function(e){
-    e.preventDefault();
-    apikey = document.getElementById("apikey").value;
-    if (apikey == '') {
-      $.notify('<strong>APIKEY를 입력하세요</strong>', {
-        type: 'warning'
-      });
-      return;
-    }
-    $.ajax({
-        url: '/offcloud/ajax/apikey',
-        type: "POST", 
-        cache: false,
-        data:{apikey:apikey},
-        dataType: "json",
-        success: function (data) {
-          document.getElementById("modal_title").innerHTML = "JSON";
-          document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
-          $("#large_modal").modal();
-        }
-      });
-  });
-
-  //설정 저장
-  $("#setting_save").click(function(e) {
-    e.preventDefault();
-    var formData = get_formdata('#setting');
-    $.ajax({
-      url: '/' + package_name + '/ajax/setting_save',
-      type: "POST", 
-      cache: false,
-      data: formData,
-      dataType: "json",
-      success: function (ret) {
-        if (ret) {
-          $.notify('<strong>설정을 저장하였습니다.</strong>', {
-	          type: 'success'
-          });
-        } else {
-          $.notify('<strong>설정 저장에 실패하였습니다.</strong>', {
-	          type: 'warning'
-          });
-        }
-      }
-    });
-  });
-
-  // 스케쥴링 on / off
-  $('#scheduler').change(function() {
-    var ret = $(this).prop('checked');
-    $.ajax({
-      url: '/' + package_name + '/ajax/scheduler',
-      type: "POST", 
-      cache: false,
-      data: { scheduler : ret},
-      dataType: "json",
-      success: function (list) {
-      }
-    });
-  });
-
-  // 작업추가 버튼
-  $("body").on('click', '#add_job_btn', function(e){
-    e.preventDefault();
-    document.getElementById("job_id").value = -1
-    document.getElementById("job_rss_url").value = ''
-    document.getElementById("job_account").value = ''
-    document.getElementById("job_default_folderid").value = ''
-    document.getElementById("job_remove_btn").disabled = true;
-    $("#job_modal").modal();
-  });
-
-  // 잡 저장 버튼.. 추가일수도, 수정일수도..
-  $("#job_save_btn").click(function(e) {
-    e.preventDefault();
-    var formData = get_formdata('#job_form');
-    $.ajax({
-      url: '/offcloud/ajax/save_job',
-      type: "POST", 
-      cache: false,
-      data: formData,
-      dataType: "json",
-      success: function (data) {
-        current_data = data
-        make_job_list(data.jobs)
-        if (data.ret == 'success') {
-          $.notify('<strong>설정을 저장하였습니다.</strong>', {
-	          type: 'success'
-          });
-          $("#job_modal").modal('hide');
-        } else if (data.ret == 'fail') {
-          $.notify('<strong>실패하였습니다.</strong>', {
-	          type: 'warning'
-          });
-          //$("#job_modal").modal('hide');
-        }
-      }
-    });
-  });
-
-  // 잡 수정버튼
-  $("body").on('click', '#job_setting_btn', function(e){
-    e.preventDefault();
-    id = $(this).data('id')
-    for (i in current_data.jobs) {
-      if (id == current_data.jobs[i].id) {
-        document.getElementById("job_id").value = current_data.jobs[i].id;
-        document.getElementById("job_rss_url").value = current_data.jobs[i].rss_url;
-        document.getElementById("job_account").value = current_data.jobs[i].account;
-        document.getElementById("job_default_folderid").value = current_data.jobs[i].default_folderid;
-        document.getElementById("job_remove_btn").disabled = false;
-        break
-      }
-    }
-    $("#job_modal").modal();
-  });
-
-  // 잡 삭제 버튼
-  $("body").on('click', '#job_remove_btn', function(e){
-    e.preventDefault();
-    id = document.getElementById("job_id").value
-    $.ajax({
-      url: '/' + package_name + '/ajax/job_remove',
-      type: "POST", 
-      cache: false,
-      data: {id:id},
-      dataType: "json",
-      success: function (data) {
-        current_data = data
-        make_job_list(data.jobs)
-        if (data.ret == 'success') {
-          $.notify('<strong>삭제하였습니다.</strong>', {
-	          type: 'success'
-          });
-          $("#job_modal").modal('hide');
-        } else if (data.ret == 'fail') {
-          $.notify('<strong>삭제 실패</strong>', {
-	          type: 'warning'
-          });
-          //$("#job_modal").modal('hide');
-        }
-      }
-    });
-  });
-
-  // 잡 삭제 버튼
-  $("body").on('click', '#job_test_rss_btn', function(e){
-    e.preventDefault();
-    url = document.getElementById("job_rss_url").value
-    window.open(url, "_blank");
   });
 });
 
-function make_job_list(data) {
-  str = ''
-  for (i in data) {
-    str += m_row_start();
-    str += m_col(1, data[i].id);
 
-    str += m_col(4, data[i].rss_url);
-    str += m_col(1, data[i].interval);
-    //str += m_col(1, data[i].auto_start);
-    str += m_col(1, data[i].account);
-    str += m_col(4, data[i].default_folderid);
-
-    tmp = m_button('job_setting_btn', '수정', [{'key':'id', 'value':data[i].id}]);
-    tmp = m_button_group(tmp)
-    str += m_col(1, tmp);
-    str += m_row_end();
-    if (i != data.length -1) str += m_hr();
+function make_select(data) {
+  //console.log(data)
+  str = '<select id="default_username" name="default_username" class="form-control form-control-sm">';
+  str += '<option value="all">================</option>';
+  for(var i in data) {
+    if (data[i].username == default_username) {
+      str += '<option value="' + data[i].username + '" selected>' + data[i].username + '</option>';
+    } else {
+      str += '<option value="' + data[i].username + '">' + data[i].username + '</option>';
+    }
   }
-  document.getElementById("job_list_div").innerHTML = str;
+  str += '</select>'
+  document.getElementById("default_username_div").innerHTML = str;
 }
-
-
 </script>    
 {% endblock %}

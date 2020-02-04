@@ -292,9 +292,7 @@
 {% macro setting_select_empty(id, title, col='9', desc=None, value=None) %}
   {{ setting_top(title) }}
   <div class="input-group col-sm-{{col}}">
-    <select id="{{id}}" name="{{id}}" class="form-control form-control-sm">
-      <div id="{{id}}_div" name="{{id}}_div"></div>
-    </select>
+    <div id="{{id}}_div" name="{{id}}_div"></div>
   </div>
   {{ setting_bottom(desc) }}
 {% endmacro %}
@@ -367,7 +365,24 @@
 {{ setting_bottom(desc) }}
 {% endmacro %}
 
-
+{% macro setting_global_scheduler_sub_button(is_include, is_running, id='scheduler', left='스케쥴링 작동', desc=['On : 스케쥴링 시작','Off : 스케쥴링 중지']) %}
+{{ setting_top(left) }}
+<div class="input-group col-sm-3">
+  {% if is_include == 'True' %}
+  <input id="global_scheduler_sub" name="global_scheduler_sub" class="form-control form-control-sm" type="checkbox" data-toggle="toggle" checked>
+  {% else %}
+  <input id="global_scheduler_sub" name="global_scheduler_sub" class="form-control form-control-sm" type="checkbox" data-toggle="toggle">
+  {% endif %}
+  {% if is_running == 'True' %}
+    <span style="padding-left:10px; padding-top: 8px;">동작중</span>
+  {% else %}    
+    {% if is_include == 'True' %}
+      <span style="padding-left:10px; padding-top: 8px;">대기중</span>
+    {% endif %}  
+  {% endif %}    
+</div>
+{{ setting_bottom(desc) }}
+{% endmacro %}
 
 
 
