@@ -54,27 +54,11 @@ $(document).ready(function(){
 
 
 
-  // 작업추가 버튼
-$("body").on('click', '#add_job_btn', function(e){
-  e.preventDefault();
-  document.getElementById("job_id").value = -1
-  document.getElementById("job_rss_url").value = ''
-  document.getElementById("job_rss_url").value = ''
-  make_account_select('');
-  //document.getElementById("job_username").value = ''
-  document.getElementById("job_folderid").value = ''
-  document.getElementById("job_cache_confirm_day").value = 7
-  document.getElementById("job_remove_btn").disabled = true;
-  
-  $("#job_modal").modal();
-});
-
-
 function make_account_select(job_username) {
   data = current_data.accounts
-  //console.log(data)
+  //console.log(job_username)
   str = '<select id="job_username" name="job_username" class="form-control form-control-sm">';
-  str += '<option value="all">================</option>';
+  str += '<option value="">================</option>';
   for(var i in data) {
     if (data[i].username == job_username) {
       str += '<option value="' + data[i].username + '" selected>' + data[i].username + '</option>';
@@ -118,13 +102,13 @@ $("#job_save_btn").click(function(e) {
 function make_job_list(data) {
   str = ''
   for (i in data) {
-    console.log(data[i])
+    //console.log(data[i])
     str += m_row_start();
     str += m_col(1, data[i].id);
     str += m_col(2, data[i].created_time);
     str += m_col(1, data[i].name);
     str += m_col(2, data[i].rss_url);
-    str += m_col(1, data[i].usename);
+    str += m_col(1, data[i].username);
     str += m_col(2, data[i].folderid);
     tmp = '모드 : '
     if (data[i].mode == '0') {
@@ -148,39 +132,55 @@ function make_job_list(data) {
 }
 
 
+// 추가
+$("body").on('click', '#add_job_btn', function(e){
+  e.preventDefault();
+  document.getElementById("job_id").value = -1
+  document.getElementById("job_name").value = ''
+  document.getElementById("job_rss_url").value = ''
+  make_account_select('');
+  //document.getElementById("job_username").value = ''
+  document.getElementById("job_folderid").value = ''
+  document.getElementById("job_cache_confirm_day").value = 7
+  document.getElementById("job_remove_btn").disabled = true;
+  
+  $("#job_modal").modal();
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 잡 수정버튼
+// 수정
 $("body").on('click', '#job_setting_btn', function(e){
   e.preventDefault();
   id = $(this).data('id')
   for (i in current_data.jobs) {
     if (id == current_data.jobs[i].id) {
       document.getElementById("job_id").value = current_data.jobs[i].id;
+      document.getElementById("job_name").value = current_data.jobs[i].name;
       document.getElementById("job_rss_url").value = current_data.jobs[i].rss_url;
-      document.getElementById("job_account").value = current_data.jobs[i].account;
-      document.getElementById("job_default_folderid").value = current_data.jobs[i].default_folderid;
+      make_account_select(current_data.jobs[i].username);
+      document.getElementById("job_folderid").value = current_data.jobs[i].folderid;
+      document.getElementById("job_cache_confirm_day").value = current_data.jobs[i].cache_confirm_day;
       document.getElementById("job_remove_btn").disabled = false;
       break
     }
   }
   $("#job_modal").modal();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 잡 삭제 버튼
 $("body").on('click', '#job_remove_btn', function(e){
@@ -210,7 +210,7 @@ $("body").on('click', '#job_remove_btn', function(e){
   });
 });
 
-// 잡 삭제 버튼
+// 링크
 $("body").on('click', '#job_test_rss_btn', function(e){
   e.preventDefault();
   url = document.getElementById("job_rss_url").value

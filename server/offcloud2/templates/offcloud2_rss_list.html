@@ -1,22 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-
 <form id="form_search" class="form-inline" style="text-align:left">
   <div class="container-fluid">
     <div class="row show-grid">
-      <div class="col-md-12 form-inline">
-        <div class="col-md-12 form-inline " style="align-items:left; text-align:left;">
-          <div class="col-md-10" style="align-items:left; text-align:left;">
-            <input id="search_word" name="search_word" class="form-control form-control-sm w-100" type="text" placeholder="검색어" aria-label="Search">
-          </div>
-          <div class="col-md-2" style="align-items:left; text-align:left;">
-            <button id="search" class="btn btn-sm btn-outline-success">검색</button>
-          </div>
-        </div>
-      </div>
+      <span class="col-md-4">
+        <div id='job_select_div' class="form-inline"></div>
+        <select id="job_select" name="job_select" class="form-control form-control-sm">
+          <option value="all">전체</option>
+          {% for item in arg['jobs'] %}
+            <option value="{{ item.name }}">{{item.name}}</option>
+          {% endfor %}
+        </select>
+        <select id="option" name="option" class="form-control form-control-sm">
+          <option value="all">전체</option>
+          <option value="request_false">요청 전</option>
+          <option value="request">요청. 완료 제외</option>
+          <option value="completed">다운로드 완료</option>
+          <option value="expire">캐시 확인 기간 지남 (미요청)</option>
+          <option value="no_status">NO STATUS</option>
+        </select>
+      </span>
+      <span class="col-md-8">
+        <input id="search_word" name="search_word" class="form-control form-control-sm w-75" type="text" placeholder="" aria-label="Search">
+        <button id="search" class="btn btn-sm btn-outline-success">검색</button>
+        <button id="reset_btn" class="btn btn-sm btn-outline-success">리셋</button>
+        
+      </span>
     </div>
   </div>
 </form>
+
 <div id='page1'></div>
 
 {{ macros.m_hr_head_top() }}
@@ -31,13 +44,50 @@
 <div id='page2'></div>
 
 <script type="text/javascript">
-var package_name = 'offcloud';
+var package_name = "{{arg['package_name'] }}";
 var current_data = null;
 var is_available_normal_download = ("{{arg['is_available_normal_download']}}" == 'True')
 
+
 $(document).ready(function(){
-  request_search('1', true);
+  $.ajax({
+    url: '/' + package_name + '/ajax/rss_list',
+    type: "POST",
+    cache: false,
+    data: {load:true},
+    dataType: "json",
+    success: function (data) {
+      current_data = data;
+      make_list(data.list);
+      make_page_html(data.paging);
+      //make_form(data.jobs);
+    }
+  });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $("#search").click(function(e) {
   e.preventDefault();
@@ -93,7 +143,7 @@ function request_search(page, scroll) {
   var formData = get_formdata('#form_search')
   formData += '&page=' + page;
   $.ajax({
-    url: '/' + package_name + '/ajax/filelist',
+    url: '/' + package_name + '/ajax/rss_list',
     type: "POST", 
     cache: false,
     data: formData,
@@ -112,9 +162,10 @@ function request_search(page, scroll) {
 function make_list(data) {
   str = ''
   for (i in data) {
+    console.log(data[i])
     str += m_row_start();
 
-    tmp = data[i].id + '<br>' + data[i].job_id
+    tmp = data[i].id + '<br>' + data[i].job.name
     str += m_col(1, tmp);
 
     tmp = data[i].title + '<br>'
@@ -129,61 +180,55 @@ function make_list(data) {
     tmp2 = m_button_group(tmp2)
     str += m_col(4, tmp+tmp2);
 
-    tmp = data[i].created_time + '(피드생성)<br>' + data[i].remote_time + '(추가시간)'
+    tmp = data[i].created_time + '(피드생성)<br>'
+    if (data[i].remote_time != '') {
+      tmp += data[i].remote_time + '(추가시간)'
+      if (data[i].completed_time != '') {
+        tmp += data[i].completed_time + '(완료시간)'
+      }
+    }
     str += m_col(2, tmp);
 
     tmp = ''
     if (data[i].status !=0) {
-      tmp += m_row_start(padding="0");
-      tmp += m_col(3, '<strong>상태</strong>', align='right');
-      tmp += m_col(9, data[i].oc_status);
-      tmp += m_row_end();
+      if (data[i].oc_status != null && data[i].oc_status != '') {
+        tmp += m_row_start(padding="0");
+        tmp += m_col(3, '<strong>상태</strong>', align='right');
+        tmp += m_col(9, data[i].oc_status);
+        tmp += m_row_end();
+      }
 
       tmp += m_row_start(padding="0");
       tmp += m_col(3, '<strong>캐쉬여부</strong>', align='right');
-      tmp += m_col(9, data[i].oc_cached);
+      tmp += m_col(9, (data[i].oc_cached) ? "True" : '--');
       tmp += m_row_end();
 
-      tmp += m_row_start(padding="0");
-      tmp += m_col(3, '<strong>파일</strong>', align='right');
-      tmp += m_col(9, data[i].oc_fileName);
-      tmp += m_row_end();
+      if (data[i].oc_fileName != null) {
+        tmp += m_row_start(padding="0");
+        tmp += m_col(3, '<strong>파일</strong>', align='right');
+        tmp += m_col(9, (data[i].oc_fileName != null) ? data[i].oc_fileName : '--');
+        tmp += m_row_end();
+      }
 
-      tmp += m_row_start(padding="0");
-      tmp += m_col(3, '<strong>크기</strong>', align='right');
-      tmp += m_col(9, data[i].oc_fileSize);
-      tmp += m_row_end();
-
-      tmp += m_row_start(padding="0");
-      tmp += m_col(3, '<strong>JSON</strong>', align='right');
-      tmp += m_col(9, JSON.stringify(data[i].oc_json, null, 2));
-      tmp += m_row_end();
+      if (data[i].oc_fileSize != null) {
+        tmp += m_row_start(padding="0");
+        tmp += m_col(3, '<strong>크기</strong>', align='right');
+        tmp += m_col(9, (data[i].oc_fileSize != null) ? data[i].oc_fileSize : '--');
+        tmp += m_row_end();
+      }
+      if (data[i].oc_json != null) {
+        tmp += m_row_start(padding="0");
+        tmp += m_col(3, '<strong>JSON</strong>', align='right');
+        tmp += m_col(9, '<pre>' + JSON.stringify(data[i].oc_json, null, 2) + '</pre>');
+        tmp += m_row_end();
+      }
     }
     str += m_col(5, tmp);
-    /*
-    str += m_col(1, data[i].gdrive_name);
-    if (data[i].is_add) {
-      tmp = '추가(변경)'
-    } else {
-      tmp = '삭제'
-    }
-    str += m_col(1, tmp);
-    if (data[i].is_file) {
-      tmp = '파일'
-    } else {
-      tmp = '폴더'
-    }
-    str += m_col(1, tmp);
-    str += m_col(2, data[i].created_time);
-    str += m_col(2, data[i].scan_time);
-    str += m_col(4, data[i].name);
-    */
     str += m_row_end();
     if (i != data.length -1) str += m_hr();
   }
   document.getElementById("list_div").innerHTML = str;
 }
-
 
 </script>    
 {% endblock %}
