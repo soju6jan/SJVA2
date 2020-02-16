@@ -248,13 +248,13 @@ function make_list(data) {
       tmp2 =''
       if ( data[i].feed.files[j].magnet != '') {
         tmp2 += m_button('bot_file_add_download_btn', '다운로드 추가', [{'key':'id', 'value':data[i].id}, {'key':'bot_file_id', 'value':data[i].feed.files[j].id}]);
-        tmp2 += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].feed.files[j].magnet}]);
-        tmp2 += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].feed.files[j].magnet}]);
+        tmp2 += m_button('global_offcloud_add_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].feed.files[j].magnet}]);
+        tmp2 += m_button('global_offcloud_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].feed.files[j].magnet}]);
       } else {
         if (is_available_normal_download) {
           tmp2 += m_button('bot_file_add_download_btn', '다운로드 추가', [{'key':'id', 'value':data[i].id}, {'key':'bot_file_id', 'value':data[i].feed.files[j].id}]);
         }
-        tmp2 += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].feed.files[j].id}]);
+        tmp2 += m_button('global_offcloud_add_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].feed.files[j].id}]);
       }
       tmp += m_button_group(tmp2) + '<br>'
     }

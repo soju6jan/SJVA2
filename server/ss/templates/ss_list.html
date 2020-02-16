@@ -360,8 +360,8 @@ function make_list(data) {
     tmp += m_button('whitelist_program_btn', '포함프로그램 추가', [{'key':'id', 'value':data[i].daum_title}]);
     
     
-    tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].magnet}]);
-    tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬', [{'key':'hash', 'value':data[i].magnet}]);
+    tmp += m_button('global_offcloud_add_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].magnet}]);
+    tmp += m_button('global_offcloud_cache_confirm_btn', 'Offcloud 캐쉬', [{'key':'hash', 'value':data[i].magnet}]);
     if (is_torrent_info_installed) {
       tmp += m_button('torrent_info_btn', 'Torrent Info', [{'key':'hash', 'value':data[i].magnet}]);
     }

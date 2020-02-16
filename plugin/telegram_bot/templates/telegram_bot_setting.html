@@ -17,7 +17,6 @@
         <div id="process_rss_div" class="collapse">
         {{ macros.setting_input_text('process_rss_type', '수신 타입', value=arg['process_rss_type'], desc=['all인 경우 모두 받음. 구분자 ,', 'TV : drama, ent, dacu, etc', '영화 : movie', 'AV : av_censored, av_uncensored, av_west', '기타 : music, user' ]) }}
         </div>
-        {{ macros.setting_checkbox('process_offcloud', 'Offcloud 캐쉬 정보', value=arg['process_offcloud'], desc='On : Offcloud 캐쉬 데이터를 수신하여 저장') }}
         {{ macros.setting_checkbox('send_notify', '수신정보 알림', value=arg['send_notify'], desc='On : On 상태인 데이터가 수신될 때 알림.') }}
         {{ macros.setting_checkbox('disable_notification', '알람 Disable', value=arg['disable_notification'], desc='On : 알람 소리 없이 메시지를 수신합니다.') }}
         {{ macros.m_hr() }}

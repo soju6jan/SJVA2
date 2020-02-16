@@ -74,21 +74,6 @@ $("body").on('click', '#cache_test_btn', function(e) {
   window.open(url, "_self");
 });
 
-$("body").on('click', '#add_download_btn', function(e) {
-  e.preventDefault();
-  download_url = $(this).data('hash');
-  $.ajax({
-    url: '/downloader/ajax/add_download',
-    type: "POST", 
-    cache: false,
-    data: {download_url:download_url},
-    dataType: "json",
-    success: function (data) {
-      show_result_add_download(data);
-    }
-  });
-});
-
 function request_search(page, scroll) {
   var formData = get_formdata('#form_search')
   formData += '&page=' + page;
@@ -124,7 +109,7 @@ function make_list(data) {
       tmp2 += m_button('cache_test_btn', '캐쉬여부 확인', [{'key':'id', 'value':data[i].link}]);
     }
     if (data[i].link.startsWith('magnet') || is_available_normal_download) {
-      tmp2 += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].link}]);
+      tmp2 += m_button('global_downloader_add_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].link}]);
     }
     tmp2 = m_button_group(tmp2)
     str += m_col(4, tmp+tmp2);

@@ -224,12 +224,13 @@ $("body").on('click', '#global_link_btn', function(e) {
   window.open(url, "_blank");
 });
 
-  
-$("body").on('click', '#global_cache_confirm_btn', function(e){
+
+//  global_cache_confirm_btn => global_offcloud_cache_confirm_btn
+$("body").on('click', '#global_offcloud_cache_confirm_btn', function(e){
   e.preventDefault();
   hash = $(this).data('hash');
   $.ajax({
-    url: '/offcloud/ajax/hash',
+    url: '/offcloud2/ajax/hash',
     type: "POST", 
     cache: false,
     data:{hash:hash},
@@ -252,12 +253,13 @@ $("body").on('click', '#global_cache_confirm_btn', function(e){
   });
   //$(location).attr('href', '/offcloud/cache?magnet=' + hash)
 });
-  
-$("body").on('click', '#global_add_remote_btn', function(e) {
+
+//global_add_remote_btn -> global_offcloud_add_btn
+$("body").on('click', '#global_offcloud_add_btn', function(e) {
   e.preventDefault();
   hash = $(this).data('hash');
   $.ajax({
-    url: '/offcloud/ajax/cache_download_bot',
+    url: '/offcloud2/ajax/add_remote',
     type: "POST", 
     cache: false,
     data: {hash:hash},
@@ -267,7 +269,24 @@ $("body").on('click', '#global_add_remote_btn', function(e) {
     }
   });
 });
-  
+
+
+$("body").on('click', '#global_downloader_add_btn', function(e){
+  e.preventDefault();
+  download_url = $(this).data('hash');
+  $.ajax({
+    url: '/downloader/ajax/add_download',
+    type: "POST", 
+    cache: false,
+    data: {download_url:download_url},
+    dataType: "json",
+    success: function (data) {
+      show_result_add_download(data);
+    }
+  });
+});
+
+
 // 사용 on / off
 $('#global_scheduler').change(function() {
   var ret = $(this).prop('checked');
@@ -432,6 +451,9 @@ function global_db_delete_sub() {
     }
   });
 }
+
+
+
 
 
 

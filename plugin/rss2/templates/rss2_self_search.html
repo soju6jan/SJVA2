@@ -142,22 +142,6 @@ $("body").on('change', '#group_radio', function(e){
   }
 });
 
-$("body").on('click', '#add_download_btn', function(e) {
-  e.preventDefault();
-  download_url = $(this).data('hash');
-  $.ajax({
-    url: '/downloader/ajax/add_download',
-    type: "POST", 
-    cache: false,
-    data: {download_url:download_url},
-    dataType: "json",
-    success: function (data) {
-      show_result_add_download(data);
-    }
-  });
-});
-
-
 
 
 
@@ -209,9 +193,9 @@ function make_list_html(data) {
           }
         }
         tmp += '<a href="'+data[i].magnet[j] + '">' + data[i].magnet[j] + '</a><br>';
-        tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].magnet[j]}]);
-        tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].magnet[j]}]);
-        tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].magnet[j]}]);
+        tmp += m_button('global_downloader_add_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].magnet[j]}]);
+        tmp += m_button('global_offcloud_add_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].magnet[j]}]);
+        tmp += m_button('global_offcloud_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].magnet[j]}]);
         if (is_torrent_info_installed) {
           tmp += m_button('torrent_info_btn', 'Torrent Info', [{'key':'hash', 'value':data[i].magnet[j]}]);
         }
@@ -232,9 +216,9 @@ function make_list_html(data) {
         str2 += m_col(2, '첨부파일', 'right')
         tmp = '<a href="'+ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j + '">' + data[i].files[j][1] + '</a><br>';
         if (is_available_normal_download) {
-          tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j }]);
+          tmp += m_button('global_downloader_add_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j }]);
         }
-        tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j }]);
+        tmp += m_button('global_offcloud_add_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j }]);
         tmp += '<br>'
         str2 += m_col(10, tmp)
         str2 += m_row_end()

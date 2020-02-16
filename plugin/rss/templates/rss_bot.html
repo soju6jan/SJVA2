@@ -61,22 +61,6 @@ $("body").on('click', '#page', function(e){
   request_search($(this).data('page'));
 });
 
-$("body").on('click', '#add_download_btn', function(e) {
-  e.preventDefault();
-  download_url = $(this).data('hash');
-  $.ajax({
-    url: '/downloader/ajax/add_download',
-    type: "POST", 
-    cache: false,
-    data: {download_url:download_url},
-    dataType: "json",
-    success: function (data) {
-      show_result_add_download(data);
-    }
-  });
-});
-
-
 
 function request_search(page) {
   var formData = get_formdata('#form_search')
@@ -159,18 +143,18 @@ function make_list(data) {
 
       tmp = ''
       if ( data[i].files[j].magnet != '') {
-        tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
-        tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
-        tmp += m_button('global_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        tmp += m_button('global_downloader_add_btn', '다운로드 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        tmp += m_button('global_offcloud_add_btn', 'Offcloud 추가', [{'key':'hash', 'value':data[i].files[j].magnet}]);
+        tmp += m_button('global_offcloud_cache_confirm_btn', 'Offcloud 캐쉬확인', [{'key':'hash', 'value':data[i].files[j].magnet}]);
         if (is_torrent_info_installed) {
           tmp += m_button('torrent_info_btn', '토렌트 정보 확인', [{'key':'hash', 'value':data[i].files[j].magnet}]);
           //tmp += m_button('torrent_info_btn', '토렌트 정보 확인', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id}]);
         }
       } else {
         if (is_available_normal_download) {
-          tmp += m_button('add_download_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id }]);
+          tmp += m_button('global_downloader_add_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id }]);
         }
-        tmp += m_button('global_add_remote_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id}]);
+        tmp += m_button('global_offcloud_add_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id}]);
         if (is_torrent_info_installed) {
           tmp += m_button('torrent_info_btn', '토렌트 정보 확인', [{'key':'hash', 'value':ddns+'/rss/download_bot/' + data[i].files[j].id}]);
         }

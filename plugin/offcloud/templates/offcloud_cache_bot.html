@@ -92,7 +92,7 @@ function make_list(data) {
     str += m_col(3, tmp);
 
     tmp = m_button('add_remote_btn', '리모트 다운로드 추가', [{'key':'id', 'value':data[i].id}]);
-    tmp += m_button('global_cache_confirm_btn', '캐쉬 확인', [{'key':'hash', 'value':data[i].magnet}]);
+    tmp += m_button('global_offcloud_cache_confirm_btn', '캐쉬 확인', [{'key':'hash', 'value':data[i].magnet}]);
     tmp = m_button_group(tmp)
     str += m_col(3, tmp);
 
