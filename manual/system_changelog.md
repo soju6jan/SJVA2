@@ -1,3 +1,7 @@
+##### ■ 0.2.4.2 (2020-02-18) #####
+ - offcloud2 - cache - API : type 파라미터에 | 연산자 지원<br>
+ - RSS2 - RSS API : and 연산자 +에서 , 로 변경<br>
+
 ##### ■ 0.2.4.0 (2020-02-16) #####
  - Offcloud2 plugin release<br>
  - SJVA.bundle update<br>
