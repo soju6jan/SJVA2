@@ -214,11 +214,11 @@ function make_list_html(data) {
       for (j in data[i].files) {
         str2 += m_row_start(0)
         str2 += m_col(2, '첨부파일', 'right')
-        tmp = '<a href="'+ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j + '">' + data[i].files[j][1] + '</a><br>';
+        tmp = '<a href="'+ddns+'/'+package_name+'/api/download/' + data[i].id + '_'+ j + '">' + data[i].files[j][1] + '</a><br>';
         if (is_available_normal_download) {
-          tmp += m_button('global_downloader_add_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j }]);
+          tmp += m_button('global_downloader_add_btn', '다운로드 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/' + data[i].id + '_'+ j }]);
         }
-        tmp += m_button('global_offcloud_add_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/self/' + data[i].id + '_'+ j }]);
+        tmp += m_button('global_offcloud_add_btn', 'Offcloud 추가', [{'key':'hash', 'value':ddns+'/'+package_name+'/api/download/' + data[i].id + '_'+ j }]);
         tmp += '<br>'
         str2 += m_col(10, tmp)
         str2 += m_row_end()
