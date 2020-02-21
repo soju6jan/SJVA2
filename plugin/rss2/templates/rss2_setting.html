@@ -46,6 +46,7 @@ $("body").on('click', '#server_test_btn', function(e){
     data:{},
     dataType: "json",
     success: function (data) {
+      console.log(data)
       m_modal(data);
     }
   });
