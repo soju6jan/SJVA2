@@ -524,6 +524,20 @@ function humanFileSize(bytes) {
 }
 
 
+$("body").on('click', '#global_torrent_info_btn', function(e) {
+  e.preventDefault();
+  hash = $(this).data('hash');
+  $.ajax({
+    url: '/torrent_info/ajax/torrent_info',
+    type: "POST", 
+    cache: false,
+    data: {hash:hash},
+    dataType: "json",
+    success: function (data) {
+      m_modal(data, "토렌트 정보")
+    }
+  });
+});
 
 
 </script>
