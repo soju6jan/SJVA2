@@ -168,11 +168,13 @@
           disabled
         {% endif %}
         >
-        {% for b in buttons %}
-        <span class='text-left' style="padding-left:5px; padding-top:0px">
-          <button id="{{b[0]}}" class="btn btn-sm btn-outline-success">{{b[1]}}</button>
-        </span>  
-        {% endfor %}
+        
+          {% for b in buttons %}
+          <span class='text-left' style="padding-left:5px; padding-top:0px">
+            <button id="{{b[0]}}" class="btn btn-sm btn-outline-success">{{b[1]}}</button>
+          </span>  
+          {% endfor %}
+
       </div>
   {{ setting_bottom(desc) }}
 {% endmacro %}

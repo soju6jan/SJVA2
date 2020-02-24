@@ -2,209 +2,186 @@
 {% import "macro.html" as macros %}
 <!DOCTYPE html>
 <html>
-    <head lang="ko">
-        {% block head %}
-        <title>{{get_web_title()}}</title>
-        {% endblock %}
-        <meta name="google" value="notranslate">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
-        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-        {% set theme = get_theme() %}
-        <link href="{{ url_for('static', filename='css/theme/'+theme[0]+'_bootstrap.min.css') }}" rel="stylesheet">                
-        <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+  <head lang="ko">
+    {% block head %}
+    <title>{{get_web_title()}}</title>
+    {% endblock %}
+    <meta name="google" value="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    {% set theme = get_theme() %}
+    <link href="{{ url_for('static', filename='css/theme/'+theme[0]+'_bootstrap.min.css') }}" rel="stylesheet">                
+    <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <!--<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>-->
-        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/bootstrap-notify.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/custom10.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/sjva_ui4.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>-->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-notify.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom10.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sjva_ui4.js') }}"></script>
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
-        <!-- 토글 -->
-        <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/css/bootstrap4-toggle.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js"></script>
-        <!-- end 토글 -->
-        <script type="text/javascript">
-          $(document).ready(function(){
-            var protocol = window.location.protocol;
-            var socket = io.connect(protocol + "//" + document.domain + ":" + location.port + "/framework");
-            //var socket = io.connect("http://" + document.domain + ":" + location.port + "/framework", {transports:['websocket']},  {'force new connection': true});
-            socket.on('notify', function(data){
-              $.notify({
-                message : data['msg'],
-                url: data['url'],
-                target: '_self'
-              },{
-                type: data['type'],
-              });
-            });
-
-            socket.on('command_modal_add_text', function(data){
-              document.getElementById("command_modal_textarea").innerHTML += data ;
-              document.getElementById("command_modal_textarea").scrollTop = document.getElementById("command_modal_textarea").scrollHeight;
-            });
-
-            socket.on('command_modal_show', function(data){
-              command_modal_show(data)
-            });
-
-            socket.on('command_modal_clear', function(data){
-              document.getElementById("command_modal_textarea").innerHTML = ""
-            });
-
-            
-
-
-            
-          });
-        </script>          
-        <!--
-             <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>          
-          .fixed-top-2 { margin-top: 56px; }
-          .sticky-offset { top: 1000px; }
-          .fixed-top-2 { margin-top: 0px; }          
-        -->
-        <style type="text/css">
-          body { padding-top: {{theme[1]}}px; font-size: .850rem; }
-          .table>tbody>tr.collapse>td { background-color:#ecf3f8; }
-          .tableRowHover tbody tr:not(.tableRowHoverOff):hover td {
-            background-color: #ffff00;
-            transition: all 0.01s ease-in-out;
-          }
-          .loading { position: fixed; left: 45%; top: 50%; background: #00000000; }
-          .table > tbody > tr > td { vertical-align: middle; }
-          
-          .tab-pane {
-            border-left: 1px solid #ddd;
-            border-right: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-            border-radius: 0px 0px 5px 5px;
-            padding: 10px;
-          }
-          .btn-toolbar { text-align: center; }​
-          .nav-tabs { margin-bottom: 0; }
-          .navbar-nav li:hover>.dropdown-menu { display: block; }
-          .dropdown-toggle::after { display:none; }
-          .set-left  { text-align: left; }
-          @media (min-width: 768px) {
-  .set-left  { text-align: right; }
-}
-
-
-        </style>
-        <!--
-          .row>div { padding-top: 10px; padding-bottom:10px; }
-          .row { align-items: center;}
-          .row>div:nth-child(odd) { align-items: right; text-align: right; }
-          .row>div:nth-child(even) { align-items: left; text-align: left; }
-        -->
-        <script type="text/javascript" language="javascript">
-          $(document).ready(function(){
-            $('.loading').hide();
-            //$('#modal_loading').hide();
-          })
-          .ajaxStart(function(){
-            $('.loading').show();
-            //$('#modal_loading').show();
-          })
-          .ajaxStop(function(){
-            $('.loading').hide();
-            //$('#modal_loading').hide();
-          });
-          
-        </script> 
-    </head>
-    <body class="body ">
-      <!-- Modal -->
-      <div class="modal fade" id="large_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="modal_title"></h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body" id="modal_body" style="word-break:break-all;">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-              <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="normal_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="normal_modal_title"></h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body" id="normal_modal_body" style="word-break:break-all;">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-              <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="confirm_modal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 id="confirm_title" class="modal-title">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div id="confirm_body" class="modal-body">
-              <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-              <button id="confirm_button" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-              <button id="confirm_cancel_button" type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--command modal-->
-      {{ macros.m_modal_start('command_modal', '', 'modal-lg') }}
-        <div>
-          <textarea id="command_modal_textarea" class="col-md-12" rows="30" disabled style="visibility:visible"></textarea>
-        </div>
-      {{ macros.m_modal_end() }}
-      <!--command modal end-->
-      <!-- Modal end -->
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
+    <!-- 토글 -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js"></script>
+    <!-- end 토글 -->
+    
+    <style type="text/css">
+      body { padding-top: {{theme[1]}}px; font-size: .850rem; }
+      .table>tbody>tr.collapse>td { background-color:#ecf3f8; }
+      .tableRowHover tbody tr:not(.tableRowHoverOff):hover td {
+        background-color: #ffff00;
+        transition: all 0.01s ease-in-out;
+      }
+      .loading { position: fixed; left: 45%; top: 50%; background: #00000000; }
+      .table > tbody > tr > td { vertical-align: middle; }
       
-      {{ menu() }}
-      
-      <!--<nav class="navbar " role="navigation"> width가 메뉴만큼-->
-      {{ left() }}
-      {% block wide_menu %}{% endblock %}
-      <!--</nav>-->
-      <main role="main" class="container">
-        
-        <div class="d-inline-block"></div>
-        {{ menu_sub() }}
-        <div>
-          {% block content %}{% endblock %}
+      .tab-pane {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        border-radius: 0px 0px 5px 5px;
+        padding: 10px;
+      }
+      .btn-toolbar { text-align: center; }​
+      .nav-tabs { margin-bottom: 0; }
+      .navbar-nav li:hover>.dropdown-menu { display: block; }
+      .dropdown-toggle::after { display:none; }
+      .set-left  { text-align: left; }
+      @media (min-width: 768px) {
+        .set-left  { text-align: right; }
+      }
+    </style>
+  </head>
+  <body class="body ">
+    <!-- Modal -->
+    <div class="modal fade" id="large_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal_title"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body" id="modal_body" style="word-break:break-all;">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+          </div>
         </div>
-      </main>
-      <div class="loading" id="loading">
-        <img src="/static/img/loading.gif" />
       </div>
-    </body>
+    </div>
+    <div class="modal fade" id="normal_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="normal_modal_title"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body" id="normal_modal_body" style="word-break:break-all;">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="confirm_modal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="confirm_title" class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="confirm_body" class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button id="confirm_button" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+            <button id="confirm_cancel_button" type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--command modal-->
+    {{ macros.m_modal_start('command_modal', '', 'modal-lg') }}
+      <div>
+        <textarea id="command_modal_textarea" class="col-md-12" rows="30" disabled style="visibility:visible"></textarea>
+      </div>
+    {{ macros.m_modal_end() }}
+    <!--command modal end-->
+    <!-- Modal end -->
+
+    
+    {{ menu() }}
+    
+    <!--<nav class="navbar " role="navigation"> width가 메뉴만큼-->
+    {{ left() }}
+    {% block wide_menu %}{% endblock %}
+    <!--</nav>-->
+    <main role="main" class="container">
+      
+      <div class="d-inline-block"></div>
+      {{ menu_sub() }}
+      <div>
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+    <div class="loading" id="loading">
+      <img src="/static/img/loading.gif" />
+    </div>
+  </body>
 </html>
 
 <script type="text/javascript">
+$(document).ready(function(){
+  var protocol = window.location.protocol;
+  var socket = io.connect(protocol + "//" + document.domain + ":" + location.port + "/framework");
+  //var socket = io.connect("http://" + document.domain + ":" + location.port + "/framework", {transports:['websocket']},  {'force new connection': true});
+  socket.on('notify', function(data){
+    $.notify({
+      message : data['msg'],
+      url: data['url'],
+      target: '_self'
+    },{
+      type: data['type'],
+    });
+  });
+
+  socket.on('command_modal_add_text', function(data){
+    document.getElementById("command_modal_textarea").innerHTML += data ;
+    document.getElementById("command_modal_textarea").scrollTop = document.getElementById("command_modal_textarea").scrollHeight;
+  });
+
+  socket.on('command_modal_show', function(data){
+    command_modal_show(data)
+  });
+
+  socket.on('command_modal_clear', function(data){
+    document.getElementById("command_modal_textarea").innerHTML = ""
+  });
+});
+
+$(document).ready(function(){
+  $('.loading').hide();
+  //$('#modal_loading').hide();
+})
+.ajaxStart(function(){
+  $('.loading').show();
+  //$('#modal_loading').show();
+})
+.ajaxStop(function(){
+  $('.loading').hide();
+  //$('#modal_loading').hide();
+});
+
 $(document).ready(function(){
   $("body").on('click', '#open_url_btn', function(e) {
     e.preventDefault();

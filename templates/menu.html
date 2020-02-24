@@ -65,6 +65,7 @@
 {% endmacro %}
 
 {% macro left(endpoint) %}
+  <div id='plugin_first_menu'>
   {% set menu = request.full_path | get_menu %}
   {% set menu_map = get_menu_map() %}
   {% for category in menu_map %}
@@ -84,6 +85,7 @@
       {% endif %}
     {% endfor %}
   {% endfor %}
+  </div>
 {% endmacro %}
 
 

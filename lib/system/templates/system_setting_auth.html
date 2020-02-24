@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  {{ macros.m_button_group([['global_setting_save_btn', '설정 저장']])}}
+  {{ macros.m_row_start('5') }}
+  {{ macros.m_row_end() }}
+  <nav>  
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head2('normal', '웹 로그인', true) }}
+      {{ macros.m_tab_head2('api', 'API 인증', false) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>  
+  <form id='setting' name='setting'>  
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('normal', true) }}
+      {{ macros.setting_checkbox('use_login', '로그인 사용', value=arg['use_login']) }}
+      <div id="use_login_div" class="collapse">
+      {{ macros.setting_input_text('id', '로그인 ID', value=arg['id'], desc=['초기값은 sjva입니다.'], col='3') }}
+      {{ macros.setting_input_text('pw', '로그인 암호', value=arg['pw'], col='3', type='password', desc=['초기값은 sjva입니다.']) }}
+      </div>
+    {{ macros.m_tab_content_end() }} 
+    
+    {{ macros.m_tab_content_start('api', false) }}
+      {{ macros.setting_checkbox('auth_use_apikey', 'APIKEY 사용', value=arg['auth_use_apikey'], desc=['On : 모든 API 요청시 apikey 값을 입력해야합니다.', '없거나 틀릴 경우 에러코드 403리턴']) }}
+      <div id="auth_use_apikey_div" class="collapse">
+      {{ macros.setting_input_text_and_buttons('auth_apikey', 'APIKEY', [['generate_btn', '자동생성']], col='4', value=arg['auth_apikey']) }}
+      </div>
+    {{ macros.m_tab_content_end() }}
+   
+  </div><!--tab-content-->
+  </form>
+</div> <!--전체-->
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name']}}";
+var sub = "{{arg['sub'] }}";
+
+$(document).ready(function(){
+  use_collapse("use_login");
+  use_collapse("auth_use_apikey");
+});
+
+$('#use_login').change(function() {
+  use_collapse('use_login');
+});
+
+$('#auth_use_apikey').change(function() {
+  use_collapse('auth_use_apikey');
+});
+
+$("body").on('click', '#generate_btn', function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/'+sub+'/apikey_generate',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (ret) {
+      document.getElementById("auth_apikey").value = ret
+    }
+  });
+});
+
+</script>    
+{% endblock %}
