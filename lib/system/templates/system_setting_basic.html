@@ -13,7 +13,6 @@
   <nav>  
     {{ macros.m_tab_head_start() }}
       {{ macros.m_tab_head2('normal', '일반', true) }}
-      {{ macros.m_tab_head2('advanced', 'Advanced', false) }}
       {{ macros.m_tab_head2('web', '웹', false) }}
       {{ macros.m_tab_head2('menu', '메뉴', false) }}
       {{ macros.m_tab_head2('link', '링크', false) }}
@@ -38,13 +37,6 @@
       <!-- {{ macros.info_text('score', 'Point', arg['point']) }} -->
       {{ macros.setting_input_text_and_buttons('command_text', 'Command', [['command_run_btn', 'Run']], value='', desc='') }}
     {{ macros.m_tab_content_end() }}   
-    
-    {{ macros.m_tab_content_start('advanced', false) }}
-      <form id='setting4' name='setting4'>
-        {{ macros.setting_input_text_and_buttons('selenium_remote_url', 'Selenium URL', [['selenium_go_btn', 'GO'], ['selenium_manual_go_btn', '매뉴얼']], value=arg['selenium_remote_url'], placeholder='예) http://127.0.0.1:4444/wd/hub', desc=['SJVA에서 Selenium이 필요한 경우 사용할 Remote URL', 'Docker 환경에서 필요하며, Native 환경에서는 실행파일이 SJVA에 포함되어져 있습니다.', 'Native 환경에서도 이 값을 입력하는 경우는 이를 사용합니다.', 'Selenium 공식 Docker 이미지인 경우 /wd/hub를 붙여야합니다.', '', '사용 플러그인', ' - [확장 플러그인] 마나모아 다운로더']) }}
-        {{ macros.setting_button([['setting_save4', '저장']]) }}
-      </form>
-    {{ macros.m_tab_content_end() }} 
     
 
     {{ macros.m_tab_content_start('web', false) }}
@@ -439,26 +431,11 @@ function make_link_data() {
 }
 
 
-$("body").on('click', '#selenium_go_btn', function(e){
-  e.preventDefault();
-  url = document.getElementById('selenium_remote_url').value
-  window.open(url, "_blank");
-});
-
 $("body").on('click', '#go_filebrowser_btn', function(e){
   e.preventDefault();
   url = document.getElementById('url_filebrowser').value
   window.open(url, "_blank");
 });
-
-
-$("body").on('click', '#selenium_manual_go_btn', function(e){
-  e.preventDefault();
-  url = "https://soju6jan.com/archives/1380"
-  window.open(url, "_blank");
-});
-
-
 
 
 

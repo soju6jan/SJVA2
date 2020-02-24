@@ -21,7 +21,7 @@
     {{ macros.m_tab_content_end() }} 
     
     {{ macros.m_tab_content_start('test', false) }}
-      {{ macros.setting_input_text_and_buttons('tmp_go_url', '테스트 URL', [['selenium_test_btn', 'GO'], ['capture_btn', '화면표시'], ['full_capture_btn', '전체 캡처 이미지 다운']], value='https://sjva.me') }}
+      {{ macros.setting_input_text_and_buttons('tmp_go_url', '테스트 URL', [['selenium_test_btn', 'GO'], ['capture_btn', '화면표시']], value='https://sjva.me') }}
       <div id="image_div"></div>
     {{ macros.m_tab_content_end() }} 
   </div><!--tab-content-->
@@ -93,6 +93,7 @@ $("body").on('click', '#capture_btn', function(e){
   });
 });
 
+//, ['full_capture_btn', '전체 캡처 이미지 다운']
 $("body").on('click', '#full_capture_btn', function(e){
   e.preventDefault();
   url = document.getElementById('tmp_go_url').value
