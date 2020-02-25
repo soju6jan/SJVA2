@@ -245,8 +245,10 @@ function request_search(page) {
     dataType: "json",
     success: function (data) {
       current_data = data
+      window.scrollTo(0,0);
       make_list_html(data.list);
       make_page_html(data.paging);
+      make_form(data.info);
     }
   });
 }
