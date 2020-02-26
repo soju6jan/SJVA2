@@ -73,6 +73,7 @@ var ddns = "{{arg['ddns']}}"
 var is_available_normal_download = ("{{arg['is_available_normal_download']}}" == 'True')
 var first_search_word = "{{arg['search_word']}}"
 var is_torrent_info_installed = ("{{arg['is_torrent_info_installed']}}" == 'True')
+var site_info = null;
 
 $(document).ready(function(){
   if ( first_search_word != "None" ) {
@@ -115,8 +116,8 @@ $("body").on('change', '#site_select', function(e){
   str = '<select id="board_select" name="board_select" class="form-control form-control-sm"> \
           <option value="all">전체</option>';
               
-  for(var i in current_data.info.board[site]) {
-    str += '<option value="' + current_data.info.board[site][i] + '">' + current_data.info.board[site][i] + '</option>';
+  for(var i in site_info.board[site]) {
+    str += '<option value="' + site_info.board[site][i] + '">' + site_info.board[site][i] + '</option>';
   }
   str += '</select>';
   document.getElementById("board_select_div").innerHTML = str;
@@ -248,12 +249,13 @@ function request_search(page) {
       window.scrollTo(0,0);
       make_list_html(data.list);
       make_page_html(data.paging);
-      make_form(data.info);
+      //make_form(data.info);
     }
   });
 }
   
 function make_form(data) {
+  site_info = data;
   str = '<select id="site_select" name="site_select" class="form-control form-control-sm">';
   str += '<option value="all">전체</option>';
   for(var i in data.site) {
