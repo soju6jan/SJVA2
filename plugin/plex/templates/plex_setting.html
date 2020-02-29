@@ -23,7 +23,7 @@
       {{ macros.setting_button([['download_plugin_btn', 'SJVA 플러그인 다운로드']], desc='Plex에 SJVA 플러그인을 설치해야 연동이 됩니다.') }}
       {{ macros.setting_input_text_and_buttons('machineIdentifier', 'Machine Identifier ', [['web_connect_btn', '웹 접속']], value=arg['machineIdentifier'], col='9') }}
 
-      {{ macros.setting_input_text('scan_server', '추가 스캔 Plex URL', value=arg['scan_server'], col='9', desc=['스캔 명령을 여러 서버에 보내야 할 때 사용', 'URL&TOKEN 형식. 구분자 ,'], placeholder='http://192.168.0.100:32400&TTTOOOKKKEEENNN') }}
+      {{ macros.setting_input_text('scan_server', '추가 스캔 Plex URL', value=arg['scan_server'], col='9', desc=['스캔 명령을 여러 서버에 보내야 할 때 사용', 'URL&TOKEN 형식. 구분자 ,'], placeholder='예) http://192.168.0.100:32400&TTTOOOKKKEEENNN') }}
 
       {{ macros.setting_button([['setting_save_btn', '저장']]) }}
       </form>

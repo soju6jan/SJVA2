@@ -16,7 +16,7 @@
     <form id='setting' name='setting'>  
       {{ macros.setting_input_text_and_buttons('selenium_remote_url', 'Selenium Remote URL', [['selenium_go_btn', 'GO'], ['selenium_manual_go_btn', '매뉴얼']], value=arg['selenium_remote_url'], placeholder='예) http://127.0.0.1:4444/wd/hub', desc=['SJVA에서 Selenium이 필요한 경우 사용할 Remote URL', 'Docker 환경에서 필요하며, Native 환경에서는 실행파일이 SJVA Root/bin/플랫폼 안에 직접 넣어줘야합니다.', 'Native 환경에서도 이 값을 입력하는 경우는 이를 사용합니다.', 'Selenium 공식 Docker 이미지인 경우 /wd/hub를 붙여야합니다.']) }}
       {{ macros.setting_input_textarea('selelnium_remote_default_option', '기본 크롬 옵션(Remote)', value=arg['selelnium_remote_default_option'], row='3', desc=['구분자 | 또는 엔터']) }}
-      {{ macros.setting_input_textarea('selelnium_binary_default_option', '기본 크롬 옵션(Remote)', value=arg['selelnium_binary_default_option'], row='3', desc=['구분자 | 또는 엔터']) }}
+      {{ macros.setting_input_textarea('selelnium_binary_default_option', '기본 크롬 옵션(Binary)', value=arg['selelnium_binary_default_option'], row='3', desc=['구분자 | 또는 엔터']) }}
     </form>
     {{ macros.m_tab_content_end() }} 
     
