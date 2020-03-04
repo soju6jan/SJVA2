@@ -70,7 +70,6 @@
           <div id="menu_file_process_div" class="collapse">
             {{ macros.setting_checkbox('use_plugin_ktv', '국내TV', value=arg['use_plugin_ktv']) }}
             {{ macros.setting_checkbox('use_plugin_fileprocess_movie', '영화', value=arg['use_plugin_fileprocess_movie']) }}
-            {{ macros.setting_checkbox('use_plugin_av', 'AV', value=arg['use_plugin_av']) }}
             {{ macros.setting_checkbox('use_plugin_smi2srt', 'SMI to SRT', value=arg['use_plugin_smi2srt']) }}
           </div>
       {% endif %}
@@ -80,7 +79,6 @@
           <div id="menu_plex_div" class="collapse">
             {{ macros.setting_checkbox('use_plugin_plex', 'PLEX', value=arg['use_plugin_plex']) }}
             {{ macros.setting_checkbox('use_plugin_gdrive_scan', 'GDrive 스캔', value=arg['use_plugin_gdrive_scan']) }}
-            {{ macros.setting_checkbox('use_plugin_jav_agent', 'JAV Agent', value=arg['use_plugin_jav_agent']) }}
           </div>
       {% endif %}
       {% if arg['use_category_tv'] == 'True' %}
