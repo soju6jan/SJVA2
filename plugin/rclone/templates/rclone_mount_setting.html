@@ -280,7 +280,7 @@ function make_mount_list(data) {
 // 작업 실행 버튼
 $("body").on('click', '#mount_execute_btn', function(e) {
   e.preventDefault();
-  id = $('#mount_execute_btn').data('id')
+  id = $(this).data('id')
   $.ajax({
     url: '/' + package_name + '/ajax/mount_execute',
     type: "POST", 
@@ -306,7 +306,7 @@ $("body").on('click', '#mount_execute_btn', function(e) {
 // 작업 실행 버튼
 $("body").on('click', '#mount_stop_btn', function(e) {
   e.preventDefault();
-  id = $('#mount_stop_btn').data('id')
+  id = $(this).data('id')
   $.ajax({
     url: '/' + package_name + '/ajax/mount_stop',
     type: "POST", 
