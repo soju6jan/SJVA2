@@ -1,2 +1,0 @@
-discord-webhook
-guessit==3.1.0
