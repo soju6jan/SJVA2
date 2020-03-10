@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  {{ macros.m_button_group([['global_setting_save_btn', '설정 저장']])}}
+  {{ macros.m_row_start('5') }}
+  {{ macros.m_row_end() }}
+  <nav>  
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head2('normal', '일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>  
+  <form id='setting' name='setting'>
+    <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('normal', true) }}
+      {{ macros.setting_global_scheduler_button(arg['scheduler'], arg['is_running']) }}
+      {{ macros.setting_checkbox('telegram_bot_auto_start', '시작시 자동실행', value=arg['telegram_bot_auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+      {{ macros.setting_input_text('telegram_bot_token', 'Bot Token', value=arg['telegram_bot_token']) }}
+      {{ macros.m_hr() }}
+      {{ macros.setting_button([['open_url1_btn', 'BotFather'], ['open_url2_btn', 'SJVA Bot Channel'], ['open_url3_btn', 'SJVA Bot Channel 관리 봇']]) }}
+    {{ macros.m_tab_content_end() }} 
+    </div><!--tab-content-->
+  </form>
+</div> <!--전체-->
+
+
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name']}}";
+var sub = "{{arg['sub'] }}";
+
+$("body").on('click', '#scheduler', function(e){
+  var ret = $(this).prop('checked');
+  if (!ret) {
+    $.notify('<strong>텔레그램 봇은 중단 할 수 없습니다.</strong>', {
+      type: 'warning'
+    });
+    $('#scheduler').bootstrapToggle('on')
+    return
+  }
+  $.ajax({
+    url: '/' + package_name + '/ajax/'+sub+'/scheduler',
+    type: "POST", 
+    cache: false,
+    data: {scheduler : ret},
+    dataType: "json",
+    success: function (list) {
+    }
+  });
+});
+
+$("body").on('click', '#open_url1_btn', function(e){
+  e.preventDefault();
+  window.open("https://t.me/BotFather", "_blank");
+});
+
+$("body").on('click', '#open_url2_btn', function(e){
+  e.preventDefault();
+  window.open("https://t.me/sjva_bot_channel", "_blank");
+});
+
+$("body").on('click', '#open_url3_btn', function(e){
+  e.preventDefault();
+  window.open("https://t.me/super_sjva_bot", "_blank");
+});
+
+
+</script>    
+{% endblock %}

@@ -14,7 +14,7 @@
     {{ macros.setting_input_text('download_path', '다운로드 폴더', value=arg['download_path'], col='9', desc=['다운로드 감시 폴더','라이브러리 정보가 있고 값 변경시 RClone 플러그인 정보는 수동으로 변경해야합니다.']) }}
     {{ macros.setting_input_text('except_partial', '파일처리 예외', value=arg['except_partial'], col='9', desc=['이 값이 포함된 파일은 파일처리를 하지 않습니다.', '구분자 ,']) }}
     {{ macros.setting_input_text('except_genre_remove_epi_number', '회차 삭제 예외 장르', value=arg['except_genre_remove_epi_number'], col='9', desc=['설정된 장르는 Daum에 회차정보가 없어도 파일명에서 회차 정보를 삭제하지 않습니다. ', 'all 입력시 항상 회차 정보를 삭제하지 않습니다.', '구분자 ,']) }}
-    {{ macros.setting_checkbox('telegram', '텔레그램', value=arg['telegram']) }}
+    {{ macros.setting_checkbox('telegram', '알림', value=arg['telegram'], desc=['ID : fileprocess_ktv_result (파일처리 결과)', 'ID : fileprocess_ktv_scan_completed (스캔완료)']) }}
     {{ macros.setting_button([['setting_save_btn', '저장']]) }}
     {{ macros.m_hr() }}
     {{ macros.setting_button([['reset_db_btn', '저장 목록 초기화']], left='DB 정리' ) }}

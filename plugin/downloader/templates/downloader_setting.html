@@ -37,7 +37,7 @@
         </div>
         {{ macros.m_hr() }}
         {{ macros.setting_checkbox('auto_remove_completed', '프로그램에서 완료 목록 삭제', value=arg['auto_remove_completed'], desc='On : 스케쥴러 동작시 혹은 상태 화면 요청시 삭제합니다.') }}
-        {{ macros.setting_checkbox('download_completed_telegram_notify', '프로그램에서 완료 목록 삭제시 텔레그램 전송', value=arg['download_completed_telegram_notify'], desc='On : "프로그램에서 완료 목록 삭제"가 On 되어 있는 경우 삭제시 텔레그램을 보냅니다.') }}
+        {{ macros.setting_checkbox('download_completed_telegram_notify', '프로그램에서 완료 목록 삭제시 알림', value=arg['download_completed_telegram_notify'], desc=['On : "프로그램에서 완료 목록 삭제"가 On 되어 있는 경우 삭제시 알림을 보냅니다.', 'ID : downloader_completed_remove']) }}
         {{ macros.setting_input_int('status_interval', '상태 화면 갱신 주기', value=arg['status_interval'], min='1', placeholder='5', desc='second 단위') }}
         {{ macros.setting_button([['setting_save_btn', '저장']]) }}
         {{ macros.m_hr() }}
