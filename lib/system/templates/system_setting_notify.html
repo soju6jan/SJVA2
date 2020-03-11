@@ -34,7 +34,7 @@
       {{ macros.setting_checkbox('notify_advaned_use', '사용', value=arg['notify_advaned_use'], desc=['충분히 내용 숙지하고 사용하세요.', '사용시 기본설정은 무시됩니다.']) }}
       <div id="notify_advaned_use_div" class="collapse">
       {{ macros.setting_input_textarea('notify_advaned_policy', '정책', value=arg['notify_advaned_policy'], row='30') }}
-      {{ macros.setting_input_text_and_buttons('tmp_text_advanced', 'Test', [['tmp_advanced_test_btn', '전송']], value='테스트 메시지입니다.', col='9', desc=['메시지 ID = 형식', '형식의 구분자 |', '텔레그램 : bot_token,chat_id / 디스코드 : 웹훅 URL', '예) DEFAULT = 794150118:AAEAAAAAAAAAAAAAAA,186485141|https://discordapp.com/api/webhooks/626295849....', '모든 알림을 텔레그램과 디스코드에 보냄']) }}
+      {{ macros.setting_input_text_and_buttons('tmp_text_advanced', 'Test', [['tmp_advanced_test_btn', '전송']], value='테스트 메시지입니다.', col='9', desc=['메시지 ID = 형식', '형식의 구분자 |', '텔레그램 : bot_token,chat_id | 디스코드 : 웹훅 URL', '예) DEFAULT = 794150118:AAEAAAAAAAAAAAAAAA,186485141|https://discordapp.com/api/webhooks/626295849....', '모든 알림을 텔레그램과 디스코드에 보냄']) }}
       {{ macros.setting_input_text('tmp_message_id', 'Test Message ID', value='DEFAULT') }}
       </div>
     {{ macros.m_tab_content_end() }} 
