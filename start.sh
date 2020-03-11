@@ -29,6 +29,11 @@ do
     if [ -f "$FILENAME" ] ; then
         pip install -r update_requirements.txt
     fi
+
+    if [ ! -f "./data/db/sjva.db" ] ; then
+        python -OO sjva.py 0 ${COUNT} init_db
+    fi
+
     #export FLASK_APP=sjva.py
     #if [ ! -d "./migrations" ] && [ -f "./data/db/sjva.db" ]; then
     #    python -OO -m flask db init
