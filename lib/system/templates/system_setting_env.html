@@ -32,7 +32,7 @@
     {{ macros.m_tab_content_end() }}   
 
     {{ macros.m_tab_content_start('celery', false) }}
-      {{ macros.setting_button([['celery_test_btn', 'Celery Test'], ['ps_btn', '프로세스 목록']]) }}
+      {{ macros.setting_button([['celery_test_btn', 'Celery Test'], ['worker_start_btn', '워커 재시작'], ['ps_btn', '프로세스 목록']]) }}
       
     {{ macros.m_tab_content_end() }} 
   </div><!--tab-content-->
@@ -89,7 +89,16 @@ $("body").on('click', '#celery_test_btn', function(e){
     data: {},
     dataType: "json",
     success: function (ret) {
-      m_modal(ret)
+      if (ret.ret == 'success') {
+        $.notify('<strong>'+ ret.data+'</strong>', {
+          type: 'success'
+        });
+      } else if (ret.ret == 'timeout' || ret.ret == 'no_celery') {
+        $.notify('<strong>'+ ret.data+'</strong>', {
+          type: 'warning'
+        });
+      }
+      //m_modal(ret)
     }
   });
 });
@@ -107,6 +116,32 @@ $("body").on('click', '#ps_btn', function(e){
     }
   });
 });
+
+$("body").on('click', '#worker_start_btn', function(e){
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/' + sub + '/worker_start',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (ret) {
+      if (ret.ret == 'success') {
+        $.notify('<strong>'+ ret.data+'</strong>', {
+          type: 'success'
+        });
+      } else if (ret.ret == 'timeout' || ret.ret == 'no_celery') {
+        $.notify('<strong>'+ ret.data+'</strong>', {
+          type: 'warning'
+        });
+      }
+      //m_modal(ret)
+    }
+  });
+});
+
+
+
 
 
 </script>    
