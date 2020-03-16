@@ -4,8 +4,8 @@ if [ ! -f "export.sh" ] ; then
 cat <<EOF >export.sh
 #!/bin/sh
 export REDIS_PORT="46379"
-export CELERY_WORKER_COUNT="2"
 export USE_CELERY="true"
+export CELERY_WORKER_COUNT="2"
 export RUN_FILEBROWSER="true"
 export FILEBROWSER_PORT="9998"
 export OS_PREFIX="Linux"
@@ -45,7 +45,6 @@ do
     git pull
     chmod 777 .
     chmod -R 777 ./bin
-
 
     if [ ! -f "./data/db/sjva.db" ] ; then
         python -OO sjva.py 0 ${COUNT} init_db
