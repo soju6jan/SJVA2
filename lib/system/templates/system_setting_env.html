@@ -130,7 +130,7 @@ $("body").on('click', '#worker_start_btn', function(e){
         $.notify('<strong>'+ ret.data+'</strong>', {
           type: 'success'
         });
-      } else if (ret.ret == 'timeout' || ret.ret == 'no_celery') {
+      } else if (ret.ret == 'timeout' || ret.ret == 'no_celery' || ret.ret == 'not_registered') {
         $.notify('<strong>'+ ret.data+'</strong>', {
           type: 'warning'
         });
