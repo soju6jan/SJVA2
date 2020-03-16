@@ -6,10 +6,10 @@ set COUNT=0
 :loop
     git reset --hard HEAD
     git pull
-    set FILENAME=.\update_requirements.txt
-    if exist %FILENAME% (
-        pip install -r %FILENAME%
-    )
+    rem set FILENAME=.\update_requirements.txt
+    rem if exist %FILENAME% (
+    rem     pip install -r %FILENAME%
+    rem )
     python -OO sjva.py 0 %COUNT% no_celery
     echo PYTHON EXIT CODE : %errorlevel%..............
     set res=F
