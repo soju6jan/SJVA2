@@ -57,4 +57,5 @@ guessit==3.0.4
 flask-restful
 celery[redis]
 mock
-flower
+discord-webhook
+
