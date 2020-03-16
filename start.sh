@@ -1,60 +1,64 @@
-#! /bin/sh
-export REDIS_PORT="46379"
-export FILEBROWSER_PORT="9998"
-export CELERY_MONOTORING_PORT="9997"
-#nohup redis-server --port ${REDIS_PORT} &
-#chmod +x ./bin/Linux/filebrowser
-#nohup ./bin/Linux/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
+#!/bin/sh
 
-[ -z "${no_celery}" ] && nohup redis-server --port ${REDIS_PORT} &
-if [ -z "${no_filebrowser}" ]; then
+if [ ! -f "export.sh" ] ; then
+cat <<EOF >export.sh
+#!/bin/sh
+export REDIS_PORT="46379"
+export CELERY_WORKER_COUNT="2"
+export USE_CELERY="true"
+export RUN_FILEBROWSER=true
+export FILEBROWSER_PORT="9998"
+export OS_PREFIX="Linux"
+EOF
+fi
+
+if [ -f "export.sh" ] ; then
+    echo "Run export.sh start"
+    chmod 777 export.sh
+    source export.sh
+    echo "Run export.sh end"
+fi
+
+if [ -f "pre_start.sh" ] ; then
+    echo "Run pre_start.sh start"
+    chmod 777 pre_start.sh
+    source pre_start.sh
+    echo "Run pre_start.sh end"
+fi
+
+if [ ${USE_CELERY} ] ; then
+    nohup redis-server --port ${REDIS_PORT} &
+    echo "Start redis-server port:${REDIS_PORT}"
+fi
+
+if [ ${RUN_FILEBROWSER} ]; then
     chmod +x ./bin/Linux/filebrowser
     nohup ./bin/Linux/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
+    echo "Start Filebrowser. port:${FILEBROWSER_PORT}"
 fi
+
 COUNT=0
 while [ 1 ];
 do
-    #if [ -f "./git/index.lock" ]; then
-    #    rm -f ./git/index.lock
-    #fi
     find . -name "index.lock" -exec rm -f {} \;
-    git reset --hard HEAD
-    git pull
+    #git reset --hard HEAD
+    #git pull
     chmod 777 .
     chmod -R 777 ./bin
-    if [ -d "./data/custom" ]; then
-        chmod -R +x ./data/custom
-    fi
-    
-    #FILENAME="update_requirements.txt"
-    #if [ -f "$FILENAME" ] ; then
-    #    pip install -r update_requirements.txt
-    #fi
+
 
     if [ ! -f "./data/db/sjva.db" ] ; then
         python -OO sjva.py 0 ${COUNT} init_db
     fi
 
-    #export FLASK_APP=sjva.py
-    #if [ ! -d "./migrations" ] && [ -f "./data/db/sjva.db" ]; then
-    #    python -OO -m flask db init
-    #fi
-    #if [ -d "./migrations" ]; then
-    #    python -OO -m flask db migrate
-    #    python -OO -m flask db upgrade
-    #fi
-    #while [ 1 ];
-    #do
-    #    if [ -f "./data/db/sjva.db" ] ; then
-    #        break
-    #    fi
-    #    echo 'WAIT.. sjva.db'
-    #    sleep 1
-    #done
-    [ -z "${no_celery}" ] && nohup sh ./worker_start.sh &
+    if [ ${USE_CELERY} ] ; then
+        sh worker_start.sh &
+        echo "Run celery-worker.sh"
+        python -OO sjva.py 0 ${COUNT}
+    else
+        python -OO sjva.py 0 ${COUNT} no_celery
+    fi
     
-    # if no_celery environment variable has any value, input 'no_celery'
-    python -OO sjva.py 0 ${COUNT} ${no_celery+no_celery}
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
     if [ "$RESULT" = "0" ]; then
