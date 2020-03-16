@@ -29,9 +29,10 @@
         {{ macros.setting_button([['setting_save_btn', '저장'], ['shutdown_btn', '시스템 종료']]) }}
       </form>
     </form>
-
     {{ macros.m_tab_content_end() }}   
-     {{ macros.m_tab_content_start('celery', false) }}
+
+    {{ macros.m_tab_content_start('celery', false) }}
+      {{ macros.setting_button([['celery_test_btn', 'Celery Test'], ['ps_btn', '프로세스 목록']]) }}
       
     {{ macros.m_tab_content_end() }} 
   </div><!--tab-content-->
@@ -78,6 +79,35 @@ $("body").on('click', '#shutdown_btn', function(e){
   window.location.href = "/system/shutdown"
 
 });
+
+$("body").on('click', '#celery_test_btn', function(e){
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/' + sub + '/celery_test',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (ret) {
+      m_modal(ret)
+    }
+  });
+});
+
+
+$("body").on('click', '#ps_btn', function(e){
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/' + sub + '/ps',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (ret) {
+    }
+  });
+});
+
 
 </script>    
 {% endblock %}
