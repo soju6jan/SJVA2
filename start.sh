@@ -6,7 +6,7 @@ cat <<EOF >export.sh
 export REDIS_PORT="46379"
 export CELERY_WORKER_COUNT="2"
 export USE_CELERY="true"
-export RUN_FILEBROWSER=true
+export RUN_FILEBROWSER="true"
 export FILEBROWSER_PORT="9998"
 export OS_PREFIX="Linux"
 EOF
@@ -26,14 +26,14 @@ if [ -f "pre_start.sh" ] ; then
     echo "Run pre_start.sh end"
 fi
 
-if [ ${USE_CELERY} ] ; then
+if [ "${USE_CELERY}" == "true" ] ; then
     nohup redis-server --port ${REDIS_PORT} &
     echo "Start redis-server port:${REDIS_PORT}"
 fi
 
-if [ ${RUN_FILEBROWSER} ]; then
-    chmod +x ./bin/Linux/filebrowser
-    nohup ./bin/Linux/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
+if [ "${RUN_FILEBROWSER}" == "true" ]; then
+    chmod +x ./bin/${OS_PREFIX}/filebrowser
+    nohup ./bin/${OS_PREFIX}/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
     echo "Start Filebrowser. port:${FILEBROWSER_PORT}"
 fi
 
@@ -41,8 +41,8 @@ COUNT=0
 while [ 1 ];
 do
     find . -name "index.lock" -exec rm -f {} \;
-    #git reset --hard HEAD
-    #git pull
+    git reset --hard HEAD
+    git pull
     chmod 777 .
     chmod -R 777 ./bin
 
@@ -51,7 +51,7 @@ do
         python -OO sjva.py 0 ${COUNT} init_db
     fi
 
-    if [ ${USE_CELERY} ] ; then
+    if [ "${USE_CELERY}" == "true" ] ; then
         sh worker_start.sh &
         echo "Run celery-worker.sh"
         python -OO sjva.py 0 ${COUNT}
