@@ -51,6 +51,8 @@ do
     #    sleep 1
     #done
     [ -z "${no_celery}" ] && nohup sh ./worker_start.sh &
+    
+    # if no_celery environment variable has any value, input 'no_celery'
     python -OO sjva.py 0 ${COUNT} ${no_celery+no_celery}
     RESULT=$?
     echo "PYTHON EXIT CODE : ${RESULT}.............."
