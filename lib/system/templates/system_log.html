@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  .tab-pane {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px;
+  }
+  .nav-tabs { margin-bottom: 0; }
+</style>
+
+<div>
+  {{ macros.setting_top(left='로그 파일 선택') }}
+  <div class="input-group col-sm-9">
+    <div id='log_select1_div'></div>
+    <div id='log_select2_div'></div>
+  </div>
+  {{ macros.setting_bottom() }}
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('이전', true) }}
+      {{ macros.m_tab_head('실시간', false) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('이전', true) }}
+      <div>
+        <textarea id="log" class="col-md-12" rows="30" charswidth="23" disabled style="visibility:hidden"></textarea>
+      </div>
+    {{ macros.m_tab_content_end() }}
+    
+    {{ macros.m_tab_content_start('실시간', false) }}
+      <div>
+        <textarea id="add" class="col-md-12" rows="30" charswidth="23" disabled style="visibility:visible"></textarea>
+      </div>
+      
+      <div class="form-inline">
+        <label class="form-check-label" for="auto_scroll">자동 스크롤</label>
+        <input id="auto_scroll" name="auto_scroll" class="form-control form-control-sm" type="checkbox" data-toggle="toggle" checked>
+        <span class='text-left' style="padding-left:25px; padding-top:0px">
+          <button id="clear" class="btn btn-sm btn-outline-success">리셋</button>
+        </span>
+      </div>
+    {{ macros.m_tab_content_end() }}
+
+  </div>
+</div>
+
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name']}}";
+var sub = "{{arg['sub']}}";
+var log_list = "{{arg['log_list']}}";
+var all_list = "{{arg['all_list']}}";
+
+var protocol = window.location.protocol;
+var socket = io.connect(protocol + "//" + document.domain + ":" + location.port + "/log");
+var current_filename = '';
+
+$(document).ready(function() {
+  ResizeTextArea()
+  make_form()
+})
+
+function make_form() {
+  str = '<select id="log_select" name="log_select" class="form-control form-control-sm">';
+  data = log_list.split('|')
+  for(var i in data) {
+    str += '<option value="' + data[i] + '">' + data[i] + '</option>';
+  }
+  document.getElementById("log_select1_div").innerHTML = str;
+
+  str = '<select id="log_select" name="log_select" class="form-control form-control-sm">';
+  data = all_list.split('|')
+  for(var i in data) {
+    str += '<option value="' + data[i] + '">' + data[i] + '</option>';
+  }
+  document.getElementById("log_select2_div").innerHTML = str;
+}
+
+$("body").on('change', '#log_select', function(e){
+  console.log(this)
+  console.log($(this)[0].value)
+  e.preventDefault();
+  filename = $(this)[0].value;
+  $('#loading').show();
+  socket.emit("start", {'filename':filename} );
+  current_filename = filename
+  return
+  $.ajax({
+    url: '/' + package_name + '/ajax/' + sub + '/load_log',
+    type: "POST", 
+    cache: false,
+    data:{filename:filename},
+    dataType: "json",
+    success: function (data) {
+      socket.emit("start", {'package':'{{package}}'} );
+      /*
+      if (data.ret == 'success') {
+        $.notify('<strong>성공 : '+ data.log +'</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>실패 : ' + data.log+'</strong>', {
+          type: 'warning'
+        });
+      }
+      */
+    }
+  });
+});
+
+
+
+function ResizeTextArea() {
+  ClientHeight = window.innerHeight
+  $("#log").height(ClientHeight-260);
+  $("#add").height(ClientHeight-280);
+}
+
+$(window).resize(function() {
+  ResizeTextArea();
+});
+
+
+
+
+
+socket.on('on_start', function(data){
+  document.getElementById("log").innerHTML += data.data;
+  document.getElementById("log").scrollTop = document.getElementById("log").scrollHeight;
+  document.getElementById("log").style.visibility = 'visible';
+  $('#loading').hide();
+});
+
+socket.on('add', function(data){
+  console.log(data)
+  if (data.filename == current_filename) {
+    var chk = $('#auto_scroll').is(":checked");
+    document.getElementById("add").innerHTML += data.data;
+    if (chk) document.getElementById("add").scrollTop = document.getElementById("add").scrollHeight;
+  }
+});
+
+$("#clear").click(function(e) {
+  e.preventDefault(); 
+  document.getElementById("add").innerHTML = '';
+});
+
+$("#auto_scroll").click(function(){
+  var chk = $(this).is(":checked");//.attr('checked');
+});
+  
+</script>    
+{% endblock %}
