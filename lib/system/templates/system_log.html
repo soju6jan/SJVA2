@@ -81,37 +81,11 @@ function make_form() {
 }
 
 $("body").on('change', '#log_select', function(e){
-  console.log(this)
-  console.log($(this)[0].value)
   e.preventDefault();
   filename = $(this)[0].value;
   $('#loading').show();
   socket.emit("start", {'filename':filename} );
-  current_filename = filename
-  return
-  $.ajax({
-    url: '/' + package_name + '/ajax/' + sub + '/load_log',
-    type: "POST", 
-    cache: false,
-    data:{filename:filename},
-    dataType: "json",
-    success: function (data) {
-      socket.emit("start", {'package':'{{package}}'} );
-      /*
-      if (data.ret == 'success') {
-        $.notify('<strong>성공 : '+ data.log +'</strong>', {
-          type: 'success'
-        });
-      } else {
-        $.notify('<strong>실패 : ' + data.log+'</strong>', {
-          type: 'warning'
-        });
-      }
-      */
-    }
-  });
 });
-
 
 
 function ResizeTextArea() {
@@ -125,9 +99,6 @@ $(window).resize(function() {
 });
 
 
-
-
-
 socket.on('on_start', function(data){
   document.getElementById("log").innerHTML += data.data;
   document.getElementById("log").scrollTop = document.getElementById("log").scrollHeight;
@@ -136,7 +107,7 @@ socket.on('on_start', function(data){
 });
 
 socket.on('add', function(data){
-  console.log(data)
+  //console.log(data)
   if (data.filename == current_filename) {
     var chk = $('#auto_scroll').is(":checked");
     document.getElementById("add").innerHTML += data.data;
