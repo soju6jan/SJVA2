@@ -46,10 +46,13 @@ try:
 
         # av- 
         try:
+            import shutil
             av = os.path.join(server_plugin_path, 'bot_downloader_av')
             if os.path.exists(av):
-                import shutil
                 shutil.rmtree(av)
+            tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'db', 'bot_downloader_av.db')
+            if os.path.exists(tmp):
+                shutil.rmtree(tmp)
         except:
             print('Exception:%s', e)
 
