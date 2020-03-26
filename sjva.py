@@ -44,12 +44,12 @@ try:
                 logger.error('Exception:%s', e)
                 logger.error(traceback.format_exc())
 
-        # av-
+        # av- 
         try:
             av = os.path.join(server_plugin_path, 'bot_downloader_av')
             if os.path.exists(av):
                 import shutil
-                shutil.rmtree(tmp)
+                shutil.rmtree(av)
         except:
             print('Exception:%s', e)
 
