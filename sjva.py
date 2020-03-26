@@ -49,10 +49,9 @@ try:
             av = os.path.join(server_plugin_path, 'bot_downloader_av')
             if os.path.exists(av):
                 import shutil
-                if os.path.exists(tmp):
-                    shutil.rmtree(tmp)
+                shutil.rmtree(tmp)
         except:
-            pass
+            print('Exception:%s', e)
 
 except Exception, e:
     print('Exception:%s', e)
