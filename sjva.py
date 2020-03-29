@@ -52,8 +52,8 @@ try:
                 shutil.rmtree(av)
             tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'db', 'bot_downloader_av.db')
             if os.path.exists(tmp):
-                shutil.rmtree(tmp)
-        except:
+                os.remove(tmp)
+        except Exception as e:
             print('Exception:%s', e)
 
 except Exception, e:
