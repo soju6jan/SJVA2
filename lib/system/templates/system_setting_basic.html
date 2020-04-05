@@ -50,12 +50,6 @@
 
     {{ macros.m_tab_content_start('menu', false) }}
       <form id='setting3' name='setting3'>
-      {% if arg['use_category_torrent'] == 'True' %}
-        {{ macros.setting_button_with_info([['menu_toggle_btn', 'Toggle', [{'key':'category', 'value':'torrent'}]]], left='Torrent', desc=None) }}
-          <div id="menu_torrent_div" class="collapse">
-            {{ macros.setting_checkbox('use_plugin_downloader', '다운로드', value=arg['use_plugin_downloader']) }}
-          </div>
-      {% endif %}
       {% if arg['use_category_vod'] == 'True' %}
         {{ macros.m_hr() }}
         {{ macros.setting_button_with_info([['menu_toggle_btn', 'Toggle', [{'key':'category', 'value':'vod'}]]], left='VOD', desc=None) }}
