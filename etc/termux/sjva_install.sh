@@ -3,8 +3,8 @@ cd $HOME
 cd ../usr/share
 pkg install -y proot
 curl -LO https://soju6jan.com/file/TermuxAlpine32.tar.gz
-tar -zxvf TermuxAlpine.tar.gz
-rm TermuxAlpine.tar.gz
+tar -zxvf TermuxAlpine32.tar.gz
+rm TermuxAlpine32.tar.gz
 mv TermuxAlpine/startalpine ../bin
 chmod 777 ../bin/startalpine
 curl -LO https://raw.githubusercontent.com/soju6jan/SJVA2/master/etc/termux/alpine_profile1
