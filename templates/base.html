@@ -461,17 +461,26 @@ function FormatNumberLength(num, length) {
 // 토렌트 프로그램에 다운로드 추가할 결과를 보여주는
 function show_result_add_download(data) {
   try {
+    sub = ''
     program = '토렌트'
     if (data.default_torrent_program == '0') {
       program = '트랜스미션에 토렌트'
+      sub = 'transmission'
     } else if (data.default_torrent_program == '1') {
       program = '다운로드스테이션에 토렌트'
+      sub = 'downloadstation'
+    } else if (data.default_torrent_program == '2') {
+      program = '큐빗토렌트다에 토렌트'
+      sub = 'qbittorrent'
+    } else if (data.default_torrent_program == '3') {
+      program = 'aria2에 토렌트'
+      sub = 'aria2'
     }
   }
   catch {
   }
   if (data.ret == 'success') {
-    $.notify({message:'<strong>'+ program +'를 추가하였습니다.</strong><br>클릭시 다운로드 상태창으로 이동', url:'/downloader/status',
+    $.notify({message:'<strong>'+ program +'를 추가하였습니다.</strong><br>클릭시 다운로드 상태창으로 이동', url:'/downloader/'+sub+'/status',
       target: '_self'}, {
       type: 'success',
     });
@@ -520,5 +529,11 @@ $("body").on('click', '#global_torrent_info_btn', function(e) {
   });
 });
 
+function get_torrent_program_name(p) {
+  if (p == '0') return  '트랜스미션'
+  else if (p == '1') return '다운로드스테이션'
+  else if (p == '2') return '큐빗토렌트'
+  else if (p == '3') return 'aria2'
+}
 
 </script>

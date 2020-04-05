@@ -68,3 +68,7 @@ do
     fi 
     COUNT=`expr $COUNT + 1`
 done 
+
+if [ "${RUN_FILEBROWSER}" == "true" ]; then
+    ps -eo pid,args | grep filebrowser | grep -v grep | awk '{print $1}' | xargs -r kill -9
+fi

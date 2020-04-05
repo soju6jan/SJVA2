@@ -1,7 +1,14 @@
+##### <span style="color:red"> ■ 0.2.9 (2020-04-05)</span> #####
+- 토렌트 - 다운로드 플러그인 "다운로드 클라이언트"로 변경(설치형) <br>
+  큐빗토렌트, aria2 지원<br>
+- 토렌트 - RSS 다운로드 플러그인 추가. 개별 RSS와 토렌트 프로그램 연결
+- 툴 - aria2 플러그인 추가<br>
+  [https://aria2.github.io](https://aria2.github.io/)
+
 ##### ■ 0.2.8.1 (2020-03-28) #####
  - javdb 사이트 변경 대응<br>
 
-##### <span style="color:red"■ 0.2.8 (2020-03-26)</span> ##### 
+##### <span style="color:red">■ 0.2.8 (2020-03-26)</span> #####
  - 봇 다운로드 - AV 중단. 자동 삭제<br>
  - offcloud 캐쉬 정보 중 AV 관련 정보 보내지 않음.<br>
 
