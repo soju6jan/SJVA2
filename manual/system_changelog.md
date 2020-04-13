@@ -1,10 +1,15 @@
 ##### TODO #####
  - 메인화면 스케쥴러 정보 화면 수정<br>
+ - 네이버 웹툰 이전화 모두 받기<br>
+ - 설정 - 백업, 초기화<br>
+ - aria2 임시폴더 기능<br>
+ - https://ttobogo.net/ 추가<br>
 
 ##### ■ 0.2.9.3 (2020-04-13) #####
+ - [네이버 웹툰 에피소드 제목 길이제한.](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=382)<br>
  - 큐빗 완료시 삭제 조건 변경. 기존 100프로 다운로드에서 상태코드 값 사용<br>
- - 애니 24. hls로 변경 대응<br>
-
+ - [애니 24. hls로 변경 대응](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=2810)<br>
+ 
 ##### ■ 0.2.9.2 (2020-04-07) #####
  - 큐빗토렌트 HTTP 링크 직접 다운로드 기능 추가 - 자막관련<br>
 
