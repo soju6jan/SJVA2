@@ -4,6 +4,7 @@
  - 설정 - 백업, 초기화<br>
  - aria2 임시폴더 기능<br>
  - https://ttobogo.net/ 추가<br>
+ 
 
 ##### ■ 0.2.9.3 (2020-04-13) #####
  - [네이버 웹툰 에피소드 제목 길이제한.](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=382)<br>
