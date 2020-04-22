@@ -1,5 +1,5 @@
 {
-"time" : "2020-01-12 00:06:48.359113",
+"time" : "2020-04-22 17:24:25.172366",
 "list": [{
     "name" : "SBS",
     "category" : "지상파",
@@ -11,7 +11,6 @@
         "kt" : ["SBS", "5"],
         "skb" : ["SBS", "14"],
         "lgu" : ["SBS", "504"],
-        "pooq" : ["SBS", "S01", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/S01.jpg"],
         "daum" : ["SBS", "SBS 편성표"]
     }
 },
@@ -41,12 +40,11 @@
         "ebs"
     ],
     "site_info" : {
-        "pooq" : ["EBS", "E01", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/E01.jpg"],
-        "skb" : ["EBS", "15"],
-        "videoportal" : ["EBS1", "505", "http://210.182.60.11/image/EBS1_H161012.png"],
         "kt" : ["EBS", "13"],
-        "daum" : ["EBS1", "EBS1 편성표"],
-        "lgu" : ["EBS1", "505"]
+        "skb" : ["EBS", "15"],
+        "lgu" : ["EBS1", "505"],
+        "videoportal" : ["EBS1", "505", "http://210.182.60.11/image/EBS1_H161012.png"],
+        "daum" : ["EBS1", "EBS1 편성표"]
     }
 },
 {
@@ -61,7 +59,6 @@
         "kt" : ["EBS2", "95"],
         "skb" : ["EBS2", "63"],
         "lgu" : ["EBS2", "506"],
-        "pooq" : ["EBS 2", "E07", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/E07.jpg"],
         "daum" : ["EBS2", "EBS2 편성표"]
     }
 },
@@ -77,7 +74,6 @@
         "kt" : ["MBC", "11"],
         "skb" : ["MBC", "13"],
         "lgu" : ["MBC", "503"],
-        "pooq" : ["MBC", "M01", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/M01.jpg"],
         "daum" : ["MBC", "MBC 편성표"]
     }
 },
@@ -93,7 +89,6 @@
         "kt" : ["KBS2", "7"],
         "skb" : ["KBS2", "12"],
         "lgu" : ["KBS2", "502"],
-        "pooq" : ["KBS 2TV", "K02", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/K02.jpg"],
         "daum" : ["KBS2", "KBS2 편성표"]
     }
 },
@@ -109,7 +104,6 @@
         "kt" : ["KBS1", "9"],
         "skb" : ["KBS1", "11"],
         "lgu" : ["KBS1", "501"],
-        "pooq" : ["KBS 1TV", "K01", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/K01.jpg"],
         "daum" : ["KBS1", "KBS1 편성표"]
     }
 },
@@ -125,7 +119,6 @@
         "tving" : ["TV CHOSUN", "C01581", "http://image.tving.com/upload/cms/caic/CAIC1900/C01581.png"],
         "skb" : ["TV CHOSUN", "243"],
         "videoportal" : ["TV조선", "746", "http://210.182.60.11/image/TVchosun_H161012.png"],
-        "pooq" : ["TV CHOSUN", "C2601", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C2601.jpg"],
         "kt" : ["TV조선", "19"],
         "daum" : ["TV 조선", "TV%20%EC%A1%B0%EC%84%A0 편성표"],
         "everyon" : ["TV CHOSUN", "341", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/341.jpg"],
@@ -143,7 +136,6 @@
         "tving" : ["MBN", "C00708", "http://image.tving.com/upload/cms/caic/CAIC1900/C00708.png"],
         "skb" : ["MBN", "241"],
         "videoportal" : ["MBN", "750", "http://210.182.60.11/image/MBN_H161012.png"],
-        "pooq" : ["MBN", "C2401", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C2401.jpg"],
         "kt" : ["MBN", "16"],
         "daum" : ["MBN", "MBN 편성표"],
         "everyon" : ["MBN", "17", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/17.jpg"],
@@ -177,7 +169,6 @@
         "tving" : ["채널A", "C01583", "http://image.tving.com/upload/cms/caic/CAIC1900/C01583.png"],
         "skb" : ["채널A", "242"],
         "videoportal" : ["채널A", "749", "http://210.182.60.11/image/channelA_H161012.png"],
-        "pooq" : ["채널A", "C2501", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C2501.jpg"],
         "kt" : ["채널A", "18"],
         "daum" : ["채널A", "%EC%B1%84%EB%84%90A 편성표"],
         "everyon" : ["채널A", "251", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/251.jpg"],
@@ -278,7 +269,6 @@
         "tving" : ["연합뉴스TV", "C01723", "http://image.tving.com/upload/cms/caic/CAIC1900/C01723.png"],
         "skb" : ["연합뉴스TV", "571"],
         "videoportal" : ["연합뉴스TV", "734", "http://210.182.60.11/image/NewY_H161012.png"],
-        "pooq" : ["연합뉴스TV", "Y01", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/Y01.jpg"],
         "kt" : ["연합뉴스TV", "23"],
         "daum" : ["연합뉴스 TV", "%EC%97%B0%ED%95%A9%EB%89%B4%EC%8A%A4%20TV 편성표"],
         "everyon" : ["연합뉴스TV", "133", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/133.jpg"],
@@ -296,7 +286,6 @@
         "tving" : ["YTN", "C00593", "http://image.tving.com/upload/cms/caic/CAIC1900/C00593.png"],
         "skb" : ["YTN", "570"],
         "videoportal" : ["YTN", "698", "http://210.182.60.11/image/YTN_H161012.png"],
-        "pooq" : ["YTN", "C2101", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C2101.jpg"],
         "kt" : ["YTN", "24"],
         "daum" : ["YTN", "YTN 편성표"],
         "everyon" : ["YTN", "20", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/20.jpg"],
@@ -315,7 +304,6 @@
         "kt" : ["SBS CNBC", "25"],
         "skb" : ["SBS CNBC", "625"],
         "lgu" : ["SBS CNBC", "616"],
-        "pooq" : ["SBS CNBC", "S06", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/S06.jpg"],
         "daum" : ["SBS CNBC", "SBS%20CNBC 편성표"]
     }
 },
@@ -431,9 +419,6 @@
         "스카이ent"
     ],
     "site_info" : {
-        "kt" : ["SkyENT", "0"],
-        "skb" : ["skyENT", "893"],
-        "lgu" : ["스카이ENT", "570"],
         "daum" : ["Sky ENT", "Sky%20ENT 편성표"]
     }
 },
@@ -473,23 +458,18 @@
         "다이아tv"
     ],
     "site_info" : {
-        "tving" : ["DIA TV", "C15152", "http://image.tving.com/upload/cms/caic/CAIC1900/C15152.png"],
-        "skb" : ["DIA TV", "180"],
-        "videoportal" : ["다이아TV", "690", "http://210.182.60.11/image/DIAtv_H180131.png"],
-        "kt" : ["DIA TV", "72"],
-        "daum" : ["DIA TV", "DIA%20TV 편성표"],
-        "lgu" : ["다이아TV", "690"]
+        "daum" : ["DIA TV", "DIA%20TV 편성표"]
     }
 },
 {
     "name" : "엠스타 TV",
     "category" : "연예/오락",
-    "icon" : "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1357.jpg",
+    "icon" : "",
     "search_name_list" : [
         "엠스타tv"
     ],
     "site_info" : {
-        "everyon" : ["엠스타 TV", "1357", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1357.jpg"]
+
     }
 },
 {
@@ -594,7 +574,6 @@
         "kt" : ["MBC Every1", "1"],
         "skb" : ["MBC Every1", "881"],
         "lgu" : ["MBC에브리원", "626"],
-        "pooq" : ["MBC Every1", "M03", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/M03.jpg"],
         "daum" : ["MBC every1", "MBC%20every1 편성표"]
     }
 },
@@ -690,7 +669,6 @@
         "kt" : ["KBS Joy", "41"],
         "skb" : ["KBS joy", "880"],
         "lgu" : ["KBS조이", "619"],
-        "pooq" : ["KBS JOY", "K04", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/K04.jpg"],
         "daum" : ["KBS Joy", "KBS%20Joy 편성표"]
     }
 },
@@ -746,7 +724,7 @@
         "e!엔터"
     ],
     "site_info" : {
-        "skb" : ["E! Entertainment", "789"]
+
     }
 },
 {
@@ -786,7 +764,6 @@
         "kt" : ["SBS funE", "43"],
         "skb" : ["SBS fun E", "882"],
         "lgu" : ["SBS퍼니", "615"],
-        "pooq" : ["SBS funE", "S04", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/S04.jpg"],
         "daum" : ["SBS funE", "SBS%20funE 편성표"]
     }
 },
@@ -828,12 +805,11 @@
         "채널w"
     ],
     "site_info" : {
-        "pooq" : ["채널W", "C3901", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C3901.jpg"],
-        "skb" : ["채널W", "172"],
         "kt" : ["채널W", "116"],
-        "daum" : ["CH W", "CH%20W 편성표"],
+        "skb" : ["채널W", "172"],
+        "lgu" : ["채널W", "161"],
         "everyon" : ["CH W", "6", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/6.jpg"],
-        "lgu" : ["채널W", "161"]
+        "daum" : ["CH W", "CH%20W 편성표"]
     }
 },
 {
@@ -894,7 +870,6 @@
         "kt" : ["SBS Plus", "37"],
         "skb" : ["SBS 플러스", "901"],
         "lgu" : ["SBS플러스", "612"],
-        "pooq" : ["SBS Plus", "S03", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/S03.jpg"],
         "daum" : ["SBS플러스", "SBS%ED%94%8C%EB%9F%AC%EC%8A%A4 편성표"]
     }
 },
@@ -910,7 +885,6 @@
         "kt" : ["KBS Drama", "35"],
         "skb" : ["KBS 드라마", "902"],
         "lgu" : ["KBS드라마", "617"],
-        "pooq" : ["KBS DRAMA", "K06", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/K06.jpg"],
         "daum" : ["KBS 드라마", "KBS%20%EB%93%9C%EB%9D%BC%EB%A7%88 편성표"]
     }
 },
@@ -942,7 +916,6 @@
         "kt" : ["MBC Dramanet", "31"],
         "skb" : ["MBC 드라마", "900"],
         "lgu" : ["MBC드라마넷", "621"],
-        "pooq" : ["MBC Drama", "M02", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/M02.jpg"],
         "daum" : ["MBC 드라마넷", "MBC%20%EB%93%9C%EB%9D%BC%EB%A7%88%EB%84%B7 편성표"]
     }
 },
@@ -970,9 +943,6 @@
         "sky드라마"
     ],
     "site_info" : {
-        "kt" : ["SkyDrama", "30"],
-        "skb" : ["sky Drama", "871"],
-        "lgu" : ["스카이드라마", "694"],
         "daum" : ["Sky Drama", "Sky%20Drama 편성표"]
     }
 },
@@ -984,6 +954,7 @@
         "uhddreamtv"
     ],
     "site_info" : {
+        "kt" : ["UHDDreamTV", "228"],
         "skb" : ["UHD Dream TV", "879"]
     }
 },
@@ -1024,12 +995,11 @@
         "아시아n"
     ],
     "site_info" : {
-        "pooq" : ["AsiaN", "C5101", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C5101.jpg"],
-        "skb" : ["Asia N", "177"],
-        "videoportal" : ["아시아N", "658", "http://210.182.60.11/image/AsiaN_H161012.png"],
         "kt" : ["AsiaN", "111"],
-        "daum" : ["Asia N", "Asia%20N 편성표"],
-        "lgu" : ["아시아N", "658"]
+        "skb" : ["Asia N", "177"],
+        "lgu" : ["아시아N", "658"],
+        "videoportal" : ["아시아N", "658", "http://210.182.60.11/image/AsiaN_H161012.png"],
+        "daum" : ["Asia N", "Asia%20N 편성표"]
     }
 },
 {
@@ -1101,6 +1071,7 @@
         "asiauhd"
     ],
     "site_info" : {
+        "kt" : ["Asia UHD", "109"],
         "skb" : ["Asia UHD", "878"],
         "daum" : ["Asia UHD", "Asia%20UHD 편성표"]
     }
@@ -1367,9 +1338,6 @@
         "슈퍼액션"
     ],
     "site_info" : {
-        "kt" : ["슈퍼액션", "76"],
-        "skb" : ["SUPER ACTION", "179"],
-        "lgu" : ["수퍼액션", "685"],
         "daum" : ["SUPER ACTION", "SUPER%20ACTION 편성표"]
     }
 },
@@ -1476,23 +1444,19 @@
         "ch.cgv"
     ],
     "site_info" : {
-        "kt" : ["채널CGV", "29"],
-        "skb" : ["Ch CGV", "187"],
-        "lgu" : ["채널CGV", "686"],
         "daum" : ["채널CGV", "%EC%B1%84%EB%84%90CGV 편성표"]
     }
 },
 {
     "name" : "PLAYY 웰메이드 영화",
     "category" : "영화",
-    "icon" : "http://wchimg.pooq.co.kr/pooqlive/thumbnail/H01.jpg",
+    "icon" : "http://210.182.60.11/image/PLAYYWell_H160721.png",
     "search_name_list" : [
         "playy웰메이드영화",
         "playy웰메이드"
     ],
     "site_info" : {
-        "videoportal" : ["PLAYY웰메이드", "392", "http://210.182.60.11/image/PLAYYWell_H160721.png"],
-        "pooq" : ["PLAYY 웰메이드 영화", "H01", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/H01.jpg"]
+        "videoportal" : ["PLAYY웰메이드", "392", "http://210.182.60.11/image/PLAYYWell_H160721.png"]
     }
 },
 {
@@ -1524,12 +1488,12 @@
 {
     "name" : "PLAYY 액션영화",
     "category" : "영화",
-    "icon" : "http://wchimg.pooq.co.kr/pooqlive/thumbnail/H07.jpg",
+    "icon" : "",
     "search_name_list" : [
         "playy액션영화"
     ],
     "site_info" : {
-        "pooq" : ["PLAYY 액션영화", "H07", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/H07.jpg"]
+
     }
 },
 {
@@ -1555,6 +1519,7 @@
         "uxnuhd"
     ],
     "site_info" : {
+        "kt" : ["UXN", "97"],
         "skb" : ["UXN", "888"],
         "lgu" : ["UXN-UHD", "818"],
         "daum" : ["CJ UXN", "CJ%20UXN 편성표"]
@@ -1575,14 +1540,13 @@
 {
     "name" : "PLAYY 프리미엄 영화",
     "category" : "영화",
-    "icon" : "http://wchimg.pooq.co.kr/pooqlive/thumbnail/H02.jpg",
+    "icon" : "http://210.182.60.11/image/PLAYYprem_H160721.png",
     "search_name_list" : [
         "playy프리미엄영화",
         "playy프리미엄"
     ],
     "site_info" : {
-        "videoportal" : ["PLAYY프리미엄", "391", "http://210.182.60.11/image/PLAYYprem_H160721.png"],
-        "pooq" : ["PLAYY 프리미엄 영화", "H02", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/H02.jpg"]
+        "videoportal" : ["PLAYY프리미엄", "391", "http://210.182.60.11/image/PLAYYprem_H160721.png"]
     }
 },
 {
@@ -1686,12 +1650,7 @@
         "spotv게임"
     ],
     "site_info" : {
-        "pooq" : ["SPOTV GAMES", "C5401", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C5401.jpg"],
-        "skb" : ["SPOTV GAMES", "254"],
-        "videoportal" : ["스포티비 게임즈", "727", "http://210.182.60.11/image/SPOTVGAME_H160721.png"],
-        "kt" : ["SPOTV Games", "124"],
-        "daum" : ["SPOTV GAMES", "SPOTV%20GAMES 편성표"],
-        "lgu" : ["스포티비 게임즈", "727"]
+        "daum" : ["SPOTV GAMES", "SPOTV%20GAMES 편성표"]
     }
 },
 {
@@ -1716,12 +1675,7 @@
         "jtbc3fox스포츠"
     ],
     "site_info" : {
-        "tving" : ["JTBC3 FOX Sports", "C00805", "http://image.tving.com/upload/cms/caic/CAIC1900/C00805.png"],
-        "skb" : ["JTBC3 FOX SPORTS", "436"],
-        "videoportal" : ["JTBC3 FOX스포츠", "795", "http://210.182.60.11/image/JTBC3FOXSPORTS_H20161006.png"],
-        "kt" : ["JTBC3 FOX Sports", "61"],
-        "daum" : ["JTBC3", "JTBC3 편성표"],
-        "lgu" : ["JTBC3 FOX스포츠", "795"]
+        "daum" : ["JTBC3", "JTBC3 편성표"]
     }
 },
 {
@@ -1922,10 +1876,6 @@
         "mbc뮤직"
     ],
     "site_info" : {
-        "kt" : ["MBC MUSIC", "137"],
-        "skb" : ["MBC Music", "250"],
-        "lgu" : ["MBC뮤직", "624"],
-        "pooq" : ["MBC Music", "M06", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/M06.jpg"],
         "daum" : ["MBC Music", "MBC%20Music 편성표"]
     }
 },
@@ -1967,7 +1917,7 @@
     "site_info" : {
         "tving" : ["Mnet", "C00579", "http://image.tving.com/upload/cms/caic/CAIC1900/C00579.png"],
         "skb" : ["M.net", "873"],
-        "videoportal" : ["엠넷", "687", "http://210.182.60.11/image/Mnet_H160721.png"],
+        "videoportal" : ["엠넷", "687", "http://210.182.60.11/image/Mnet_H200317.png"],
         "kt" : ["Mnet", "27"],
         "daum" : ["Mnet", "Mnet 편성표"],
         "lgu" : ["엠넷", "687"]
@@ -2068,7 +2018,6 @@
         "kt" : ["SBS MTV", "136"],
         "skb" : ["SBS MTV", "883"],
         "lgu" : ["SBS MTV", "634"],
-        "pooq" : ["SBS MTV", "S09", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/S09.jpg"],
         "daum" : ["SBS MTV", "SBS%20MTV 편성표"]
     }
 },
@@ -2457,7 +2406,6 @@
     "site_info" : {
         "tving" : ["히스토리", "C17341", "http://image.tving.com/upload/cms/caic/CAIC1900/C17341.png"],
         "skb" : ["History", "260"],
-        "pooq" : ["HISTORY", "C5901", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C5901.jpg"],
         "kt" : ["History", "169"],
         "daum" : ["히스토리채널", "%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%B1%84%EB%84%90 편성표"],
         "everyon" : ["히스토리", "551", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/551.jpg"],
@@ -2492,7 +2440,6 @@
         "kt" : ["KBSN Life", "281"],
         "skb" : ["KBS N Life", "292"],
         "lgu" : ["KBSN라이프", "582"],
-        "pooq" : ["KBSN Life", "K05", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/K05.jpg"],
         "daum" : ["KBS N Life", "KBS%20N%20Life 편성표"]
     }
 },
@@ -2540,7 +2487,6 @@
         "kt" : ["채널 J", "108"],
         "skb" : ["채널J", "197"],
         "lgu" : ["채널J", "656"],
-        "pooq" : ["채널J", "C5501", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C5501.jpg"],
         "daum" : ["channel J", "channel%20J 편성표"]
     }
 },
@@ -2752,8 +2698,8 @@
         "k바둑"
     ],
     "site_info" : {
-        "kt" : ["K-바둑", "121"],
-        "skb" : ["K-바둑", "253"],
+        "kt" : ["K바둑", "121"],
+        "skb" : ["K 바둑", "253"],
         "lgu" : ["K-바둑", "663"],
         "everyon" : ["K바둑", "207", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/207.jpg"],
         "daum" : ["K바둑", "K%EB%B0%94%EB%91%91 편성표"]
@@ -2858,9 +2804,6 @@
         "sky펫파크"
     ],
     "site_info" : {
-        "kt" : ["SkyPetPark", "49"],
-        "skb" : ["Sky Petpark", "889"],
-        "lgu" : ["스카이펫파크", "804"],
         "daum" : ["Sky PetPARK", "Sky%20PetPARK 편성표"]
     }
 },
@@ -2978,7 +2921,6 @@
         "kt" : ["애니박스", "993"],
         "skb" : ["애니박스", "191"],
         "lgu" : ["애니박스", "695"],
-        "pooq" : ["ANIBOX", "C4401", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C4401.jpg"],
         "daum" : ["AniBox", "AniBox 편성표"]
     }
 },
@@ -3059,12 +3001,11 @@
         "animax"
     ],
     "site_info" : {
-        "pooq" : ["ANIMAX", "A01", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/A01.jpg"],
-        "skb" : ["Animax", "371"],
-        "videoportal" : ["애니맥스", "703", "http://210.182.60.11/image/ANIMAX__H161111.png"],
         "kt" : ["ANIMAX", "995"],
-        "daum" : ["애니맥스", "%EC%95%A0%EB%8B%88%EB%A7%A5%EC%8A%A4 편성표"],
-        "lgu" : ["애니맥스", "703"]
+        "skb" : ["Animax", "371"],
+        "lgu" : ["애니맥스", "703"],
+        "videoportal" : ["애니맥스", "703", "http://210.182.60.11/image/ANIMAX__H161111.png"],
+        "daum" : ["애니맥스", "%EC%95%A0%EB%8B%88%EB%A7%A5%EC%8A%A4 편성표"]
     }
 },
 {
@@ -3089,12 +3030,11 @@
         "디즈니"
     ],
     "site_info" : {
-        "tving" : ["디즈니채널", "C05661", "http://image.tving.com/upload/cms/caic/CAIC1900/C05661.png"],
-        "skb" : ["디즈니채널", "380"],
-        "pooq" : ["Disney", "D01", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/D01.jpg"],
         "kt" : ["Disney Channel", "998"],
-        "daum" : ["디즈니채널", "%EB%94%94%EC%A6%88%EB%8B%88%EC%B1%84%EB%84%90 편성표"],
-        "lgu" : ["디즈니 채널", "645"]
+        "skb" : ["디즈니채널", "380"],
+        "tving" : ["디즈니채널", "C05661", "http://image.tving.com/upload/cms/caic/CAIC1900/C05661.png"],
+        "lgu" : ["디즈니 채널", "645"],
+        "daum" : ["디즈니채널", "%EB%94%94%EC%A6%88%EB%8B%88%EC%B1%84%EB%84%90 편성표"]
     }
 },
 {
@@ -3171,7 +3111,6 @@
         "kt" : ["디즈니주니어", "978"],
         "skb" : ["디즈니주니어", "381"],
         "lgu" : ["디즈니 주니어", "646"],
-        "pooq" : ["Disney Junior", "D02", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/D02.jpg"],
         "daum" : ["디즈니주니어", "%EB%94%94%EC%A6%88%EB%8B%88%EC%A3%BC%EB%8B%88%EC%96%B4 편성표"]
     }
 },
@@ -3205,7 +3144,6 @@
         "kt" : ["니켈로디언", "992"],
         "skb" : ["Nickelodeon", "383"],
         "lgu" : ["니켈로디언", "635"],
-        "pooq" : ["Nick", "S10", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/S10.jpg"],
         "daum" : ["Nickelodeon", "Nickelodeon 편성표"]
     }
 },
@@ -3229,12 +3167,11 @@
         "ebskids"
     ],
     "site_info" : {
-        "pooq" : ["EBS Kids", "E05", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/E05.jpg"],
-        "skb" : ["EBS KIDS", "372"],
-        "videoportal" : ["EBS Kids", "607", "http://210.182.60.11/image/EBSkids_H20180110.png"],
         "kt" : ["EBS KIDS", "983"],
-        "daum" : ["EBS KIDS", "EBS%20KIDS 편성표"],
-        "lgu" : ["EBS Kids", "607"]
+        "skb" : ["EBS KIDS", "372"],
+        "lgu" : ["EBS Kids", "607"],
+        "videoportal" : ["EBS Kids", "607", "http://210.182.60.11/image/EBSkids_H20180110.png"],
+        "daum" : ["EBS KIDS", "EBS%20KIDS 편성표"]
     }
 },
 {
@@ -3664,7 +3601,6 @@
         "kt" : ["KBS W", "83"],
         "skb" : ["KBS W", "425"],
         "lgu" : ["KBS W", "620"],
-        "pooq" : ["KBS W", "K09", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/K09.jpg"],
         "daum" : ["KBS W", "KBS%20W 편성표"]
     }
 },
@@ -3696,7 +3632,6 @@
         "tving" : ["LIFETIME", "C00611", "http://image.tving.com/upload/cms/caic/CAIC1900/C00611.png"],
         "skb" : ["라이프타임", "271"],
         "videoportal" : ["라이프타임", "603", "http://210.182.60.11/image/foodTV_H170925.png"],
-        "pooq" : ["LIFETIME", "C5902", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C5902.jpg"],
         "kt" : ["Lifetime", "78"],
         "daum" : ["라이프타임채널", "%EB%9D%BC%EC%9D%B4%ED%94%84%ED%83%80%EC%9E%84%EC%B1%84%EB%84%90 편성표"],
         "everyon" : ["라이프타임", "1015", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1015.jpg"],
@@ -4099,7 +4034,6 @@
     "site_info" : {
         "kt" : ["신세계쇼핑", "20"],
         "skb" : ["신세계쇼핑", "339"],
-        "pooq" : ["신세계TV쇼핑", "C4801", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C4801.jpg"],
         "lgu" : ["신세계쇼핑", "780"]
     }
 },
@@ -4156,7 +4090,6 @@
         "kt" : ["쇼핑엔티", "33"],
         "skb" : ["쇼핑엔티", "336"],
         "lgu" : ["쇼핑엔티", "782"],
-        "pooq" : ["쇼핑엔티", "C4901", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C4901.jpg"],
         "daum" : ["쇼핑엔티", "%EC%87%BC%ED%95%91%EC%97%94%ED%8B%B0 편성표"]
     }
 },
@@ -4173,7 +4106,6 @@
         "kt" : ["현대홈쇼핑+샵", "36"],
         "videoportal" : ["현대홈쇼핑+샵", "760", "http://210.182.60.11/image/HDplusShop_H160922.png"],
         "skb" : ["현대홈쇼핑+Shop", "337"],
-        "pooq" : ["현대홈쇼핑+샵", "C4102", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C4102.jpg"],
         "lgu" : ["현대홈쇼핑+샵", "760"]
     }
 },
@@ -4229,12 +4161,11 @@
         "gs샵"
     ],
     "site_info" : {
-        "pooq" : ["GS SHOP", "C4201", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C4201.jpg"],
-        "skb" : ["GS SHOP", "320"],
-        "videoportal" : ["GS샵", "676", "http://210.182.60.11/image/GSSHOP_H160721.png"],
         "kt" : ["GS SHOP", "8"],
-        "daum" : ["GS SHOP", "GS%20SHOP 편성표"],
-        "lgu" : ["GS샵", "676"]
+        "skb" : ["GS SHOP", "320"],
+        "lgu" : ["GS샵", "676"],
+        "videoportal" : ["GS샵", "676", "http://210.182.60.11/image/GSSHOP_H160721.png"],
+        "daum" : ["GS SHOP", "GS%20SHOP 편성표"]
     }
 },
 {
@@ -4260,12 +4191,11 @@
         "현대홈쇼핑"
     ],
     "site_info" : {
-        "pooq" : ["현대홈쇼핑", "C4101", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C4101.jpg"],
-        "skb" : ["현대홈쇼핑", "321"],
-        "videoportal" : ["현대홈쇼핑", "675", "http://210.182.60.11/image/HDSHOP_H160721.png"],
         "kt" : ["현대홈쇼핑", "10"],
-        "daum" : ["현대홈쇼핑", "%ED%98%84%EB%8C%80%ED%99%88%EC%87%BC%ED%95%91 편성표"],
-        "lgu" : ["현대홈쇼핑", "675"]
+        "skb" : ["현대홈쇼핑", "321"],
+        "lgu" : ["현대홈쇼핑", "675"],
+        "videoportal" : ["현대홈쇼핑", "675", "http://210.182.60.11/image/HDSHOP_H160721.png"],
+        "daum" : ["현대홈쇼핑", "%ED%98%84%EB%8C%80%ED%99%88%EC%87%BC%ED%95%91 편성표"]
     }
 },
 {
@@ -4282,7 +4212,6 @@
         "kt" : ["GS MY SHOP", "38"],
         "videoportal" : ["GS마이샵", "740", "http://210.182.60.11/image/GSmyshop_H160721.png"],
         "skb" : ["GS MY SHOP", "343"],
-        "pooq" : ["GS MY SHOP", "C4202", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/C4202.jpg"],
         "lgu" : ["GS마이샵", "740"]
     }
 },
@@ -4297,6 +4226,7 @@
         "kt" : ["K쇼핑", "2"],
         "skb" : ["K쇼핑", "333"],
         "lgu" : ["K쇼핑", "811"],
+        "everyon" : ["K쇼핑", "880", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/880.jpg"],
         "daum" : ["K쇼핑", "K%EC%87%BC%ED%95%91 편성표"]
     }
 },
@@ -4499,7 +4429,6 @@
     "site_info" : {
         "kt" : ["CCTV4", "280"],
         "skb" : ["CCTV4", "779"],
-        "pooq" : ["CCTV4", "K12", "http://wchimg.pooq.co.kr/pooqlive/thumbnail/K12.jpg"],
         "lgu" : ["CCTV4", "178"]
     }
 },
@@ -4608,7 +4537,6 @@
         "ebsfm"
     ],
     "site_info" : {
-        "pooq" : ["EBS FM", "E06", "http://img.pooq.co.kr/BMS/ChannelImg/수정됨_E06.jpg"],
         "daum" : ["EBS교육방송", "EBS%EA%B5%90%EC%9C%A1%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -4711,7 +4639,6 @@
         "sbs파워fm"
     ],
     "site_info" : {
-        "pooq" : ["SBS 파워FM", "S07", "http://img.pooq.co.kr/201710/20171025/evneefffqxjvbwd.jpg"],
         "daum" : ["SBS파워FM", "SBS%ED%8C%8C%EC%9B%8CFM 편성표"]
     }
 },
@@ -4760,7 +4687,6 @@
         "kbs1라디오"
     ],
     "site_info" : {
-        "pooq" : ["KBS1RADIO", "K07", "http://img.pooq.co.kr/BMS/ChannelImg/수정됨_K07.jpg"],
         "daum" : ["KBS1R", "KBS1R 편성표"]
     }
 },
@@ -4772,19 +4698,18 @@
         "mbc표준fm"
     ],
     "site_info" : {
-        "pooq" : ["MBC 표준 FM", "M07", "http://img.pooq.co.kr/BMS/ChannelImg/수정됨_M07.jpg"],
         "daum" : ["MBC표준FM", "MBC%ED%91%9C%EC%A4%80FM 편성표"]
     }
 },
 {
     "name" : "KISS - 발라드",
     "category" : "라디오",
-    "icon" : "http://img.pooq.co.kr/BMS/C2702/2016/C2702_KISS000000020/C2702_KISS000000020.jpg",
+    "icon" : "",
     "search_name_list" : [
         "kiss발라드"
     ],
     "site_info" : {
-        "pooq" : ["KISS - 발라드", "C2702", "http://img.pooq.co.kr/BMS/C2702/2016/C2702_KISS000000020/C2702_KISS000000020.jpg"]
+
     }
 },
 {
@@ -4801,12 +4726,12 @@
 {
     "name" : "KISS - 2000년대 인기가요",
     "category" : "라디오",
-    "icon" : "http://img.pooq.co.kr/BMS/C2705/2016/C2705_KISS000000020/C2705_KISS000000020.jpg",
+    "icon" : "",
     "search_name_list" : [
         "kiss2000년대인기가요"
     ],
     "site_info" : {
-        "pooq" : ["KISS - 2000년대 인기가요", "C2705", "http://img.pooq.co.kr/BMS/C2705/2016/C2705_KISS000000020/C2705_KISS000000020.jpg"]
+
     }
 },
 {
@@ -4817,19 +4742,18 @@
         "sbs러브fm"
     ],
     "site_info" : {
-        "pooq" : ["SBS 러브FM", "S08", "http://img.pooq.co.kr/201907/20190704/xiwebfzhhhsdqhu.jpg"],
         "daum" : ["SBS러브FM", "SBS%EB%9F%AC%EB%B8%8CFM 편성표"]
     }
 },
 {
     "name" : "KISS - 최신인기가요",
     "category" : "라디오",
-    "icon" : "http://img.pooq.co.kr/BMS/C2701/2016/C2701_KISS000000020/C2701_KISS000000020.jpg",
+    "icon" : "",
     "search_name_list" : [
         "kiss최신인기가요"
     ],
     "site_info" : {
-        "pooq" : ["KISS - 최신인기가요", "C2701", "http://img.pooq.co.kr/BMS/C2701/2016/C2701_KISS000000020/C2701_KISS000000020.jpg"]
+
     }
 },
 {
@@ -4851,19 +4775,18 @@
         "mbcfm4u"
     ],
     "site_info" : {
-        "pooq" : ["MBC FM4U", "M08", "http://img.pooq.co.kr/BMS/ChannelImg/수정됨_M08.jpg"],
         "daum" : ["MBCFM4U", "MBCFM4U 편성표"]
     }
 },
 {
     "name" : "KISS - 재즈 라운지",
     "category" : "라디오",
-    "icon" : "http://img.pooq.co.kr/BMS/C2706/2016/C2706_KISS000000020/C2706_KISS000000020.jpg",
+    "icon" : "",
     "search_name_list" : [
         "kiss재즈라운지"
     ],
     "site_info" : {
-        "pooq" : ["KISS - 재즈 라운지", "C2706", "http://img.pooq.co.kr/BMS/C2706/2016/C2706_KISS000000020/C2706_KISS000000020.jpg"]
+
     }
 },
 {
@@ -4880,12 +4803,12 @@
 {
     "name" : "KISS - 8090인기가요",
     "category" : "라디오",
-    "icon" : "http://img.pooq.co.kr/BMS/ChannelImg/수정됨_C2703.jpg",
+    "icon" : "",
     "search_name_list" : [
         "kiss8090인기가요"
     ],
     "site_info" : {
-        "pooq" : ["KISS - 8090인기가요", "C2703", "http://img.pooq.co.kr/BMS/ChannelImg/수정됨_C2703.jpg"]
+
     }
 },
 {
@@ -4909,7 +4832,6 @@
         "kbscoolfm"
     ],
     "site_info" : {
-        "pooq" : ["KBSCOOLFM", "K08", "http://img.pooq.co.kr/BMS/ChannelImg/수정됨_K08.jpg"],
         "daum" : ["KBS2FM", "KBS2FM 편성표"]
     }
 },
@@ -5595,6 +5517,7 @@
         "umax"
     ],
     "site_info" : {
+        "kt" : ["UMAX", "227"],
         "skb" : ["UMAX", "69"],
         "daum" : ["UMAX", "UMAX 편성표"]
     }
