@@ -45,6 +45,7 @@ try:
                 logger.error(traceback.format_exc())
 
         # av- 
+        """
         try:
             import shutil
             av = os.path.join(server_plugin_path, 'bot_downloader_av')
@@ -55,7 +56,7 @@ try:
                 os.remove(tmp)
         except Exception as e:
             print('Exception:%s', e)
-
+        """
 except Exception, e:
     print('Exception:%s', e)
 
