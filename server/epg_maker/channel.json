@@ -1,5 +1,5 @@
 {
-"time" : "2020-04-22 17:24:25.172366",
+"time" : "2020-06-01 23:40:28.824648",
 "list": [{
     "name" : "SBS",
     "category" : "지상파",
@@ -10,7 +10,7 @@
     "site_info" : {
         "kt" : ["SBS", "5"],
         "skb" : ["SBS", "14"],
-        "lgu" : ["SBS", "504"],
+        "pooq" : ["SBS", "S01", "https://"],
         "daum" : ["SBS", "SBS 편성표"]
     }
 },
@@ -23,12 +23,11 @@
         "obs"
     ],
     "site_info" : {
-        "skb" : ["OBS", "70"],
-        "videoportal" : ["OBS", "596", "http://210.182.60.11/image/OBS_H161012.png"],
         "kt" : ["OBS", "26"],
-        "daum" : ["OBS 경인TV", "OBS%20%EA%B2%BD%EC%9D%B8TV 편성표"],
+        "videoportal" : ["OBS", "596", "http://210.182.60.11/image/OBS_H161012.png"],
+        "skb" : ["OBS", "70"],
         "everyon" : ["OBS", "1042", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1042.jpg"],
-        "lgu" : ["OBS", "596"]
+        "daum" : ["OBS 경인TV", "OBS%20%EA%B2%BD%EC%9D%B8TV 편성표"]
     }
 },
 {
@@ -41,9 +40,9 @@
     ],
     "site_info" : {
         "kt" : ["EBS", "13"],
-        "skb" : ["EBS", "15"],
-        "lgu" : ["EBS1", "505"],
         "videoportal" : ["EBS1", "505", "http://210.182.60.11/image/EBS1_H161012.png"],
+        "skb" : ["EBS", "15"],
+        "pooq" : ["EBS 1", "E01", "https://img.pooq.co.kr/BMS/ChannelImg/ebs1.png"],
         "daum" : ["EBS1", "EBS1 편성표"]
     }
 },
@@ -58,7 +57,7 @@
     "site_info" : {
         "kt" : ["EBS2", "95"],
         "skb" : ["EBS2", "63"],
-        "lgu" : ["EBS2", "506"],
+        "pooq" : ["EBS 2", "E07", "https://img.pooq.co.kr/BMS/ChannelImg/ebs2.png"],
         "daum" : ["EBS2", "EBS2 편성표"]
     }
 },
@@ -73,7 +72,7 @@
     "site_info" : {
         "kt" : ["MBC", "11"],
         "skb" : ["MBC", "13"],
-        "lgu" : ["MBC", "503"],
+        "pooq" : ["MBC", "M01", "https://"],
         "daum" : ["MBC", "MBC 편성표"]
     }
 },
@@ -88,7 +87,7 @@
     "site_info" : {
         "kt" : ["KBS2", "7"],
         "skb" : ["KBS2", "12"],
-        "lgu" : ["KBS2", "502"],
+        "pooq" : ["KBS 2TV", "K02", "https://img.pooq.co.kr/BMS/Channelimage30/image/KBS-2TV-2.png"],
         "daum" : ["KBS2", "KBS2 편성표"]
     }
 },
@@ -103,7 +102,7 @@
     "site_info" : {
         "kt" : ["KBS1", "9"],
         "skb" : ["KBS1", "11"],
-        "lgu" : ["KBS1", "501"],
+        "pooq" : ["KBS 1TV", "K01", "https://img.pooq.co.kr/BMS/Channelimage30/image/KBS 1TV-2.png"],
         "daum" : ["KBS1", "KBS1 편성표"]
     }
 },
@@ -119,10 +118,10 @@
         "tving" : ["TV CHOSUN", "C01581", "http://image.tving.com/upload/cms/caic/CAIC1900/C01581.png"],
         "skb" : ["TV CHOSUN", "243"],
         "videoportal" : ["TV조선", "746", "http://210.182.60.11/image/TVchosun_H161012.png"],
+        "pooq" : ["TV CHOSUN", "C2601", "https://img.pooq.co.kr/BMS/Channelimage30/image/180_24.png"],
         "kt" : ["TV조선", "19"],
-        "daum" : ["TV 조선", "TV%20%EC%A1%B0%EC%84%A0 편성표"],
         "everyon" : ["TV CHOSUN", "341", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/341.jpg"],
-        "lgu" : ["TV조선", "746"]
+        "daum" : ["TV 조선", "TV%20%EC%A1%B0%EC%84%A0 편성표"]
     }
 },
 {
@@ -136,10 +135,10 @@
         "tving" : ["MBN", "C00708", "http://image.tving.com/upload/cms/caic/CAIC1900/C00708.png"],
         "skb" : ["MBN", "241"],
         "videoportal" : ["MBN", "750", "http://210.182.60.11/image/MBN_H161012.png"],
+        "pooq" : ["MBN", "C2401", "https://img.pooq.co.kr/BMS/Channelimage30/image/C2401_TVImg_20191125101748.png"],
         "kt" : ["MBN", "16"],
-        "daum" : ["MBN", "MBN 편성표"],
         "everyon" : ["MBN", "17", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/17.jpg"],
-        "lgu" : ["MBN", "750"]
+        "daum" : ["MBN", "MBN 편성표"]
     }
 },
 {
@@ -150,12 +149,11 @@
         "jtbc"
     ],
     "site_info" : {
+        "kt" : ["JTBC", "15"],
+        "videoportal" : ["JTBC", "747", "http://210.182.60.11/image/JTBC_H161012.png"],
         "tving" : ["JTBC", "C01582", "http://image.tving.com/upload/cms/caic/CAIC1900/C01582.png"],
         "skb" : ["JTBC", "240"],
-        "videoportal" : ["JTBC", "747", "http://210.182.60.11/image/JTBC_H161012.png"],
-        "kt" : ["JTBC", "15"],
-        "daum" : ["JTBC", "JTBC 편성표"],
-        "lgu" : ["JTBC", "747"]
+        "daum" : ["JTBC", "JTBC 편성표"]
     }
 },
 {
@@ -169,10 +167,10 @@
         "tving" : ["채널A", "C01583", "http://image.tving.com/upload/cms/caic/CAIC1900/C01583.png"],
         "skb" : ["채널A", "242"],
         "videoportal" : ["채널A", "749", "http://210.182.60.11/image/channelA_H161012.png"],
+        "pooq" : ["채널A", "C2501", "https://img.pooq.co.kr/BMS/ChannelImg/04_channelA.png"],
         "kt" : ["채널A", "18"],
-        "daum" : ["채널A", "%EC%B1%84%EB%84%90A 편성표"],
         "everyon" : ["채널A", "251", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/251.jpg"],
-        "lgu" : ["채널A", "749"]
+        "daum" : ["채널A", "%EC%B1%84%EB%84%90A 편성표"]
     }
 },
 {
@@ -186,7 +184,6 @@
     "site_info" : {
         "kt" : ["서울경제TV", "184"],
         "skb" : ["서울경제TV", "629"],
-        "lgu" : ["서울경제TV", "752"],
         "everyon" : ["서울경제TV SEN", "22", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/22.jpg"],
         "daum" : ["서울경제TV", "%EC%84%9C%EC%9A%B8%EA%B2%BD%EC%A0%9CTV 편성표"]
     }
@@ -201,7 +198,6 @@
     "site_info" : {
         "kt" : ["소상공인방송", "255"],
         "skb" : ["소상공인방송", "428"],
-        "lgu" : ["소상공인방송", "169"],
         "daum" : ["소상공인방송", "%EC%86%8C%EC%83%81%EA%B3%B5%EC%9D%B8%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -210,25 +206,119 @@
     "category" : "뉴스/경제",
     "icon" : "http://i.imgur.com/dVWy3Ex.png",
     "search_name_list" : [
-        "토마토tv"
+        "토마토tv",
+        "이토마토tv"
     ],
     "site_info" : {
         "kt" : ["토마토TV", "185"],
-        "skb" : ["토마토TV", "620"],
-        "lgu" : ["토마토TV", "771"],
         "videoportal" : ["토마토TV", "771", "http://210.182.60.11/image/TomatoTV_H160721.png"],
+        "skb" : ["토마토TV", "620"],
+        "everyon" : ["이토마토TV", "25", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/25.jpg"],
         "daum" : ["토마토TV", "%ED%86%A0%EB%A7%88%ED%86%A0TV 편성표"]
     }
 },
 {
-    "name" : "이토마토TV",
+    "name" : "MTN",
     "category" : "뉴스/경제",
-    "icon" : "http://assets-cdn.everyon.co.kr/images/ch_sm_img/25.jpg",
+    "icon" : "http://i.imgur.com/joWd14j.png",
     "search_name_list" : [
-        "이토마토tv"
+        "mtn",
+        "머니투데이방송"
     ],
     "site_info" : {
-        "everyon" : ["이토마토TV", "25", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/25.jpg"]
+        "kt" : ["머니투데이방송", "181"],
+        "skb" : ["MTN", "627"],
+        "everyon" : ["MTN", "18", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/18.jpg"],
+        "daum" : ["MTN", "MTN 편성표"]
+    }
+},
+{
+    "name" : "연합뉴스 TV",
+    "category" : "뉴스/경제",
+    "icon" : "http://i.imgur.com/KlTCP8V.png",
+    "search_name_list" : [
+        "연합뉴스tv"
+    ],
+    "site_info" : {
+        "tving" : ["연합뉴스TV", "C01723", "http://image.tving.com/upload/cms/caic/CAIC1900/C01723.png"],
+        "skb" : ["연합뉴스TV", "571"],
+        "videoportal" : ["연합뉴스TV", "734", "http://210.182.60.11/image/NewY_H161012.png"],
+        "pooq" : ["연합뉴스TV", "Y01", "https://img.pooq.co.kr/BMS/ChannelImg/05_연합뉴스TV.png"],
+        "kt" : ["연합뉴스TV", "23"],
+        "everyon" : ["연합뉴스TV", "133", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/133.jpg"],
+        "daum" : ["연합뉴스 TV", "%EC%97%B0%ED%95%A9%EB%89%B4%EC%8A%A4%20TV 편성표"]
+    }
+},
+{
+    "name" : "YTN",
+    "category" : "뉴스/경제",
+    "icon" : "http://i.imgur.com/ByeeX5e.png",
+    "search_name_list" : [
+        "ytn"
+    ],
+    "site_info" : {
+        "tving" : ["YTN", "C00593", "http://image.tving.com/upload/cms/caic/CAIC1900/C00593.png"],
+        "skb" : ["YTN", "570"],
+        "videoportal" : ["YTN", "698", "http://210.182.60.11/image/YTN_H161012.png"],
+        "pooq" : ["YTN", "C2101", "https://img.pooq.co.kr/BMS/ChannelImg/07_ytn.png"],
+        "kt" : ["YTN", "24"],
+        "everyon" : ["YTN", "20", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/20.jpg"],
+        "daum" : ["YTN", "YTN 편성표"]
+    }
+},
+{
+    "name" : "SBS CNBC",
+    "category" : "뉴스/경제",
+    "icon" : "http://i.imgur.com/SfDs4qN.png",
+    "search_name_list" : [
+        "sbscnbc",
+        "sbscnb"
+    ],
+    "site_info" : {
+        "kt" : ["SBS CNBC", "25"],
+        "tving" : ["SBS CNBC", "C15846", "http://image.tving.com/upload/cms/caic/CAIC1900/C15846.png"],
+        "skb" : ["SBS CNBC", "625"],
+        "daum" : ["SBS CNBC", "SBS%20CNBC 편성표"]
+    }
+},
+{
+    "name" : "이데일리TV",
+    "category" : "뉴스/경제",
+    "icon" : "http://i.imgur.com/W90Hw2p.png",
+    "search_name_list" : [
+        "이데일리tv"
+    ],
+    "site_info" : {
+        "kt" : ["이데일리TV", "183"],
+        "skb" : ["이데일리TV", "630"],
+        "everyon" : ["이데일리TV", "23", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/23.jpg"],
+        "daum" : ["이데일리TV", "%EC%9D%B4%EB%8D%B0%EC%9D%BC%EB%A6%ACTV 편성표"]
+    }
+},
+{
+    "name" : "내외경제TV",
+    "category" : "뉴스/경제",
+    "icon" : "http://i.imgur.com/cQHPmCw.png",
+    "search_name_list" : [
+        "내외경제tv"
+    ],
+    "site_info" : {
+        "kt" : ["내외경제TV", "285"],
+        "skb" : ["내외경제TV", "623"]
+    }
+},
+{
+    "name" : "한국경제TV",
+    "category" : "뉴스/경제",
+    "icon" : "http://i.imgur.com/ChnD0FT.png",
+    "search_name_list" : [
+        "한국경제tv"
+    ],
+    "site_info" : {
+        "kt" : ["한국경제TV", "180"],
+        "skb" : ["한국경제TV", "626"],
+        "everyon" : ["한국경제TV", "26", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/26.jpg"],
+        "daum" : ["한국경제TV", "%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9CTV 편성표"]
     }
 },
 {
@@ -253,58 +343,8 @@
     "site_info" : {
         "kt" : ["팍스경제TV", "186"],
         "skb" : ["팍스경제TV", "622"],
-        "lgu" : ["팍스경제TV", "742"],
         "everyon" : ["팍스경제TV", "385", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/385.jpg"],
         "daum" : ["팍스경제TV", "HD %ED%8C%8D%EC%8A%A4%EA%B2%BD%EC%A0%9CTV 편성표"]
-    }
-},
-{
-    "name" : "연합뉴스 TV",
-    "category" : "뉴스/경제",
-    "icon" : "http://i.imgur.com/KlTCP8V.png",
-    "search_name_list" : [
-        "연합뉴스tv"
-    ],
-    "site_info" : {
-        "tving" : ["연합뉴스TV", "C01723", "http://image.tving.com/upload/cms/caic/CAIC1900/C01723.png"],
-        "skb" : ["연합뉴스TV", "571"],
-        "videoportal" : ["연합뉴스TV", "734", "http://210.182.60.11/image/NewY_H161012.png"],
-        "kt" : ["연합뉴스TV", "23"],
-        "daum" : ["연합뉴스 TV", "%EC%97%B0%ED%95%A9%EB%89%B4%EC%8A%A4%20TV 편성표"],
-        "everyon" : ["연합뉴스TV", "133", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/133.jpg"],
-        "lgu" : ["연합뉴스TV", "734"]
-    }
-},
-{
-    "name" : "YTN",
-    "category" : "뉴스/경제",
-    "icon" : "http://i.imgur.com/ByeeX5e.png",
-    "search_name_list" : [
-        "ytn"
-    ],
-    "site_info" : {
-        "tving" : ["YTN", "C00593", "http://image.tving.com/upload/cms/caic/CAIC1900/C00593.png"],
-        "skb" : ["YTN", "570"],
-        "videoportal" : ["YTN", "698", "http://210.182.60.11/image/YTN_H161012.png"],
-        "kt" : ["YTN", "24"],
-        "daum" : ["YTN", "YTN 편성표"],
-        "everyon" : ["YTN", "20", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/20.jpg"],
-        "lgu" : ["YTN", "698"]
-    }
-},
-{
-    "name" : "SBS CNBC",
-    "category" : "뉴스/경제",
-    "icon" : "http://i.imgur.com/SfDs4qN.png",
-    "search_name_list" : [
-        "sbscnbc",
-        "sbscnb"
-    ],
-    "site_info" : {
-        "kt" : ["SBS CNBC", "25"],
-        "skb" : ["SBS CNBC", "625"],
-        "lgu" : ["SBS CNBC", "616"],
-        "daum" : ["SBS CNBC", "SBS%20CNBC 편성표"]
     }
 },
 {
@@ -317,39 +357,7 @@
     "site_info" : {
         "kt" : ["쿠키건강TV", "220"],
         "skb" : ["쿠키건강TV", "434"],
-        "lgu" : ["쿠키건강TV", "167"],
         "daum" : ["쿠키건강TV", "%EC%BF%A0%ED%82%A4%EA%B1%B4%EA%B0%95TV 편성표"]
-    }
-},
-{
-    "name" : "이데일리TV",
-    "category" : "뉴스/경제",
-    "icon" : "http://i.imgur.com/W90Hw2p.png",
-    "search_name_list" : [
-        "이데일리tv"
-    ],
-    "site_info" : {
-        "kt" : ["이데일리TV", "183"],
-        "skb" : ["이데일리TV", "630"],
-        "lgu" : ["이데일리TV", "631"],
-        "everyon" : ["이데일리TV", "23", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/23.jpg"],
-        "daum" : ["이데일리TV", "%EC%9D%B4%EB%8D%B0%EC%9D%BC%EB%A6%ACTV 편성표"]
-    }
-},
-{
-    "name" : "MTN",
-    "category" : "뉴스/경제",
-    "icon" : "http://i.imgur.com/joWd14j.png",
-    "search_name_list" : [
-        "mtn",
-        "머니투데이방송"
-    ],
-    "site_info" : {
-        "kt" : ["머니투데이방송", "181"],
-        "skb" : ["MTN", "627"],
-        "lgu" : ["MTN", "630"],
-        "everyon" : ["MTN", "18", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/18.jpg"],
-        "daum" : ["MTN", "MTN 편성표"]
     }
 },
 {
@@ -363,36 +371,7 @@
     "site_info" : {
         "kt" : ["부동산토마토", "188"],
         "skb" : ["부동산토마토", "621"],
-        "lgu" : ["부동산토마토", "583"],
         "daum" : ["R토마토", "R%ED%86%A0%EB%A7%88%ED%86%A0 편성표"]
-    }
-},
-{
-    "name" : "내외경제TV",
-    "category" : "뉴스/경제",
-    "icon" : "http://i.imgur.com/cQHPmCw.png",
-    "search_name_list" : [
-        "내외경제tv"
-    ],
-    "site_info" : {
-        "kt" : ["내외경제TV", "285"],
-        "skb" : ["내외경제TV", "623"],
-        "lgu" : ["내외경제TV", "580"]
-    }
-},
-{
-    "name" : "한국경제TV",
-    "category" : "뉴스/경제",
-    "icon" : "http://i.imgur.com/ChnD0FT.png",
-    "search_name_list" : [
-        "한국경제tv"
-    ],
-    "site_info" : {
-        "kt" : ["한국경제TV", "180"],
-        "skb" : ["한국경제TV", "626"],
-        "lgu" : ["한국경제TV", "604"],
-        "everyon" : ["한국경제TV", "26", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/26.jpg"],
-        "daum" : ["한국경제TV", "%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9CTV 편성표"]
     }
 },
 {
@@ -405,7 +384,6 @@
     "site_info" : {
         "kt" : ["매일경제TV", "182"],
         "skb" : ["매일경제TV", "628"],
-        "lgu" : ["매일경제TV", "627"],
         "everyon" : ["매일경제TV", "563", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/563.jpg"],
         "daum" : ["매일경제TV", "%EB%A7%A4%EC%9D%BC%EA%B2%BD%EC%A0%9CTV 편성표"]
     }
@@ -432,7 +410,6 @@
     "site_info" : {
         "kt" : ["코미디TV", "85"],
         "skb" : ["코미디TV", "906"],
-        "lgu" : ["코미디TV", "803"],
         "daum" : ["코미디TV", "%EC%BD%94%EB%AF%B8%EB%94%94TV 편성표"]
     }
 },
@@ -445,7 +422,6 @@
     ],
     "site_info" : {
         "skb" : ["FX", "194"],
-        "lgu" : ["FX", "567"],
         "daum" : ["FX", "FX 편성표"]
     }
 },
@@ -493,12 +469,11 @@
         "otvn"
     ],
     "site_info" : {
+        "kt" : ["O tvn", "45"],
+        "videoportal" : ["O tvN", "689", "http://210.182.60.11/image/OtvN_H160721.png"],
         "tving" : ["O tvN", "C01143", "http://image.tving.com/upload/cms/caic/CAIC1900/C01143.png"],
         "skb" : ["OtvN", "527"],
-        "videoportal" : ["O tvN", "689", "http://210.182.60.11/image/OtvN_H160721.png"],
-        "kt" : ["O tvn", "45"],
-        "daum" : ["O tvN", "O%20tvN 편성표"],
-        "lgu" : ["O tvN", "689"]
+        "daum" : ["O tvN", "O%20tvN 편성표"]
     }
 },
 {
@@ -512,7 +487,6 @@
     "site_info" : {
         "kt" : ["STINGRAY CLASSICA", "139"],
         "skb" : ["STINGRAY CLASSICA", "787"],
-        "lgu" : ["스팅레이 클래시카", "708"],
         "daum" : ["STINGRAY CLASSICA", "STINGRAY%20CLASSICA 편성표"]
     }
 },
@@ -524,12 +498,11 @@
         "jtbc2"
     ],
     "site_info" : {
+        "kt" : ["JTBC2", "39"],
+        "videoportal" : ["JTBC2", "606", "http://210.182.60.11/image/JTBC2_H180829.png"],
         "tving" : ["JTBC2", "C15741", "http://image.tving.com/upload/cms/caic/CAIC1900/C15741.png"],
         "skb" : ["JTBC2", "874"],
-        "videoportal" : ["JTBC2", "606", "http://210.182.60.11/image/JTBC2_H180829.png"],
-        "kt" : ["JTBC2", "39"],
-        "daum" : ["JTBC2", "JTBC2 편성표"],
-        "lgu" : ["JTBC2", "606"]
+        "daum" : ["JTBC2", "JTBC2 편성표"]
     }
 },
 {
@@ -542,7 +515,6 @@
     "site_info" : {
         "kt" : ["E채널", "48"],
         "skb" : ["E채널", "886"],
-        "lgu" : ["E채널", "712"],
         "daum" : ["E채널", "E%EC%B1%84%EB%84%90 편성표"]
     }
 },
@@ -554,12 +526,11 @@
         "tvn"
     ],
     "site_info" : {
+        "kt" : ["tvN", "3"],
+        "videoportal" : ["tvN", "682", "http://210.182.60.11/image/tvN_H160721.png"],
         "tving" : ["tvN", "C00551", "http://image.tving.com/upload/cms/caic/CAIC1900/C00551.png"],
         "skb" : ["tvN", "872"],
-        "videoportal" : ["tvN", "682", "http://210.182.60.11/image/tvN_H160721.png"],
-        "kt" : ["tvN", "3"],
-        "daum" : ["tvN", "tvN 편성표"],
-        "lgu" : ["tvN", "682"]
+        "daum" : ["tvN", "tvN 편성표"]
     }
 },
 {
@@ -573,7 +544,7 @@
     "site_info" : {
         "kt" : ["MBC Every1", "1"],
         "skb" : ["MBC Every1", "881"],
-        "lgu" : ["MBC에브리원", "626"],
+        "pooq" : ["MBC Every1", "M03", "https://img.pooq.co.kr/BMS/ChannelImg/18_MBC every1.png"],
         "daum" : ["MBC every1", "MBC%20every1 편성표"]
     }
 },
@@ -589,7 +560,6 @@
     "site_info" : {
         "kt" : ["CMCTV", "94"],
         "skb" : ["CMCTV", "876"],
-        "lgu" : ["CMCTV", "806"],
         "everyon" : ["CMCTV", "1", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1.jpg"],
         "daum" : ["CMCTV", "CMCTV 편성표"]
     }
@@ -605,7 +575,6 @@
     "site_info" : {
         "kt" : ["이벤트TV", "150"],
         "skb" : ["이벤트TV", "262"],
-        "lgu" : ["이벤트TV", "651"],
         "everyon" : ["Event TV", "389", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/389.jpg"],
         "daum" : ["이벤트TV", "%EC%9D%B4%EB%B2%A4%ED%8A%B8TV 편성표"]
     }
@@ -633,12 +602,11 @@
         "xtvn"
     ],
     "site_info" : {
+        "kt" : ["XtvN", "32"],
+        "videoportal" : ["XtvN", "671", "http://210.182.60.11/image/XtvN_H180126.png"],
         "tving" : ["XtvN", "C01141", "http://image.tving.com/upload/cms/caic/CAIC1900/C01141.png"],
         "skb" : ["XtvN", "185"],
-        "videoportal" : ["XtvN", "671", "http://210.182.60.11/image/XtvN_H180126.png"],
-        "kt" : ["XtvN", "32"],
-        "daum" : ["XtvN", "XtvN 편성표"],
-        "lgu" : ["XtvN", "671"]
+        "daum" : ["XtvN", "XtvN 편성표"]
     }
 },
 {
@@ -651,9 +619,8 @@
     ],
     "site_info" : {
         "kt" : ["K STAR", "87"],
-        "skb" : ["K star", "884"],
-        "lgu" : ["K스타", "662"],
         "videoportal" : ["K스타", "662", "http://210.182.60.11/image/Kstar__H161111.png"],
+        "skb" : ["K star", "884"],
         "daum" : ["K STAR", "K%20STAR 편성표"]
     }
 },
@@ -668,7 +635,7 @@
     "site_info" : {
         "kt" : ["KBS Joy", "41"],
         "skb" : ["KBS joy", "880"],
-        "lgu" : ["KBS조이", "619"],
+        "pooq" : ["KBS JOY", "K04", "https://img.pooq.co.kr/BMS/ChannelImg/12_kbs Joy.png"],
         "daum" : ["KBS Joy", "KBS%20Joy 편성표"]
     }
 },
@@ -680,18 +647,19 @@
         "마이펫tv"
     ],
     "site_info" : {
-        "skb" : ["마이펫TV", "258"]
+
     }
 },
 {
     "name" : "KBSN Plus",
     "category" : "연예/오락",
-    "icon" : "http://210.182.60.11/image/KBSN_PLUS_H20170601.png",
+    "icon" : "https://img.pooq.co.kr/BMS/Channelimage30/image/KBSN-2.png",
     "search_name_list" : [
         "kbsnplus"
     ],
     "site_info" : {
         "videoportal" : ["KBSN PLUS", "389", "http://210.182.60.11/image/KBSN_PLUS_H20170601.png"],
+        "pooq" : ["KBSN PLUS", "K23", "https://img.pooq.co.kr/BMS/Channelimage30/image/KBSN-2.png"],
         "everyon" : ["KBSN PLUS", "1327", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1327.jpg"],
         "daum" : ["KBSN Plus", "KBSN%20Plus 편성표"]
     }
@@ -707,12 +675,11 @@
         "c'time"
     ],
     "site_info" : {
+        "kt" : ["TVCHOSUN2", "69"],
         "tving" : ["TV CHOSUN 2", "C00585", "http://image.tving.com/upload/cms/caic/CAIC1900/C00585.png"],
         "skb" : ["TVCHOSUN2", "631"],
-        "kt" : ["TVCHOSUN2", "69"],
-        "daum" : ["TV CHOSUN2", "TV%20CHOSUN2 편성표"],
         "everyon" : ["TV CHOSUN2", "21", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/21.jpg"],
-        "lgu" : ["TV조선2", "775"]
+        "daum" : ["TV CHOSUN2", "TV%20CHOSUN2 편성표"]
     }
 },
 {
@@ -747,7 +714,6 @@
         "sbs플러스uhd"
     ],
     "site_info" : {
-        "lgu" : ["SBS플러스 UHD", "514"],
         "daum" : ["SBS Plus UHD", "SBS%20Plus%20UHD 편성표"]
     }
 },
@@ -763,7 +729,7 @@
     "site_info" : {
         "kt" : ["SBS funE", "43"],
         "skb" : ["SBS fun E", "882"],
-        "lgu" : ["SBS퍼니", "615"],
+        "pooq" : ["SBS funE", "S04", "https://img.pooq.co.kr/BMS/ChannelImg/20_sbs FunE.png"],
         "daum" : ["SBS funE", "SBS%20funE 편성표"]
     }
 },
@@ -780,7 +746,6 @@
     "site_info" : {
         "kt" : ["아이넷TV", "92"],
         "skb" : ["아이넷 TV", "261"],
-        "lgu" : ["아이넷TV", "657"],
         "everyon" : ["아이넷TV", "263", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/263.jpg"],
         "daum" : ["I.NET", "I.NET 편성표"]
     }
@@ -807,8 +772,8 @@
     "site_info" : {
         "kt" : ["채널W", "116"],
         "skb" : ["채널W", "172"],
-        "lgu" : ["채널W", "161"],
         "everyon" : ["CH W", "6", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/6.jpg"],
+        "pooq" : ["채널W", "C3901", "https://img.pooq.co.kr/BMS/ChannelImg/33_채널w.png"],
         "daum" : ["CH W", "CH%20W 편성표"]
     }
 },
@@ -824,10 +789,10 @@
     "site_info" : {
         "tving" : ["MBN Plus", "C17142", "http://image.tving.com/upload/cms/caic/CAIC1900/C17142.png"],
         "skb" : ["MBN플러스", "892"],
+        "pooq" : ["MBN 플러스", "C2402", "https://img.pooq.co.kr/BMS/Channelimage30/image/C2402_TVImg_20191125102051.png"],
         "kt" : ["MBN Plus", "99"],
-        "daum" : ["MBN Plus", "MBN%20Plus 편성표"],
         "everyon" : ["MBN PLUS", "905", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/905.jpg"],
-        "lgu" : ["MBN+", "787"]
+        "daum" : ["MBN Plus", "MBN%20Plus 편성표"]
     }
 },
 {
@@ -841,10 +806,10 @@
     "site_info" : {
         "tving" : ["채널A플러스", "C17141", "http://image.tving.com/upload/cms/caic/CAIC1900/C17141.png"],
         "skb" : ["채널A플러스", "891"],
+        "pooq" : ["채널A 플러스", "C2502", "https://img.pooq.co.kr/BMS/Channelimage30/image/C2502-2.png"],
         "kt" : ["채널A 플러스", "98"],
-        "daum" : ["채널A플러스", "%EC%B1%84%EB%84%90A%ED%94%8C%EB%9F%AC%EC%8A%A4 편성표"],
         "everyon" : ["채널A 플러스", "1076", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1076.jpg"],
-        "lgu" : ["채널A+", "784"]
+        "daum" : ["채널A플러스", "%EC%B1%84%EB%84%90A%ED%94%8C%EB%9F%AC%EC%8A%A4 편성표"]
     }
 },
 {
@@ -869,7 +834,7 @@
     "site_info" : {
         "kt" : ["SBS Plus", "37"],
         "skb" : ["SBS 플러스", "901"],
-        "lgu" : ["SBS플러스", "612"],
+        "pooq" : ["SBS Plus", "S03", "https://img.pooq.co.kr/BMS/ChannelImg/21_sbs Plus.png"],
         "daum" : ["SBS플러스", "SBS%ED%94%8C%EB%9F%AC%EC%8A%A4 편성표"]
     }
 },
@@ -884,7 +849,7 @@
     "site_info" : {
         "kt" : ["KBS Drama", "35"],
         "skb" : ["KBS 드라마", "902"],
-        "lgu" : ["KBS드라마", "617"],
+        "pooq" : ["KBS DRAMA", "K06", "https://img.pooq.co.kr/BMS/ChannelImg/11_kbs Drama.png"],
         "daum" : ["KBS 드라마", "KBS%20%EB%93%9C%EB%9D%BC%EB%A7%88 편성표"]
     }
 },
@@ -894,7 +859,8 @@
     "icon" : "http://skbroadband.com/common/img/vin/btv/c_chu.png",
     "search_name_list" : [
         "ch.u",
-        "chu"
+        "chu",
+        "채널유"
     ],
     "site_info" : {
         "kt" : ["CH.U", "112"],
@@ -915,7 +881,7 @@
     "site_info" : {
         "kt" : ["MBC Dramanet", "31"],
         "skb" : ["MBC 드라마", "900"],
-        "lgu" : ["MBC드라마넷", "621"],
+        "pooq" : ["MBC Drama", "M02", "https://img.pooq.co.kr/BMS/ChannelImg/17_MBC drama.png"],
         "daum" : ["MBC 드라마넷", "MBC%20%EB%93%9C%EB%9D%BC%EB%A7%88%EB%84%B7 편성표"]
     }
 },
@@ -929,7 +895,6 @@
     "site_info" : {
         "kt" : ["드라마H", "70"],
         "skb" : ["드라마H", "875"],
-        "lgu" : ["드라마H", "802"],
         "daum" : ["드라마H", "%EB%93%9C%EB%9D%BC%EB%A7%88H 편성표"]
     }
 },
@@ -968,8 +933,7 @@
     ],
     "site_info" : {
         "kt" : ["하이라이트TV", "74"],
-        "skb" : ["Highlight TV", "885"],
-        "lgu" : ["하이라이트TV", "701"]
+        "skb" : ["Highlight TV", "885"]
     }
 },
 {
@@ -982,7 +946,6 @@
     "site_info" : {
         "kt" : ["AXN", "113"],
         "skb" : ["AXN", "195"],
-        "lgu" : ["AXN", "744"],
         "daum" : ["AXN", "AXN 편성표"]
     }
 },
@@ -996,9 +959,9 @@
     ],
     "site_info" : {
         "kt" : ["AsiaN", "111"],
-        "skb" : ["Asia N", "177"],
-        "lgu" : ["아시아N", "658"],
         "videoportal" : ["아시아N", "658", "http://210.182.60.11/image/AsiaN_H161012.png"],
+        "skb" : ["Asia N", "177"],
+        "pooq" : ["AsiaN", "C5101", "https://img.pooq.co.kr/BMS/ChannelImg/AsiaN.png"],
         "daum" : ["Asia N", "Asia%20N 편성표"]
     }
 },
@@ -1013,7 +976,6 @@
     "site_info" : {
         "kt" : ["드라마큐브", "46"],
         "skb" : ["드라마큐브", "903"],
-        "lgu" : ["드라마큐브", "798"],
         "daum" : ["DRAMAcube", "DRAMAcube 편성표"]
     }
 },
@@ -1025,12 +987,11 @@
         "중화tv"
     ],
     "site_info" : {
+        "kt" : ["중화TV", "110"],
+        "videoportal" : ["중화TV", "725", "http://210.182.60.11/image/JungHwa_H160721.png"],
         "tving" : ["중화TV", "C00544", "http://image.tving.com/upload/cms/caic/CAIC1900/C00544.png"],
         "skb" : ["중화TV", "186"],
-        "videoportal" : ["중화TV", "725", "http://210.182.60.11/image/JungHwa_H160721.png"],
-        "kt" : ["중화TV", "110"],
-        "daum" : ["중화TV", "%EC%A4%91%ED%99%94TV 편성표"],
-        "lgu" : ["중화TV", "725"]
+        "daum" : ["중화TV", "%EC%A4%91%ED%99%94TV 편성표"]
     }
 },
 {
@@ -1043,8 +1004,8 @@
     "site_info" : {
         "kt" : ["텔레노벨라", "114"],
         "skb" : ["텔레노벨라", "173"],
-        "lgu" : ["텔레노벨라", "700"],
         "everyon" : ["텔레노벨라", "319", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/319.jpg"],
+        "pooq" : ["텔레노벨라", "C8701", "https://img.pooq.co.kr/BMS/Channelimage30/image/C8701_TVImg_20191007165104.png"],
         "daum" : ["텔레노벨라", "%ED%85%94%EB%A0%88%EB%85%B8%EB%B2%A8%EB%9D%BC 편성표"]
     }
 },
@@ -1059,7 +1020,7 @@
     "site_info" : {
         "kt" : ["Edge TV", "79"],
         "skb" : ["EDGE TV", "128"],
-        "lgu" : ["엣지TV", "713"],
+        "pooq" : ["EDGETV", "X01", "https://img.pooq.co.kr/BMS/Channelimage30/image/X01_TVImg_20191001110605.png"],
         "daum" : ["EDGE TV ", "EDGE%20TV%20 편성표"]
     }
 },
@@ -1099,7 +1060,6 @@
     "site_info" : {
         "kt" : ["FOX", "107"],
         "skb" : ["FOX", "189"],
-        "lgu" : ["FOX채널", "654"],
         "daum" : ["FOX", "FOX 편성표"]
     }
 },
@@ -1113,7 +1073,6 @@
     "site_info" : {
         "kt" : ["CNTV", "68"],
         "skb" : ["CNTV", "175"],
-        "lgu" : ["CNTV", "609"],
         "daum" : ["CNTV", "CNTV 편성표"]
     }
 },
@@ -1127,8 +1086,8 @@
     "site_info" : {
         "kt" : ["채널차이나", "102"],
         "skb" : ["채널차이나", "520"],
-        "lgu" : ["채널차이나", "644"],
         "everyon" : ["채널차이나", "1016", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1016.jpg"],
+        "pooq" : ["채널차이나", "C8401", "https://img.pooq.co.kr/BMS/Channelimage30/image/Channel_China-2.png"],
         "daum" : ["채널차이나", "%EC%B1%84%EB%84%90%EC%B0%A8%EC%9D%B4%EB%82%98 편성표"]
     }
 },
@@ -1142,7 +1101,6 @@
     "site_info" : {
         "kt" : ["MBC ON", "80"],
         "skb" : ["MBC ON", "531"],
-        "lgu" : ["MBC ON", "623"],
         "daum" : ["MBC ON", "MBC%20ON 편성표"]
     }
 },
@@ -1157,7 +1115,6 @@
     "site_info" : {
         "kt" : ["디원", "96"],
         "skb" : ["디원", "170"],
-        "lgu" : ["디원", "666"],
         "daum" : ["디원TV", "%EB%94%94%EC%9B%90TV 편성표"]
     }
 },
@@ -1185,7 +1142,6 @@
     ],
     "site_info" : {
         "skb" : ["채널 Ching", "907"],
-        "lgu" : ["채널칭", "591"],
         "everyon" : ["CHING", "7", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/7.jpg"],
         "daum" : ["CHING", "CHING 편성표"]
     }
@@ -1214,7 +1170,6 @@
     "site_info" : {
         "kt" : ["드라맥스", "47"],
         "skb" : ["드라맥스", "904"],
-        "lgu" : ["드라맥스", "797"],
         "daum" : ["드라맥스", "%EB%93%9C%EB%9D%BC%EB%A7%A5%EC%8A%A4 편성표"]
     }
 },
@@ -1243,7 +1198,6 @@
     "site_info" : {
         "kt" : ["캐치온2", "67"],
         "skb" : ["CATCH ON 2", "182"],
-        "lgu" : ["캐치온2", "777"],
         "daum" : ["캐치온2", "%EC%BA%90%EC%B9%98%EC%98%A82 편성표"]
     }
 },
@@ -1256,9 +1210,8 @@
     ],
     "site_info" : {
         "kt" : ["OCN", "21"],
-        "skb" : ["OCN", "178"],
         "tving" : ["OCN", "C07381", "http://image.tving.com/upload/cms/caic/CAIC1900/C07381.png"],
-        "lgu" : ["OCN", "684"],
+        "skb" : ["OCN", "178"],
         "daum" : ["OCN", "OCN 편성표"]
     }
 },
@@ -1284,7 +1237,6 @@
     "site_info" : {
         "kt" : ["인디필름", "105"],
         "skb" : ["인디필름", "441"],
-        "lgu" : ["인디필름", "574"],
         "daum" : ["인디필름", "%EC%9D%B8%EB%94%94%ED%95%84%EB%A6%84 편성표"]
     }
 },
@@ -1298,7 +1250,6 @@
     ],
     "site_info" : {
         "skb" : ["Cinef", "193"],
-        "lgu" : ["씨네프", "653"],
         "daum" : ["씨네프", "%EC%94%A8%EB%84%A4%ED%94%84 편성표"]
     }
 },
@@ -1352,7 +1303,6 @@
     "site_info" : {
         "kt" : ["캐치온1", "66"],
         "skb" : ["CATCH ON 1", "181"],
-        "lgu" : ["캐치온1", "605"],
         "daum" : ["캐치온1", "%EC%BA%90%EC%B9%98%EC%98%A81 편성표"]
     }
 },
@@ -1378,7 +1328,6 @@
     "site_info" : {
         "kt" : ["THE MOVIE", "104"],
         "skb" : ["The Movie", "198"],
-        "lgu" : ["더 무비", "724"],
         "everyon" : ["더 무비", "8", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/8.jpg"],
         "daum" : ["THE MOVIE", "THE%20MOVIE 편성표"]
     }
@@ -1394,7 +1343,6 @@
     "site_info" : {
         "kt" : ["스크린", "106"],
         "skb" : ["Screen", "192"],
-        "lgu" : ["스크린", "652"],
         "daum" : ["스크린", "%EC%8A%A4%ED%81%AC%EB%A6%B0 편성표"]
     }
 },
@@ -1448,15 +1396,30 @@
     }
 },
 {
+    "name" : "OCN Movies",
+    "category" : "영화",
+    "icon" : "",
+    "search_name_list" : [
+        "ocnmovies",
+        "ocn무비"
+    ],
+    "site_info" : {
+        "kt" : ["OCN Movies", "29"],
+        "skb" : ["OCN Movies", "187"],
+        "daum" : ["OCN Movies", "OCN%20Movies 편성표"]
+    }
+},
+{
     "name" : "PLAYY 웰메이드 영화",
     "category" : "영화",
-    "icon" : "http://210.182.60.11/image/PLAYYWell_H160721.png",
+    "icon" : "https://img.pooq.co.kr/BMS/ChannelImg/28_playy월메이드영화.png",
     "search_name_list" : [
         "playy웰메이드영화",
         "playy웰메이드"
     ],
     "site_info" : {
-        "videoportal" : ["PLAYY웰메이드", "392", "http://210.182.60.11/image/PLAYYWell_H160721.png"]
+        "videoportal" : ["PLAYY웰메이드", "392", "http://210.182.60.11/image/PLAYYWell_H160721.png"],
+        "pooq" : ["PLAYY 웰메이드 영화", "H01", "https://img.pooq.co.kr/BMS/ChannelImg/28_playy월메이드영화.png"]
     }
 },
 {
@@ -1470,7 +1433,6 @@
     "site_info" : {
         "kt" : ["mplex", "103"],
         "skb" : ["Mplex", "171"],
-        "lgu" : ["엠플렉스", "756"],
         "daum" : ["Mplex", "Mplex 편성표"]
     }
 },
@@ -1486,14 +1448,28 @@
     }
 },
 {
-    "name" : "PLAYY 액션영화",
+    "name" : "OCN Thrills",
     "category" : "영화",
     "icon" : "",
+    "search_name_list" : [
+        "ocnthrills",
+        "ocn스릴"
+    ],
+    "site_info" : {
+        "kt" : ["OCN Thrills", "76"],
+        "skb" : ["OCN Thrills", "179"],
+        "daum" : ["OCN Thrills", "OCN%20Thrills 편성표"]
+    }
+},
+{
+    "name" : "PLAYY 액션영화",
+    "category" : "영화",
+    "icon" : "https://img.pooq.co.kr/BMS/ChannelImg/29_playy액션영화.png",
     "search_name_list" : [
         "playy액션영화"
     ],
     "site_info" : {
-
+        "pooq" : ["PLAYY 액션영화", "H07", "https://img.pooq.co.kr/BMS/ChannelImg/29_playy액션영화.png"]
     }
 },
 {
@@ -1521,7 +1497,6 @@
     "site_info" : {
         "kt" : ["UXN", "97"],
         "skb" : ["UXN", "888"],
-        "lgu" : ["UXN-UHD", "818"],
         "daum" : ["CJ UXN", "CJ%20UXN 편성표"]
     }
 },
@@ -1540,13 +1515,14 @@
 {
     "name" : "PLAYY 프리미엄 영화",
     "category" : "영화",
-    "icon" : "http://210.182.60.11/image/PLAYYprem_H160721.png",
+    "icon" : "https://img.pooq.co.kr/BMS/ChannelImg/27_playy프리미엄영화.png",
     "search_name_list" : [
         "playy프리미엄영화",
         "playy프리미엄"
     ],
     "site_info" : {
-        "videoportal" : ["PLAYY프리미엄", "391", "http://210.182.60.11/image/PLAYYprem_H160721.png"]
+        "videoportal" : ["PLAYY프리미엄", "391", "http://210.182.60.11/image/PLAYYprem_H160721.png"],
+        "pooq" : ["PLAYY 프리미엄 영화", "H02", "https://img.pooq.co.kr/BMS/ChannelImg/27_playy프리미엄영화.png"]
     }
 },
 {
@@ -1559,26 +1535,9 @@
     ],
     "site_info" : {
         "kt" : ["SBSGOLF", "57"],
-        "skb" : ["SBS GOLF", "133"],
-        "lgu" : ["SBS골프", "614"],
         "videoportal" : ["SBS골프", "614", "http://210.182.60.11/image/SBSgolf_H170403.png"],
+        "skb" : ["SBS GOLF", "133"],
         "daum" : ["SBS골프", "SBS%EA%B3%A8%ED%94%84 편성표"]
-    }
-},
-{
-    "name" : "SPOTV+",
-    "category" : "스포츠",
-    "icon" : "http://i.imgur.com/81Fshnn.png",
-    "search_name_list" : [
-        "spotv+",
-        "스포티비+"
-    ],
-    "site_info" : {
-        "kt" : ["SPOTV+", "125"],
-        "skb" : ["SPOTV+", "134"],
-        "lgu" : ["스포티비+", "650"],
-        "videoportal" : ["스포티비+", "650", "http://210.182.60.11/image/SPOTVPlus__H161111.png"],
-        "daum" : ["SPOTV+", "SPOTV%2B 편성표"]
     }
 },
 {
@@ -1591,9 +1550,8 @@
     ],
     "site_info" : {
         "kt" : ["SPOTV", "51"],
-        "skb" : ["SPOTV", "125"],
-        "lgu" : ["스포티비", "667"],
         "videoportal" : ["스포티비", "667", "http://210.182.60.11/image/SPOTV1_H160721.png"],
+        "skb" : ["SPOTV", "125"],
         "daum" : ["SPOTV", "SPOTV 편성표"]
     }
 },
@@ -1607,8 +1565,8 @@
     ],
     "site_info" : {
         "kt" : ["SBS Sports", "58"],
+        "videoportal" : ["SBS스포츠", "381", "http://210.182.60.11/image/SBSsports_H200528.png"],
         "skb" : ["SBS Sports", "130"],
-        "lgu" : ["SBS스포츠", "613"],
         "daum" : ["SBS스포츠", "SBS%EC%8A%A4%ED%8F%AC%EC%B8%A0 편성표"]
     }
 },
@@ -1622,9 +1580,8 @@
     ],
     "site_info" : {
         "kt" : ["SPOTV2", "52"],
-        "skb" : ["SPOTV2", "424"],
-        "lgu" : ["스포티비2", "638"],
         "videoportal" : ["SPOTV2", "383", "http://210.182.60.11/image/SPOTV2_H180814.png"],
+        "skb" : ["SPOTV2", "424"],
         "daum" : ["SPOTV2", "SPOTV2 편성표"]
     }
 },
@@ -1666,6 +1623,23 @@
     }
 },
 {
+    "name" : "JTBC GOLF & SPORTS",
+    "category" : "스포츠",
+    "icon" : "http://210.182.60.11/image/JTBCGolfnsports_H200317.png",
+    "search_name_list" : [
+        "jtbcgolf&sports",
+        "jtbc골프앤스포츠",
+        "jtbc3golf&sports"
+    ],
+    "site_info" : {
+        "kt" : ["JTBC3 GOLF&SPORTS", "61"],
+        "videoportal" : ["JTBC골프앤스포츠", "795", "http://210.182.60.11/image/JTBCGolfnsports_H200317.png"],
+        "tving" : ["JTBC GOLF&SPORTS", "C00805", "http://image.tving.com/upload/cms/caic/CAIC1900/C00805.png"],
+        "skb" : ["JTBC Golf&Sports", "436"],
+        "daum" : ["JTBC GOLF & SPORTS", "JTBC%20GOLF%20%26%20SPORTS 편성표"]
+    }
+},
+{
     "name" : "JTBC3",
     "category" : "스포츠",
     "icon" : "http://i.imgur.com/KvGwEc1.png",
@@ -1687,8 +1661,7 @@
     ],
     "site_info" : {
         "kt" : ["스크린골프존", "264"],
-        "skb" : ["스크린골프존", "138"],
-        "lgu" : ["스크린골프존", "578"]
+        "skb" : ["스크린골프존", "138"]
     }
 },
 {
@@ -1715,6 +1688,21 @@
     }
 },
 {
+    "name" : "SPOTV Golf & Health",
+    "category" : "스포츠",
+    "icon" : "http://210.182.60.11/image/SPOTVGnH_H200506.png",
+    "search_name_list" : [
+        "spotvgolf&health",
+        "스포티비골프앤헬스"
+    ],
+    "site_info" : {
+        "kt" : ["SPOTV Golf & Health", "125"],
+        "videoportal" : ["스포티비 골프 앤 헬스", "650", "http://210.182.60.11/image/SPOTVGnH_H200506.png"],
+        "skb" : ["SPOTV Golf&Health", "134"],
+        "daum" : ["SPOTV Golf & Health", "SPOTV%20Golf%20%26%20Health 편성표"]
+    }
+},
+{
     "name" : "STN스포츠",
     "category" : "스포츠",
     "icon" : "http://i.imgur.com/ZJi3NQy.png",
@@ -1724,8 +1712,7 @@
         "stn"
     ],
     "site_info" : {
-        "kt" : ["STN SPORTS", "131"],
-        "lgu" : ["STN스포츠", "579"]
+        "kt" : ["STN SPORTS", "131"]
     }
 },
 {
@@ -1742,7 +1729,6 @@
     "site_info" : {
         "kt" : ["The Golf Channel", "55"],
         "skb" : ["Golf Channel Korea", "135"],
-        "lgu" : ["더 골프채널 코리아", "647"],
         "daum" : ["Golf Channel Korea", "Golf%20Channel%20Korea 편성표"]
     }
 },
@@ -1757,7 +1743,6 @@
     "site_info" : {
         "kt" : ["IB SPORTS", "53"],
         "skb" : ["IB Sports", "123"],
-        "lgu" : ["IB스포츠", "637"],
         "daum" : ["IB sports", "IB%20sports 편성표"]
     }
 },
@@ -1772,7 +1757,6 @@
     "site_info" : {
         "kt" : ["KBS N Sports", "59"],
         "skb" : ["KBSN 스포츠", "132"],
-        "lgu" : ["KBSN스포츠", "618"],
         "daum" : ["KBS N 스포츠", "KBS%20N%20%EC%8A%A4%ED%8F%AC%EC%B8%A0 편성표"]
     }
 },
@@ -1789,7 +1773,6 @@
     "site_info" : {
         "kt" : ["MBC SPORT+", "60"],
         "skb" : ["MBC Sports+", "131"],
-        "lgu" : ["MBC스포츠+", "622"],
         "daum" : ["MBC스포츠 플러스", "MBC%EC%8A%A4%ED%8F%AC%EC%B8%A0%20%ED%94%8C%EB%9F%AC%EC%8A%A4 편성표"]
     }
 },
@@ -1801,12 +1784,11 @@
         "ogn"
     ],
     "site_info" : {
+        "kt" : ["OGN", "123"],
+        "videoportal" : ["OGN", "681", "http://210.182.60.11/image/OGN_H180724.png"],
         "tving" : ["OGN", "C00590", "http://image.tving.com/upload/cms/caic/CAIC1900/C00590.png"],
         "skb" : ["OGN", "124"],
-        "videoportal" : ["OGN", "681", "http://210.182.60.11/image/OGN_H180724.png"],
-        "kt" : ["OGN", "123"],
-        "daum" : ["OGN", "OGN 편성표"],
-        "lgu" : ["OGN", "681"]
+        "daum" : ["OGN", "OGN 편성표"]
     }
 },
 {
@@ -1818,12 +1800,11 @@
         "jtbc골프"
     ],
     "site_info" : {
+        "kt" : ["JTBC Golf", "56"],
+        "videoportal" : ["JTBC골프", "602", "http://210.182.60.11/image/JTBCGolf_H161012.png"],
         "tving" : ["JTBC Golf", "C00588", "http://image.tving.com/upload/cms/caic/CAIC1900/C00588.png"],
         "skb" : ["JTBC GOLF", "127"],
-        "videoportal" : ["JTBC골프", "602", "http://210.182.60.11/image/JTBCGolf_H161012.png"],
-        "kt" : ["JTBC Golf", "56"],
-        "daum" : ["JTBC GOLF", "JTBC%20GOLF 편성표"],
-        "lgu" : ["JTBC골프", "602"]
+        "daum" : ["JTBC GOLF", "JTBC%20GOLF 편성표"]
     }
 },
 {
@@ -1863,7 +1844,6 @@
     "site_info" : {
         "kt" : ["SkySports", "54"],
         "skb" : ["sky Sports", "282"],
-        "lgu" : ["스카이스포츠", "692"],
         "daum" : ["Sky Sports", "Sky%20Sports 편성표"]
     }
 },
@@ -1888,9 +1868,8 @@
     ],
     "site_info" : {
         "kt" : ["GMTV", "88"],
-        "skb" : ["GMTV", "671"],
-        "lgu" : ["GMTV", "688"],
         "videoportal" : ["GMTV", "688", "http://210.182.60.11/image/GMTV_H161012.png"],
+        "skb" : ["GMTV", "671"],
         "daum" : ["GMTV", "GMTV 편성표"]
     }
 },
@@ -1915,12 +1894,11 @@
         "엠넷"
     ],
     "site_info" : {
+        "kt" : ["Mnet", "27"],
+        "videoportal" : ["엠넷", "687", "http://210.182.60.11/image/Mnet_H200317.png"],
         "tving" : ["Mnet", "C00579", "http://image.tving.com/upload/cms/caic/CAIC1900/C00579.png"],
         "skb" : ["M.net", "873"],
-        "videoportal" : ["엠넷", "687", "http://210.182.60.11/image/Mnet_H200317.png"],
-        "kt" : ["Mnet", "27"],
-        "daum" : ["Mnet", "Mnet 편성표"],
-        "lgu" : ["엠넷", "687"]
+        "daum" : ["Mnet", "Mnet 편성표"]
     }
 },
 {
@@ -1954,9 +1932,8 @@
     ],
     "site_info" : {
         "videoportal" : ["가요TV", "794", "http://210.182.60.11/image/KayoTV_H160721.png"],
-        "kt" : ["가요TV", "93"],
         "everyon" : ["가요 TV", "273", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/273.jpg"],
-        "lgu" : ["가요TV", "794"]
+        "kt" : ["가요TV", "93"]
     }
 },
 {
@@ -1970,7 +1947,6 @@
     ],
     "site_info" : {
         "skb" : ["CUBE TV", "905"],
-        "lgu" : ["큐브TV", "563"],
         "daum" : ["큐브TV", "%ED%81%90%EB%B8%8CTV 편성표"]
     }
 },
@@ -2016,8 +1992,8 @@
     ],
     "site_info" : {
         "kt" : ["SBS MTV", "136"],
+        "tving" : ["SBS MTV", "C43242", "http://image.tving.com/upload/cms/caic/CAIC1900/C43242.png"],
         "skb" : ["SBS MTV", "883"],
-        "lgu" : ["SBS MTV", "634"],
         "daum" : ["SBS MTV", "SBS%20MTV 편성표"]
     }
 },
@@ -2055,7 +2031,6 @@
     "site_info" : {
         "kt" : ["SkyTravel", "86"],
         "skb" : ["sky Travel", "283"],
-        "lgu" : ["스카이트래블", "670"],
         "daum" : ["Sky Travel", "Sky%20Travel 편성표"]
     }
 },
@@ -2081,7 +2056,6 @@
     "site_info" : {
         "kt" : ["소비자TV", "218"],
         "skb" : ["소비자TV", "442"],
-        "lgu" : ["소비자TV", "170"],
         "everyon" : ["소비자 TV", "77", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/77.jpg"],
         "daum" : ["소비자TV", "%EC%86%8C%EB%B9%84%EC%9E%90TV 편성표"]
     }
@@ -2158,7 +2132,6 @@
     "site_info" : {
         "kt" : ["헬스메디tv", "271"],
         "skb" : ["헬스메디TV", "432"],
-        "lgu" : ["헬스메디TV", "753"],
         "everyon" : ["헬스메디TV", "1094", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1094.jpg"],
         "daum" : ["헬스메디tv", "%ED%97%AC%EC%8A%A4%EB%A9%94%EB%94%94tv 편성표"]
     }
@@ -2195,7 +2168,6 @@
     "site_info" : {
         "kt" : ["MBC NET", "164"],
         "skb" : ["MBC NET", "281"],
-        "lgu" : ["MBCNET", "611"],
         "daum" : ["MBCNET", "MBCNET 편성표"]
     }
 },
@@ -2221,7 +2193,6 @@
     "site_info" : {
         "kt" : ["아리랑 TV", "200"],
         "skb" : ["아리랑TV", "427"],
-        "lgu" : ["아리랑TV", "601"],
         "everyon" : ["아리랑TV", "36", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/36.jpg"],
         "daum" : ["arirang", "arirang 편성표"]
     }
@@ -2250,7 +2221,6 @@
     "site_info" : {
         "kt" : ["JJC지방자치TV", "224"],
         "skb" : ["지방자치TV", "447"],
-        "lgu" : ["지방자치TV", "587"],
         "daum" : ["JJC TV", "JJC%20TV 편성표"]
     }
 },
@@ -2288,7 +2258,6 @@
     "site_info" : {
         "kt" : ["예술 TV아르떼", "140"],
         "skb" : ["Arte TV", "421"],
-        "lgu" : ["예술TV 아르떼", "691"],
         "everyon" : ["아르떼TV", "35", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/35.jpg"],
         "daum" : ["ArteTV", "ArteTV 편성표"]
     }
@@ -2343,7 +2312,6 @@
     "site_info" : {
         "kt" : ["tbsTV", "214"],
         "skb" : ["tbsTV", "420"],
-        "lgu" : ["tbsTV", "720"],
         "everyon" : ["TBS TV", "40", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/40.jpg"],
         "daum" : ["tbsTV", "tbsTV 편성표"]
     }
@@ -2359,7 +2327,6 @@
     "site_info" : {
         "kt" : ["YTN life", "159"],
         "skb" : ["YTN 라이프", "632"],
-        "lgu" : ["YTN라이프", "655"],
         "everyon" : ["YTN라이프", "193", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/193.jpg"],
         "daum" : ["YTN life", "YTN%20life 편성표"]
     }
@@ -2373,12 +2340,11 @@
         "hdobsw"
     ],
     "site_info" : {
-        "skb" : ["OBSW", "423"],
-        "videoportal" : ["OBS W", "648", "http://210.182.60.11/image/OBSW_H161012.png"],
         "kt" : ["HD OBS W", "81"],
-        "daum" : ["OBS W", "OBS%20W 편성표"],
+        "videoportal" : ["OBS W", "648", "http://210.182.60.11/image/OBSW_H161012.png"],
+        "skb" : ["OBSW", "423"],
         "everyon" : ["OBS W", "3", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/3.jpg"],
-        "lgu" : ["OBS W", "648"]
+        "daum" : ["OBS W", "OBS%20W 편성표"]
     }
 },
 {
@@ -2406,10 +2372,10 @@
     "site_info" : {
         "tving" : ["히스토리", "C17341", "http://image.tving.com/upload/cms/caic/CAIC1900/C17341.png"],
         "skb" : ["History", "260"],
+        "pooq" : ["HISTORY", "C5901", "https://img.pooq.co.kr/BMS/Channelimage30/image/history-2.png"],
         "kt" : ["History", "169"],
-        "daum" : ["히스토리채널", "%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%B1%84%EB%84%90 편성표"],
         "everyon" : ["히스토리", "551", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/551.jpg"],
-        "lgu" : ["히스토리", "664"]
+        "daum" : ["히스토리채널", "%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%B1%84%EB%84%90 편성표"]
     }
 },
 {
@@ -2420,12 +2386,11 @@
         "ytn사이언스"
     ],
     "site_info" : {
+        "kt" : ["YTN 사이언스", "175"],
         "tving" : ["YTN사이언스", "C15347", "http://image.tving.com/upload/cms/caic/CAIC1900/C15347.png"],
         "skb" : ["YTN 사이언스", "422"],
-        "kt" : ["YTN 사이언스", "175"],
-        "daum" : ["YTN사이언스", "YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4 편성표"],
         "everyon" : ["YTN사이언스", "863", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/863.jpg"],
-        "lgu" : ["YTN사이언스", "755"]
+        "daum" : ["YTN사이언스", "YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4 편성표"]
     }
 },
 {
@@ -2439,7 +2404,7 @@
     "site_info" : {
         "kt" : ["KBSN Life", "281"],
         "skb" : ["KBS N Life", "292"],
-        "lgu" : ["KBSN라이프", "582"],
+        "pooq" : ["KBSN Life", "K05", "https://img.pooq.co.kr/BMS/ChannelImg/13_kbs N life.png"],
         "daum" : ["KBS N Life", "KBS%20N%20Life 편성표"]
     }
 },
@@ -2454,8 +2419,8 @@
     "site_info" : {
         "kt" : ["FUN TV", "71"],
         "skb" : ["FUN TV", "887"],
-        "lgu" : ["펀TV", "807"],
         "everyon" : ["FUN TV", "1384", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1384.jpg"],
+        "pooq" : ["FUNTV", "X02", "https://img.pooq.co.kr/BMS/Channelimage30/image/X02_TVImg_20191001110821.png"],
         "daum" : ["FUNTV", "FUNTV 편성표"]
     }
 },
@@ -2471,7 +2436,6 @@
     "site_info" : {
         "kt" : ["디스커버리채널", "177"],
         "skb" : ["Discovery Channel", "437"],
-        "lgu" : ["디스커버리", "610"],
         "daum" : ["디스커버리 채널", "%EB%94%94%EC%8A%A4%EC%BB%A4%EB%B2%84%EB%A6%AC%20%EC%B1%84%EB%84%90 편성표"]
     }
 },
@@ -2486,7 +2450,7 @@
     "site_info" : {
         "kt" : ["채널 J", "108"],
         "skb" : ["채널J", "197"],
-        "lgu" : ["채널J", "656"],
+        "pooq" : ["채널J", "C5501", "https://img.pooq.co.kr/BMS/ChannelImg/CH_J_TV.png"],
         "daum" : ["channel J", "channel%20J 편성표"]
     }
 },
@@ -2500,8 +2464,7 @@
     ],
     "site_info" : {
         "kt" : ["Now제주TV", "162"],
-        "skb" : ["Now제주TV", "290"],
-        "lgu" : ["Now 제주채널", "585"]
+        "skb" : ["Now제주TV", "290"]
     }
 },
 {
@@ -2516,7 +2479,6 @@
     "site_info" : {
         "kt" : ["Nat Geo Wild", "170"],
         "skb" : ["Natgeo Wild HD", "773"],
-        "lgu" : ["냇지오 와일드", "718"],
         "daum" : ["Nat Geo Wild", "HD Nat%20Geo%20Wild 편성표"]
     }
 },
@@ -2530,7 +2492,6 @@
     "site_info" : {
         "kt" : ["리얼TV", "161"],
         "skb" : ["리얼TV", "440"],
-        "lgu" : ["리얼TV", "809"],
         "everyon" : ["리얼TV", "1065", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1065.jpg"],
         "daum" : ["리얼TV", "%EB%A6%AC%EC%96%BCTV 편성표"]
     }
@@ -2545,7 +2506,6 @@
     "site_info" : {
         "kt" : ["다큐원", "187"],
         "skb" : ["다큐원", "257"],
-        "lgu" : ["다큐원", "160"],
         "daum" : ["다큐원", "%EB%8B%A4%ED%81%90%EC%9B%90 편성표"]
     }
 },
@@ -2560,7 +2520,6 @@
     "site_info" : {
         "kt" : ["채널뷰", "176"],
         "skb" : ["채널 뷰", "276"],
-        "lgu" : ["채널뷰", "808"],
         "daum" : ["채널 뷰", "%EC%B1%84%EB%84%90%20%EB%B7%B0 편성표"]
     }
 },
@@ -2586,7 +2545,6 @@
     "site_info" : {
         "kt" : ["NBS한국농업방송", "100"],
         "skb" : ["NBS 한국농업방송", "443"],
-        "lgu" : ["한국농업방송", "814"],
         "daum" : ["NBS한국농업방송", "NBS%ED%95%9C%EA%B5%AD%EB%86%8D%EC%97%85%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -2600,7 +2558,6 @@
     "site_info" : {
         "kt" : ["내셔널지오그래픽", "168"],
         "skb" : ["내셔널지오그래픽", "430"],
-        "lgu" : ["내셔널 지오그래픽", "697"],
         "daum" : ["내셔널지오그래픽", "%EB%82%B4%EC%85%94%EB%84%90%EC%A7%80%EC%98%A4%EA%B7%B8%EB%9E%98%ED%94%BD 편성표"]
     }
 },
@@ -2612,7 +2569,7 @@
         "아웃도어채널"
     ],
     "site_info" : {
-        "lgu" : ["아웃도어 채널", "710"]
+
     }
 },
 {
@@ -2623,12 +2580,11 @@
         "ftv"
     ],
     "site_info" : {
-        "skb" : ["FTV", "530"],
-        "videoportal" : ["FTV", "665", "http://210.182.60.11/image/FTV_H161012.png"],
         "kt" : ["FTV", "118"],
-        "daum" : ["FTV", "FTV 편성표"],
+        "videoportal" : ["FTV", "665", "http://210.182.60.11/image/FTV_H161012.png"],
+        "skb" : ["FTV", "530"],
         "everyon" : ["FTV", "12", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/12.jpg"],
-        "lgu" : ["FTV", "665"]
+        "daum" : ["FTV", "FTV 편성표"]
     }
 },
 {
@@ -2641,12 +2597,11 @@
         "빌리어즈티비"
     ],
     "site_info" : {
-        "skb" : ["Billiards TV", "122"],
-        "videoportal" : ["빌리어즈TV", "668", "http://210.182.60.11/image/BilliardsTV_H161012.png"],
         "kt" : ["빌리어즈티비", "126"],
-        "daum" : ["Billiards TV", "Billiards%20TV 편성표"],
+        "videoportal" : ["빌리어즈TV", "668", "http://210.182.60.11/image/BilliardsTV_H161012.png"],
+        "skb" : ["Billiards TV", "122"],
         "everyon" : ["Billiards TV", "191", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/191.jpg"],
-        "lgu" : ["빌리어즈TV", "668"]
+        "daum" : ["Billiards TV", "Billiards%20TV 편성표"]
     }
 },
 {
@@ -2669,9 +2624,8 @@
     ],
     "site_info" : {
         "kt" : ["바둑TV", "120"],
-        "skb" : ["바둑TV", "528"],
-        "lgu" : ["바둑TV", "683"],
         "videoportal" : ["바둑TV", "683", "http://210.182.60.11/image/Baduk_H170327.png"],
+        "skb" : ["바둑TV", "528"],
         "daum" : ["바둑TV", "%EB%B0%94%EB%91%91TV 편성표"]
     }
 },
@@ -2683,11 +2637,11 @@
         "폴라리스tv"
     ],
     "site_info" : {
-        "kt" : ["폴라리스TV", "253"],
         "videoportal" : ["폴라리스TV", "726", "http://210.182.60.11/image/polarisTV_H160721.png"],
-        "skb" : ["폴라리스TV", "252"],
+        "kt" : ["폴라리스TV", "253"],
         "everyon" : ["폴라리스TV", "14", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/14.jpg"],
-        "lgu" : ["폴라리스TV", "726"]
+        "pooq" : ["폴라리스TV", "C6901", "https://img.pooq.co.kr/BMS/Channelimage30/image/Polaris-2.png"],
+        "skb" : ["폴라리스TV", "252"]
     }
 },
 {
@@ -2700,7 +2654,6 @@
     "site_info" : {
         "kt" : ["K바둑", "121"],
         "skb" : ["K 바둑", "253"],
-        "lgu" : ["K-바둑", "663"],
         "everyon" : ["K바둑", "207", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/207.jpg"],
         "daum" : ["K바둑", "K%EB%B0%94%EB%91%91 편성표"]
     }
@@ -2737,8 +2690,7 @@
     ],
     "site_info" : {
         "kt" : ["COOKTV", "263"],
-        "skb" : ["CookTV", "289"],
-        "lgu" : ["쿡TV", "564"]
+        "skb" : ["CookTV", "289"]
     }
 },
 {
@@ -2760,12 +2712,11 @@
         "브레인tv"
     ],
     "site_info" : {
-        "skb" : ["브레인TV", "279"],
-        "videoportal" : ["브레인TV", "707", "http://210.182.60.11/image/BrainTV_H160721.png"],
         "kt" : ["브레인TV", "122"],
-        "daum" : ["브레인TV", "%EB%B8%8C%EB%A0%88%EC%9D%B8TV 편성표"],
+        "videoportal" : ["브레인TV", "707", "http://210.182.60.11/image/BrainTV_H160721.png"],
+        "skb" : ["브레인TV", "279"],
         "everyon" : ["브레인TV", "381", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/381.jpg"],
-        "lgu" : ["브레인TV", "707"]
+        "daum" : ["브레인TV", "%EB%B8%8C%EB%A0%88%EC%9D%B8TV 편성표"]
     }
 },
 {
@@ -2828,7 +2779,6 @@
     "site_info" : {
         "kt" : ["생활체육TV", "132"],
         "skb" : ["생활체육TV", "264"],
-        "lgu" : ["생활체육TV", "575"],
         "daum" : ["생활체육 TV", "%EC%83%9D%ED%99%9C%EC%B2%B4%EC%9C%A1%20TV 편성표"]
     }
 },
@@ -2853,12 +2803,11 @@
         "피싱tv"
     ],
     "site_info" : {
-        "skb" : ["FISHING TV", "273"],
-        "videoportal" : ["피싱TV", "625", "http://210.182.60.11/image/FSTV_H160721.png"],
         "kt" : ["FISHING TV", "119"],
-        "daum" : ["FISHING TV", "FISHING%20TV 편성표"],
+        "videoportal" : ["피싱TV", "625", "http://210.182.60.11/image/FSTV_H160721.png"],
+        "skb" : ["FISHING TV", "273"],
         "everyon" : ["FishingTV", "269", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/269.jpg"],
-        "lgu" : ["피싱TV", "625"]
+        "daum" : ["FISHING TV", "FISHING%20TV 편성표"]
     }
 },
 {
@@ -2872,7 +2821,6 @@
     "site_info" : {
         "kt" : ["마운틴TV", "127"],
         "skb" : ["Mountain TV", "251"],
-        "lgu" : ["마운틴TV", "641"],
         "everyon" : ["마운틴TV", "337", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/337.jpg"],
         "daum" : ["마운틴TV", "%EB%A7%88%EC%9A%B4%ED%8B%B4TV 편성표"]
     }
@@ -2887,9 +2835,8 @@
     ],
     "site_info" : {
         "kt" : ["Tooniverse", "996"],
-        "skb" : ["Tooniverse", "376"],
         "tving" : ["투니버스", "C06941", "http://image.tving.com/upload/cms/caic/CAIC1900/C06941.png"],
-        "lgu" : ["투니버스", "693"],
+        "skb" : ["Tooniverse", "376"],
         "daum" : ["투니버스", "%ED%88%AC%EB%8B%88%EB%B2%84%EC%8A%A4 편성표"]
     }
 },
@@ -2905,7 +2852,7 @@
     "site_info" : {
         "kt" : ["애니원", "994"],
         "skb" : ["애니원", "379"],
-        "lgu" : ["애니원", "636"],
+        "pooq" : ["ANIONE", "C4402", "https://img.pooq.co.kr/BMS/ChannelImg/ANIONE_2.png"],
         "daum" : ["AniOne", "AniOne 편성표"]
     }
 },
@@ -2920,7 +2867,7 @@
     "site_info" : {
         "kt" : ["애니박스", "993"],
         "skb" : ["애니박스", "191"],
-        "lgu" : ["애니박스", "695"],
+        "pooq" : ["ANIBOX", "C4401", "https://img.pooq.co.kr/BMS/ChannelImg/32_애니박스.png"],
         "daum" : ["AniBox", "AniBox 편성표"]
     }
 },
@@ -2958,7 +2905,6 @@
     "site_info" : {
         "kt" : ["카툰네트워크", "991"],
         "skb" : ["카툰네트워크", "384"],
-        "lgu" : ["카툰네트워크", "716"],
         "daum" : ["카툰네트워크", "%EC%B9%B4%ED%88%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC 편성표"]
     }
 },
@@ -2972,7 +2918,6 @@
     "site_info" : {
         "kt" : ["부메랑", "989"],
         "skb" : ["부메랑", "433"],
-        "lgu" : ["부메랑", "757"],
         "daum" : ["부메랑", "%EB%B6%80%EB%A9%94%EB%9E%91 편성표"]
     }
 },
@@ -2986,9 +2931,8 @@
     ],
     "site_info" : {
         "kt" : ["애니플러스", "990"],
-        "skb" : ["애니플러스", "377"],
-        "lgu" : ["애니플러스", "699"],
         "videoportal" : ["애니플러스", "699", "http://210.182.60.11/image/ANIPLUS_H161012.png"],
+        "skb" : ["애니플러스", "377"],
         "daum" : ["애니플러스", "%EC%95%A0%EB%8B%88%ED%94%8C%EB%9F%AC%EC%8A%A4 편성표"]
     }
 },
@@ -3002,9 +2946,9 @@
     ],
     "site_info" : {
         "kt" : ["ANIMAX", "995"],
-        "skb" : ["Animax", "371"],
-        "lgu" : ["애니맥스", "703"],
         "videoportal" : ["애니맥스", "703", "http://210.182.60.11/image/ANIMAX__H161111.png"],
+        "skb" : ["Animax", "371"],
+        "pooq" : ["ANIMAX", "A01", "https://img.pooq.co.kr/BMS/ChannelImg/31_anymax.png"],
         "daum" : ["애니맥스", "%EC%95%A0%EB%8B%88%EB%A7%A5%EC%8A%A4 편성표"]
     }
 },
@@ -3031,9 +2975,9 @@
     ],
     "site_info" : {
         "kt" : ["Disney Channel", "998"],
-        "skb" : ["디즈니채널", "380"],
         "tving" : ["디즈니채널", "C05661", "http://image.tving.com/upload/cms/caic/CAIC1900/C05661.png"],
-        "lgu" : ["디즈니 채널", "645"],
+        "skb" : ["디즈니채널", "380"],
+        "pooq" : ["Disney", "D01", "https://img.pooq.co.kr/BMS/ChannelImg/30_disney.png"],
         "daum" : ["디즈니채널", "%EB%94%94%EC%A6%88%EB%8B%88%EC%B1%84%EB%84%90 편성표"]
     }
 },
@@ -3071,7 +3015,6 @@
     "site_info" : {
         "kt" : ["JEI 재능TV", "986"],
         "skb" : ["JEI 재능TV", "378"],
-        "lgu" : ["JEI재능TV", "776"],
         "daum" : ["JEI 재능TV", "JEI%20%EC%9E%AC%EB%8A%A5TV 편성표"]
     }
 },
@@ -3110,7 +3053,7 @@
     "site_info" : {
         "kt" : ["디즈니주니어", "978"],
         "skb" : ["디즈니주니어", "381"],
-        "lgu" : ["디즈니 주니어", "646"],
+        "pooq" : ["Disney Junior", "D02", "https://img.pooq.co.kr/BMS/ChannelImg/36_disney Junior.png"],
         "daum" : ["디즈니주니어", "%EB%94%94%EC%A6%88%EB%8B%88%EC%A3%BC%EB%8B%88%EC%96%B4 편성표"]
     }
 },
@@ -3123,12 +3066,11 @@
         "어린이tv"
     ],
     "site_info" : {
-        "skb" : ["어린이TV", "374"],
-        "videoportal" : ["어린이TV", "761", "http://210.182.60.11/image/KidsTV_H161012.png"],
         "kt" : ["대교 어린이TV", "987"],
-        "daum" : ["대교어린이TV", "%EB%8C%80%EA%B5%90%EC%96%B4%EB%A6%B0%EC%9D%B4TV 편성표"],
+        "videoportal" : ["어린이TV", "761", "http://210.182.60.11/image/KidsTV_H161012.png"],
+        "skb" : ["어린이TV", "374"],
         "everyon" : ["어린이TV", "5", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/5.jpg"],
-        "lgu" : ["어린이TV", "761"]
+        "daum" : ["대교어린이TV", "%EB%8C%80%EA%B5%90%EC%96%B4%EB%A6%B0%EC%9D%B4TV 편성표"]
     }
 },
 {
@@ -3142,8 +3084,8 @@
     ],
     "site_info" : {
         "kt" : ["니켈로디언", "992"],
+        "tving" : ["Nickelodeon", "C43241", "http://image.tving.com/upload/cms/caic/CAIC1900/C43241.png"],
         "skb" : ["Nickelodeon", "383"],
-        "lgu" : ["니켈로디언", "635"],
         "daum" : ["Nickelodeon", "Nickelodeon 편성표"]
     }
 },
@@ -3168,9 +3110,8 @@
     ],
     "site_info" : {
         "kt" : ["EBS KIDS", "983"],
-        "skb" : ["EBS KIDS", "372"],
-        "lgu" : ["EBS Kids", "607"],
         "videoportal" : ["EBS Kids", "607", "http://210.182.60.11/image/EBSkids_H20180110.png"],
+        "skb" : ["EBS KIDS", "372"],
         "daum" : ["EBS KIDS", "EBS%20KIDS 편성표"]
     }
 },
@@ -3197,7 +3138,6 @@
     "site_info" : {
         "kt" : ["KBS Kids", "984"],
         "skb" : ["KBS KIDS", "382"],
-        "lgu" : ["KBS키즈", "608"],
         "daum" : ["KBS KIDS", "KBS%20KIDS 편성표"]
     }
 },
@@ -3237,7 +3177,6 @@
     "site_info" : {
         "kt" : ["Baby TV", "982"],
         "skb" : ["대교베이비TV", "373"],
-        "lgu" : ["대교 베이비TV", "555"],
         "everyon" : ["베이비TV", "1298", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1298.jpg"],
         "daum" : ["대교 베이비TV", "%EB%8C%80%EA%B5%90%20%EB%B2%A0%EC%9D%B4%EB%B9%84TV 편성표"]
     }
@@ -3264,9 +3203,8 @@
     ],
     "site_info" : {
         "kt" : ["브라보키즈", "980"],
-        "skb" : ["bravo kids", "370"],
-        "lgu" : ["브라보키즈", "728"],
         "videoportal" : ["브라보키즈", "728", "http://210.182.60.11/image/BravoKids_H180809.png"],
+        "skb" : ["bravo kids", "370"],
         "daum" : ["브라보키즈", "%EB%B8%8C%EB%9D%BC%EB%B3%B4%ED%82%A4%EC%A6%88 편성표"]
     }
 },
@@ -3280,9 +3218,8 @@
     ],
     "site_info" : {
         "kt" : ["edu TV", "970"],
-        "skb" : ["edu TV", "823"],
         "everyon" : ["eduTV", "1301", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1301.jpg"],
-        "lgu" : ["에듀TV", "168"]
+        "skb" : ["edu TV", "823"]
     }
 },
 {
@@ -3294,8 +3231,7 @@
     ],
     "site_info" : {
         "kt" : ["뽀요TV", "976"],
-        "skb" : ["뽀요TV", "387"],
-        "lgu" : ["뽀요TV", "545"]
+        "skb" : ["뽀요TV", "387"]
     }
 },
 {
@@ -3320,9 +3256,8 @@
     ],
     "site_info" : {
         "kt" : ["EBS PLUS2", "971"],
-        "skb" : ["EBS +2", "821"],
-        "lgu" : ["EBS+2", "173"],
         "videoportal" : ["EBS+2", "173", "http://210.182.60.11/image/EBSPlus2_H161012.png"],
+        "skb" : ["EBS +2", "821"],
         "daum" : ["EBS플러스2", "EBS%ED%94%8C%EB%9F%AC%EC%8A%A42 편성표"]
     }
 },
@@ -3337,9 +3272,8 @@
     ],
     "site_info" : {
         "kt" : ["EBS PLUS1", "972"],
-        "skb" : ["EBS +1", "820"],
-        "lgu" : ["EBS+1", "172"],
         "videoportal" : ["EBS+1", "172", "http://210.182.60.11/image/EBSPlus1_H161012.png"],
+        "skb" : ["EBS +1", "820"],
         "daum" : ["EBS플러스1", "EBS%ED%94%8C%EB%9F%AC%EC%8A%A41 편성표"]
     }
 },
@@ -3362,12 +3296,11 @@
         "플레이런tv"
     ],
     "site_info" : {
-        "skb" : ["플레이런TV", "824"],
-        "videoportal" : ["플레이런TV", "175", "http://210.182.60.11/image/Chungchul_H170929.png"],
         "kt" : ["플레이런TV", "974"],
-        "daum" : ["플레이런TV", "%ED%94%8C%EB%A0%88%EC%9D%B4%EB%9F%B0TV 편성표"],
+        "videoportal" : ["플레이런TV", "175", "http://210.182.60.11/image/Chungchul_H170929.png"],
+        "skb" : ["플레이런TV", "824"],
         "everyon" : ["플레이런TV", "169", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/169.jpg"],
-        "lgu" : ["플레이런TV", "175"]
+        "daum" : ["플레이런TV", "%ED%94%8C%EB%A0%88%EC%9D%B4%EB%9F%B0TV 편성표"]
     }
 },
 {
@@ -3380,7 +3313,6 @@
     "site_info" : {
         "kt" : ["한국직업방송", "252"],
         "skb" : ["한국직업방송", "429"],
-        "lgu" : ["한국직업방송", "589"],
         "daum" : ["한국직업방송", "%ED%95%9C%EA%B5%AD%EC%A7%81%EC%97%85%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -3395,12 +3327,11 @@
         "jei잉글리쉬"
     ],
     "site_info" : {
-        "skb" : ["JEI 재능 English", "825"],
-        "videoportal" : ["JEI EnglishTV", "793", "http://210.182.60.11/image/JEIEnglishTV_H161012.png"],
         "kt" : ["JEI EnglishTV", "975"],
-        "daum" : ["JEI English TV", "JEI%20English%20TV 편성표"],
+        "videoportal" : ["JEI EnglishTV", "793", "http://210.182.60.11/image/JEIEnglishTV_H161012.png"],
+        "skb" : ["JEI 재능 English", "825"],
         "everyon" : ["Jei English", "15", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/15.jpg"],
-        "lgu" : ["JEI EnglishTV", "793"]
+        "daum" : ["JEI English TV", "JEI%20English%20TV 편성표"]
     }
 },
 {
@@ -3425,7 +3356,6 @@
     "site_info" : {
         "kt" : ["OUN", "160"],
         "skb" : ["OUN", "220"],
-        "lgu" : ["방송대학TV", "179"],
         "everyon" : ["방송대학TV ", "1216", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1216.jpg"],
         "daum" : ["OUN", "OUN 편성표"]
     }
@@ -3440,9 +3370,8 @@
     ],
     "site_info" : {
         "kt" : ["EBS English", "973"],
-        "skb" : ["EBS English", "822"],
-        "lgu" : ["EBSEnglish", "768"],
         "videoportal" : ["EBSEnglish", "768", "http://210.182.60.11/image/EBSEnglish_H161012.png"],
+        "skb" : ["EBS English", "822"],
         "daum" : ["EBS English", "EBS%20English 편성표"]
     }
 },
@@ -3478,12 +3407,11 @@
         "올리브"
     ],
     "site_info" : {
+        "kt" : ["올리브", "34"],
+        "videoportal" : ["올리브", "696", "http://210.182.60.11/image/Olive_H180814.png"],
         "tving" : ["Olive", "C00575", "http://image.tving.com/upload/cms/caic/CAIC1900/C00575.png"],
         "skb" : ["Olive", "431"],
-        "videoportal" : ["올리브", "696", "http://210.182.60.11/image/Olive_H180814.png"],
-        "kt" : ["올리브", "34"],
-        "daum" : ["OLIVE", "OLIVE 편성표"],
-        "lgu" : ["올리브", "696"]
+        "daum" : ["OLIVE", "OLIVE 편성표"]
     }
 },
 {
@@ -3496,7 +3424,6 @@
     "site_info" : {
         "kt" : ["GTV", "73"],
         "skb" : ["Gtv", "284"],
-        "lgu" : ["GTV", "748"],
         "everyon" : ["GTV", "44", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/44.jpg"],
         "daum" : ["GTV", "GTV 편성표"]
     }
@@ -3512,7 +3439,6 @@
     "site_info" : {
         "kt" : ["TRENDY", "226"],
         "skb" : ["TRENDY", "288"],
-        "lgu" : ["트렌디", "569"],
         "everyon" : ["트렌디", "4", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/4.jpg"],
         "daum" : ["TRENDY", "TRENDY 편성표"]
     }
@@ -3526,12 +3452,11 @@
         "온스타일"
     ],
     "site_info" : {
+        "kt" : ["온스타일", "77"],
+        "videoportal" : ["온스타일", "778", "http://210.182.60.11/image/Onstyle_H170921.png"],
         "tving" : ["ONSTYLE", "C01142", "http://image.tving.com/upload/cms/caic/CAIC1900/C01142.png"],
         "skb" : ["On style", "426"],
-        "videoportal" : ["온스타일", "778", "http://210.182.60.11/image/Onstyle_H170921.png"],
-        "kt" : ["온스타일", "77"],
-        "daum" : ["On Style", "On%20Style 편성표"],
-        "lgu" : ["온스타일", "778"]
+        "daum" : ["On Style", "On%20Style 편성표"]
     }
 },
 {
@@ -3555,7 +3480,6 @@
     ],
     "site_info" : {
         "skb" : ["Fashion N", "274"],
-        "lgu" : ["패션N", "568"],
         "daum" : ["FashionN", "FashionN 편성표"]
     }
 },
@@ -3569,7 +3493,6 @@
     "site_info" : {
         "kt" : ["육아방송", "217"],
         "skb" : ["육아방송", "287"],
-        "lgu" : ["육아방송", "588"],
         "everyon" : ["육아방송", "42", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/42.jpg"],
         "daum" : ["육아방송", "%EC%9C%A1%EC%95%84%EB%B0%A9%EC%86%A1 편성표"]
     }
@@ -3582,12 +3505,11 @@
         "jtbc4"
     ],
     "site_info" : {
+        "kt" : ["JTBC4", "75"],
+        "videoportal" : ["JTBC4", "767", "http://210.182.60.11/image/JTBC4_H180829.png"],
         "tving" : ["JTBC4", "C22041", "http://image.tving.com/upload/cms/caic/CAIC1900/C22041.png"],
         "skb" : ["JTBC4", "259"],
-        "videoportal" : ["JTBC4", "767", "http://210.182.60.11/image/JTBC4_H180829.png"],
-        "kt" : ["JTBC4", "75"],
-        "daum" : ["JTBC4", "JTBC4 편성표"],
-        "lgu" : ["JTBC4", "767"]
+        "daum" : ["JTBC4", "JTBC4 편성표"]
     }
 },
 {
@@ -3600,7 +3522,7 @@
     "site_info" : {
         "kt" : ["KBS W", "83"],
         "skb" : ["KBS W", "425"],
-        "lgu" : ["KBS W", "620"],
+        "pooq" : ["KBS W", "K09", "https://img.pooq.co.kr/BMS/ChannelImg/14_kbs W.png"],
         "daum" : ["KBS W", "KBS%20W 편성표"]
     }
 },
@@ -3614,8 +3536,8 @@
     "site_info" : {
         "kt" : ["동아TV", "82"],
         "skb" : ["동아TV", "272"],
-        "lgu" : ["동아TV", "660"],
         "everyon" : ["동아TV", "43", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/43.jpg"],
+        "pooq" : ["동아TV", "C7301", "https://img.pooq.co.kr/BMS/Channelimage30/image/donga-2.png"],
         "daum" : ["동아TV", "%EB%8F%99%EC%95%84TV 편성표"]
     }
 },
@@ -3629,13 +3551,12 @@
         "라이프타임"
     ],
     "site_info" : {
-        "tving" : ["LIFETIME", "C00611", "http://image.tving.com/upload/cms/caic/CAIC1900/C00611.png"],
+        "pooq" : ["LIFETIME", "C5902", "https://img.pooq.co.kr/BMS/Channelimage30/image/lifetime-2.png"],
         "skb" : ["라이프타임", "271"],
         "videoportal" : ["라이프타임", "603", "http://210.182.60.11/image/foodTV_H170925.png"],
         "kt" : ["Lifetime", "78"],
-        "daum" : ["라이프타임채널", "%EB%9D%BC%EC%9D%B4%ED%94%84%ED%83%80%EC%9E%84%EC%B1%84%EB%84%90 편성표"],
         "everyon" : ["라이프타임", "1015", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/1015.jpg"],
-        "lgu" : ["라이프타임", "603"]
+        "daum" : ["라이프타임채널", "%EB%9D%BC%EC%9D%B4%ED%94%84%ED%83%80%EC%9E%84%EC%B1%84%EB%84%90 편성표"]
     }
 },
 {
@@ -3648,7 +3569,6 @@
     "site_info" : {
         "kt" : ["국방TV", "260"],
         "skb" : ["국방TV", "445"],
-        "lgu" : ["국방TV", "704"],
         "everyon" : ["국방TV", "31", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/31.jpg"],
         "daum" : ["국방TV", "%EA%B5%AD%EB%B0%A9TV 편성표"]
     }
@@ -3663,7 +3583,6 @@
     "site_info" : {
         "kt" : ["복지TV", "219"],
         "skb" : ["복지TV", "223"],
-        "lgu" : ["복지TV", "678"],
         "everyon" : ["복지TV", "46", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/46.jpg"],
         "daum" : ["복지TV", "%EB%B3%B5%EC%A7%80TV 편성표"]
     }
@@ -3689,8 +3608,7 @@
     ],
     "site_info" : {
         "kt" : ["다문화티브이", "216"],
-        "skb" : ["다문화TV", "448"],
-        "lgu" : ["다문화TV", "584"]
+        "skb" : ["다문화TV", "448"]
     }
 },
 {
@@ -3706,7 +3624,6 @@
     "site_info" : {
         "kt" : ["KTV", "64"],
         "skb" : ["KTV", "222"],
-        "lgu" : ["국민방송", "177"],
         "everyon" : ["한국정책방송 KTV", "393", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/393.jpg"],
         "daum" : ["KTV 국민방송", "KTV%20%EA%B5%AD%EB%AF%BC%EB%B0%A9%EC%86%A1 편성표"]
     }
@@ -3755,7 +3672,6 @@
     "site_info" : {
         "kt" : ["법률방송", "213"],
         "skb" : ["법률방송", "438"],
-        "lgu" : ["법률방송", "586"],
         "everyon" : ["법률방송", "33", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/33.jpg"],
         "daum" : ["법률방송", "%EB%B2%95%EB%A5%A0%EB%B0%A9%EC%86%A1 편성표"]
     }
@@ -3770,7 +3686,6 @@
     "site_info" : {
         "kt" : ["국회방송", "65"],
         "skb" : ["국회방송", "221"],
-        "lgu" : ["국회방송", "717"],
         "everyon" : ["국회방송", "401", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/401.jpg"],
         "daum" : ["국회방송", "%EA%B5%AD%ED%9A%8C%EB%B0%A9%EC%86%A1 편성표"]
     }
@@ -3785,8 +3700,7 @@
     ],
     "site_info" : {
         "kt" : ["9colors", "163"],
-        "skb" : ["9colors", "285"],
-        "lgu" : ["나인컬러스", "680"]
+        "skb" : ["9colors", "285"]
     }
 },
 {
@@ -3801,7 +3715,6 @@
     "site_info" : {
         "kt" : ["BTN불교TV", "233"],
         "skb" : ["BTN 불교TV", "726"],
-        "lgu" : ["BTN", "702"],
         "everyon" : ["BTN불교TV", "34", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/34.jpg"],
         "daum" : ["BTN 불교TV", "BTN%20%EB%B6%88%EA%B5%90TV 편성표"]
     }
@@ -3842,7 +3755,6 @@
     "site_info" : {
         "kt" : ["CTS기독교TV", "236"],
         "skb" : ["CTS", "725"],
-        "lgu" : ["CTS", "769"],
         "everyon" : ["CTS", "28", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/28.jpg"],
         "daum" : ["CTS 기독교TV", "CTS%20%EA%B8%B0%EB%8F%85%EA%B5%90TV 편성표"]
     }
@@ -3857,7 +3769,6 @@
     "site_info" : {
         "kt" : ["Good TV", "234"],
         "skb" : ["Good TV", "720"],
-        "lgu" : ["GOODTV", "565"],
         "daum" : ["GOODTV", "GOODTV 편성표"]
     }
 },
@@ -3872,7 +3783,6 @@
     "site_info" : {
         "kt" : ["가톨릭평화방송", "231"],
         "skb" : ["가톨릭평화방송", "724"],
-        "lgu" : ["가톨릭평화방송", "721"],
         "daum" : ["가톨릭 평화방송", "%EA%B0%80%ED%86%A8%EB%A6%AD%20%ED%8F%89%ED%99%94%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -3887,7 +3797,6 @@
     "site_info" : {
         "kt" : ["CGNTV", "237"],
         "skb" : ["CGNTV", "723"],
-        "lgu" : ["CGNTV", "754"],
         "daum" : ["CGN", "CGN 편성표"]
     }
 },
@@ -3902,7 +3811,6 @@
     "site_info" : {
         "kt" : ["CBS", "238"],
         "skb" : ["CBS", "727"],
-        "lgu" : ["CBS", "711"],
         "daum" : ["CBS TV", "CBS%20TV 편성표"]
     }
 },
@@ -3916,7 +3824,6 @@
     "site_info" : {
         "kt" : ["원음방송", "239"],
         "skb" : ["원음방송", "270"],
-        "lgu" : ["원음방송", "785"],
         "daum" : ["원음방송", "%EC%9B%90%EC%9D%8C%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -3943,7 +3850,6 @@
     "site_info" : {
         "kt" : ["STB상생방송", "261"],
         "skb" : ["STB 상생방송", "278"],
-        "lgu" : ["상생방송", "171"],
         "everyon" : ["한문화 중심채널  STB상생방송", "38", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/38.jpg"],
         "daum" : ["상생방송", "%EC%83%81%EC%83%9D%EB%B0%A9%EC%86%A1 편성표"]
     }
@@ -3959,7 +3865,6 @@
     "site_info" : {
         "kt" : ["C Channel", "235"],
         "skb" : ["C채널", "721"],
-        "lgu" : ["C채널", "745"],
         "everyon" : ["C채널", "335", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/335.jpg"],
         "daum" : ["C channel", "C%20channel 편성표"]
     }
@@ -3974,9 +3879,8 @@
     ],
     "site_info" : {
         "kt" : ["홈&쇼핑", "14"],
-        "skb" : ["홈&쇼핑", "327"],
-        "lgu" : ["홈앤쇼핑", "649"],
         "videoportal" : ["홈앤쇼핑", "649", "http://210.182.60.11/image/HomeNSHOP_H160721.png"],
+        "skb" : ["홈&쇼핑", "327"],
         "daum" : ["홈&쇼핑", "%ED%99%88%26%EC%87%BC%ED%95%91 편성표"]
     }
 },
@@ -3990,8 +3894,7 @@
     ],
     "site_info" : {
         "kt" : ["SK stoa", "17"],
-        "skb" : ["SK stoa", "345"],
-        "lgu" : ["SK스토아", "738"]
+        "skb" : ["SK stoa", "345"]
     }
 },
 {
@@ -4003,9 +3906,8 @@
     ],
     "site_info" : {
         "kt" : ["CJ오쇼핑", "6"],
-        "skb" : ["CJ오쇼핑", "324"],
-        "lgu" : ["CJ오쇼핑", "672"],
         "videoportal" : ["CJ오쇼핑", "672", "http://210.182.60.11/image/CJOSHOP_H160721.png"],
+        "skb" : ["CJ오쇼핑", "324"],
         "daum" : ["CJ오쇼핑", "CJ%EC%98%A4%EC%87%BC%ED%95%91 편성표"]
     }
 },
@@ -4019,7 +3921,6 @@
     "site_info" : {
         "kt" : ["공영쇼핑", "22"],
         "skb" : ["공영쇼핑", "332"],
-        "lgu" : ["공영쇼핑", "737"],
         "daum" : ["공영쇼핑", "%EA%B3%B5%EC%98%81%EC%87%BC%ED%95%91 편성표"]
     }
 },
@@ -4033,8 +3934,8 @@
     ],
     "site_info" : {
         "kt" : ["신세계쇼핑", "20"],
-        "skb" : ["신세계쇼핑", "339"],
-        "lgu" : ["신세계쇼핑", "780"]
+        "pooq" : ["신세계TV쇼핑", "C4801", "https://img.pooq.co.kr/BMS/ChannelImg/shin_180x24_re.png"],
+        "skb" : ["신세계쇼핑", "339"]
     }
 },
 {
@@ -4046,9 +3947,9 @@
     ],
     "site_info" : {
         "kt" : ["NS홈쇼핑", "12"],
-        "skb" : ["NS홈쇼핑", "322"],
-        "lgu" : ["NS홈쇼핑", "673"],
         "videoportal" : ["NS홈쇼핑", "673", "http://210.182.60.11/image/NSSHOP_H160721.png"],
+        "skb" : ["NS홈쇼핑", "322"],
+        "pooq" : ["NS홈쇼핑", "C8301", "https://img.pooq.co.kr/BMS/Channelimage30/image/NS_홈쇼핑-2.png"],
         "daum" : ["NS홈쇼핑", "NS%ED%99%88%EC%87%BC%ED%95%91 편성표"]
     }
 },
@@ -4060,10 +3961,9 @@
         "w쇼핑"
     ],
     "site_info" : {
-        "kt" : ["W 쇼핑", "40"],
         "videoportal" : ["W 쇼핑", "813", "http://210.182.60.11/image/WShopping_H181008.png"],
-        "skb" : ["W쇼핑", "342"],
-        "lgu" : ["W 쇼핑", "813"]
+        "kt" : ["W 쇼핑", "40"],
+        "skb" : ["W쇼핑", "342"]
     }
 },
 {
@@ -4074,7 +3974,7 @@
         "cj오쇼핑+"
     ],
     "site_info" : {
-        "lgu" : ["CJ오쇼핑+", "781"]
+
     }
 },
 {
@@ -4089,7 +3989,7 @@
     "site_info" : {
         "kt" : ["쇼핑엔티", "33"],
         "skb" : ["쇼핑엔티", "336"],
-        "lgu" : ["쇼핑엔티", "782"],
+        "pooq" : ["쇼핑엔티", "C4901", "https://img.pooq.co.kr/BMS/ChannelImg/63_쇼핑엔티.png"],
         "daum" : ["쇼핑엔티", "%EC%87%BC%ED%95%91%EC%97%94%ED%8B%B0 편성표"]
     }
 },
@@ -4103,10 +4003,10 @@
         "현대홈플러스샵"
     ],
     "site_info" : {
-        "kt" : ["현대홈쇼핑+샵", "36"],
         "videoportal" : ["현대홈쇼핑+샵", "760", "http://210.182.60.11/image/HDplusShop_H160922.png"],
-        "skb" : ["현대홈쇼핑+Shop", "337"],
-        "lgu" : ["현대홈쇼핑+샵", "760"]
+        "kt" : ["현대홈쇼핑+샵", "36"],
+        "pooq" : ["현대홈쇼핑+샵", "C4102", "https://img.pooq.co.kr/BMS/ChannelImg/62_현대홈쇼핑plus샵.png"],
+        "skb" : ["현대홈쇼핑+Shop", "337"]
     }
 },
 {
@@ -4133,8 +4033,8 @@
     ],
     "site_info" : {
         "kt" : ["NS Shop+", "42"],
-        "skb" : ["NS Shop+", "341"],
-        "lgu" : ["NS샵+", "812"]
+        "pooq" : ["NS SHOP+", "C8302", "https://img.pooq.co.kr/BMS/Channelimage30/image/ns shop-2.png"],
+        "skb" : ["NS Shop+", "341"]
     }
 },
 {
@@ -4146,9 +4046,9 @@
     ],
     "site_info" : {
         "kt" : ["롯데홈쇼핑", "4"],
-        "skb" : ["롯데홈쇼핑", "323"],
-        "lgu" : ["롯데홈쇼핑", "674"],
         "videoportal" : ["롯데홈쇼핑", "674", "http://210.182.60.11/image/LOTTESHOP_H160721.png"],
+        "skb" : ["롯데홈쇼핑", "323"],
+        "pooq" : ["롯데홈쇼핑", "C5601", "https://img.pooq.co.kr/BMS/Channelimage30/image/lotte-2.png"],
         "daum" : ["롯데홈쇼핑", "%EB%A1%AF%EB%8D%B0%ED%99%88%EC%87%BC%ED%95%91 편성표"]
     }
 },
@@ -4162,9 +4062,9 @@
     ],
     "site_info" : {
         "kt" : ["GS SHOP", "8"],
-        "skb" : ["GS SHOP", "320"],
-        "lgu" : ["GS샵", "676"],
         "videoportal" : ["GS샵", "676", "http://210.182.60.11/image/GSSHOP_H160721.png"],
+        "skb" : ["GS SHOP", "320"],
+        "pooq" : ["GS SHOP", "C4201", "https://img.pooq.co.kr/BMS/ChannelImg/59_GSshop.png"],
         "daum" : ["GS SHOP", "GS%20SHOP 편성표"]
     }
 },
@@ -4179,8 +4079,7 @@
     ],
     "site_info" : {
         "kt" : ["롯데원티비", "44"],
-        "skb" : ["롯데OneTV", "344"],
-        "lgu" : ["롯데 OneTV", "783"]
+        "skb" : ["롯데OneTV", "344"]
     }
 },
 {
@@ -4192,9 +4091,9 @@
     ],
     "site_info" : {
         "kt" : ["현대홈쇼핑", "10"],
-        "skb" : ["현대홈쇼핑", "321"],
-        "lgu" : ["현대홈쇼핑", "675"],
         "videoportal" : ["현대홈쇼핑", "675", "http://210.182.60.11/image/HDSHOP_H160721.png"],
+        "skb" : ["현대홈쇼핑", "321"],
+        "pooq" : ["현대홈쇼핑", "C4101", "https://img.pooq.co.kr/BMS/ChannelImg/61_현대홈쇼핑.png"],
         "daum" : ["현대홈쇼핑", "%ED%98%84%EB%8C%80%ED%99%88%EC%87%BC%ED%95%91 편성표"]
     }
 },
@@ -4209,10 +4108,10 @@
         "gsmys"
     ],
     "site_info" : {
-        "kt" : ["GS MY SHOP", "38"],
         "videoportal" : ["GS마이샵", "740", "http://210.182.60.11/image/GSmyshop_H160721.png"],
-        "skb" : ["GS MY SHOP", "343"],
-        "lgu" : ["GS마이샵", "740"]
+        "kt" : ["GS MY SHOP", "38"],
+        "pooq" : ["GS MY SHOP", "C4202", "https://img.pooq.co.kr/BMS/ChannelImg/60_GSmyshop.png"],
+        "skb" : ["GS MY SHOP", "343"]
     }
 },
 {
@@ -4225,7 +4124,6 @@
     "site_info" : {
         "kt" : ["K쇼핑", "2"],
         "skb" : ["K쇼핑", "333"],
-        "lgu" : ["K쇼핑", "811"],
         "everyon" : ["K쇼핑", "880", "http://assets-cdn.everyon.co.kr/images/ch_sm_img/880.jpg"],
         "daum" : ["K쇼핑", "K%EC%87%BC%ED%95%91 편성표"]
     }
@@ -4251,7 +4149,6 @@
     "site_info" : {
         "kt" : ["BBC Earth", "172"],
         "skb" : ["BBC earth", "472"],
-        "lgu" : ["BBC Earth", "773"],
         "daum" : ["BBC Earth", "BBC%20Earth 편성표"]
     }
 },
@@ -4300,7 +4197,6 @@
     ],
     "site_info" : {
         "skb" : ["NHK WORLD JAPAN", "783"],
-        "lgu" : ["NHK World-JAPAN", "669"],
         "daum" : ["NHK WORLD-JAPAN", "NHK%20WORLD-JAPAN 편성표"]
     }
 },
@@ -4315,9 +4211,8 @@
     ],
     "site_info" : {
         "kt" : ["CNN International", "191"],
-        "skb" : ["CNN International", "774"],
-        "lgu" : ["CNN International", "729"],
         "videoportal" : ["CNN International", "729", "http://210.182.60.11/image/CNN_H161012.png"],
+        "skb" : ["CNN International", "774"],
         "daum" : ["CNN Int’l", "CNN%20Int%E2%80%99l 편성표"]
     }
 },
@@ -4342,9 +4237,8 @@
         "cnbc"
     ],
     "site_info" : {
-        "kt" : ["CNBC", "197"],
         "videoportal" : ["CNBC", "174", "http://210.182.60.11/image/CNBC_H160721.png"],
-        "lgu" : ["CNBC", "174"],
+        "kt" : ["CNBC", "197"],
         "daum" : ["CNBC", "CNBC 편성표"]
     }
 },
@@ -4361,7 +4255,6 @@
     "site_info" : {
         "kt" : ["BBC WN", "192"],
         "skb" : ["BBC World News", "778"],
-        "lgu" : ["BBC World News", "709"],
         "daum" : ["BBC World", "BBC%20World 편성표"]
     }
 },
@@ -4388,7 +4281,7 @@
     "site_info" : {
         "kt" : ["CGTN", "194"],
         "skb" : ["CGTN", "771"],
-        "lgu" : ["CGTN", "176"],
+        "pooq" : ["CGTN", "K25", "https://img.pooq.co.kr/BMS/Channelimage30/image/CGTN-2.png"],
         "daum" : ["CGTN", "CGTN 편성표"]
     }
 },
@@ -4428,8 +4321,8 @@
     ],
     "site_info" : {
         "kt" : ["CCTV4", "280"],
-        "skb" : ["CCTV4", "779"],
-        "lgu" : ["CCTV4", "178"]
+        "pooq" : ["CCTV4", "K12", "https://img.pooq.co.kr/BMS/ChannelImg/10_CCTV.png"],
+        "skb" : ["CCTV4", "779"]
     }
 },
 {
@@ -4500,7 +4393,6 @@
     "site_info" : {
         "kt" : ["NHK WP", "199"],
         "skb" : ["NHK World Premium", "772"],
-        "lgu" : ["NHKWorldPremium", "633"],
         "daum" : ["NHK WORLD Premium", "NHK%20WORLD%20Premium 편성표"]
     }
 },
@@ -4537,6 +4429,7 @@
         "ebsfm"
     ],
     "site_info" : {
+        "pooq" : ["EBS FM", "E06", "https://img.pooq.co.kr/BMS/ChannelImg/50_EBS fm.png"],
         "daum" : ["EBS교육방송", "EBS%EA%B5%90%EC%9C%A1%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -4627,7 +4520,6 @@
         "bbs"
     ],
     "site_info" : {
-        "lgu" : ["BBS", "759"],
         "daum" : ["BBS불교방송", "BBS%EB%B6%88%EA%B5%90%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -4639,6 +4531,7 @@
         "sbs파워fm"
     ],
     "site_info" : {
+        "pooq" : ["SBS 파워FM", "S07", "https://img.pooq.co.kr/BMS/ChannelImg/48_sbs 파워fm.png"],
         "daum" : ["SBS파워FM", "SBS%ED%8C%8C%EC%9B%8CFM 편성표"]
     }
 },
@@ -4687,6 +4580,7 @@
         "kbs1라디오"
     ],
     "site_info" : {
+        "pooq" : ["KBS1RADIO", "K07", "https://img.pooq.co.kr/BMS/ChannelImg/44_kbs 1 radio.png"],
         "daum" : ["KBS1R", "KBS1R 편성표"]
     }
 },
@@ -4698,6 +4592,7 @@
         "mbc표준fm"
     ],
     "site_info" : {
+        "pooq" : ["MBC 표준 FM", "M07", "https://img.pooq.co.kr/BMS/ChannelImg/46_MBC 표준fm.png"],
         "daum" : ["MBC표준FM", "MBC%ED%91%9C%EC%A4%80FM 편성표"]
     }
 },
@@ -4726,12 +4621,12 @@
 {
     "name" : "KISS - 2000년대 인기가요",
     "category" : "라디오",
-    "icon" : "",
+    "icon" : "https://img.pooq.co.kr/BMS/ChannelImg/55_Kiss 2000년대인기가요.png",
     "search_name_list" : [
         "kiss2000년대인기가요"
     ],
     "site_info" : {
-
+        "pooq" : ["KISS - 2000년대 인기가요", "C2705", "https://img.pooq.co.kr/BMS/ChannelImg/55_Kiss 2000년대인기가요.png"]
     }
 },
 {
@@ -4742,18 +4637,19 @@
         "sbs러브fm"
     ],
     "site_info" : {
+        "pooq" : ["SBS 러브FM", "S08", "https://img.pooq.co.kr/BMS/ChannelImg/49_sbs 러브fm.png"],
         "daum" : ["SBS러브FM", "SBS%EB%9F%AC%EB%B8%8CFM 편성표"]
     }
 },
 {
     "name" : "KISS - 최신인기가요",
     "category" : "라디오",
-    "icon" : "",
+    "icon" : "https://img.pooq.co.kr/BMS/ChannelImg/51_Kiss 최신인기가요.png",
     "search_name_list" : [
         "kiss최신인기가요"
     ],
     "site_info" : {
-
+        "pooq" : ["KISS - 최신인기가요", "C2701", "https://img.pooq.co.kr/BMS/ChannelImg/51_Kiss 최신인기가요.png"]
     }
 },
 {
@@ -4775,18 +4671,19 @@
         "mbcfm4u"
     ],
     "site_info" : {
+        "pooq" : ["MBC FM4U", "M08", "https://img.pooq.co.kr/BMS/ChannelImg/47_MBC fm4U.png"],
         "daum" : ["MBCFM4U", "MBCFM4U 편성표"]
     }
 },
 {
     "name" : "KISS - 재즈 라운지",
     "category" : "라디오",
-    "icon" : "",
+    "icon" : "https://img.pooq.co.kr/BMS/ChannelImg/56_Kiss all that jazz.png",
     "search_name_list" : [
         "kiss재즈라운지"
     ],
     "site_info" : {
-
+        "pooq" : ["KISS - 재즈 라운지", "C2706", "https://img.pooq.co.kr/BMS/ChannelImg/56_Kiss all that jazz.png"]
     }
 },
 {
@@ -4803,12 +4700,12 @@
 {
     "name" : "KISS - 8090인기가요",
     "category" : "라디오",
-    "icon" : "",
+    "icon" : "https://img.pooq.co.kr/BMS/ChannelImg/unnamed.png",
     "search_name_list" : [
         "kiss8090인기가요"
     ],
     "site_info" : {
-
+        "pooq" : ["KISS - 8090인기가요", "C2703", "https://img.pooq.co.kr/BMS/ChannelImg/unnamed.png"]
     }
 },
 {
@@ -4832,6 +4729,7 @@
         "kbscoolfm"
     ],
     "site_info" : {
+        "pooq" : ["KBSCOOLFM", "K08", "https://img.pooq.co.kr/BMS/ChannelImg/45_KBS coolFM.png"],
         "daum" : ["KBS2FM", "KBS2FM 편성표"]
     }
 },
@@ -4855,7 +4753,6 @@
         "jibs"
     ],
     "site_info" : {
-        "lgu" : ["JIBS", "573"],
         "daum" : ["JIBS 제주방송", "JIBS%20%EC%A0%9C%EC%A3%BC%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -4878,7 +4775,6 @@
         "충주kbs1"
     ],
     "site_info" : {
-        "lgu" : ["충주 KBS1", "513"],
         "daum" : ["충주 KBS1", "%EC%B6%A9%EC%A3%BC%20KBS1 편성표"]
     }
 },
@@ -4890,7 +4786,6 @@
         "울산mbc"
     ],
     "site_info" : {
-        "lgu" : ["울산 MBC", "552"],
         "daum" : ["울산 MBC", "%EC%9A%B8%EC%82%B0%20MBC 편성표"]
     }
 },
@@ -4903,7 +4798,7 @@
         "강릉mbc"
     ],
     "site_info" : {
-        "lgu" : ["강릉 MBC", "558"]
+
     }
 },
 {
@@ -4926,7 +4821,6 @@
         "g1"
     ],
     "site_info" : {
-        "lgu" : ["G1", "581"],
         "daum" : ["G1 강원민방", "G1%20%EA%B0%95%EC%9B%90%EB%AF%BC%EB%B0%A9 편성표"]
     }
 },
@@ -4938,7 +4832,6 @@
         "목포mbc"
     ],
     "site_info" : {
-        "lgu" : ["목포 MBC", "548"],
         "daum" : ["목포 MBC", "%EB%AA%A9%ED%8F%AC%20MBC 편성표"]
     }
 },
@@ -4950,7 +4843,6 @@
         "광주mbc"
     ],
     "site_info" : {
-        "lgu" : ["광주 MBC", "546"],
         "daum" : ["광주 MBC", "%EA%B4%91%EC%A3%BC%20MBC 편성표"]
     }
 },
@@ -4962,7 +4854,6 @@
         "광주kbs1"
     ],
     "site_info" : {
-        "lgu" : ["광주 KBS1", "521"],
         "daum" : ["광주 KBS1", "%EA%B4%91%EC%A3%BC%20KBS1 편성표"]
     }
 },
@@ -4975,7 +4866,6 @@
         "knn"
     ],
     "site_info" : {
-        "lgu" : ["KNN", "576"],
         "daum" : ["KNN 부산경남방송", "KNN%20%EB%B6%80%EC%82%B0%EA%B2%BD%EB%82%A8%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -4987,7 +4877,6 @@
         "진주mbc"
     ],
     "site_info" : {
-        "lgu" : ["진주 MBC", "554"],
         "daum" : ["진주MBC", "%EC%A7%84%EC%A3%BCMBC 편성표"]
     }
 },
@@ -4999,7 +4888,6 @@
         "부산mbc"
     ],
     "site_info" : {
-        "lgu" : ["부산 MBC", "551"],
         "daum" : ["부산 MBC", "%EB%B6%80%EC%82%B0%20MBC 편성표"]
     }
 },
@@ -5011,7 +4899,6 @@
         "순천kbs1"
     ],
     "site_info" : {
-        "lgu" : ["순천 KBS1", "522"],
         "daum" : ["순천 KBS1", "%EC%88%9C%EC%B2%9C%20KBS1 편성표"]
     }
 },
@@ -5023,7 +4910,6 @@
         "강릉kbs1"
     ],
     "site_info" : {
-        "lgu" : ["강릉 KBS1", "533"],
         "daum" : ["강릉 KBS1", "%EA%B0%95%EB%A6%89%20KBS1 편성표"]
     }
 },
@@ -5035,7 +4921,6 @@
         "진주kbs1"
     ],
     "site_info" : {
-        "lgu" : ["진주 KBS1", "529"],
         "daum" : ["진주 KBS1", "%EC%A7%84%EC%A3%BC%20KBS1 편성표"]
     }
 },
@@ -5047,7 +4932,6 @@
         "안동kbs1"
     ],
     "site_info" : {
-        "lgu" : ["안동 KBS1", "517"],
         "daum" : ["안동 KBS1", "%EC%95%88%EB%8F%99%20KBS1 편성표"]
     }
 },
@@ -5059,7 +4943,6 @@
         "포항kbs1"
     ],
     "site_info" : {
-        "lgu" : ["포항 KBS1", "518"],
         "daum" : ["포항 KBS1", "%ED%8F%AC%ED%95%AD%20KBS1 편성표"]
     }
 },
@@ -5072,7 +4955,7 @@
         "마산mbc"
     ],
     "site_info" : {
-        "lgu" : ["마산 MBC", "553"]
+
     }
 },
 {
@@ -5083,7 +4966,6 @@
         "춘천kbs1"
     ],
     "site_info" : {
-        "lgu" : ["춘천 KBS1", "532"],
         "daum" : ["춘천 KBS1", "%EC%B6%98%EC%B2%9C%20KBS1 편성표"]
     }
 },
@@ -5095,7 +4977,6 @@
         "제주kbs1"
     ],
     "site_info" : {
-        "lgu" : ["제주 KBS1", "525"],
         "daum" : ["제주 KBS1", "%EC%A0%9C%EC%A3%BC%20KBS1 편성표"]
     }
 },
@@ -5108,7 +4989,6 @@
         "tbc"
     ],
     "site_info" : {
-        "lgu" : ["TBC", "566"],
         "daum" : ["TBC 대구방송", "TBC%20%EB%8C%80%EA%B5%AC%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -5120,7 +5000,6 @@
         "청주kbs1"
     ],
     "site_info" : {
-        "lgu" : ["청주 KBS1", "512"],
         "daum" : ["청주 KBS1", "%EC%B2%AD%EC%A3%BC%20KBS1 편성표"]
     }
 },
@@ -5132,7 +5011,6 @@
         "원주kbs1"
     ],
     "site_info" : {
-        "lgu" : ["원주 KBS1", "531"],
         "daum" : ["원주 KBS1", "%EC%9B%90%EC%A3%BC%20KBS1 편성표"]
     }
 },
@@ -5145,7 +5023,6 @@
         "충주mbc"
     ],
     "site_info" : {
-        "lgu" : ["충주 MBC", "538"],
         "daum" : ["MBC 충주", "MBC%20%EC%B6%A9%EC%A3%BC 편성표"]
     }
 },
@@ -5158,7 +5035,7 @@
         "청주mbc"
     ],
     "site_info" : {
-        "lgu" : ["청주 MBC", "537"]
+
     }
 },
 {
@@ -5169,7 +5046,6 @@
         "전주mbc"
     ],
     "site_info" : {
-        "lgu" : ["전주 MBC", "549"],
         "daum" : ["전주 MBC", "%EC%A0%84%EC%A3%BC%20MBC 편성표"]
     }
 },
@@ -5182,7 +5058,6 @@
         "tjb"
     ],
     "site_info" : {
-        "lgu" : ["TJB", "561"],
         "daum" : ["TJB 대전방송", "TJB%20%EB%8C%80%EC%A0%84%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -5194,7 +5069,6 @@
         "전주kbs1"
     ],
     "site_info" : {
-        "lgu" : ["전주 KBS1", "524"],
         "daum" : ["전주 KBS1", "%EC%A0%84%EC%A3%BC%20KBS1 편성표"]
     }
 },
@@ -5206,7 +5080,6 @@
         "대전mbc"
     ],
     "site_info" : {
-        "lgu" : ["대전 MBC", "536"],
         "daum" : ["대전 MBC", "%EB%8C%80%EC%A0%84%20MBC 편성표"]
     }
 },
@@ -5220,7 +5093,6 @@
         "kbcdtv"
     ],
     "site_info" : {
-        "lgu" : ["KBC", "571"],
         "daum" : ["KBC 광주방송", "KBC%20%EA%B4%91%EC%A3%BC%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -5232,7 +5104,6 @@
         "대구kbs1"
     ],
     "site_info" : {
-        "lgu" : ["대구 KBS1", "516"],
         "daum" : ["대구 KBS1", "%EB%8C%80%EA%B5%AC%20KBS1 편성표"]
     }
 },
@@ -5245,7 +5116,6 @@
         "ubc"
     ],
     "site_info" : {
-        "lgu" : ["UBC", "577"],
         "daum" : ["UBC 울산방송", "UBC%20%EC%9A%B8%EC%82%B0%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -5257,7 +5127,6 @@
         "춘천mbc"
     ],
     "site_info" : {
-        "lgu" : ["춘천 MBC", "557"],
         "daum" : ["춘천 MBC", "%EC%B6%98%EC%B2%9C%20MBC 편성표"]
     }
 },
@@ -5269,7 +5138,6 @@
         "대전kbs1"
     ],
     "site_info" : {
-        "lgu" : ["대전 KBS1", "511"],
         "daum" : ["대전 KBS1", "%EB%8C%80%EC%A0%84%20KBS1 편성표"]
     }
 },
@@ -5281,7 +5149,6 @@
         "창원kbs1"
     ],
     "site_info" : {
-        "lgu" : ["창원 KBS1", "528"],
         "daum" : ["창원 KBS1", "%EC%B0%BD%EC%9B%90%20KBS1 편성표"]
     }
 },
@@ -5293,7 +5160,6 @@
         "울산kbs1"
     ],
     "site_info" : {
-        "lgu" : ["울산 KBS1", "527"],
         "daum" : ["울산 KBS1", "%EC%9A%B8%EC%82%B0%20KBS1 편성표"]
     }
 },
@@ -5305,7 +5171,6 @@
         "부산kbs1"
     ],
     "site_info" : {
-        "lgu" : ["부산 KBS1", "526"],
         "daum" : ["부산 KBS1", "%EB%B6%80%EC%82%B0%20KBS1 편성표"]
     }
 },
@@ -5317,7 +5182,6 @@
         "경인kbs1"
     ],
     "site_info" : {
-        "lgu" : ["경인 KBS1", "508"],
         "daum" : ["경인 KBS1", "%EA%B2%BD%EC%9D%B8%20KBS1 편성표"]
     }
 },
@@ -5329,7 +5193,6 @@
         "원주mbc"
     ],
     "site_info" : {
-        "lgu" : ["원주 MBC", "556"],
         "daum" : ["원주 MBC", "%EC%9B%90%EC%A3%BC%20MBC 편성표"]
     }
 },
@@ -5341,7 +5204,6 @@
         "포항mbc"
     ],
     "site_info" : {
-        "lgu" : ["포항 MBC", "543"],
         "daum" : ["포항 MBC", "%ED%8F%AC%ED%95%AD%20MBC 편성표"]
     }
 },
@@ -5354,7 +5216,6 @@
         "cjb"
     ],
     "site_info" : {
-        "lgu" : ["CJB", "562"],
         "daum" : ["CJB 청주방송", "CJB%20%EC%B2%AD%EC%A3%BC%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -5366,7 +5227,6 @@
         "안동mbc"
     ],
     "site_info" : {
-        "lgu" : ["안동 MBC", "542"],
         "daum" : ["안동 MBC", "%EC%95%88%EB%8F%99%20MBC 편성표"]
     }
 },
@@ -5378,7 +5238,6 @@
         "여수mbc"
     ],
     "site_info" : {
-        "lgu" : ["여수 MBC", "547"],
         "daum" : ["여수 MBC", "%EC%97%AC%EC%88%98%20MBC 편성표"]
     }
 },
@@ -5390,7 +5249,6 @@
         "제주mbc"
     ],
     "site_info" : {
-        "lgu" : ["제주 MBC", "550"],
         "daum" : ["제주 MBC", "%EC%A0%9C%EC%A3%BC%20MBC 편성표"]
     }
 },
@@ -5402,7 +5260,6 @@
         "대구mbc"
     ],
     "site_info" : {
-        "lgu" : ["대구 MBC", "541"],
         "daum" : ["대구 MBC", "%EB%8C%80%EA%B5%AC%20MBC 편성표"]
     }
 },
@@ -5415,7 +5272,6 @@
         "jtv"
     ],
     "site_info" : {
-        "lgu" : ["JTV", "572"],
         "daum" : ["JTV 전주방송", "JTV%20%EC%A0%84%EC%A3%BC%EB%B0%A9%EC%86%A1 편성표"]
     }
 },
@@ -5427,7 +5283,6 @@
         "삼척mbc"
     ],
     "site_info" : {
-        "lgu" : ["삼척 MBC", "559"],
         "daum" : ["삼척 MBC", "%EC%82%BC%EC%B2%99%20MBC 편성표"]
     }
 },
@@ -5439,7 +5294,6 @@
         "목포kbs1"
     ],
     "site_info" : {
-        "lgu" : ["목포 KBS1", "523"],
         "daum" : ["목포 KBS1", "%EB%AA%A9%ED%8F%AC%20KBS1 편성표"]
     }
 },
