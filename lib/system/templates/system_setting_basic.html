@@ -74,15 +74,6 @@
             {{ macros.setting_checkbox('use_plugin_gdrive_scan', 'GDrive 스캔', value=arg['use_plugin_gdrive_scan']) }}
           </div>
       {% endif %}
-      {% if arg['use_category_tv'] == 'True' %}
-        {{ macros.m_hr() }}
-        {{ macros.setting_button_with_info([['menu_toggle_btn', 'Toggle', [{'key':'category', 'value':'tv'}]]], left='TV', desc=None) }}
-          <div id="menu_tv_div" class="collapse">
-            {{ macros.setting_checkbox('use_plugin_klive', 'KLive', value=arg['use_plugin_klive']) }}
-            {{ macros.setting_checkbox('use_plugin_tvheadend', 'Tvheadend', value=arg['use_plugin_tvheadend']) }}
-            {{ macros.setting_checkbox('use_plugin_epg', 'EPG', value=arg['use_plugin_epg']) }}
-          </div>
-      {% endif %}
       {% if arg['use_category_tool'] == 'True' %}
         {{ macros.m_hr() }}
         {{ macros.setting_button_with_info([['menu_toggle_btn', 'Toggle', [{'key':'category', 'value':'tool'}]]], left='툴', desc=None) }}
