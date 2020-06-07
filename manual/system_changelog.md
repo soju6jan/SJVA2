@@ -5,14 +5,14 @@
  - aria2 임시폴더 기능<br>
  - https://ttobogo.net/ 추가<br>
  - 애니24 작동점검
+ - 봇 AV 파일크기 조건
  
 
 ##### 알려진 버그 #####
  - AV Agent : DMM SMUK-016, 017 메타 못 가져옴. (IP체크로 외국에서는 볼수없다는 안내표시 나오는것으로 추정)
 
 ##### <span style="color:red">■ 0.2.11 (2020-06-07)</span> #####
- - 홈페이지 인증 필수<br>
- 
+ - [홈페이지 인증 필수](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=702)
 
 ##### <span style="color:red">■ 0.2.10 (2020-06-06)</span> #####
  - KLive, EPG, Tvheadend 설치형으로 변경
