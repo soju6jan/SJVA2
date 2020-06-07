@@ -74,6 +74,7 @@ $("body").on('click', '#do_auth_btn', function(e) {
         $.notify('<strong>인증되었습니다. 재시작하세요.<br>'+data.msg+'</strong><br>', {type: 'success'});
       } else {
         $.notify('<strong>인증에 실패하였습니다.<br>'+data.msg+'</strong><br>', {type: 'warning'});
+        $.notify('<strong>설정을 먼저 저장하고 시도하세요.</strong><br>', {type: 'warning'});
       }
     }
   });
