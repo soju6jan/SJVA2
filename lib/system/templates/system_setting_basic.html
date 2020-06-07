@@ -28,13 +28,10 @@
         {{ macros.setting_input_text_and_buttons('url_filebrowser', 'URL FileBrowser', [['go_filebrowser_btn', 'GO']], value=arg['url_filebrowser']) }}
         {{ macros.setting_input_int('auto_restart_hour', '자동 재시작 시간', value=arg['auto_restart_hour'], min='0', desc=['자동 재시작 시간입니다.', '0이면 재시작 안함.']) }}
         {{ macros.setting_select('log_level', '로그 레벨', [['10', 'DEBUG'],['20', 'INFO'],['30', 'WARNING'],['40', 'ERROR'], ['50', 'CRITICAL'] ], value=arg['log_level'], col='3') }}
-        {{ macros.setting_input_text('auth', '인증', value=arg['auth'], type='password', desc=['임시'], col='3') }}
         {{ macros.setting_button([['setting_save', '저장']]) }}
       </form>
     </form>
       {{ macros.m_hr() }}
-      {{ macros.info_text('unique', 'Token', arg['unique']) }}
-      <!-- {{ macros.info_text('score', 'Point', arg['point']) }} -->
       {{ macros.setting_input_text_and_buttons('command_text', 'Command', [['command_run_btn', 'Run']], value='', desc='') }}
     {{ macros.m_tab_content_end() }}   
     

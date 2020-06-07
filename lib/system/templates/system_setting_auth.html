@@ -7,7 +7,7 @@
   <nav>  
     {{ macros.m_tab_head_start() }}
       {{ macros.m_tab_head2('normal', '웹 로그인', true) }}
-      {{ macros.m_tab_head2('api', 'API 인증', false) }}
+      {{ macros.m_tab_head2('api', 'API & 홈페이지 인증', false) }}
     {{ macros.m_tab_head_end() }}
   </nav>  
   <form id='setting' name='setting'>  
@@ -22,9 +22,12 @@
     
     {{ macros.m_tab_content_start('api', false) }}
       {{ macros.setting_checkbox('auth_use_apikey', 'APIKEY 사용', value=arg['auth_use_apikey'], desc=['On : 모든 API 요청시 apikey 값을 입력해야합니다.', '없거나 틀릴 경우 에러코드 403리턴']) }}
-      <div id="auth_use_apikey_div" class="collapse">
       {{ macros.setting_input_text_and_buttons('auth_apikey', 'APIKEY', [['generate_btn', '자동생성']], col='4', value=arg['auth_apikey']) }}
-      </div>
+      {{ macros.m_hr() }}
+      {{ macros.setting_input_text('sjva_me_user_id', 'sjva.me 홈페이지 ID', value=arg['sjva_me_user_id'], desc=['ID변경, APIKEY 변경시 재인증해야합니다.'], col='3') }}
+      {{ macros.info_text('sjva_id', 'SJVA ID', value=arg['sjva_id'], desc=['SJVA별로 자동 생성되는 값입니다. 수정불가'] ) }}
+      {{ macros.info_text_and_buttons('auth_result', '인증상태', [['do_auth_btn', '인증하기']], value=arg['auth_result'], desc=['APIKEY, 홈페이지ID 값을 저장한 후에 시도하세요.']) }}
+
     {{ macros.m_tab_content_end() }}
    
   </div><!--tab-content-->
@@ -44,10 +47,6 @@ $('#use_login').change(function() {
   use_collapse('use_login');
 });
 
-$('#auth_use_apikey').change(function() {
-  use_collapse('auth_use_apikey');
-});
-
 $("body").on('click', '#generate_btn', function(e) {
   e.preventDefault();
   $.ajax({
@@ -58,6 +57,24 @@ $("body").on('click', '#generate_btn', function(e) {
     dataType: "json",
     success: function (ret) {
       document.getElementById("auth_apikey").value = ret
+    }
+  });
+});
+
+$("body").on('click', '#do_auth_btn', function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: '/' + package_name + '/ajax/'+sub+'/do_auth',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret) {
+        $.notify('<strong>인증되었습니다. 재시작하세요.<br>'+data.msg+'</strong><br>', {type: 'success'});
+      } else {
+        $.notify('<strong>인증에 실패하였습니다.<br>'+data.msg+'</strong><br>', {type: 'warning'});
+      }
     }
   });
 });

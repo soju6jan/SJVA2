@@ -110,9 +110,10 @@ $(document).ready(function(){
 
 function make_system(data) {
   for(var key in data.system) {
-    //console.log(key)
-    //if (key != 'version')
-    document.getElementById(key).innerHTML = data.system[key];
+    if (key == 'auth' && data.system[key].startsWith('인증')==false)
+      document.getElementById(key).innerHTML = '<span style="color:red;font-weight: bold;font-size: xx-large ;">' + data.system[key]+ '</span>';
+    else
+      document.getElementById(key).innerHTML = data.system[key];
   }
 }
 
