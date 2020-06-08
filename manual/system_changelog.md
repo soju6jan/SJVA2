@@ -11,6 +11,9 @@
 ##### 알려진 버그 #####
  - AV Agent : DMM SMUK-016, 017 메타 못 가져옴. (IP체크로 외국에서는 볼수없다는 안내표시 나오는것으로 추정)
 
+##### ■ 0.2.11.1 (2020-06-08) #####
+ - KLive : Plex Proxy 연결 버그 수정
+ 
 ##### <span style="color:red">■ 0.2.11 (2020-06-07)</span> #####
  - [홈페이지 인증 필수](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=702)
 
