@@ -8,7 +8,6 @@
       {{ macros.m_tab_head2('normal', '일반', false) }}
       {{ macros.m_tab_head2('remotes', 'Remotes', true) }}
       {{ macros.m_tab_head2('job', '작업', false) }}
-      {{ macros.m_tab_head2('rc', 'Remote Control', false) }}
       
     {{ macros.m_tab_head_end() }}
   </nav>
@@ -62,16 +61,6 @@
         {{ macros.setting_button([['global_reset_db_btn', '목록 전체 지우기']], left='DB정리' ) }}
       </form>
     {{ macros.m_tab_content_end() }}
-
-    {{ macros.m_tab_content_start('rc', false) }}
-      {{ macros.setting_checkbox('rc_current_process', '실행 상태', value=arg['rc_current_process'], desc='On : 실행중') }}
-      <form id='setting2' name='setting2'>
-        {{ macros.setting_checkbox('auro_start_rcd', '시작시 자동실행', value=arg['auro_start_rcd'], desc='On : 시작시 자동으로 실행합니다.') }}
-        {{ macros.setting_button([['global_setting_save_btn2', '저장']]) }}
-      </form>
-    {{ macros.m_tab_content_end() }}
-
-
   </div><!--tab-content-->
 </div> <!--전체-->
 
@@ -447,19 +436,6 @@ function set_command_type(type) {
   document.getElementById("job_option_user").value = user + ' ' + data[type];
 }
 
-
-$('#rc_current_process').change(function() {
-  var ret = $(this).prop('checked');
-  $.ajax({
-    url: '/'+package_name+'/ajax/rc_process',
-    type: "POST", 
-    cache: false,
-    data: {rc_process : ret},
-    dataType: "json",
-    success: function (list) {
-    }
-  });
-});
 
 $("#global_setting_save_btn2").click(function(e) {
   e.preventDefault();
