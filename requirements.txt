@@ -43,7 +43,7 @@ sqlitedict==1.6.0
 telepot==12.7
 tqdm==4.31.1
 tzlocal==1.5.1
-urllib3==1.24.1
+urllib3==1.24.2
 websocket-client==0.56.0
 Werkzeug==0.15.2
 youtube-dl
