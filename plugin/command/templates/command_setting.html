@@ -38,14 +38,14 @@
   </form>
 {{ macros.m_modal_end() }}
 
-{{ macros.m_modal_start('item_modal', '', 'modal-lg') }}
+{{ macros.m_modal_start('job_modal', '', 'modal-lg') }}
   <form id='item_setting' name='item_setting'>
     <input type='hidden' id="item_id" name="item_id">
-    {{ macros.setting_input_text('item_command', 'Command') }}
-    {{ macros.setting_input_text('item_description', 'Description') }}
-    {{ macros.setting_radio('item_schedule_type', '스케쥴링 타입', ['없음', '시작시 한번 실행', 'Interval', 'Cron']) }}
-    {{ macros.setting_checkbox('item_auto_start', '시작시 스케쥴링 등록', desc=['On : 시작시 자동으로 스케쥴러에 등록됩니다.', '스케쥴링 타입이 Interval, Cron일 경우만 해당됩니다.']) }}
-    {{ macros.setting_input_text('item_interval', '스케쥴링 정보', placeholder='10', desc=['Interval(minute 단위)이나 Cron 설정']) }}
+    {{ macros.setting_input_text('job_command', 'Command') }}
+    {{ macros.setting_input_text('job_description', 'Description') }}
+    {{ macros.setting_radio('job_schedule_type', '스케쥴링 타입', ['없음', '시작시 한번 실행', '스케쥴링']) }}
+    {{ macros.setting_input_text('job_schedule_info', '스케쥴링 정보', placeholder='10', desc=['Interval(minute 단위)이나 Cron 설정']) }}
+    {{ macros.setting_checkbox('job_schedule_auto_start', '시작시 스케쥴링 등록', desc=['On : 시작시 자동으로 스케쥴러에 등록됩니다.']) }}
     {{ macros.setting_button([['job_save_btn', '저장'], ['job_remove_btn', '삭제']]) }}
   </form>
   <hr>
@@ -56,12 +56,6 @@
 <script type="text/javascript">
 var package_name = "{{arg['package_name']}}";
 var current_data = null;
-
-
-
-
-
-
 
 // foreground_command 버튼
 $("body").on('click', '#foreground_command_btn', function(e){
@@ -123,6 +117,7 @@ $("body").on('click', '#job_new_btn', function(e){
   });
 });
 
+
 // 아이템 저장 버튼
 $("body").on('click', '#job_save_btn', function(e){
   e.preventDefault();
@@ -161,6 +156,35 @@ $("body").on('click', '#job_save_btn', function(e){
 });
 
 
+// 설정 버튼
+$("body").on('click', '#job_edit_btn', function(e){
+  e.preventDefault();
+  id = $(this).data('id');
+  item = get_job(id);
+  document.getElementById("job_id").value = id;
+  document.getElementById("job_modal_title").innerHTML = 'ID : ' + id;
+  document.getElementById("job_command").value = item.command;
+  document.getElementById("job_description").value = item.description;
+  set_schedule_type(item.schedule_type)
+  if ( item.schedule_type == '2') {
+    document.getElementById("scheduler_swtich_btn").disabled = false;
+  } else {
+    document.getElementById("scheduler_swtich_btn").disabled = true;
+  }
+  document.getElementById("schedule_info").value = item.schedule_info;
+  if (item.schedule_auto_start) {
+    document.getElementById("item_auto_start").value = 'on';
+    $('#item_auto_start').bootstrapToggle('on')
+  } else {
+    $('#item_auto_start').bootstrapToggle('off')
+  }
+  if (item.is_include == 'True') {
+    $('#scheduler_swtich_btn').bootstrapToggle('on')
+  } else {
+    $('#scheduler_swtich_btn').bootstrapToggle('off')
+  }
+  $("#item_modal").modal();
+});
 
 
 
@@ -270,7 +294,7 @@ function make_list(data) {
    
     tmp = m_button('item_execute_btn', '실행', [{'key':'id', 'value':data[i].id}]);
     tmp += m_button('item_input_btn', '입력', [{'key':'id', 'value':data[i].id}]);
-    tmp += m_button('item_setting_btn', '설정', [{'key':'id', 'value':data[i].id}]);
+    tmp += m_button('job_edit_btn', '설정', [{'key':'id', 'value':data[i].id}]);
     
     tmp = m_button_group(tmp)
     str += m_col(3, tmp)
@@ -282,7 +306,7 @@ function make_list(data) {
   document.getElementById("list_div").innerHTML = str;
 }
 
-function get_item(id) {
+function get_job(id) {
   for(i in current_data) {
     if (current_data[i].id == id) {
       return current_data[i];
@@ -359,35 +383,7 @@ $("#command_file_select").change(function(e){
   document.getElementById("command").value = command;
 });
 
-// 설정 버튼
-$("body").on('click', '#item_setting_btn', function(e){
-  e.preventDefault();
-  id = $(this).data('id');
-  item = get_item(id);
-  document.getElementById("item_id").value = id;
-  document.getElementById("item_modal_title").innerHTML = 'ID : ' + id;
-  document.getElementById("item_command").value = item.command;
-  document.getElementById("item_description").value = item.description;
-  set_schedule_type(item.schedule_type)
-  if ( item.schedule_type == '2') {
-    document.getElementById("scheduler_swtich_btn").disabled = false;
-  } else {
-    document.getElementById("scheduler_swtich_btn").disabled = true;
-  }
-  document.getElementById("item_interval").value = item.schedule_interval;
-  if (item.schedule_auto_start) {
-    document.getElementById("item_auto_start").value = 'on';
-    $('#item_auto_start').bootstrapToggle('on')
-  } else {
-    $('#item_auto_start').bootstrapToggle('off')
-  }
-  if (item.is_include == 'True') {
-    $('#scheduler_swtich_btn').bootstrapToggle('on')
-  } else {
-    $('#scheduler_swtich_btn').bootstrapToggle('off')
-  }
-  $("#item_modal").modal();
-});
+
 
 
 
@@ -439,7 +435,7 @@ $('input[type=radio][name=item_schedule_type]').change(function() {
 $("body").on('click', '#item_execute_btn', function(e){
   e.preventDefault();
   id = $(this).data('id');
-  item = get_item(id);
+  item = get_job(id);
   document.getElementById("command").value = item.command
   document.getElementById("command_btn").click();
 
@@ -449,7 +445,7 @@ $("body").on('click', '#item_execute_btn', function(e){
 $("body").on('click', '#item_input_btn', function(e){
   e.preventDefault();
   id = $(this).data('id');
-  item = get_item(id);
+  item = get_job(id);
   document.getElementById("command").value = item.command
 });
 
@@ -458,7 +454,7 @@ $("body").on('click', '#item_input_btn', function(e){
 $('#scheduler_swtich_btn').change(function() {
   var ret = $(this).prop('checked');
   id = document.getElementById("item_id").value;
-  item = get_item(id)
+  item = get_job(id)
   if (current_data[i].is_include == 'True' && ret) {
     return
   } else if (current_data[i].is_include == 'False' && !ret) {
