@@ -1,16 +1,19 @@
 ##### TODO #####
- - 메인화면 스케쥴러 정보 화면 수정<br>
  - 설정 - 백업, 초기화<br>
  - aria2 임시폴더 기능<br>
  - 토렌트 사이트 추가<br>
- - downloader 일반파일(자막) 설정 없어도 받기<br>
-  
-##### 알려진 버그 #####
  - AV Agent : DMM SMUK-016, 017 메타 못 가져옴. (IP체크로 외국에서는 볼수없다는 안내표시 나오는것으로 추정)
+ - downloader 일반파일(자막) 설정 없어도 받기<br>
+ - Rclone 작업 개별 스케쥴링. cron<br>
+ - command 작업중
 
-##### ■ 0.2.11.8 (2020-06-11) #####
+##### ■ 0.2.11.9 (2020-06-11) #####
  - KLive : wavve proxy 적용 안되는 문제 수정<br>
  - KLive : m3u api에 format=1, group 파라미터 추가. [참고](https://sjva.me/bbs/board.php?bo_table=tip&wr_id=876)<br>
+ - 스케쥴링 정보에 cron 값을 입력하면 cron으로 스케쥴링.<br>
+  [Cron표현식 참고](https://zamezzz.tistory.com/197) [Cron Test](https://crontab.guru/)<br>
+  메인화면 스케쥴링 정보 화면 수정<br>
+ - Tving : 항상 오디오 비트레이트 64kb/s로 받는 문제 수정. FHD기준 256kb/s<br>
 
 ##### ■ 0.2.11.7 (2020-06-10) #####
  - 영화 파일처리 버그 수정(daum정보 검색시 쿠키 안쓰는 문제)<br>

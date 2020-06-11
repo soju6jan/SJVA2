@@ -17,7 +17,7 @@
       {{ macros.m_tab_content_start('normal', true) }}
         {{ macros.setting_global_scheduler_button(arg['scheduler'], arg['is_running']) }}
         
-        {{ macros.setting_input_int('interval', '스케쥴링 실행 주기', value=arg['interval'], min='1', placeholder='10', desc='minute 단위') }}
+        {{ macros.setting_input_text('interval', '스케쥴링 실행 정보', value=arg['interval'], col='3', desc=['Inverval(minute 단위)이나 Cron 설정']) }}
         {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 사용 설정합니다.') }}
       
         

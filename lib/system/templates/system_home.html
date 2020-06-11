@@ -42,9 +42,8 @@ function make_scheduler_list(data) {
   str += m_col(2, '<strong>플러그인 & ID</strong>');
   //str += m_col(2, '<strong>생성 & 다음 실행</strong>');
   str += m_col(2, '<strong>다음 실행 (남은시간)</strong>');
-  str += m_col(1, '<strong>이전소요</strong>');
-  str += m_col(1, '<strong>주기</strong>');
-  str += m_col(1, '<strong>횟수</strong>');
+  str += m_col(1, '<strong>이전소요/횟수</strong>');
+  str += m_col(2, '<strong>Interval & Cron</strong>');
   str += m_col(1, '<strong>상태</strong>');
   str += m_col(3, '<strong>설 명</strong>');
   str += m_row_end();
@@ -53,20 +52,22 @@ function make_scheduler_list(data) {
   for(var i in data) {
     str += m_row_start(p='0');
     str += m_col(1, data[i].no);
-    tmp = '<strong>'+data[i].plugin+' - </strong>' + data[i].id + '<br>';
+    tmp = '<strong>'+data[i].plugin+'</strong><br>' + data[i].id;
     str += m_col(2, tmp);
 
     //tmp = ''+''+'' + data[i].make_time + '<br>';
     //tmp += ''+''+'' + data[i].next_run_time + '<br>';
-    tmp = ''+''+'' + data[i].next_run_time + '<br>('+data[i].remain_time+')';
+    tmp = ''+''+'' + data[i].next_run_time + '<br>';
+    if (data[i].remain_time != '') {
+      tmp += '('+data[i].remain_time+')';
+    }
     str += m_col(2, tmp);
-    tmp = ''+''+'' + data[i].running_timedelta + ' 초<br>';
+    tmp = ''+''+'' + data[i].running_timedelta + '초 / ';
+    tmp += ''+''+'' + data[i].count + '회';
     str += m_col(1, tmp);
     
     tmp = ''+''+'' + data[i].interval + ' <br>';
-    str += m_col(1, tmp);
-    tmp = ''+''+'' + data[i].count + ' 번<br>';
-    str += m_col(1, tmp);
+    str += m_col(2, tmp);
     tmp = ''+''+'' + ((data[i].is_running) ?'실행중':'대기중') + '';
     if (data[i].run == false) {
       tmp += '(F)'
