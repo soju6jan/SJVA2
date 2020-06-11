@@ -150,8 +150,10 @@ $(document).ready(function(){
       data:{command:command},
       dataType: "json",
       success: function (data) {
-        redirect = '/command/api/command'
-        $.redirectPost(redirect, {command: data});
+        //redirect = '/command/api/command'
+        //$.redirectPost(redirect, {command: data});
+        redirect = '/command/setting'
+        $.redirectPost(redirect, {command_by_plugin: data});
       }
     });
   });

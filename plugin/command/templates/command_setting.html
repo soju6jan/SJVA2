@@ -40,11 +40,11 @@
 
 {{ macros.m_modal_start('job_modal', '', 'modal-lg') }}
   <form id='item_setting' name='item_setting'>
-    <input type='hidden' id="item_id" name="item_id">
+    <input type='hidden' id="job_id" name="job_id">
     {{ macros.setting_input_text('job_command', 'Command') }}
     {{ macros.setting_input_text('job_description', 'Description') }}
     {{ macros.setting_radio('job_schedule_type', '스케쥴링 타입', ['없음', '시작시 한번 실행', '스케쥴링']) }}
-    {{ macros.setting_input_text('job_schedule_info', '스케쥴링 정보', placeholder='10', desc=['Interval(minute 단위)이나 Cron 설정']) }}
+    {{ macros.setting_input_text('job_schedule_info', '스케쥴링 정보', desc=['Interval(minute 단위)이나 Cron 설정']) }}
     {{ macros.setting_checkbox('job_schedule_auto_start', '시작시 스케쥴링 등록', desc=['On : 시작시 자동으로 스케쥴러에 등록됩니다.']) }}
     {{ macros.setting_button([['job_save_btn', '저장'], ['job_remove_btn', '삭제']]) }}
   </form>
@@ -52,10 +52,57 @@
   {{ macros.setting_scheduler_switch(desc=['On : 스케쥴링 시작','Off : 스케쥴링 중지', '스케쥴링 타입으로 저장 후 가능']) }}
 {{ macros.m_modal_end() }}
 
+<div class="modal fade" id="file_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal_title">Site </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" id="modal_body" style="word-break:break-all;">
+        <form id="file_form" name="file_form">
+          <div class="input-group col-sm-12">
+            <textarea id="file_textarea" name="file_textarea" class="col-md-12" rows="50"></textarea>
+          </div>
+          <input type="hidden" name="file_job_id" id="file_job_id" value="-1">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="file_save_btn" type="button" class="btn btn-primary">저장</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script type="text/javascript">
 var package_name = "{{arg['package_name']}}";
 var current_data = null;
+var command_by_plugin = "{{arg['command_by_plugin']}}";
+
+
+
+
+
+$(document).ready(function(){
+  ResizeTextArea();
+  $.ajax({
+    url: '/' + package_name + '/ajax/command_list',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      make_list(data.list)
+      if (command_by_plugin != '') {
+        document.getElementById("command").value = command_by_plugin;
+        document.getElementById("foreground_command_btn").click();
+      }
+    }
+  });
+});
+
 
 // foreground_command 버튼
 $("body").on('click', '#foreground_command_btn', function(e){
@@ -122,11 +169,11 @@ $("body").on('click', '#job_new_btn', function(e){
 $("body").on('click', '#job_save_btn', function(e){
   e.preventDefault();
   //tmp = document.getElementById("schedule_radio2").getAttribute("checked");
-  tmp = $('input[name=item_schedule_type]:checked').val()
+  tmp = $('input[name=job_schedule_type]:checked').val()
   
-  i = document.getElementById("item_interval").value
+  i = document.getElementById("job_schedule_info").value
   if (tmp == 2 && (i == '' || parseInt(i) < 1)) {
-    $.notify('<strong>실행 주기를 입력하세요</strong>', {
+    $.notify('<strong>스케쥴링 정보를 입력하세요</strong>', {
       type: 'warning'
     });
     return
@@ -149,7 +196,7 @@ $("body").on('click', '#job_save_btn', function(e){
           type: 'warning'
         });
       }
-      $("#item_modal").modal('hide');
+      $("#job_modal").modal('hide');
       make_list(data.list)
     }
   });
@@ -171,23 +218,265 @@ $("body").on('click', '#job_edit_btn', function(e){
   } else {
     document.getElementById("scheduler_swtich_btn").disabled = true;
   }
-  document.getElementById("schedule_info").value = item.schedule_info;
+  document.getElementById("job_schedule_info").value = item.schedule_info;
   if (item.schedule_auto_start) {
-    document.getElementById("item_auto_start").value = 'on';
-    $('#item_auto_start').bootstrapToggle('on')
+    document.getElementById("job_schedule_auto_start").value = 'on';
+    $('#job_schedule_auto_start').bootstrapToggle('on')
   } else {
-    $('#item_auto_start').bootstrapToggle('off')
+    $('#job_schedule_auto_start').bootstrapToggle('off')
   }
   if (item.is_include == 'True') {
     $('#scheduler_swtich_btn').bootstrapToggle('on')
   } else {
     $('#scheduler_swtich_btn').bootstrapToggle('off')
   }
-  $("#item_modal").modal();
+  $("#job_modal").modal();
+});
+
+
+// 아이템 삭제 버튼
+$("body").on('click', '#job_remove_btn', function(e){
+  e.preventDefault();
+  job_id = document.getElementById("job_id").value;
+  $.ajax({
+    url: '/' + package_name + '/ajax/job_remove',
+    type: "POST", 
+    cache: false,
+    data:{job_id:job_id},
+    success: function (data) {
+      if (data.ret == 'success')  {
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>삭제 실패</strong>', {
+          type: 'warning'
+        });
+      }
+      $("#job_modal").modal('hide');
+      make_list(data.list)
+    }
+  });
+});
+
+
+// 스케쥴링 on / off
+$('#scheduler_swtich_btn').change(function() {
+  var ret = $(this).prop('checked');
+  id = document.getElementById("job_id").value;
+  item = get_job(id)
+  if (current_data[i].is_include == 'True' && ret) {
+    return
+  } else if (current_data[i].is_include == 'False' && !ret) {
+    return
+  }
+
+  $.ajax({
+    url: '/' + package_name + '/ajax/scheduler_switch',
+    type: "POST", 
+    cache: false,
+    data: {switch:ret, job_id:id},
+    dataType: "json",
+    success: function (data) {
+      make_list(data.list)
+      if (data.ret) {
+        tmp = (ret) ? 'IN' : 'OUT';
+        $.notify('<strong>Success.. '+ tmp + ' Scheduler</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
 });
 
 
 
+// 아이템 입력 버튼
+$("body").on('click', '#job_input_btn', function(e){
+  e.preventDefault();
+  id = $(this).data('id');
+  job = get_job(id);
+  document.getElementById("command").value = job.command
+});
+
+
+
+// 아이템 실행 버튼
+$("body").on('click', '#job_foreground_btn', function(e){
+  e.preventDefault();
+  id = $(this).data('id');
+  item = get_job(id);
+  document.getElementById("command").value = item.command
+  document.getElementById("foreground_command_btn").click();
+});
+
+$("body").on('click', '#job_background_btn', function(e){
+  e.preventDefault();
+  job_id = $(this).data('id');
+  $.ajax({
+    url: '/' + package_name + '/ajax/job_background',
+    type: "POST", 
+    cache: false,
+    data:{job_id:job_id},
+    success: function (data) {
+      if (data.ret)  {
+        $.notify('<strong>실행 요청을 하였습니다.<br>로그를 확인하세요.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>실행 요청 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+// 로그보기
+$("body").on('click', '#job_log_show_btn', function(e){
+  e.preventDefault();
+  job_id = $(this).data('id');
+  $.ajax({
+    url: '/' + package_name + '/ajax/job_log_show',
+    type: "POST", 
+    cache: false,
+    data:{job_id:job_id},
+    success: function (data) {
+      if (data.ret)  {
+        redirect = '/system/log'
+        $.redirectPost(redirect, {filename: data['filename']});
+      } else {
+        $.notify('<strong>로그 파일이 없습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+$("body").on('click', '#job_file_edit_btn', function(e){
+  e.preventDefault();
+  job_id = $(this).data('id');
+  $.ajax({
+    url: '/' + package_name + '/ajax/job_file_edit',
+    type: "POST", 
+    cache: false,
+    data:{job_id:job_id},
+    success: function (data) {
+      if (data.ret)  {
+        document.getElementById("file_textarea").value = data.data;
+        document.getElementById("file_job_id").value = job_id;
+        $("#file_modal").modal();
+      } else {
+        $.notify('<strong>로그 파일이 없습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
+
+$("body").on('click', '#file_save_btn', function(e){
+  e.preventDefault();
+  var formData = get_formdata('#file_form');
+  $.ajax({
+    url: '/' + package_name + '/ajax/file_save',
+    type: "POST", 
+    cache: false,
+    data:formData,
+    dataType: "json",
+    success: function (data) {
+      if (data.ret) {
+        $.notify('<strong>수정하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>수정 실패</strong>', {
+          type: 'success'
+        });
+      }
+      //$("#site_modal").modal('hide');
+    }
+  });
+});
+
+
+
+function make_list(data) {
+  current_data = data;
+  //document.getElementById("modal_title").innerHTML = "JSON";
+  //document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
+  //$("#large_modal").modal();
+  str = '';      
+  
+  for(var i in data) {
+    str += m_row_start()
+    str += m_col(1, data[i].id)
+           
+    tmp = '<p><strong>Command : </strong>' + data[i].command + '</P> \
+          <p><strong>Description : </strong>' + data[i].description + '</p><br>'
+   
+    tmp2 = m_button('job_foreground_btn', 'Foreground 실행', [{'key':'id', 'value':data[i].id}]);
+    tmp2 += m_button('job_background_btn', 'Background 실행', [{'key':'id', 'value':data[i].id}]);
+    tmp2 += m_button('job_log_show_btn', '로그', [{'key':'id', 'value':data[i].id}]);    
+    tmp2 += m_button('job_input_btn', 'Command에 입력', [{'key':'id', 'value':data[i].id}]);
+    tmp2 += m_button('job_edit_btn', '설정 편집', [{'key':'id', 'value':data[i].id}]);
+    if (data[i].filename != null) {
+      tmp2 += m_button('job_file_edit_btn', '파일 수정', [{'key':'id', 'value':data[i].id}]);
+    }
+    
+    tmp2 = m_button_group(tmp2)
+    tmp += tmp2
+    str += m_col(8, tmp, 'left')
+
+    tmp = '<strong>스케쥴링 : </strong>'
+
+    if (data[i].schedule_type == 0) {
+      tmp += '없음'
+    } else if (data[i].schedule_type == 1) {
+      tmp += '시작시 한번 실행'
+    } else if (data[i].schedule_type == 2 ) {
+      tmp += '스케쥴링 사용<br>'
+      tmp += '<strong>상태 : </strong> 대기중<br>';
+      tmp += '<strong>정보 : </strong>' + data[i].schedule_info + '분<br>';
+      tmp += '<strong>자동실행 : </strong>';
+      if (data[i].schedule_auto_start) {
+        tmp += 'On';
+      } else {
+        tmp += 'Off';
+      }
+      tmp += '<br>';
+      tmp += '<strong>스케쥴러 : </strong>';
+      if (data[i].is_include == 'True') {
+        tmp += '포함'
+        if ( data[i].is_running == 'True') {
+        tmp += '(실행중)'
+      } else {
+        tmp += '(대기중)'
+      }
+      } else {
+        tmp += '없음'
+      }
+    }
+    str += m_col(3, tmp)
+    str += m_row_end()
+    if (i != data.length -1) str += m_hr();
+  }
+  document.getElementById("list_div").innerHTML = str;
+}
+
+function get_job(id) {
+  for(i in current_data) {
+    if (current_data[i].id == id) {
+      return current_data[i];
+    }
+  }
+}
 
 
 
@@ -209,8 +498,36 @@ $("body").on('click', '#job_edit_btn', function(e){
 
 
 
+/////////////////// UI
+$('input[type=radio][name=job_schedule_type]').change(function() {
+  set_schedule_type(this.value);
+});
+
+$("#command_file_select").change(function(e){
+  e.preventDefault();
+  command = $("#command_file_select option:selected").val();
+  document.getElementById("command").value = command;
+});
+
+$("body").on('click', '#send_process_command_btn', function(e){
+  e.preventDefault();
+  command = document.getElementById("process_command").value;
+  $.ajax({
+    url: '/' + package_name + '/ajax/send_process_command',
+    type: "POST", 
+    cache: false,
+    data:{command:command},
+    dataType: "json",
+    success: function (data) {
+      document.getElementById("process_command").value = '';
+    }
+  });
+});
 
 
+$(window).resize(function() {
+  ResizeTextArea();
+});
 
 
 function ResizeTextArea() {
@@ -240,267 +557,29 @@ function start_socketio() {
 }
 
 function show_this_command_modal(title) {
-    document.getElementById("add_textarea").innerHTML = '';
-    document.getElementById("process_command").value = '';
-    document.getElementById("process_command").disabled = false;
-    document.getElementById("send_process_command_btn").disabled = false;
-    document.getElementById("this_command_modal_title").innerHTML = title;
-    $("#this_command_modal").modal();
-    start_socketio();  
-  }
-
-function make_list(data) {
-  current_data = data;
-  //document.getElementById("modal_title").innerHTML = "JSON";
-  //document.getElementById("modal_body").innerHTML = "<pre>"+JSON.stringify(data, null, 2) + "</pre>";
-  //$("#large_modal").modal();
-  str = '';      
-  
-  for(var i in data) {
-    str += m_row_start()
-    str += m_col(1, data[i].id)
-           
-    tmp = '<p><strong>Command : </strong>' + data[i].command + '</P> \
-          <p><strong>Description : </strong>' + data[i].description + '</p> \
-          <strong>스케쥴링 : </strong>'
-    if (data[i].schedule_type == 0) {
-      tmp += '없음'
-    } else if (data[i].schedule_type == 1) {
-      tmp += '시작시 한번 실행'
-    } else if (data[i].schedule_type == 2 ) {
-      tmp += '스케쥴링 사용<br>'
-      tmp += '<strong>상태 : </strong> 대기중<br>';
-      tmp += '<strong>주기 : </strong>' + data[i].schedule_interval + '분<br>';
-      tmp += '<strong>자동실행 : </strong>';
-      if (data[i].schedule_auto_start) {
-        tmp += 'On';
-      } else {
-        tmp += 'Off';
-      }
-      tmp += '<br>';
-      tmp += '<strong>스케쥴러 : </strong>';
-      if (data[i].is_include == 'True') {
-        tmp += '포함'
-        if ( data[i].is_running == 'True') {
-        tmp += '(실행중)'
-      } else {
-        tmp += '(대기중)'
-      }
-      } else {
-        tmp += '없음'
-      }
-    }
-    str += m_col(8, tmp, 'left')
-   
-    tmp = m_button('item_execute_btn', '실행', [{'key':'id', 'value':data[i].id}]);
-    tmp += m_button('item_input_btn', '입력', [{'key':'id', 'value':data[i].id}]);
-    tmp += m_button('job_edit_btn', '설정', [{'key':'id', 'value':data[i].id}]);
-    
-    tmp = m_button_group(tmp)
-    str += m_col(3, tmp)
-
-    str += m_row_end()
-    str += '<hr>';
-
-  }
-  document.getElementById("list_div").innerHTML = str;
-}
-
-function get_job(id) {
-  for(i in current_data) {
-    if (current_data[i].id == id) {
-      return current_data[i];
-    }
-  }
+  document.getElementById("add_textarea").innerHTML = '';
+  document.getElementById("process_command").value = '';
+  document.getElementById("process_command").disabled = false;
+  document.getElementById("send_process_command_btn").disabled = false;
+  document.getElementById("this_command_modal_title").innerHTML = title;
+  $("#this_command_modal").modal();
+  start_socketio();  
 }
 
 function set_schedule_type(type) {
   //document.getElementById("schedule_radio" + type).checked = true;
-  $('input[name=item_schedule_type]')[parseInt(type)].checked = true;
+  $('input[name=job_schedule_type]')[parseInt(type)].checked = true;
 
   if ( type == '0' || type == '1') {
-    document.getElementById("item_interval").disabled = true;
-    document.getElementById("item_auto_start").disabled = true;
+    document.getElementById("job_schedule_info").disabled = true;
+    document.getElementById("job_schedule_auto_start").disabled = true;
     
   } else {
-    document.getElementById("item_interval").disabled = false;
-    document.getElementById("item_auto_start").disabled = false;
+    document.getElementById("job_schedule_info").disabled = false;
+    document.getElementById("job_schedule_auto_start").disabled = false;
   }
 }
-
-
-
-
-$(document).ready(function(){
-  var mode = "{{ mode }}"
-  ResizeTextArea();
-  
-  $.ajax({
-    url: '/' + package_name + '/ajax/command_list',
-    type: "POST", 
-    cache: false,
-    data:{},
-    dataType: "json",
-    success: function (data) {
-      make_list(data.list)
-      if (mode == 'api') {
-        document.getElementById("command_btn").click();
-      }
-    }
-  });
-
-
-  $(window).resize(function() {
-    ResizeTextArea();
-  });
-});
-
-$("body").on('click', '#send_process_command_btn', function(e){
-  e.preventDefault();
-  command = document.getElementById("process_command").value;
-  $.ajax({
-    url: '/' + package_name + '/ajax/send_process_command',
-    type: "POST", 
-    cache: false,
-    data:{command:command},
-    dataType: "json",
-    success: function (data) {
-      document.getElementById("process_command").value = '';
-    }
-  });
-});
-
-
-
-
-
-
-
-
-$("#command_file_select").change(function(e){
-  e.preventDefault();
-  command = $("#command_file_select option:selected").val();
-  document.getElementById("command").value = command;
-});
-
-
-
-
-
-
-// 아이템 삭제 버튼
-$("body").on('click', '#item_remove_btn', function(e){
-  e.preventDefault();
-  id = document.getElementById("item_id").value;
-  $.ajax({
-    url: '/' + package_name + '/ajax/item_remove',
-    type: "POST", 
-    cache: false,
-    data:{item_id:id},
-    success: function (data) {
-      if (data.ret == 'success')  {
-        $.notify('<strong>삭제하였습니다.</strong>', {
-          type: 'success'
-        });
-      } else {
-        $.notify('<strong>삭제 실패</strong>', {
-          type: 'warning'
-        });
-      }
-      $("#item_modal").modal('hide');
-      make_list(data.list)
-    }
-  });
-});
-
-
-
-
-
-
-$("#command_file_select").change(function(e){
-  e.preventDefault();
-  command = $("#command_file_select option:selected").val();
-  
-  document.getElementById("command").value = command;
-  
-});
-
-$('input[type=radio][name=item_schedule_type]').change(function() {
-  set_schedule_type(this.value);
-});
-
-
-// 아이템 실행 버튼
-$("body").on('click', '#item_execute_btn', function(e){
-  e.preventDefault();
-  id = $(this).data('id');
-  item = get_job(id);
-  document.getElementById("command").value = item.command
-  document.getElementById("command_btn").click();
-
-});
-
-// 아이템 입력 버튼
-$("body").on('click', '#item_input_btn', function(e){
-  e.preventDefault();
-  id = $(this).data('id');
-  item = get_job(id);
-  document.getElementById("command").value = item.command
-});
-
-
-// 스케쥴링 on / off
-$('#scheduler_swtich_btn').change(function() {
-  var ret = $(this).prop('checked');
-  id = document.getElementById("item_id").value;
-  item = get_job(id)
-  if (current_data[i].is_include == 'True' && ret) {
-    return
-  } else if (current_data[i].is_include == 'False' && !ret) {
-    return
-  }
-
-  $.ajax({
-    url: '/' + package_name + '/ajax/scheduler_switch',
-    type: "POST", 
-    cache: false,
-    data: {switch:ret, item_id:id},
-    dataType: "json",
-    success: function (data) {
-      make_list(data.list)
-      if (data.ret) {
-        tmp = (ret) ? 'IN' : 'OUT';
-        $.notify('<strong>Success.. '+ tmp + ' Scheduler</strong>', {
-          type: 'success'
-        });
-      } else {
-        $.notify('<strong>실패</strong>', {
-          type: 'warning'
-        });
-      }
-    }
-  });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/////////////////// UI
 
 </script>    
 {% endblock %}

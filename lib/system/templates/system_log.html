@@ -58,10 +58,14 @@ var all_list = "{{arg['all_list']}}";
 var protocol = window.location.protocol;
 var socket = io.connect(protocol + "//" + document.domain + ":" + location.port + "/log");
 var current_filename = '';
+var start_filename = "{{arg['filename']}}";
 
 $(document).ready(function() {
   ResizeTextArea()
   make_form()
+  if (start_filename != '')
+    document.getElementById('log_select').value = start_filename;
+    $('#log_select').change();
 })
 
 function make_form() {
@@ -83,6 +87,7 @@ function make_form() {
 $("body").on('change', '#log_select', function(e){
   e.preventDefault();
   filename = $(this)[0].value;
+  current_filename = filename;
   $('#loading').show();
   socket.emit("start", {'filename':filename} );
 });
@@ -107,7 +112,6 @@ socket.on('on_start', function(data){
 });
 
 socket.on('add', function(data){
-  //console.log(data)
   if (data.filename == current_filename) {
     var chk = $('#auto_scroll').is(":checked");
     document.getElementById("add").innerHTML += data.data;
