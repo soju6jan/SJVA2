@@ -8,7 +8,7 @@
  - command 작업중
 
 ##### ■ 0.2.11.13 (2020-06-12) #####
- - Plex SJ Daum 에이전트 업데이트. 영화 메타 못가져오는 문제 수정[참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3541)<br>
+ - Plex SJ Daum 에이전트 업데이트. 영화 메타 못가져오는 문제 수정. [참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3541)<br>
    Plex - 플러그인 - Scanner / Agent 설치 - 설치목록로딩 후 - SJ Daum 설치 클릭하여 설치<br>
    설치 후 Plex 설정 - SJ Daum Agent 버전 버튼 클릭하여 2020-06-12 버전 확인<br>
 
