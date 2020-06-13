@@ -8,8 +8,8 @@
  - 추적+일반적인파일처리 작업을 하는 플러그인<br>
  
 ##### <span style="color:red">■ 0.2.12 (2020-06-13)</span> #####
- - Tool - Command => 시스템 - Command로 변경 
-   [Command 기능 설명](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=923)<br>
+ - Tool - Command => 시스템 - Command로 변경<br> 
+   [Command 기능](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=923)<br>
 
 ##### ■ 0.2.11.15 (2020-06-13) #####
  - KLive : 웨이브 재생 줌 멈춤 문제 방어코드 추가. [참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3606)<br>
