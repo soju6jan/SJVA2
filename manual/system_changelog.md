@@ -6,7 +6,10 @@
  - downloader 일반파일(자막) 설정 없어도 받기<br>
  - Rclone 작업 개별 스케쥴링. cron적용. 곧 설치형으로 변경되니 작업 백업할 것.<br>
  - 추적+일반적인파일처리 작업을 하는 플러그인<br>
- - command 작업중<br>
+ 
+##### <span style="color:red">■ 0.2.12 (2020-06-13)</span> #####
+ - Tool - Command => 시스템 - Command로 변경 
+   [Command 기능 설명](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=923)<br>
 
 ##### ■ 0.2.11.15 (2020-06-13) #####
  - KLive : 웨이브 재생 줌 멈춤 문제 방어코드 추가. [참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3606)<br>
