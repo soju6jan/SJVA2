@@ -4,8 +4,14 @@
  - 토렌트 사이트 추가<br>
  - AV Agent : DMM SMUK-016, 017 메타 못 가져옴. (IP체크로 외국에서는 볼수없다는 안내표시 나오는것으로 추정)
  - downloader 일반파일(자막) 설정 없어도 받기<br>
- - Rclone 작업 개별 스케쥴링. cron<br>
- - command 작업중
+ - Rclone 작업 개별 스케쥴링. cron적용. 곧 설치형으로 변경되니 작업 백업할 것.<br>
+ - 추적+일반적인파일처리 작업을 하는 플러그인<br>
+ - command 작업중<br>
+
+##### ■ 0.2.11.15 (2020-06-13) #####
+ - KLive : 웨이브 재생 줌 멈춤 문제 방어코드 추가. [참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3606)<br>
+ - Offcloud : 추적 기능. 다중 폴더일 때 이동 안하는 문제 수정.<br>
+
 
 ##### ■ 0.2.11.13 (2020-06-12) #####
  - Plex SJ Daum 에이전트 업데이트. 영화 메타 못가져오는 문제 수정. [참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3541)<br>
