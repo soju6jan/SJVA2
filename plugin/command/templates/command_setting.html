@@ -172,7 +172,7 @@ $("body").on('click', '#job_save_btn', function(e){
   tmp = $('input[name=job_schedule_type]:checked').val()
   
   i = document.getElementById("job_schedule_info").value
-  if (tmp == 2 && (i == '' || parseInt(i) < 1)) {
+  if (tmp == 2 && i == '') {
     $.notify('<strong>스케쥴링 정보를 입력하세요</strong>', {
       type: 'warning'
     });
