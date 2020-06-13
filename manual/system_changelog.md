@@ -12,7 +12,6 @@
  - KLive : 웨이브 재생 줌 멈춤 문제 방어코드 추가. [참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3606)<br>
  - Offcloud : 추적 기능. 다중 폴더일 때 이동 안하는 문제 수정.<br>
 
-
 ##### ■ 0.2.11.13 (2020-06-12) #####
  - Plex SJ Daum 에이전트 업데이트. 영화 메타 못가져오는 문제 수정. [참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3541)<br>
    Plex - 플러그인 - Scanner / Agent 설치 - 설치목록로딩 후 - SJ Daum 설치 클릭하여 설치<br>
