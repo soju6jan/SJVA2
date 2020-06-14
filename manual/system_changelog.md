@@ -8,8 +8,10 @@
  - 추적+일반적인파일처리 작업을 하는 플러그인<br>
 
 
-##### ■ 0.2.12.1 (2020-06-14) #####
- - AV Agent : dmm 지역제한 팝업 나오는 문제 수정. url 파라미터값 변경<br> 
+##### ■ 0.2.12.2 (2020-06-14) #####
+ - SMI2SRT 플러그인 설치형으로 변경<br>
+ - KLive 수정<br>
+ - AV Agent : dmm 지역제한 팝업 나오는 문제 수정. url 파라미터값 변경 [참고](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=472)<br>
 
 ##### <span style="color:red">■ 0.2.12 (2020-06-13)</span> #####
  - Tool - Command => 시스템 - Command로 변경<br> 
