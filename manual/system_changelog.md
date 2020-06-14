@@ -8,9 +8,10 @@
  - 추적+일반적인파일처리 작업을 하는 플러그인<br>
 
 
-##### ■ 0.2.12.2 (2020-06-14) #####
- - SMI2SRT 플러그인 설치형으로 변경<br>
- - KLive 수정<br>
+##### ■ 0.2.12.3 (2020-06-14) #####
+ - SMI2SRT 플러그인 설치형으로 변경. [링크](https://sjva.me/bbs/board.php?bo_table=sjva_plugin&wr_id=1010)<br>
+ - KLive 수정 [참고](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=475) [참고](https://sjva.me/bbs/board.php?bo_table=free&wr_id=2896)<br>
+ - 미인증 플러그인 로딩 안함.<br> 
  - AV Agent : dmm 지역제한 팝업 나오는 문제 수정. url 파라미터값 변경 [참고](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=472)<br>
 
 ##### <span style="color:red">■ 0.2.12 (2020-06-13)</span> #####
