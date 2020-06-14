@@ -6,7 +6,11 @@
  - downloader 일반파일(자막) 설정 없어도 받기<br>
  - Rclone 작업 개별 스케쥴링. cron적용. 곧 설치형으로 변경되니 작업 백업할 것.<br>
  - 추적+일반적인파일처리 작업을 하는 플러그인<br>
- 
+
+
+##### ■ 0.2.12.1 (2020-06-14) #####
+ - AV Agent : dmm 지역제한 팝업 나오는 문제 수정. url 파라미터값 변경<br> 
+
 ##### <span style="color:red">■ 0.2.12 (2020-06-13)</span> #####
  - Tool - Command => 시스템 - Command로 변경<br> 
    [Command 기능](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=923)<br>
