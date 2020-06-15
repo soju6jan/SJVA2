@@ -8,6 +8,11 @@
  - 추적+일반적인파일처리 작업을 하는 플러그인<br>
 
 
+##### ■ 0.2.12.4 (2020-06-15) #####
+- klive 설치 후 epg 미설치시 메뉴가 전체가 안나오는 문제 수정. 여진히 epg 미설치시 klive는 동작 안함. [참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3658)<br>
+- KLive : m3u 파일 전송 api 추가 [참고](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=484&&#c_488)<br>
+
+
 ##### ■ 0.2.12.3 (2020-06-14) #####
  - SMI2SRT 플러그인 설치형으로 변경. [링크](https://sjva.me/bbs/board.php?bo_table=sjva_plugin&wr_id=1010)<br>
  - KLive 수정 [참고](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=475) [참고](https://sjva.me/bbs/board.php?bo_table=free&wr_id=2896)<br>
