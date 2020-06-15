@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<center><video height="480" id="video" controls></video></center>
+
+<script src="{{ url_for('static', filename='js/hls.js') }}"></script> 
+<script type="text/javascript">
+
+$(document).ready(function(){
+  play_video("{{url}}");
+});
+
+
+function play_video(url) {
+  current_url = url
+  if(Hls.isSupported()) {
+    var video = document.getElementById('video');
+    hls = new Hls();
+    hls.on(Hls.Events.ERROR, function(event,data) {
+      $.notify('<strong>'+msg+'</strong>', {
+        type: 'warning'
+      });
+    });
+    hls.loadSource(url);
+    
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED,function() {
+      video.play();
+    });
+    hls.on(Hls.Events.FRAG_PARSING_METADATA, handleTimedMetadata);
+  }
+}
+
+</script>
+{% endblock %}

@@ -12,6 +12,8 @@
 - klive 설치 후 epg 미설치시 메뉴가 전체가 안나오는 문제 수정. 여진히 epg 미설치시 klive는 동작 안함. [참고](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3658)<br>
 - KLive : m3u 파일 전송 api 추가 [참고](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=484&&#c_488)<br>
 - SJ Daum : 영화 영문제목이 없는 경우 에러 발생하는 문제 수정. [참고](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=483)<br>
+- 영화 파일처리에서 smi2srt 호출 못하는 문제 수정<br>
+- ani24 : url zo.com이면 do.com으로 강제 변경<br> 
 
 ##### ■ 0.2.12.3 (2020-06-14) #####
  - SMI2SRT 플러그인 설치형으로 변경. [링크](https://sjva.me/bbs/board.php?bo_table=sjva_plugin&wr_id=1010)<br>
