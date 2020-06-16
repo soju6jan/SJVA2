@@ -21,7 +21,7 @@
     {{ macros.m_tab_content_end() }} 
     
     {{ macros.m_tab_content_start('test', false) }}
-      {{ macros.setting_input_text_and_buttons('tmp_go_url', '테스트 URL', [['selenium_test_btn', 'GO'], ['capture_btn', '화면표시']], value='https://sjva.me') }}
+      {{ macros.setting_input_text_and_buttons('tmp_go_url', '테스트 URL', [['selenium_test_btn', 'GO'], ['capture_btn', '화면표시'], ['cookie_btn', '쿠키정보']], value='https://sjva.me') }}
       <div id="image_div"></div>
     {{ macros.m_tab_content_end() }} 
   </div><!--tab-content-->
@@ -116,6 +116,31 @@ $("body").on('click', '#full_capture_btn', function(e){
     }
   });
 });
+
+
+$("body").on('click', '#cookie_btn', function(e){
+  e.preventDefault();
+  url = document.getElementById('tmp_go_url').value
+  $.ajax({
+    url: '/' + package_name + '/ajax/'+sub+'/cookie',
+    type: "POST", 
+    cache: false,
+    data: {url:url},
+    dataType: "json",
+    success: function (data) {
+      m_modal(data);
+      return;
+      if (data.ret == 'success') {
+        m_modal(data);
+      } else {
+        $.notify('<strong>실패하였습니다.</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
 
 
 
