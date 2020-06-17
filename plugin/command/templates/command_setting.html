@@ -308,10 +308,28 @@ $("body").on('click', '#job_input_btn', function(e){
 // 아이템 실행 버튼
 $("body").on('click', '#job_foreground_btn', function(e){
   e.preventDefault();
-  id = $(this).data('id');
-  item = get_job(id);
-  document.getElementById("command").value = item.command
-  document.getElementById("foreground_command_btn").click();
+  job_id = $(this).data('id');
+  job = get_job(job_id);
+  $.ajax({
+    url: '/' + package_name + '/ajax/foreground_command_by_job',
+    type: "POST", 
+    cache: false,
+    data:{job_id:job_id},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success')  {
+        show_this_command_modal(job.command)
+      } else {
+        $.notify('<strong>실행 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+
+  
+
+
 });
 
 $("body").on('click', '#job_background_btn', function(e){
