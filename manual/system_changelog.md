@@ -13,7 +13,7 @@
 
 
 ##### ■ 0.2.12.14 (2020-06-21) #####
- - 웨이브 로그인 관련 수정<br>
+ - 웨이브 로그인 관련 수정 [참고](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=519)<br>
 
 ##### ■ 0.2.12.13 (2020-06-18) #####
  - AV Agent : 설정 Discord Proxy On/Off 추가 <br>
