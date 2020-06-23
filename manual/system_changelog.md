@@ -15,6 +15,11 @@
 ##### ■ 0.2.12.15 (2020-06-22) #####
  - 시스템 - 설정 - Site - Daum 추가<br>
    SJ Daum은 수정전<br>
+   한번 캡챠에 걸린 네트워크는 쿠키값을 변경해도 소용없음. (IP체크하는 것 같음)<br>
+   같은 네트워크에 있는 PC로 차단을 먼저 해제한 후 Refresh 버튼을 눌러 값을 가져온 후 사용<br>
+   selenium 테스트에서 아래 주소를 입력하여 확인<br>
+   https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q=%EB%82%98%EC%81%9C+%EB%85%80%EC%84%9D%EB%93%A4<br>
+   ![](https://cdn.discordapp.com/attachments/631112094015815681/724816825464127499/unknown.png)
 
 ##### ■ 0.2.12.14 (2020-06-21) #####
  - 웨이브 로그인 관련 수정 [참고](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=519)<br>
