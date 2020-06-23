@@ -21,8 +21,8 @@
       {{ macros.setting_scheduler_button(arg['scheduler'], arg['is_running']) }}
       {{ macros.setting_input_text('site_daum_interval', '스케쥴링 실행 정보', value=arg['site_daum_interval'], col='3', desc=['Inverval(minute 단위)이나 Cron 설정']) }}
       {{ macros.setting_checkbox('site_daum_auto_start', '시작시 자동실행', value=arg['site_daum_auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
-      {{ macros.m_hr() }}
-      {{ macros.info_text_go('site_get_daum_cookie_url', 'Daum Cookie API', value=arg['site_get_daum_cookie_url'], desc=['Plex의 SJ Daum Agent 설정에 이 값을 입력하면 검색 실패시 자동적으로 새로운 쿠키값을 가져옵니다.'] ) }}
+      <!--{{ macros.m_hr() }}
+      {{ macros.info_text_go('site_get_daum_cookie_url', 'Daum Cookie API', value=arg['site_get_daum_cookie_url'], desc=['Plex의 SJ Daum Agent 설정에 이 값을 입력하면 검색 실패시 자동적으로 새로운 쿠키값을 가져옵니다.'] ) }}-->
 
       
     {{ macros.m_tab_content_end() }} 
