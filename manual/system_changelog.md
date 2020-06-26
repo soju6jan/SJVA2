@@ -6,14 +6,18 @@
     - 추적+일반적인파일처리 작업을 하는 플러그인. aria임시폴더 기능 통합<br>
     - Daum 쿠키값 관련. Daum TV 플러그인 삭제. 관련 API 정리<br>    
     - Rclone 작업 개별 스케쥴링. cron적용. 곧 설치형으로 변경되니 작업 백업할 것.<br>    
+    - 홈화면 실행중 강조<br>
   - 검토<br>
     - 설정 - 백업, 초기화<br>
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - 웨이브 앱 로그인 풀림 관련 테스트<br>
     - 봇 영화 년도 옵션<br>
+    - 토렌트봄 cfscrape 확인<br>
 
-##### <span style="color:red">■ 0.2.13 (2020-06-25)</span> #####
+##### <span style="color:red">■ 0.2.13.2 (2020-06-25)</span> #####
  - 파일처리 AV : 오리알님이 자막다운로드 기능 추가 [매뉴얼](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1006)<br>
+ - Offcloud : 추적 기간 지난 파일 이동<br>
+ - selenium 파일 다운로드 지원 (크롬한정)<br>
 
 
 ##### ■ 0.2.12.15 (2020-06-22) #####
