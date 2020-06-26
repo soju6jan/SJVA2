@@ -12,6 +12,9 @@
     - 웨이브 앱 로그인 풀림 관련 테스트<br>
     - 봇 영화 년도 옵션<br>
 
+##### <span style="color:red">■ 0.2.13 (2020-06-25)</span> #####
+ - 파일처리 AV : 오리알님이 자막다운로드 기능 추가 [매뉴얼](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1006)<br>
+
 
 ##### ■ 0.2.12.15 (2020-06-22) #####
  - 시스템 - 설정 - Site - Daum 추가<br>
