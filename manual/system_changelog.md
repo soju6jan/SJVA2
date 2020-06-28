@@ -14,7 +14,11 @@
     - 봇 영화 년도 옵션<br>
     - 토렌트봄 cfscrape 확인<br>
 
-##### <span style="color:red">■ 0.2.13.2 (2020-06-25)</span> #####
+##### ■ 0.2.13.3 (2020-06-22) #####
+ - RSS2 : 플러그인 포인트 4000점 이상부터 사용<br>
+ - RSS 다운로드 : 스케쥴링 작동 버튼 동작안하는 문제 수정<br>
+
+##### <span style="color:red">■ 0.2.13 (2020-06-25)</span> #####
  - 파일처리 AV : 오리알님이 자막다운로드 기능 추가 [매뉴얼](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1006)<br>
  - Offcloud : 추적 기간 지난 파일 이동<br>
  - selenium 파일 다운로드 지원 (크롬한정)<br>
