@@ -16,11 +16,13 @@
       {{ macros.setting_input_text_and_buttons('site_daum_cookie', 'Cookie', [['site_daum_cookie_btn', 'Refresh']], value=arg['site_daum_cookie'],  desc=['지금은 TIARA=값 만 입력하세요', 'Refresh는 Selenium 연결이 가능한 경우만 실행됩니다.']) }}
       {{ macros.m_hr() }}
       {{ macros.setting_input_text_and_buttons('site_daum_test', 'Test', [['site_daum_test_btn', 'Test']], value=arg['site_daum_test'],  desc=['영화 or 방송제목']) }}
+      <!--
       {{ macros.m_hr() }}
       {{ macros.info_text('', '자동', value='Cookie 값 자동으로 변경하는 스케쥴링입니다. Selenium 연결이 가능해야 합니다.') }}  
       {{ macros.setting_scheduler_button(arg['scheduler'], arg['is_running']) }}
       {{ macros.setting_input_text('site_daum_interval', '스케쥴링 실행 정보', value=arg['site_daum_interval'], col='3', desc=['Inverval(minute 단위)이나 Cron 설정']) }}
       {{ macros.setting_checkbox('site_daum_auto_start', '시작시 자동실행', value=arg['site_daum_auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+      -->
       <!--{{ macros.m_hr() }}
       {{ macros.info_text_go('site_get_daum_cookie_url', 'Daum Cookie API', value=arg['site_get_daum_cookie_url'], desc=['Plex의 SJ Daum Agent 설정에 이 값을 입력하면 검색 실패시 자동적으로 새로운 쿠키값을 가져옵니다.'] ) }}-->
 

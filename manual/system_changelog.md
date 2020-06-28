@@ -14,9 +14,11 @@
     - 봇 영화 년도 옵션<br>
     - 토렌트봄 cfscrape 확인<br>
 
-##### ■ 0.2.13.3 (2020-06-22) #####
- - RSS2 : 플러그인 포인트 4000점 이상부터 사용<br>
+##### ■ 0.2.13.5 (2020-06-22) #####
+ - RSS2 : 플러그인 포인트 4000점 이상부터 사용. [참고](https://sjva.me/bbs/board.php?bo_table=notice&wr_id=1052)<br>
  - RSS 다운로드 : 스케쥴링 작동 버튼 동작안하는 문제 수정<br>
+ - 봇 TV : 다운로드 모드 옵션 적용<br>
+ - klive : 웨이브 계정변경시 계정값 초기화 버튼 추가<<br>
 
 ##### <span style="color:red">■ 0.2.13 (2020-06-25)</span> #####
  - 파일처리 AV : 오리알님이 자막다운로드 기능 추가 [매뉴얼](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1006)<br>
