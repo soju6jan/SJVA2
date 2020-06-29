@@ -16,11 +16,10 @@
 ##### ■ 0.2.13.6 (2020-06-29) #####
  - FFMPEG : 타임아웃 시간 설정 추가. [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3949)<br>
  - 봇 TV : 장르가 없는 경우 "미분류" 장르명으로 대체. [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3952)<br>
-
+ - RSS 다운로드 : 스케쥴링 작동 버튼 동작안하는 문제 수정<br>
 
 ##### ■ 0.2.13.5 (2020-06-28) #####
  - RSS2 : 플러그인 포인트 4000점 이상부터 사용. [참고](https://sjva.me/bbs/board.php?bo_table=notice&wr_id=1052)<br>
- - RSS 다운로드 : 스케쥴링 작동 버튼 동작안하는 문제 수정<br>
  - 봇 TV : 다운로드 모드 옵션 적용<br>
  - klive : 웨이브 계정변경시 계정값 초기화 버튼 추가<br>
 
