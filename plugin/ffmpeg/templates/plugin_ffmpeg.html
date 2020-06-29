@@ -10,6 +10,8 @@
     {{ macros.setting_input_int('max_pf_count', '허용 Packet Fail 수', value=arg['max_pf_count'], min='0', placeholder='0', desc=['이 값보다 Packet Fail 횟수가 더 많으면 실패처리 합니다.', '0일 경우 Packet Fail이 발생하면 바로 실패처리.']) }}
     
     {{ macros.setting_checkbox('if_fail_remove_tmp_file', '임시 파일', arg['if_fail_remove_tmp_file'], desc='On : 실패시 임시 파일 자동 삭제') }}
+    {{ macros.setting_input_int('timeout_minute', '타임아웃 시간', value=arg['timeout_minute'], desc=['이 시간 안에 완료가 되지 않으면 시간초과 에러를 발생합니다.', '속도가 느린 경우 값을 올려 설정하세요. 분 단위']) }}
+
     {{ macros.setting_button([['setting_save', '저장']]) }}
     </form>
   </div>

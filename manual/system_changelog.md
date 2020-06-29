@@ -7,18 +7,22 @@
     - Daum 쿠키값 관련. Daum TV 플러그인 삭제. 관련 API 정리<br>    
     - Rclone 작업 개별 스케쥴링. cron적용. 곧 설치형으로 변경되니 작업 백업할 것.<br>    
     - 홈화면 실행중 강조<br>
+    - 봇 영화 년도 옵션<br>    
   - 검토<br>
     - 설정 - 백업, 초기화<br>
     - downloader 일반파일(자막) 설정 없어도 받기<br>
-    - 웨이브 앱 로그인 풀림 관련 테스트<br>
-    - 봇 영화 년도 옵션<br>
-    - 토렌트봄 cfscrape 확인<br>
 
-##### ■ 0.2.13.5 (2020-06-22) #####
+
+##### ■ 0.2.13.6 (2020-06-29) #####
+ - FFMPEG : 타임아웃 시간 설정 추가. [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3949)<br>
+ - 봇 TV : 장르가 없는 경우 "미분류" 장르명으로 대체. [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3952)<br>
+
+
+##### ■ 0.2.13.5 (2020-06-28) #####
  - RSS2 : 플러그인 포인트 4000점 이상부터 사용. [참고](https://sjva.me/bbs/board.php?bo_table=notice&wr_id=1052)<br>
  - RSS 다운로드 : 스케쥴링 작동 버튼 동작안하는 문제 수정<br>
  - 봇 TV : 다운로드 모드 옵션 적용<br>
- - klive : 웨이브 계정변경시 계정값 초기화 버튼 추가<<br>
+ - klive : 웨이브 계정변경시 계정값 초기화 버튼 추가<br>
 
 ##### <span style="color:red">■ 0.2.13 (2020-06-25)</span> #####
  - 파일처리 AV : 오리알님이 자막다운로드 기능 추가 [매뉴얼](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1006)<br>
