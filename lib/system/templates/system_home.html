@@ -50,7 +50,12 @@ function make_scheduler_list(data) {
   str += m_hr();
 
   for(var i in data) {
-    str += m_row_start(p='0');
+    if (data[i].is_running) {
+      str += m_row_start_color(0, 'center', 'yellow');
+    } else {
+      str += m_row_start(p='0');
+    }
+    
     str += m_col(1, data[i].no);
     tmp = '<strong>'+data[i].plugin+'</strong><br>' + data[i].id;
     str += m_col(2, tmp);

@@ -11,6 +11,10 @@ function m_row_start_hover(padding='10', align='center') {
 function m_row_start_top(padding='10') {
   return m_row_start(padding, 'top');
 }
+function m_row_start_color(padding='10', align='center', color='') {
+  var str = '<div class="row" style="padding-top: '+padding+'px; padding-bottom:'+padding+'px; align-items:'+align+'; background-color:'+color+'">';
+  return str;
+}
 
 function m_row_end() {
   var str = '</div>';
