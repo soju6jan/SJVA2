@@ -11,7 +11,8 @@
   - 검토<br>
     - 설정 - 백업, 초기화<br>
     - downloader 일반파일(자막) 설정 없어도 받기<br>
-
+    - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
+    
 
 ##### ■ 0.2.13.9 (2020-07-01) #####
  - 홈화면 실행중 강조<br>
