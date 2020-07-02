@@ -4,15 +4,17 @@
     - python3으로 변경<br>
   - 마이너<br>
     - 추적+일반적인파일처리 작업을 하는 플러그인. aria임시폴더 기능 통합<br>
-    - Daum 쿠키값 관련. Daum TV 플러그인 삭제. 관련 API 정리<br>    
+    - plex 통합 에이전트 + sjva.bundle<br>
     - Rclone 작업 개별 스케쥴링. cron적용. 곧 설치형으로 변경되니 작업 백업할 것.<br>    
+    - Daum 쿠키값 관련. Daum TV 플러그인 삭제. 관련 API 정리<br>    
     - 웨이브 2160 최근방송<br>
     - av 파일처리 파일명에 크기정보<br>
+    
   - 검토<br>
     - 설정 - 백업, 초기화<br>
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
-
+    - 봇 tv 지연시간 동작 확인<br>
 
 ##### ■ 0.2.13.10 (2020-07-01) #####
  - 홈화면 실행중 강조<br>
