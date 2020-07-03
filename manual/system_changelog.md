@@ -15,6 +15,7 @@
 
 
 ##### ■ 0.2.13.12 (2020-07-03) #####
+ - 이치로님의 docker-ctunnel 업데이트. dmm 사이트 우회 가능 [(참고)](https://hub.docker.com/r/wiserain/ctunnel)<br>
  - 웨이브 : 최근방송 자동. 2160p 화질 선택시 1080p 받을 수 있는 옵션 추가<br>
    ![](https://cdn.discordapp.com/attachments/631112094015815681/728430658392686672/unknown.png)
  - 봇 TV : 지연시간 동작 버그 수정<br>
