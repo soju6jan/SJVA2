@@ -7,20 +7,26 @@
     - plex 통합 에이전트 + sjva.bundle<br>
     - Rclone 작업 개별 스케쥴링. cron적용. 곧 설치형으로 변경되니 작업 백업할 것.<br>    
     - Daum 쿠키값 관련. Daum TV 플러그인 삭제. 관련 API 정리<br>    
-    - 웨이브 2160 최근방송<br>
     - av 파일처리 파일명에 크기정보<br>
+    - tv 이동폴더 지정 풀매칭으로<br>
   - 검토<br>
     - 설정 - 백업, 초기화<br>
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
-    - 봇 tv 지연시간 동작 확인<br>
+
+
+##### ■ 0.2.13.12 (2020-07-03) #####
+ - 웨이브 : 최근방송 자동. 2160p 화질 선택시 1080p 받을 수 있는 옵션 추가<br>
+   ![](https://cdn.discordapp.com/attachments/631112094015815681/728430658392686672/unknown.png)
+ - 봇 TV : 지연시간 동작 버그 수정<br>
+   설정의 지연시간 : 텔레그램 수신이후 지연시간 동안 판단하지 않음<br>
+   다운로드 조건의 1080 지연시간 : 720 영상은 설정의 지연시간 + 1080 지연시간 이후 다운<br>
 
 ##### ■ 0.2.13.10 (2020-07-01) #####
  - 파일처리 AV : 자막포함 영상 이동처리 [(참고)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1006)
  - 홈화면 실행중 강조<br>
  - 봇 영화 : 년도 최대값 옵션 추가<br>
  - klive : 웨이브 티빙 최신 VOD를 m3u로 제공하는 API 추가<br>
-
 
 ##### ■ 0.2.13.6 (2020-06-29) #####
  - FFMPEG : 타임아웃 시간 설정 추가. [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3949)<br>
@@ -36,7 +42,6 @@
  - 파일처리 AV : 오리알님이 자막다운로드 기능 추가 [매뉴얼](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1006)<br>
  - Offcloud : 추적 기간 지난 파일 이동<br>
  - selenium 파일 다운로드 지원 (크롬한정)<br>
-
 
 ##### ■ 0.2.12.15 (2020-06-22) #####
  - 시스템 - 설정 - Site - Daum 추가<br>
