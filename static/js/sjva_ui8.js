@@ -15,6 +15,10 @@ function m_row_start_color(padding='10', align='center', color='') {
   var str = '<div class="row" style="padding-top: '+padding+'px; padding-bottom:'+padding+'px; align-items:'+align+'; background-color:'+color+'">';
   return str;
 }
+function m_row_start_color2(padding='10', align='center') {
+  var str = '<div class="row bg-info" style="padding-top: '+padding+'px; padding-bottom:'+padding+'px; align-items:'+align+';">';
+  return str;
+}
 
 function m_row_end() {
   var str = '</div>';
