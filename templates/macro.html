@@ -216,15 +216,15 @@
 
 
 <!-- 라디오버튼 -->
-{% macro setting_radio(id, title, radios, value=None, desc=None) %}
+{% macro setting_radio(id, title, radios, value=None, desc=None, disabled=False) %}
   {{ setting_top(title) }}
     <div class="input-group col-sm-9">
     {% for r in radios %}
       <div class="custom-control custom-radio custom-control-inline">
         {% if value|int == loop.index0 %}
-        <input id="{{id}}{{loop.index0}}" type="radio" class="custom-control-input" name="{{id}}" value="{{loop.index0}}" checked>
+        <input id="{{id}}{{loop.index0}}" type="radio" class="custom-control-input" name="{{id}}" value="{{loop.index0}}" checked {% if disabled %} disabled {% endif %}>
         {% else %}
-        <input id="{{id}}{{loop.index0}}" type="radio" class="custom-control-input" name="{{id}}" value="{{loop.index0}}">
+        <input id="{{id}}{{loop.index0}}" type="radio" class="custom-control-input" name="{{id}}" value="{{loop.index0}}" {% if disabled %} disabled {% endif %}>
         {% endif %}
         <label class="custom-control-label" for="{{id}}{{loop.index0}}">{{r}}</label>
       </div>
@@ -506,5 +506,8 @@
 {% endmacro %}
 
 
+{% macro setting_input_hidden(id, value) %}
+  <input id="{{ id }}" name="{{ id }}" type="hidden">
+{% endmacro %}
 
 
