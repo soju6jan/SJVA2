@@ -69,8 +69,8 @@ $.extend(
     {
         var form = '';
         $.each( args, function( key, value ) {
-            console.log(key);
-            console.log(value);
+            //console.log(key);
+            //console.log(value);
             value = value.split('"').join('\"')
             form += '<input type="hidden" name="'+key+'" value="'+value+'">';
         });
