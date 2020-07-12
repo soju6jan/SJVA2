@@ -45,18 +45,18 @@ try:
                 logger.error(traceback.format_exc())
 
         # av- 
-        """
         try:
             import shutil
             av = os.path.join(server_plugin_path, 'bot_downloader_av')
             if os.path.exists(av):
                 shutil.rmtree(av)
-            tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'db', 'bot_downloader_av.db')
+            #tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'db', 'bot_downloader_av.db')
             if os.path.exists(tmp):
                 os.remove(tmp)
         except Exception as e:
             print('Exception:%s', e)
-        """
+        
+        
         
 except Exception, e:
     print('Exception:%s', e)
