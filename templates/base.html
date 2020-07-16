@@ -173,6 +173,11 @@ $(document).ready(function(){
   socket.on('command_modal_clear', function(data){
     document.getElementById("command_modal_textarea").innerHTML = ""
   });
+
+  socket.on('loading_hide', function(data){
+    $('#loading').hide();
+  });
+
 });
 
 $(document).ready(function(){
