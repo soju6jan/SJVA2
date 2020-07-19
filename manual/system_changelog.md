@@ -14,10 +14,13 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
 
 
+##### ■ 0.2.13.18 (2020-07-19) #####
+ - 다운로드 클라이언트 : 마그넷에 토렌트 이름 추가, 트래커 자동으로 다운로드 기능 추가. by lapis님<br>
+ - 파일처리 AV : subtitlecat 사이트변경 대응 by 오리알님<br>
+
 ##### ■ 0.2.13.15 (2020-07-12) #####
  - lapis님이 "다운로드 클라이언트"에 트래커 기능을 추가해주셨습니다. [(참고)](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=624)<br>
  - RSS2 포인트 제한 삭제.<br>
-
 
 ##### ■ 0.2.13.14 (2020-07-08) #####
  - Starbuck님의 vod 검색 플러그인 업데이트<br>
