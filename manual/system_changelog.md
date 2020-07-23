@@ -13,6 +13,9 @@
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
 
+##### ■ 0.2.14.1 (2020-07-23) #####
+ - klive : 티빙 JTBC2등 일부 채널 재생 안되는 문제 수정<br>
+
 ##### <span style="color:red">■ 0.2.14 (2020-07-22)</span> #####
  - 구글 드라이브 공유 플러그인 추가<br>
 
