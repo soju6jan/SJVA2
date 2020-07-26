@@ -440,7 +440,35 @@ function global_db_delete_sub() {
   });
 }
 
-
+$("body").on('click', '#global_reset_db_sub2_btn', function(e){
+  e.preventDefault();
+  document.getElementById("confirm_title").innerHTML = "DB 삭제";
+  document.getElementById("confirm_body").innerHTML = "전체 목록을 삭제 하시겠습니까?";
+  $('#confirm_button').attr('onclick', "global_db_delete_sub2();");
+  $("#confirm_modal").modal();
+  return;
+});
+  
+function global_db_delete_sub2() {
+  $.ajax({
+    url: '/' + package_name + '/ajax/'+sub+'/reset_db',
+    type: "POST", 
+    cache: false,
+    data: {},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>삭제하였습니다.</strong>', {
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>삭제에 실패하였습니다.</strong>',{
+          type: 'warning'
+        });
+      }
+    }
+  });
+}
 
 
 
