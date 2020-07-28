@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  {{ macros.m_button_group([['global_setting_save_btn', '설정 저장']])}}
+  {{ macros.m_row_start('5') }}
+  {{ macros.m_row_end() }}
+  <nav>  
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head2('memo', '메모', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>  
+  <form id='setting' name='setting'>
+    <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('memo', true) }}
+      <div>
+        <textarea id="memo" name="memo" class="col-md-12" rows="30" charswidth="23" style="visibility:visible" value="">{{ arg['memo'] }}</textarea>
+      </div>
+    {{ macros.m_tab_content_end() }} 
+    </div><!--tab-content-->
+  </form>
+</div> <!--전체-->
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name']}}";
+var sub = "{{arg['sub'] }}";
+
+$(document).ready(function(){
+});
+</script>    
+{% endblock %}
