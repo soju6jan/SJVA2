@@ -13,7 +13,11 @@
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
 
-##### ■ 0.2.14.9 (2020-08-02) #####
+##### ■ 0.2.14.10 (2020-08-03) #####
+ - 유투브 자동 업로드 플러그인 추가 by 프링향 [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=sjva_plugin&wr_id=1339)<br>
+ - torrent_info 플러그인 업데이트 by 이치로 [(참고)](https://sjva.me/bbs/board.php?bo_table=free&wr_id=4575)<br>
+ - 구글 드라이브 공유 : Plex 검색 기능 추가 by 오리알<br>
+ - 봇 다운로드 : RSS API이 server_id_mod 파라미터 추가<br>
  - 토렌트 트래커자동 추가시 완료표시가 안되는 문제 수정<br>
    
 ##### ■ 0.2.14.8 (2020-08-01) #####
