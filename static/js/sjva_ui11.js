@@ -57,6 +57,7 @@ function m_button(id, text, data) {
   return str;
 }
 
+
 function m_hr(margin='5') {
   var str = '<hr style="width: 100%; margin:'+margin+'px;" />';
   return str;

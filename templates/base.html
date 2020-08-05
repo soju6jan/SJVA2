@@ -571,5 +571,13 @@ function get_torrent_program_name(p) {
   else if (p == '3') return 'aria2'
 }
 
+function m_button2(id, text, data, outline_color) {
+  var str = '<button id="'+id+'" name="'+id+'" class="btn btn-sm btn-outline-'+outline_color+'" '
+  for ( var i in data) {
+    str += ' data-' + data[i].key + '="' + data[i].value+ '" '
+  }
+  str += '>' + text + '</button>';
+  return str;
+}
 
 </script>
