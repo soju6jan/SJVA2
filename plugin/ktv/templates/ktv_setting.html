@@ -6,7 +6,6 @@
   {{ macros.setting_scheduler_button(arg['is_include'], arg['is_running']) }}
   <form id='setting' name='setting'>
     {{ macros.setting_input_text('interval', '스케쥴링 실행 정보', value=arg['interval'], col='3', desc=['Inverval(minute 단위)이나 Cron 설정']) }}
-    {{ macros.setting_input_text('interval_upload', '원격파일 체크 실행 주기', value=arg['interval_upload'], col='3', desc=['Inverval(minute 단위)이나 Cron 설정']) }}
     {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
     {{ macros.setting_input_text('not_ktv_move_folder_name', 'no ktv 폴더', value=arg['not_ktv_move_folder_name'], col='3', desc=['국내 영상파일이 아닐 경우 이동할 폴더 이름', '다운로드 폴더안에 생성']) }}
     {{ macros.setting_input_text('manual_folder_name', 'manual 폴더', value=arg['manual_folder_name'], col='3', desc=['대상 폴더가 2개 이상일 경우 파일이 이동할 폴더 이름', '다운로드 폴더안에 생성']) }}
