@@ -14,7 +14,7 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
 
 
-##### ■ 0.2.14.14 (2020-08-04) #####
+##### ■ 0.2.14.17 (2020-08-10) #####
  - 다운로드 클라이언트 : .torrent 파일 업로드 및 토렌트 추가기능, 감시폴더 지원 by <span style="font-weight:bold; color:brown">프링향<span><br>
 
 ##### ■ 0.2.14.13 (2020-08-04) #####
