@@ -13,6 +13,14 @@
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
 
+##### ■ 0.2.14.19 (2020-08-11) #####
+- rclone expand 플러그인 추가 by [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1487)<br>
+
+##### ■ 0.2.14.18 (2020-08-11) #####
+- gallery-dl 플러그인 추가 by <span style="font-weight:bold; color:brown">lapis<span> [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1467)<br>
+
+##### ■ 0.2.14.18 (2020-08-10) #####
+ - 봇TV + 구드공 : 바로 받을 경우 딜레이 1분<br>
 
 ##### ■ 0.2.14.17 (2020-08-10) #####
  - 다운로드 클라이언트 : .torrent 파일 업로드 및 토렌트 추가기능, 감시폴더 지원 by <span style="font-weight:bold; color:brown">프링향<span><br>
