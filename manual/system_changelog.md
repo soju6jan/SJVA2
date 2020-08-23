@@ -13,6 +13,15 @@
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
 
+##### ■ 0.2.14.26 (2020-08-22) #####
+- rclone expand : gsheet 연동 기능 추가 by <span style="font-weight:bold; color:brown">오리알<span> [(매뉴얼)](https://docs.google.com/document/d/1vVsgYrhoKf-H2-dwC0mi-c7UE9Xc7yhAn1hN0Bw9FSk/edit)<br>
+
+- Plex sj_daum 에이전트 업데이트. 버전 : 2020-08-21<br>
+   - 모델 드라마 업데이트 안되는 문제 수정<br>
+   - 일부 영화 포스터 못 가져오는 문제 수정<br>
+   - 디폴트 포스터, 아트웍 숫자 1로 변경. 포스터 2개 아트웍 1개 가져옴<br>
+
+
 ##### ■ 0.2.14.21 (2020-08-12) #####
 - rclone expand 플러그인 추가 by [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1487)<br>
 - 구드공 : 구드공 업로드 UI에 폴더명 추가 [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1528)<br>
