@@ -14,12 +14,11 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
 
 ##### ■ 0.2.14.26 (2020-08-22) #####
-- rclone expand : gsheet 연동 기능 추가 by <span style="font-weight:bold; color:brown">오리알<span> [(매뉴얼)](https://docs.google.com/document/d/1vVsgYrhoKf-H2-dwC0mi-c7UE9Xc7yhAn1hN0Bw9FSk/edit)<br>
-
+- rclone expand : gsheet 연동 기능 추가 by <span style="font-weight:bold; color:brown">오리알<span> [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1680)<br>
 - Plex sj_daum 에이전트 업데이트. 버전 : 2020-08-21<br>
-   - 모델 드라마 업데이트 안되는 문제 수정<br>
-   - 일부 영화 포스터 못 가져오는 문제 수정<br>
-   - 디폴트 포스터, 아트웍 숫자 1로 변경. 포스터 2개 아트웍 1개 가져옴<br>
+    모델 드라마 업데이트 안되는 문제 수정<br>
+    일부 영화 포스터 못 가져오는 문제 수정<br>
+    디폴트 포스터, 아트웍 숫자 1로 변경. 포스터 2개 아트웍 1개 가져옴<br>
 
 
 ##### ■ 0.2.14.21 (2020-08-12) #####
