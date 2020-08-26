@@ -13,6 +13,9 @@
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
 
+##### <span style="color:red">■ 0.2.15 (2020-08-26)</span> #####
+ - 토렌트 관련 정책 변경 [(참고)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1735)<br>
+
 ##### ■ 0.2.14.26 (2020-08-22) #####
 - rclone expand : gsheet 연동 기능 추가 by <span style="font-weight:bold; color:brown">오리알<span> [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1680)<br>
 - Plex sj_daum 에이전트 업데이트. 버전 : 2020-08-21<br>
