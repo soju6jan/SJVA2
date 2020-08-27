@@ -488,7 +488,6 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body" id="modal_body" style="word-break:break-all;">
-
 {% endmacro %}
 
 {% macro m_modal_end() %}
@@ -504,6 +503,29 @@
 </div>
 <!-- Modal end -->
 {% endmacro %}
+
+
+{% macro m_modal_start2(id, title, size) %}
+<!-- Modal -->
+<div class="modal fade" id="{{id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog {{size}}">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="{{id}}_title">{{title}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="loading" id="modal_loading">
+        <img src="/static/img/loading.gif" />
+      </div>
+{% endmacro %}      
+      
+{% macro m_modal_end2() %}      
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
+{% endmacro %}
+
 
 
 {% macro setting_input_hidden(id, value) %}
