@@ -14,6 +14,10 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
 
 
+##### ■ 0.2.15.3 (2020-08-27) #####
+- Rclone binary : 1.52.3 버전으로 변경<br>
+- Rclone Expand 에 포함된 gclone birary 이치로님이 빌드하신 버전으로 변경[(참고)](https://github.com/wiserain/gclone/releases)<br>
+
 ##### ■ 0.2.15.2 (2020-08-26) #####
 - 런처 guacamole : db 백업, 복원 기능 추가<br>
 
