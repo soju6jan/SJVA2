@@ -16,7 +16,8 @@
 
 ##### ■ 0.2.15.5 (2020-08-29) #####
 - 봇 AV : 웹 UI에서 구드공 복사 안되는 문제 수정<br>
-
+- 봇 3종 : 업로드 중복시 구드공 수신시마다 복사하는 문제 수정<br>
+  
 ##### ■ 0.2.15.4 (2020-08-27) #####
 - Rclone binary : 1.52.3 버전으로 변경<br>
 - Rclone Expand 에 포함된 gclone birary 이치로님이 빌드하신 버전으로 변경[(참고)](https://github.com/wiserain/gclone/releases)<br>
