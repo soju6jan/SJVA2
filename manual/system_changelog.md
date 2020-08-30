@@ -15,7 +15,10 @@
 
 
 
-##### ■ 0.2.15.7 (2020-08-30) #####
+##### ■ 0.2.15.8 (2020-08-30) #####
+- RSS : 스케쥴링 우선순위, 빈도 옵션 추가<br>
+  ![](https://cdn.discordapp.com/attachments/631112094015815681/749500969464627240/unknown.png)
+  봇 ktv, movie 소스 조정 : torrentbom, torrentqq, torrentmax, torrenthaja, torrentdia, ttobogo<br>
 - 봇 3종 : 구드공 수신 안되는 문제 수정<br>
   약 10시간 동안 수신 안된 컨텐츠는 웹에서 수동으로 받으셔야 합니다.<br>
 
