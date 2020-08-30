@@ -15,7 +15,8 @@
 
 
 
-##### ■ 0.2.15.8 (2020-08-30) #####
+##### ■ 0.2.15.9 (2020-08-30) #####
+- 구드공 : 카데고리 추가. ktv-어린이, ftv-더빙, movie-더빙, etc-영상/음악/SW/기타<br>
 - RSS : 스케쥴링 우선순위, 빈도 옵션 추가<br>
   ![](https://cdn.discordapp.com/attachments/631112094015815681/749500969464627240/unknown.png)
   봇 ktv, movie 소스 조정 : torrentbom, torrentqq, torrentmax, torrenthaja, torrentdia, ttobogo<br>
