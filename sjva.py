@@ -31,35 +31,41 @@ try:
             print('Exception:%s', e)
 
         server_plugin_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')
-        tmp2 = os.listdir(server_plugin_path)
-        for t in tmp2:
-            try:
-                if not t.endswith('_sjva'):
-                    continue
-                tmp = os.path.join(server_plugin_path, t)
-                if os.path.exists(tmp):
-                    os.rename(tmp, tmp.replace('_sjva', ''))
-                    #shutil.move(tmp, tmp.replace('_sjva', 'sjva'))
-            except Exception as e:
-                logger.error('Exception:%s', e)
-                logger.error(traceback.format_exc())
-
+        #tmp2 = os.listdir(server_plugin_path)
+        #for t in tmp2:
+        #    try:
+        #        if not t.endswith('_sjva'):
+        #            continue
+        #        tmp = os.path.join(server_plugin_path, t)
+        #        if os.path.exists(tmp):
+        #            os.rename(tmp, tmp.replace('_sjva', ''))
+        #            #shutil.move(tmp, tmp.replace('_sjva', 'sjva'))
+        #    except Exception as e:
+        #        logger.error('Exception:%s', e)
+        #        logger.error(traceback.format_exc())
         # av- 
-        #try:
-        #    import shutil
-        #    av = os.path.join(server_plugin_path, 'bot_downloader_av')
-        #    if os.path.exists(av):
-        #        shutil.rmtree(av)
-        #    tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'db', 'bot_downloader_av.db')
-        #    if os.path.exists(tmp):
-        #        os.remove(tmp)
-        #except Exception as e:
-        #    print('Exception:%s', e)
+        try:
+            import shutil
+            remove_plugin = ['ani24', 'manamoa', 'launcher_gateone']
+            for plugin in remove_plugin:
+                try:
+                    plugin_path = os.path.join(server_plugin_path, plugin)
+                    if os.path.exists(plugin_path):
+                        print('remove plugin:%s', plugin)
+                        shutil.rmtree(plugin_path)
+                    tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'db', '%s.db' % plugin)
+                    if os.path.exists(tmp):
+                        print('remove plugin db:%s' % plugin)
+                        os.remove(tmp)
+                except Exception as e:
+                    print('Exception:%s' % e)                
+        except Exception as e:
+            print('Exception:%s' % e)
         
         
         
 except Exception, e:
-    print('Exception:%s', e)
+    print('Exception:%s' % e)
 
 
 
