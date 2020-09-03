@@ -581,7 +581,7 @@ function m_button2(id, text, data, outline_color) {
   return str;
 }
 
-function request_search(page, move_top=true) {
+function global_sub_request_search(page, move_top=true) {
   var formData = get_formdata('#form_search')
   formData += '&page=' + page;
   $.ajax({
