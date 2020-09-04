@@ -11,7 +11,7 @@
   {{ macros.info_text('python_version', 'Python 버전') }}
   {{ macros.info_text('platform', 'Platform') }}
   {{ macros.info_text('processor', 'Processor') }}
-  {{ macros.info_text_and_buttons('version', 'SJVA 버전', [['changelog_btn', '업데이트 내역']]) }}
+  {{ macros.info_text_and_buttons('version', 'SJVA 버전', [['changelog_btn', '업데이트 내역'], ['recent_version_btn', '최신버전 확인']]) }}
   {{ macros.info_text('path_app_root', 'SJVA 폴더') }}
   {{ macros.info_text('running_type', '실행타입') }}
   {{ macros.info_text('auth', '인증') }}
@@ -104,27 +104,50 @@ $(document).ready(function(){
     make_system(data);
     make_scheduler_list(data.scheduler);
   });
-
-  $("body").on('click', '#changelog_btn', function(e){
-    e.preventDefault();
-    window.location.href='/system/information';
-  });
-
 });
 
+$("body").on('click', '#changelog_btn', function(e){
+  e.preventDefault();
+  window.location.href='/system/information';
+});
 
+$("body").on('click', '#recent_version_btn', function(e){
+  e.preventDefault();
+  $.ajax({
+    url: '/system/ajax/recent_version',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret)
+        $.notify('<strong>최신버전 : '+data.version+'</strong>', {type: 'success'});
+      else
+        $.notify('<strong>확인 실패</strong>', {type: 'warning'});
+    }
+  });
+});
 
 function make_system(data) {
+  console.log(data);
   for(var key in data.system) {
     if (key == 'auth' && data.system[key].startsWith('인증')==false)
       document.getElementById(key).innerHTML = '<span style="color:red;font-weight: bold;font-size: xx-large ;">' + data.system[key]+ '</span>';
-    else
-      document.getElementById(key).innerHTML = data.system[key];
+    else {
+      if (document.getElementById(key) != null)
+        document.getElementById(key).innerHTML = data.system[key];
+    }
+    tmp = data.system['version']
+    if (data.system['version'] == data.system['recent_version']) {
+      tmp += ' (최신버전)';
+    } else {
+      tmp += ' <span style="color:red;font-weight: bold;">(최신버전이 아닙니다. 최신:'+data.system['recent_version']+')</span>';
+    }
+    document.getElementById('version').innerHTML = tmp;
   }
+  //console.log(document.getElementById('version'))
+  //document.getElementById('version').innerHTML = data.system.version + data.system.recent_version;
 }
 
-
-
-  
 </script>    
 {% endblock %}
