@@ -56,6 +56,10 @@
     
         {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
         {{ macros.setting_input_int('web_page_size', '웹 페이지당 게시물 수', value=arg['web_page_size'], min='1', placeholder='30') }}
+        
+        {{ macros.setting_input_text('rclone_bin_path', 'Binary Path', value=arg['rclone_bin_path'], desc=['실행 파일 경로']) }}
+        {{ macros.setting_input_text('rclone_config_path', 'Config Path', value=arg['rclone_config_path'], desc=['config 파일 경로']) }}
+
         {{ macros.setting_button([['global_setting_save_btn', '저장']]) }}
         {{ macros.m_hr() }}
         {{ macros.setting_button([['global_reset_db_btn', '목록 전체 지우기']], left='DB정리' ) }}
