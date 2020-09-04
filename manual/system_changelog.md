@@ -12,8 +12,12 @@
     - 설정 - 백업, 초기화<br>
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
+    - 봇 영화 다음 평정 조건 추가 <br>
 
-
+##### ■ 0.2.15.12 (2020-09-04) #####
+- tving : 최근 방송 포스터 보기 옵션 추가 by <span style="font-weight:bold; color:brown">이치로<span> [(매뉴얼)](https://github.com/soju6jan/tving/pull/1)<br>
+- 비디오 다운로드 플러그인 추가 - ani365 [(참고)](https://sjva.me/bbs/board.php?bo_table=sjva_plugin&wr_id=1496)<br>
+  
 
 ##### ■ 0.2.15.9 (2020-08-30) #####
 - 구드공 : 카데고리 추가. ktv-어린이, ftv-더빙, movie-더빙, etc-영상/음악/SW/기타<br>
