@@ -14,7 +14,11 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
-##### ■ 0.2.15.12 (2020-09-04) #####
+##### ■ 0.2.15.13 (2020-09-04) #####
+- 구드공 : gc리모트인 경우 Rclone Expand 플러그인 호출하는 기능 삭제<br>
+  Copy Dest에 직접 리모트 작성해서 사용.<br>
+- rclone : binary, config 파일경로 설정 추가<br>
+- ROOT/bin/Linux/fclone 추가<br>
 - tving : 최근 방송 포스터 보기 옵션 추가 by <span style="font-weight:bold; color:brown">이치로<span> [(매뉴얼)](https://github.com/soju6jan/tving/pull/1)<br>
 - 비디오 다운로드 플러그인 추가 - ani365 [(참고)](https://sjva.me/bbs/board.php?bo_table=sjva_plugin&wr_id=1496)<br>
   
