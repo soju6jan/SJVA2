@@ -139,7 +139,7 @@ function make_system(data) {
     }
     tmp = data.system['version']
     if (data.system['version'] == data.system['recent_version']) {
-      tmp += ' (최신버전)';
+      tmp += ' <span style="color:red;font-weight: bold;">(최신버전)</span>';
     } else {
       tmp += ' <span style="color:red;font-weight: bold;">(최신버전이 아닙니다. 최신:'+data.system['recent_version']+')</span>';
     }
