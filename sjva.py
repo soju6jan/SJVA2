@@ -61,16 +61,7 @@ try:
                     print('Exception:%s' % e)                
         except Exception as e:
             print('Exception:%s' % e)
-        
-        try:
-            tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'custom', 'bot_downloader_ktv')
-            filelist = ['__init__.pyo', 'logic_normal.pyo', 'logic.pyo', 'model.pyo', 'plugin.pyo']
-            for t in filelist:
-                os.remove(os.path.join(tmp, t))
-        except Exception as e:
-            print('Exception:%s' % e)
-        
-        
+       
 except Exception, e:
     print('Exception:%s' % e)
 
