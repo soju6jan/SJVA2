@@ -14,7 +14,8 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
-##### ■ 0.2.15.17 (2020-09-05) #####
+##### ■ 0.2.15.18 (2020-09-05) #####
+  - 구드공 : fclone UI적용, gsheet get_size시 문서업데이트 오류수정 by<span style="font-weight:bold; color:brown">오리알<span>
   - 구드공 : 팝업창 사라지는 문제 수정<br>
   - 봇 3종<br>
     - 구드공 조건에 의해 받을 경우 팝업창 표시 않음.<br>
