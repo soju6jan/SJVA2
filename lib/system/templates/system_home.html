@@ -129,7 +129,6 @@ $("body").on('click', '#recent_version_btn', function(e){
 });
 
 function make_system(data) {
-  console.log(data);
   for(var key in data.system) {
     if (key == 'auth' && data.system[key].startsWith('인증')==false)
       document.getElementById(key).innerHTML = '<span style="color:red;font-weight: bold;font-size: xx-large ;">' + data.system[key]+ '</span>';
