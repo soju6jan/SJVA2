@@ -14,6 +14,12 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+##### ■ 0.2.16.1 (2020-09-05) #####
+  - ddns 테스트 안되는 문제 수정<br>
+  - 구드공 : Plex 일부 영상 검색 안 되는 문제 수정<br>
+  - ani365 : 자막 srt로 변환 안 되는 문제 수정<br>
+    기존에 받은 영상은 DB에서 지우고 다운로드 재요청 후 자막생성되면 다운로드 중지<br>
+    srt 파일도 지워야 재생성<br>
 
 ##### <span style="color:red">■ 0.2.16 (2020-09-07)</span> #####
  - [중요] DB 파일 분리 [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1868)<br>
