@@ -1,3 +1,12 @@
+###### 🟡 파일 다운로드 <br> ######
+- GET <b>/file/path/to/download</b><br>
+  Root 하위만 가능<br>
+  <br>
+- Parameter<br>
+  apikey : APIKEY<br>
+  <br>
+- 예) https://localhost:9999/file/data/db/rclone.conf?apikey=0123456789<br>
+
 ###### 🟡 번역 <br> ######
 - GET <b>/system/api/trans/do</b><br>
   <br>

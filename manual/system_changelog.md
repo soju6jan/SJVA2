@@ -14,6 +14,11 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+
+##### <span style="color:red">■ 0.2.16 (2020-09-07)</span> #####
+ - [중요] DB 파일 분리 [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=1868)<br>
+
+
 ##### ■ 0.2.15.18 (2020-09-05) #####
   - 비디오 다운로드, 봇 KTV : 시작시 자동실행 안하는 문제 수정<br>
   - RcloneExpand : fclone UI적용, gsheet get_size시 문서업데이트 오류수정 by<span style="font-weight:bold; color:brown">오리알<span>
