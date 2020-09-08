@@ -14,6 +14,9 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+##### ■ 0.2.16.3 (2020-09-08) #####
+  - GSheet 기능 업데이트 by<span style="font-weight:bold; color:brown">오리알<span><br>
+
 ##### ■ 0.2.16.2 (2020-09-07) #####
   - 설치 팝업 안 뜨는 문제 수정<br>
   - 봇 영화 : 구드공 연동 + 자막 포함시 간헐적으로 영상이 없는 문제 수정<br>
