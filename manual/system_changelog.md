@@ -14,6 +14,11 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+##### ■ 0.2.16.4 (2020-09-09) #####
+  - 구드공 
+    - crypt나 로컬로 받을 때 구글 리모트 이름 지정하는 옵션 추가<br>
+    - 임시 conf 사용안함. 리모트 경로대신 {폴더ID} 사용하는 방식으로 명령 변경<br>
+
 ##### ■ 0.2.16.3 (2020-09-08) #####
   - GSheet 기능 업데이트 by<span style="font-weight:bold; color:brown">오리알<span><br>
 
