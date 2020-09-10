@@ -9,6 +9,7 @@ export CELERY_WORKER_COUNT="2"
 export RUN_FILEBROWSER="true"
 export FILEBROWSER_PORT="9998"
 export OS_PREFIX="Linux"
+export FILEBROWSER_BASEURL="/filebrowser"
 EOF
 fi
 
@@ -33,7 +34,11 @@ fi
 
 if [ "${RUN_FILEBROWSER}" == "true" ]; then
     chmod +x ./bin/${OS_PREFIX}/filebrowser
-    nohup ./bin/${OS_PREFIX}/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db &
+    if [ -z "${FILEBROWSER_BASEURL}"]; then
+        nohup ./bin/${OS_PREFIX}/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db > /dev/null 2>&1 &
+    else
+        nohup ./bin/${OS_PREFIX}/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db -b ${FILEBROWSER_BASEURL} > /dev/null 2>&1 &
+    fi
     echo "Start Filebrowser. port:${FILEBROWSER_PORT}"
 fi
 

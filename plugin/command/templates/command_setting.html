@@ -3,7 +3,8 @@
 
 <div>
   <!-- 일반 -->
-  {{ macros.setting_input_text_and_buttons('command', 'Command', [['foreground_command_btn', '실행'], ['job_new_btn', '저장']],value=arg['api_command'], desc=['예) cmd, /bin/sh, /bin/bash, python test.py, ifconfig']) }}
+  {{ macros.setting_input_textarea('command', 'Command', row='5', value=arg['api_command'], desc=['예) cmd, /bin/sh, /bin/bash, python test.py, ifconfig']) }}
+  {{ macros.setting_button([['foreground_command_btn', '실행'], ['job_new_btn', '저장']]) }}
 
   {{ macros.setting_top() }}
     <div class="input-group col-sm-9">
@@ -41,7 +42,7 @@
 {{ macros.m_modal_start('job_modal', '', 'modal-lg') }}
   <form id='item_setting' name='item_setting'>
     <input type='hidden' id="job_id" name="job_id">
-    {{ macros.setting_input_text('job_command', 'Command') }}
+    {{ macros.setting_input_textarea('job_command', 'Command', row=10) }}
     {{ macros.setting_input_text('job_description', 'Description') }}
     {{ macros.setting_radio('job_schedule_type', '스케쥴링 타입', ['없음', '시작시 한번 실행', '스케쥴링']) }}
     {{ macros.setting_input_text('job_schedule_info', '스케쥴링 정보', desc=['Interval(minute 단위)이나 Cron 설정']) }}
