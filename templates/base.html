@@ -600,4 +600,47 @@ function global_sub_request_search(page, move_top=true) {
   });
 }
 
+
+$("body").on('click', '#global_json_btn', function(e){
+  e.preventDefault();
+  var id = $(this).data('id');
+  for (i in current_data.list) {
+    if (current_data.list[i].id == id) {
+      m_modal(current_data.list[i])
+    }
+  }
+});
+
+$("body").on('click', '#global_reset_btn', function(e){
+  e.preventDefault();
+  document.getElementById("order").value = 'desc';
+  document.getElementById("option").value = 'all';
+  document.getElementById("search_word").value = '';
+  global_sub_request_search('1')
+});
+
+$("body").on('click', '#global_remove_btn', function(e) {
+  e.preventDefault();
+  id = $(this).data('id');
+  $.ajax({
+    url: '/'+package_name+'/ajax/'+sub+ '/db_remove',
+    type: "POST", 
+    cache: false,
+    data: {id:id},
+    dataType: "json",
+    success: function (data) {
+      if (data) {
+        $.notify('<strong>삭제되었습니다.</strong>', {
+          type: 'success'
+        });
+        global_sub_request_search(current_data.paging.current_page, false)
+      } else {
+        $.notify('<strong>삭제 실패</strong>', {
+          type: 'warning'
+        });
+      }
+    }
+  });
+});
+
 </script>
