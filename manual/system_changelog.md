@@ -14,8 +14,10 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
-##### ■ 0.2.16.10 (2020-09-09) #####
-  - av agent : javdb 사이트 변경 대응<br>
+##### ■ 0.2.16.10 (2020-09-21) #####
+  - av agent <br>
+    - javdb 사이트 변경 대응<br>
+    - dmm 이미지 proxy 방식 변경.python request => 리눅스 wget 명령<br>
 
 ##### ■ 0.2.16.4 (2020-09-09) #####
   - 구드공 
