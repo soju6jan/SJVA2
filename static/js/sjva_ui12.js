@@ -124,7 +124,7 @@ function m_progress2(id, width, label) {
 function make_page_html(data) {
   str = ' \
     <div class="d-inline-block"></div> \
-      <div class="row"> \
+      <div class="row" style="padding:3px;"> \
         <div class="col-sm-12"> \
           <div class="btn-toolbar" style="justify-content: center;" role="toolbar" aria-label="Toolbar with button groups" > \
             <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">'
