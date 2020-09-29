@@ -14,6 +14,9 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+##### ■ 0.2.16.16 (2020-09-29) #####
+  - wavve 프로그램별 다운시 큐 DB에 저장하여 실패시 자동 재실행 by <span style="font-weight:bold; color:brown">lapis<span><br>
+
 ##### ■ 0.2.16.10 (2020-09-21) #####
   - 웹. 구드공 요청 횟수 제한 추가<br>
     - 올라오는 모든 컨텐츠를 큰 고민 없이 요청하여 받는 경우가 많음.<br>
