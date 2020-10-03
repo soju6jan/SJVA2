@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "nova-gsuite07-rclone-01",
+  "private_key_id": "00e79f4cc482b94f7fe434cdad7dc9ed8f8114e5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCUJ0OaL+mxiHU7\nMd/Mr2PdokOGnbeJjd+NAEIEt6DdVULybe5sx4K858WMz94DpKAjhz3Avb/AYFuK\noP+gbN6uPk+cbb82d8S+IaCCu3zUBDTHriXN7idWBEoWOhEXX9Kpd7iKXg1JX/JE\nYEpuiM6zMyzGKko2R8xRKtImDqMo/z8qwijQFz35R5T/wCtFhQMTwlXSSHVNc8Db\nHRpCB/OTb9//mAVfX9aY5tERhoTDT11cHzb5sN3dYI4LPl6qGpPAhpRzzMn/7j+9\n1SYjEIsXNH0nR3dIjfqTUryMMy/dtM7tF1eZUWvDuxEAZpr/ao+QOvGgDeOzyAr/\ne04vYEHfAgMBAAECggEACKKicWRbvTIEdaWD2c50eWPuhqdyHedLwYN9CM30Z0id\nPqJctGQ+mqi+hLIa/fn3x/DA9ZdTWJdLm3CkTBZiz/CO1Sg3OtzPqWHHyGCJ0PvI\nlCwlq1nQ9IkK3nFjZj1HrjWg50oktFAOcwc5X2iQj7TEZjqE/9WLs0SiyH58hE4H\n/0irbFC/R2LiMte3pj2I78eSVby7j2tzVgbigh53S8a7tnHZeY8VvrZOg+jwb3v2\nyFqT9uTXCpcBxsyPtzVwgWob3ytGEytbRdveQEZvZGNluzfc/dMA7zcKtzjmAAQ+\nP3W1mNzprHLLBklMZ4bKgiVVtYU5GhHXfctkvPHgaQKBgQDQ3X+tfrDXYZumX4Gu\nQPdL0SmpSaLthsweHz17F6OLWbkSeG5SKIn1Ycx+oBUwKQpJJKBHiMHhvvPVUy74\nai2jXQOs9QSXD2Zp7ydYGlw6jBqoljOisw5L5Cn2nkdlR6Oo5rbWPRSW+jEw5pg+\nBYhrBjjOpDgtid4ehnK7tme6BwKBgQC1llZ3Qfl9thR3jC2RJV3LEBWzZVEyHhJZ\nvW8Ci6gIj9fL2OnPnZpNC+nOZ3rxxu/gDJgJ8RWCxLEYU2CVWEoV6+ym7ObuJKy+\n3cFOZXbSU+tfXZMtJEXozO4Ve0RCdZZhsnJ5v7zfT8UkB/UzT0b+tkOHU0U1AF+Y\neH3dKuojaQKBgEFQYrLQYWCY52GZkCX7rtmIqOyFWGvKsV3iCwnJFJ1pC1TZUDZk\n8u9HC/m0+as7yjmhOHXmMCr12a4l+xQ3r9ncJmAZprvOVwpdfQIyDBFK6rM5dSA1\nugzFZtH2IQFs66LPsvE/3IZx6pwOICGU/Vnqci08cUzcRhdpl8tXeQxVAoGAII8n\nS9Tpjk/ilZjt5rOjgLCOo48MIwdfVPXxfKxb4cUg9W0cZ1yj+SKktpy5X7bC9hJs\nBIRUzhDEjE8O51hgWFPoJ/ocYiDzVHngmlT5HDdt4bielh6F5nswSWvDzoLVBwl/\nGzN1AzmDaLWAksWpPiyiKRaWNy2s9mLMdqamOtkCgYBL93ez/aR1yMD8gREhK+Gj\ncz6KyTTstC9Y3pZdBm4A8/N3D9NhwLXZuSrMlyuWpG7/bJn7kTcdYkwOxx3fngt0\nQ5xaI393mIG0HROIY3e8QzmWaZ6+ZsiZJd8P2vekwtcR3r1z6k8Xax0GwRWwiHDx\nuAmkg9R/1uF5jvI2ybneNQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "nova-gsuite07-p02-sa091@nova-gsuite07-rclone-01.iam.gserviceaccount.com",
+  "client_id": "112061644335292284437",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nova-gsuite07-p02-sa091%40nova-gsuite07-rclone-01.iam.gserviceaccount.com"
+}

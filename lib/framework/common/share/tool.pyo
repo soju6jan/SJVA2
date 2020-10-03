@@ -3,3 +3,8 @@ type = drive
 scope = drive.metadata.readonly
 token = {"access_token":"ya29.a0AfH6SMBLQWxreYC8h8Dm0EwgZf_MgmKVMC--flcYxolukPQisyaM3gc7ngWgIHfDBvvOdXbBqKzXQQcPQz8PxaSpWs4_OIzJE5RbIKGeBydLZ0z80qTLmByeILJtQTYTcauG9qBNPPNL-3mzuFbrbDJFVRwzevZ-HEw","token_type":"Bearer","refresh_token":"1//0eB6ihShAdooqCgYIARAAGA4SNwF-L9Ir-LOvc20ugnBs0JL0uKMjCWvNlxlnmHPM3uT8nG5oa-1WAB_0SYP2X-TzNF564e0kWLc","expiry":"2020-09-26T04:38:02.5450742+09:00"}
 root_folder_id = 0AHwTcnjJKn_QUk9PVA
+
+
+[worker1]
+type = drive
+scope = drive
