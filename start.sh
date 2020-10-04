@@ -20,13 +20,6 @@ if [ -f "export.sh" ] ; then
     echo "Run export.sh end"
 fi
 
-if [ -f "pre_start.sh" ] ; then
-    echo "Run pre_start.sh start"
-    chmod 777 pre_start.sh
-    source pre_start.sh
-    echo "Run pre_start.sh end"
-fi
-
 if [ "${USE_CELERY}" == "true" ] ; then
     nohup redis-server --port ${REDIS_PORT} &
     echo "Start redis-server port:${REDIS_PORT}"
