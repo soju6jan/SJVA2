@@ -88,6 +88,10 @@ var command_by_plugin = "{{arg['command_by_plugin']}}";
 
 $(document).ready(function(){
   ResizeTextArea();
+  request_list();
+});
+
+function request_list() {
   $.ajax({
     url: '/' + package_name + '/ajax/command_list',
     type: "POST", 
@@ -102,8 +106,7 @@ $(document).ready(function(){
       }
     }
   });
-});
-
+}
 
 // foreground_command 버튼
 $("body").on('click', '#foreground_command_btn', function(e){
@@ -342,6 +345,7 @@ $("body").on('click', '#job_process_close_btn', function(e){
     success: function (data) {
       if (data.ret == 'success')  {
         $.notify('<strong>프로세스를 종료하였습니다.</strong>', {type: 'success'});
+        request_list();
       } else {
         $.notify('<strong>프로세스 종료 실패</strong>', {type: 'warning'});
       }
@@ -362,13 +366,10 @@ $("body").on('click', '#job_background_btn', function(e){
     data:{job_id:job_id},
     success: function (data) {
       if (data.ret)  {
-        $.notify('<strong>실행 요청을 하였습니다.<br>로그를 확인하세요.</strong>', {
-          type: 'success'
-        });
+        $.notify('<strong>실행 요청을 하였습니다.<br>로그를 확인하세요.</strong>', {type: 'success'});
+        request_list();
       } else {
-        $.notify('<strong>실행 요청 실패</strong>', {
-          type: 'warning'
-        });
+        $.notify('<strong>실행 요청 실패</strong>', {type: 'warning'});
       }
     }
   });
