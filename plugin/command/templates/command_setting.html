@@ -327,11 +327,30 @@ $("body").on('click', '#job_foreground_btn', function(e){
       }
     }
   });
-
-  
-
-
 });
+
+$("body").on('click', '#job_process_close_btn', function(e){
+  e.preventDefault();
+  job_id = $(this).data('id');
+  job = get_job(job_id);
+  $.ajax({
+    url: '/' + package_name + '/ajax/process_close',
+    type: "POST", 
+    cache: false,
+    data:{job_id:job_id},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success')  {
+        $.notify('<strong>프로세스를 종료하였습니다.</strong>', {type: 'success'});
+      } else {
+        $.notify('<strong>프로세스 종료 실패</strong>', {type: 'warning'});
+      }
+    }
+  });
+});
+
+
+
 
 $("body").on('click', '#job_background_btn', function(e){
   e.preventDefault();
@@ -434,7 +453,8 @@ function make_list(data) {
   str = '';      
   
   for(var i in data) {
-    str += m_row_start()
+    console.log(data[i]);
+    str += m_row_start();
     str += m_col(1, data[i].id)
            
     tmp = '<p><strong>Command : </strong>' + data[i].command + '</P> \
@@ -448,6 +468,10 @@ function make_list(data) {
     if (data[i].filename != null) {
       tmp2 += m_button('job_file_edit_btn', '파일 수정', [{'key':'id', 'value':data[i].id}]);
     }
+    if (data[i].process_id != null) {
+      tmp2 += m_button('job_process_close_btn', '프로세스 끝내기', [{'key':'id', 'value':data[i].id}]);
+    }
+    
     
     tmp2 = m_button_group(tmp2)
     tmp += tmp2
