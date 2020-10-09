@@ -14,6 +14,10 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+##### ■ 0.2.16.21 (2020-10-09) #####
+  - youtube 플러그인 추가 by <span style="font-weight:bold; color:brown">joyful<span> [(게시글)](https://sjva.me/bbs/board.php?bo_table=sjva_plugin&wr_id=1608)<br>
+  - ani365 정상화<br>
+
 ##### ■ 0.2.16.20 (2020-10-07) #####
   - 봇 KTV : 리스트 표시 방법 개선 <span style="font-weight:bold; color:brown">이치로<span><br>
   - 봇 AV : 배우명으로 검색 추가 by <span style="font-weight:bold; color:brown">이치로<span><br>
