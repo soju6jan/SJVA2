@@ -14,6 +14,9 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+##### ■ 0.2.16.22 (2020-10-11) #####
+  - 웨이브 : program db 관련 기능 개선 by <span style="font-weight:bold; color:brown">lapis<span><br>
+
 ##### ■ 0.2.16.21 (2020-10-09) #####
   - youtube 플러그인 추가 by <span style="font-weight:bold; color:brown">joyful<span> [(게시글)](https://sjva.me/bbs/board.php?bo_table=sjva_plugin&wr_id=1608)<br>
   - ani365 정상화<br>
@@ -27,7 +30,7 @@
   - 구드공 : 릴레이 공유 방식 일부 수정. UI개선<br>
 
 ##### ■ 0.2.16.16 (2020-09-29) #####
-  - wavve 프로그램별 다운시 큐 DB에 저장하여 실패시 자동 재실행 by <span style="font-weight:bold; color:brown">lapis<span><br>
+  - 웨이브 : 프로그램별 다운시 큐 DB에 저장하여 실패시 자동 재실행 by <span style="font-weight:bold; color:brown">lapis<span><br>
 
 ##### ■ 0.2.16.10 (2020-09-21) #####
   - 웹. 구드공 요청 횟수 제한 추가<br>
