@@ -14,6 +14,11 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+##### ■ 0.2.16.23 (2020-10-13) #####
+  - 트랜스미션 : 트랜스미션 여유 공간 확인 기능 추가 by <span style="font-weight:bold; color:brown">이치로<span> [(참고)](https://github.com/soju6jan/downloader/pull/10)<br> 
+  - 구드공 : fail_blacklist, fail_relay_blacklist 구분<br>
+  - ani365 : 보안 강화되어 다운 안되는 문제 수정<br>
+
 ##### ■ 0.2.16.22 (2020-10-11) #####
   - 웨이브 : program db 관련 기능 개선 by <span style="font-weight:bold; color:brown">lapis<span><br>
   - 릴레이 공유 블랙리스트<br>
