@@ -14,6 +14,11 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+
+##### ■ 0.2.16.25 (2020-10-14) #####
+  - Podcast Maker : 구글드라이브 파일을 RSS로 만드는 기능 추가 [(게시글)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=2484)<br>
+
+
 ##### ■ 0.2.16.24 (2020-10-13) #####
   - 만화 다운로드 플러그인 추가 - 마나토끼, 뉴토끼 [(게시글)](https://sjva.me/bbs/board.php?bo_table=sjva_plugin&wr_id=1657)<br>
   - ani365 : 보안 강화되어 다운 안되는 문제 수정<br>
