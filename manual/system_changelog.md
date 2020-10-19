@@ -18,6 +18,7 @@
 ##### ■ 0.2.16.26 (2020-10-18) #####
   - 마나토끼 : 확장자 없는 이미지 URL 버그 픽스<br>
   - javdb : 날짜 라벨 변경 대응<br>
+  - 릴레이용 공드 한도 초과로 인해 10개 정도의 봇 요청을 일괄 삭제. fail_sorry_lost_file로 표시<br>
 
 ##### ■ 0.2.16.25 (2020-10-14) #####
   - Podcast Maker : 구글드라이브 파일을 RSS로 만드는 기능 추가 [(게시글)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=2484)<br>
