@@ -2,10 +2,14 @@
 #########################################################
 import os
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+if sys.version_info[0] == 2:
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lib'))
 import platform
+
+
+print(sys.path)
 
 try:
     from gevent import monkey;monkey.patch_all()
@@ -62,7 +66,7 @@ try:
         except Exception as e:
             print('Exception:%s' % e)
      
-except Exception, e:
+except Exception as e:
     print('Exception:%s' % e)
 
 
