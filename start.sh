@@ -21,13 +21,13 @@ if [ -f "export.sh" ] ; then
 fi
 
 if [ "${USE_CELERY}" == "true" ] ; then
-    nohup redis-server --port ${REDIS_PORT} &
+    nohup redis-server --port ${REDIS_PORT} > /dev/null 2>&1 &
     echo "Start redis-server port:${REDIS_PORT}"
 fi
 
 if [ "${RUN_FILEBROWSER}" == "true" ]; then
     chmod +x ./bin/${OS_PREFIX}/filebrowser
-    if [ -z "${FILEBROWSER_BASEURL}"]; then
+    if [ -z "${FILEBROWSER_BASEURL}" ]; then
         nohup ./bin/${OS_PREFIX}/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db > /dev/null 2>&1 &
     else
         nohup ./bin/${OS_PREFIX}/filebrowser -a 0.0.0.0 -p ${FILEBROWSER_PORT} -r / -d ./data/db/filebrowser.db -b ${FILEBROWSER_BASEURL} > /dev/null 2>&1 &
