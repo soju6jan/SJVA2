@@ -44,8 +44,8 @@ try:
         #        if os.path.exists(tmp):
         #            os.rename(tmp, tmp.replace('_sjva', ''))
         #            #shutil.move(tmp, tmp.replace('_sjva', 'sjva'))
-        #    except Exception as e:
-        #        logger.error('Exception:%s', e)
+        #    except Exception as exception:
+        #        logger.error('Exception:%s', exception)
         #        logger.error(traceback.format_exc())
         # av- 
         try:
@@ -61,13 +61,13 @@ try:
                     if os.path.exists(tmp):
                         print('remove plugin db:%s' % plugin)
                         os.remove(tmp)
-                except Exception as e:
-                    print('Exception:%s' % e)                
-        except Exception as e:
-            print('Exception:%s' % e)
+                except Exception as exception:
+                    print('Exception:%s' % exception)                
+        except Exception as exception:
+            print('Exception:%s' % exception)
      
-except Exception as e:
-    print('Exception:%s' % e)
+except Exception as exception:
+    print('Exception:%s' % exception)
 
 
 
@@ -89,8 +89,8 @@ def start_app():
             else:
                 print('framework.exit_code is -1')
             break
-        except Exception as e:
-            print(str(e))
+        except Exception as exception:
+            print(str(exception))
             import time
             time.sleep(10*i)
             continue
@@ -101,6 +101,6 @@ def start_app():
 if __name__ == '__main__':
     try:
         start_app()
-    except Exception as e:
-        print(str(e))
+    except Exception as exception:
+        print(str(exception))
         
