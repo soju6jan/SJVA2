@@ -14,6 +14,7 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+
 ##### ■ 0.2.16.30 (2020-10-22) #####
   - klive : 버그 수정<br>
   - epg : 간헐적으로 sjva 다운되는 문제 수정. 테스트 필요<br>
