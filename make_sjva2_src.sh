@@ -53,6 +53,7 @@ cp $dest/start.sh $dest2
 cp $dest/start_termux.sh $dest2
 cp $dest/worker_start.sh $dest2
 cp $dest/lib/framework/py_version_func.py $dest2/lib/framework/py_version_func.py
+cp $dest/lib/framework/menu.py $dest2/lib/framework/menu.py
 cp $dest/plugin/command/model.py $dest2/plugin/command/model.py
 
 chmod 777 -R /home/coder/project/SJ/git_release
