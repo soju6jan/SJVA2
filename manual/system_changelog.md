@@ -15,6 +15,21 @@
     - 봇 영화 다음 평정 조건 추가 <br>
 
 
+##### <span style="color:red">■ 0.2.17 (2020-10-24)</span> #####
+  - tivimate 연동 플러그인 추가<br>
+  - python3으로 변환 시작.<br>
+    - 구동만 되게 했으며 실제 기능 테스트는 대부분 못함. 최근 발생한 문제들은 다 이게 원인<br>
+  - .py git 추가<br>
+    - 파일정리 미비로 약간 난독화 함. 정리 후 오픈소스. 이 소스 보고 질문 사절<br>
+    - python3 구동환경이면 대부분 실행 가능하리라 생각 됨. 예:공유기 상의 optware 환경<br>
+      필요 패키지는 설치가 가능해야함.<br>
+  - python3 + .py 를 사용하는 termux용 설치 스크립트 추가<br>
+    - arch 상관없이 alpine 사용<br>
+    - python3 에서의 플러그인 테스트는 tv 카테고리만 함. 타 플러그인 이용시 동작하지 않을 수 있음<br>
+    - curl https://sjva.me/t | bash  => 기본 설치. filebrowser
+    - curl https://sjva.me/t | bash -s full => 약간의 패키지를 더 설치. rclone 파일 추가
+
+
 ##### ■ 0.2.16.30 (2020-10-22) #####
   - klive : 버그 수정<br>
   - epg : 간헐적으로 sjva 다운되는 문제 수정. 테스트 필요<br>
