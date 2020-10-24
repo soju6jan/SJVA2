@@ -25,7 +25,7 @@
       필요 패키지는 설치가 가능해야함.<br>
   - python3 + .py 를 사용하는 termux용 설치 스크립트 추가<br>
     - arch 상관없이 alpine 사용<br>
-    - python3 에서의 플러그인 테스트는 tv 카테고리만 함. 타 플러그인 이용시 동작하지 않을 수 있음<br>
+    - python3 에서의 플러그인 테스트는 tv 카테고리만 함. 타 플러그인 이용시 동작하지 않을 수 있음c
     - curl https://sjva.me/t | bash  => 기본 설치. filebrowser
     - curl https://sjva.me/t | bash -s full => 약간의 패키지를 더 설치. rclone 파일 추가
 
