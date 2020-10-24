@@ -16,18 +16,7 @@
 
 
 ##### <span style="color:red">■ 0.2.17 (2020-10-24)</span> #####
-  - tivimate 연동 플러그인 추가<br>
-  - python3으로 변환 시작.<br>
-    - 구동만 되게 했으며 실제 기능 테스트는 대부분 못함. 최근 발생한 문제들은 다 이게 원인<br>
-  - .py git 추가<br>
-    - 정리가 아직 되지 않은 상태이므로 이 소스 보고 질문 사절<br>
-    - python3 구동환경이면 대부분 실행 가능하리라 생각 됨. 예:공유기 상의 optware 환경<br>
-      필요 패키지는 설치가 가능해야 함.<br>
-  - python3 + .py 를 사용하는 termux용 설치 스크립트 추가<br>
-    - arch 상관없이 alpine 사용<br>
-    - python3 에서의 플러그인 테스트는 tv 카테고리만 함. 타 플러그인 이용시 동작하지 않을 수 있음c
-    - curl https://sjva.me/t | bash  => 기본 설치. filebrowser
-    - curl https://sjva.me/t | bash -s full => 약간의 패키지를 더 설치. rclone 파일 추가
+  - 매뉴얼 작성중<br>
 
 
 ##### ■ 0.2.16.30 (2020-10-22) #####
