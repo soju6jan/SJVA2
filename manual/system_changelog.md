@@ -16,7 +16,7 @@
 
 
 ##### <span style="color:red">■ 0.2.17 (2020-10-24)</span> #####
-  - 매뉴얼 작성중<br>
+  - tivimate 플러그인 [(게시글)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=2537)<br>
 
 
 ##### ■ 0.2.16.30 (2020-10-22) #####
