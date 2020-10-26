@@ -133,12 +133,8 @@ $(document).ready(function(){
       data:{},
       dataType: "json",
       success: function (data) {
-        var str = '';
-        for (var i = 0; i < data.length; i++) {
-          str += "<div>" + data[i] + "</div>";
-        }
         document.getElementById("normal_modal_title").innerHTML = "Rclone version";
-        document.getElementById("normal_modal_body").innerHTML = str;
+        document.getElementById("normal_modal_body").innerHTML = '<pre>' + data + '</pre>';
         $("#normal_modal").modal();
       }
     });
