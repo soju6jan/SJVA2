@@ -16,10 +16,12 @@
 
 ##### ■ 0.2.17.3 (2020-10-26) #####
   - termux 스크립트 변경<br>
-    - termux저장소 접근 권한 필요. db파일은 안드 다운로드 폴더 SJVA 폴더 안에 저장ㅊ
+    - termux 저장소 접근 권한 필요. db파일은 안드 다운로드 폴더 SJVA 폴더 안에 저장ㅊ
       termux 데이터를 모두 삭제 후 재설치에도 설정 유지<br>
+    - alpine 기준 도커와 동일하게 /app 폴더가 sjva 파일 위치<br>
     - termux 실행 후 background로 sjva 자동 실행되는데 화면에서 k 입력시 관련 프로세스 모두 kill<br>
-    - 다시 s 입력시 실행. foreground 실행되므로 로그 확인<br>
+    - 다시 s 입력시 실행. foreground 실행되므로 로그 확인 가능<br>
+    
 
 ##### <span style="color:red">■ 0.2.17 (2020-10-24)</span> #####
   - tivimate 플러그인 [(게시글)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=2537)<br>
