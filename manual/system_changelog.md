@@ -14,6 +14,11 @@
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
     - 봇 영화 다음 평정 조건 추가 <br>
 
+
+##### ■ 0.2.17.4 (2020-10-27) #####
+  - ffmpeg 권한 문제 수정<br>
+
+
 ##### ■ 0.2.17.3 (2020-10-26) #####
   - termux 스크립트 변경<br>
     - termux 저장소 접근 권한 필요. db파일은 안드 다운로드 폴더 SJVA 폴더 안에 저장ㅊ
@@ -21,7 +26,7 @@
     - alpine 기준 도커와 동일하게 /app 폴더가 sjva 파일 위치<br>
     - termux 실행 후 background로 sjva 자동 실행되는데 화면에서 k 입력시 관련 프로세스 모두 kill<br>
     - 다시 s 입력시 실행. foreground 실행되므로 로그 확인 가능<br>
-    
+    - nginx 플러그인 설치 가능<br>
 
 ##### <span style="color:red">■ 0.2.17 (2020-10-24)</span> #####
   - tivimate 플러그인 [(게시글)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=2537)<br>
