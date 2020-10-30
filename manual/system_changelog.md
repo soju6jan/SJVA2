@@ -7,12 +7,14 @@
     - plex 통합 에이전트 + sjva.bundle<br>
     - Daum 쿠키값 관련. Daum TV 플러그인 삭제. 관련 API 정리<br>    
     - tv 이동폴더 지정 풀매칭으로<br>
-    - 토렌트 watch 폴더 기능<br>
   - 검토<br>
     - 설정 - 백업, 초기화<br>
     - downloader 일반파일(자막) 설정 없어도 받기<br>
     - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
-    - 봇 영화 다음 평정 조건 추가 <br>
+    - 봇 영화 다음 평점 조건 추가 <br>
+  - recent<br>
+    - dmm 에이전트 카테고리 추가 : https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675
+    - 
 
 
 ##### ■ 0.2.17.4 (2020-10-27) #####
