@@ -10,11 +10,10 @@
   - 검토<br>
     - 설정 - 백업, 초기화<br>
     - downloader 일반파일(자막) 설정 없어도 받기<br>
-    - uncensored 처리 [(참고)]](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)
+    - uncensored 처리 [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)<br>
     - 봇 영화 다음 평점 조건 추가 <br>
   - recent<br>
-    - dmm 에이전트 카테고리 추가 : https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675
-    - 
+    - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
 ##### ■ 0.2.17.5 (2020-11-02) #####
   - 2등급 회원 일괄 삭제<br>
