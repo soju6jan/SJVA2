@@ -15,6 +15,25 @@
   - recent<br>
     - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
+
+##### ■ 0.2.17.7 (2020-11-12) #####
+  - klive 
+      - custom 변경시 epg 생성 안하도록 변경. 너무 오래걸림<br>
+        epg 스케쥴 시간때 변경된 채널로 생성되며 필요한 경우에는 수동으로 실행해야 함.<br>
+      - tving : drm 영상 포함 여부 선택 가능<br>
+        디바이스ID UI 추가. 최초는 첫번째 값으로 세팅됨.<br>
+  - tivimate<br>
+    - drm 설정 추가<br>
+    - 티빙 영화 카테고리<br>
+      드라마 : category = MG100,MG190,MG230,MG270,MG290<br>
+      로멘스/멜로 : category = MG130<br>
+      코미디 : category = MG110<br>
+      액션/SF : category = MG120,MG170,MG180,MG220,MG260,MG200,MG210<br>
+      공포/스릴러 : category = MG160,MG140,MG150<br>
+      애니메이션 : category = MG240<br>
+      다큐/클래식 : category = MG250,MG330<br>
+
+
 ##### ■ 0.2.17.6 (2020-11-06) #####
   - 파일브라우저 2.0.16 => 2.9 로 변경<br>
 
