@@ -16,6 +16,10 @@
     - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
 
+##### ■ 0.2.17.8 (2020-11-13) #####
+  - pip 문 변경<br>
+    - os.syste("pip install XXX")  =>  os.system("{} install XXX".format(app.config['config']['pip']))<br>
+
 ##### ■ 0.2.17.7 (2020-11-12) #####
   - klive 
       - custom 변경시 epg 생성 안하도록 변경. 너무 오래걸림<br>
@@ -32,7 +36,7 @@
       공포/스릴러 : category = MG160,MG140,MG150<br>
       애니메이션 : category = MG240<br>
       다큐/클래식 : category = MG250,MG330<br>
-
+  
 
 ##### ■ 0.2.17.6 (2020-11-06) #####
   - 파일브라우저 2.0.16 => 2.9 로 변경<br>
