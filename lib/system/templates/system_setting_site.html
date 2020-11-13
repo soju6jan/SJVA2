@@ -8,12 +8,12 @@
   <nav>  
     {{ macros.m_tab_head_start() }}
       {{ macros.m_tab_head2('daum', 'Daum', true) }}
+      {{ macros.m_tab_head2('wavve', 'Wavve', false) }}
     {{ macros.m_tab_head_end() }}
   </nav>  
   <form id='setting' name='setting'>
     <div class="tab-content" id="nav-tabContent">
     {{ macros.m_tab_content_start('daum', true) }}
-
       <!--{{ macros.setting_input_text_and_buttons('site_daum_cookie', 'Cookie', [['site_daum_cookie_btn', 'Refresh']], value=arg['site_daum_cookie'],  desc=['지금은 TIARA=값 만 입력하세요', 'Refresh는 Selenium 연결이 가능한 경우만 실행됩니다.']) }}-->
       {{ macros.setting_input_text('site_daum_cookie', 'Cookie', value=arg['site_daum_cookie'],  desc=['TIARA=값 만 입력하세요']) }}
       {{ macros.m_hr() }}
@@ -27,9 +27,12 @@
       -->
       <!--{{ macros.m_hr() }}
       {{ macros.info_text_go('site_get_daum_cookie_url', 'Daum Cookie API', value=arg['site_get_daum_cookie_url'], desc=['Plex의 SJ Daum Agent 설정에 이 값을 입력하면 검색 실패시 자동적으로 새로운 쿠키값을 가져옵니다.'] ) }}-->
+    {{ macros.m_tab_content_end() }}
+    {{ macros.m_tab_content_start('wavve', false) }}
+      {{ macros.setting_input_textarea('site_wavve_credential', 'Credential', value=arg['site_wavve_credential'], row='3') }}
+        
+    {{ macros.m_tab_content_end() }}
 
-      
-    {{ macros.m_tab_content_end() }} 
     </div><!--tab-content-->
   </form>
 </div> <!--전체-->
