@@ -16,6 +16,13 @@
     - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
 
+##### ■ 0.2.17.10 (2020-11-14) #####
+  - 시스템 - 설정 - 일반설정 - Site
+    - 웨이브 proxy 설정도 이동<br>
+    - 티빙도 웨이브처럼 시스템 설정으로 변경<br>
+      티빙은 token값이 유저별 인증값으로 로그인시 항상 동일<br>
+
+
 ##### ■ 0.2.17.9 (2020-11-13) #####
   - [SinaPlayer 소개](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=2715)<br>
   - pip 문 변경<br>

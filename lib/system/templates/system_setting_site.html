@@ -8,7 +8,8 @@
   <nav>  
     {{ macros.m_tab_head_start() }}
       {{ macros.m_tab_head2('daum', 'Daum', true) }}
-      {{ macros.m_tab_head2('wavve', 'Wavve', false) }}
+      {{ macros.m_tab_head2('wavve', '웨이브', false) }}
+      {{ macros.m_tab_head2('tving', '티빙', false) }}
     {{ macros.m_tab_head_end() }}
   </nav>  
   <form id='setting' name='setting'>
@@ -30,7 +31,22 @@
     {{ macros.m_tab_content_end() }}
     {{ macros.m_tab_content_start('wavve', false) }}
       {{ macros.setting_input_textarea('site_wavve_credential', 'Credential', value=arg['site_wavve_credential'], row='3') }}
-        
+      {{ macros.setting_checkbox('site_wavve_use_proxy', 'Proxy 사용', value=arg['site_wavve_use_proxy'], desc=None) }}
+      <div id="site_wavve_use_proxy_div" class="collapse">
+          {{ macros.setting_input_text('site_wavve_proxy_url', 'Proxy URL', value=arg['site_wavve_proxy_url'], desc=None) }}
+      </div>
+    {{ macros.m_tab_content_end() }}
+
+    {{ macros.m_tab_content_start('tving', false) }}
+      {{ macros.setting_radio('site_tving_login_type', '로그인 타입', ['CJONE', 'TVING'], value=arg['site_tving_login_type']) }}
+      {{ macros.setting_input_text('site_tving_id', 'ID', value=arg['site_tving_id'], col='3') }}
+      {{ macros.setting_input_text_and_buttons('site_tving_pw', '암호', [['site_tving_login_btn', '토큰 가져오기']], value=arg['site_tving_pw'], col='6', type='password') }}
+      {{ macros.setting_input_text_and_buttons('site_tving_token', '토큰', [['site_tving_deviceid_btn', 'DeviceID 목록 가져오기']], value=arg['site_tving_token'], col='8', desc=['계정 정보대신 이 값을 사용합니다.', '이 값을 수동으로 넣는 경우 계정정보를 입력할 필요가 없습니다.', '_tving_token=XXXXXX 형식']) }}
+      {{ macros.setting_input_text('site_tving_deviceid', 'Device ID', value=arg['site_tving_deviceid'], col='3', desc=['model이 PC인 항목의 uuid 값 입력']) }}
+      {{ macros.setting_checkbox('site_tving_use_proxy', 'Proxy 사용', value=arg['site_tving_use_proxy'], desc=None) }}
+      <div id="site_tving_use_proxy_div" class="collapse">
+          {{ macros.setting_input_text('site_tving_proxy_url', 'Proxy URL', value=arg['site_tving_proxy_url'], desc=None) }}
+      </div>
     {{ macros.m_tab_content_end() }}
 
     </div><!--tab-content-->
@@ -38,13 +54,20 @@
 </div> <!--전체-->
 
 
-
 <script type="text/javascript">
 var package_name = "{{arg['package_name']}}";
 var sub = "{{arg['sub'] }}";
 
 $(document).ready(function(){
-  
+  use_collapse("site_wavve_use_proxy");
+  use_collapse("site_tving_use_proxy");
+});
+
+$('#site_wavve_use_proxy').change(function() {
+  use_collapse('site_wavve_use_proxy');
+});
+$('#site_tving_use_proxy').change(function() {
+  use_collapse('site_tving_use_proxy');
 });
 
 
@@ -103,6 +126,50 @@ $("body").on('change', '#scheduler', function(e){
     }
   });
 });
+
+
+// 티빙
+$("body").on('click', '#site_tving_login_btn', function(e) {
+  e.preventDefault(); 
+  tving_id = document.getElementById("site_tving_id").value;
+  tving_pw = document.getElementById("site_tving_pw").value;
+  tving_login_type = ($("#site_tving_login_type0").prop('checked')) ? '0' : '1';
+  $.ajax({
+    url: '/' + package_name + '/ajax/' + sub + '/tving_login',
+    type: "POST", 
+    cache: false,
+    data: {tving_id:tving_id, tving_pw:tving_pw, tving_login_type:tving_login_type},
+    dataType: "json",
+    success: function (ret) {
+      if (ret.ret) {
+        notify("토큰값을 가져왔습니다.<br>저장버튼을 눌러야 값을 저장합니다.", "success");
+        document.getElementById("site_tving_token").value = ret['token'];
+      } else {
+        notify("로그인에 실패하였습니다.", "warning");
+      }
+    }
+  });
+});
+
+$("body").on('click', '#site_tving_deviceid_btn', function(e) {
+  e.preventDefault(); 
+  tving_token = document.getElementById("site_tving_token").value;
+  $.ajax({
+    url: '/' + package_name + '/ajax/' + sub + '/tving_deviceid',
+    type: "POST", 
+    cache: false,
+    data: {tving_token:tving_token},
+    dataType: "json",
+    success: function (ret) {
+      if (ret.ret) {
+        m_modal(ret.device_list, "Device ID");
+      } else {
+        notify("실패하였습니다.", "warning");
+      }
+    }
+  });
+});
+
 
 
 </script>    

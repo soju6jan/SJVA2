@@ -643,4 +643,7 @@ $("body").on('click', '#global_remove_btn', function(e) {
   });
 });
 
+function notify(msg, type) {
+  $.notify('<strong>' + msg + '</strong>', {type: type});
+}
 </script>
