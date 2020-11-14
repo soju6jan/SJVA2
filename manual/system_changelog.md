@@ -26,7 +26,7 @@
 ##### ■ 0.2.17.9 (2020-11-13) #####
   - [SinaPlayer 소개](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=2715)<br>
   - pip 문 변경<br>
-    - os.syste("pip install XXX")  =>  os.system("{} install XXX".format(app.config['config']['pip']))<br>
+    - os.system("pip install XXX")  =>  os.system("{} install XXX".format(app.config['config']['pip']))<br>
   - 시스템 - 설정 - 일반설정 - Site - Wavve에 Credential 입력 하는 방식으로 변경<br>
     - 최근 웨이브 정책이 변경된 것 같음. 몇번 로그인하면 이전 credential값을 만료 시켜버림. 웹, 웨이브앱 포함 <br>
     - wavve, klive, tivimate 등 wavve 스트림 정보를 받는 것을은 모두 시스템 설정값을 가지고 이용하는 것으로 변경.<br>
