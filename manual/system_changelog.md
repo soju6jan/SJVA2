@@ -19,12 +19,13 @@
   - av_agent : proxy 기능 정리<br>
     - dmm 이미지 서버는 국내 ISP에서 차단됨<br>
     - plex에 전달하는 이미지 url은 무조건 sjva를 거치도록 변경. sjva가 이미지를 대신 받고 그 이미지를 전달함<br>
-    - 환경별 세팅<br>
+    - 현재는 국내 ISP 환경에서도 이미지를 잘 가져옴(https 제거시)<br>
+    - 적용순서<br>
+      - SJVA 구동 위치 상관없이 Proxy Off로 테스트<br>
       - VPS등 국내 ISP가 아닌 곳에서 SJVA 구동 : Proxy off<br>
-      - 국내 ISP에서 SJVA 구동<br>
-        - 오라클등 국내 ISP가 아닌 곳에서 Http Proxy 서버가 있는 경우 : Proxy On 으로 하여 Proxy 서버 url 입력<br>
-        - Proxy 서버가 없을 때 : Proxy Off, Discord-Proxy On<br>
-
+      - 국내 ISP에서 SJVA 구동. 국내 ISP가 아닌 곳에서 Http Proxy 서버가 있는 경우 : Proxy On 으로 하여 Proxy 서버 url 입력<br>
+      - Proxy 서버가 없을 때 : Proxy Off, Discord-Proxy On<br>
+    
 ##### ■ 0.2.17.11 (2020-11-14) #####
   - 다운로드 클라이언트 : 다운로드스테이션에서 사용하는 API 가 python3에서 동작하지 않는 문제 수정<br>
   - 시스템 - 설정 - 일반설정 - Site
