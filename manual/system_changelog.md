@@ -15,11 +15,15 @@
   - recent<br>
     - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
+
+##### ■ 0.2.17.16 (2020-12-03) #####
+  - command : execute api 추가<br>
+    url 요청으로 command를 실행하고 그 결과를 받을 수 있음.<br>
+
 ##### ■ 0.2.17.15 (2020-12-01) #####
   - tving, wavve python3 관련 수정 by <span style="font-weight:bold; color:brown">이치로<span><br>
   - command 관련 수정 [(참고)](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=1063)<br>
   
-
 ##### ■ 0.2.17.14 (2020-11-16) #####
   - wget => curl 변경<br>
 
