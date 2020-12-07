@@ -15,9 +15,11 @@
   - recent<br>
     - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
-##### ■ 0.2.17.17 (2020-12-06) #####
-  - sj_daum.bundle 업데이트 by <span style="font-weight:bold; color:brown">이치로<span>[(관련글)](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=1082)<br>
+##### ■ 0.2.17.18 (2020-12-07) #####
+  - 시스템 - 설정 - 인증 : 로그인 화면에서 메뉴 표시 여부 설정<br>
   - alsonglyricfind.bundle 업데이트<br>
+  - sj_daum.bundle 업데이트 by <span style="font-weight:bold; color:brown">이치로<span>[(관련글)](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=1082)<br>
+  
 
 ##### ■ 0.2.17.16 (2020-12-03) #####
   - command : execute api 추가<br>

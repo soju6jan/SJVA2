@@ -17,6 +17,7 @@
       <div id="use_login_div" class="collapse">
       {{ macros.setting_input_text('id', '로그인 ID', value=arg['id'], desc=['초기값은 sjva입니다.'], col='3') }}
       {{ macros.setting_input_text('pw', '로그인 암호', value=arg['pw'], col='3', type='password', desc=['초기값은 sjva입니다.']) }}
+      {{ macros.setting_checkbox('hide_menu', '로그인 화면 메뉴 표시 안함', value=arg['hide_menu']) }}
       </div>
     {{ macros.m_tab_content_end() }} 
     
