@@ -43,6 +43,7 @@
       {{ macros.setting_input_text_and_buttons('site_tving_pw', '암호', [['site_tving_login_btn', '토큰 가져오기']], value=arg['site_tving_pw'], col='6', type='password') }}
       {{ macros.setting_input_text_and_buttons('site_tving_token', '토큰', [['site_tving_deviceid_btn', 'DeviceID 목록 가져오기']], value=arg['site_tving_token'], col='8', desc=['계정 정보대신 이 값을 사용합니다.', '이 값을 수동으로 넣는 경우 계정정보를 입력할 필요가 없습니다.', '_tving_token=XXXXXX 형식']) }}
       {{ macros.setting_input_text('site_tving_deviceid', 'Device ID', value=arg['site_tving_deviceid'], col='3', desc=['model이 PC인 항목의 uuid 값 입력']) }}
+      {{ macros.setting_input_text('site_tving_uuid', 'UUID', value=arg['site_tving_uuid'], col='3', desc=['uuid']) }}
       {{ macros.setting_checkbox('site_tving_use_proxy', 'Proxy 사용', value=arg['site_tving_use_proxy'], desc=None) }}
       <div id="site_tving_use_proxy_div" class="collapse">
           {{ macros.setting_input_text('site_tving_proxy_url', 'Proxy URL', value=arg['site_tving_proxy_url'], desc=None) }}

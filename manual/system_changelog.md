@@ -15,6 +15,12 @@
   - recent<br>
     - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
+##### ■ 0.2.17.19 (2020-12-15) #####
+  - tving 업데이트 대응 : 시스템 - 설정 - uuid 입력<br>
+  - 참고<br>
+      - tving 플러그인은 예전 api사용. uuid 필요없음<br>
+      - tivimate에서 tving vod 재생은 웹 api 사용. uuid 필요<br>
+
 ##### ■ 0.2.17.18 (2020-12-07) #####
   - 시스템 - 설정 - 인증 : 로그인 화면에서 메뉴 표시 여부 설정<br>
   - alsonglyricfind.bundle 업데이트<br>
