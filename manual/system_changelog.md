@@ -15,6 +15,9 @@
   - recent<br>
     - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
+##### ■ 0.2.17.20 (2020-12-17) #####
+  - klive : tvh proxy "-loglevel quiet" 추가 by <span style="font-weight:bold; color:brown">ㅋㅋ잠자<span>[(관련글)](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=1149)<br>
+
 ##### ■ 0.2.17.19 (2020-12-15) #####
   - tving 업데이트 대응 : 시스템 - 설정 - uuid 입력<br>
   - 참고<br>
