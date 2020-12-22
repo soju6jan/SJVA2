@@ -15,6 +15,12 @@
   - recent<br>
     - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
+
+##### ■ 0.2.17.21 (2020-12-22) #####
+  - download_video - ani365 : 사이트에 cloudflare 적용이 없어서 다시 가능해짐.<br>
+    약간 수정하여 다시 작동 하도롬 함. (여전히 속도는 매우 느림)<br>
+
+
 ##### ■ 0.2.17.20 (2020-12-17) #####
   - klive : tvh proxy "-loglevel quiet" 추가 by <span style="font-weight:bold; color:brown">ㅋㅋ잠자<span>[(관련글)](https://sjva.me/bbs/board.php?bo_table=suggestions&wr_id=1149)<br>
 
