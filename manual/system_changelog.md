@@ -16,7 +16,9 @@
     - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
 
 
-##### ■ 0.2.17.22 (2020-12-22) #####
+##### ■ 0.2.17.23 (2020-12-22) #####
+  - dmm 관련 : 사이트가 cookie 값을 추가해야만 작동하는 것으로 변경됨. 수정완료<br>
+    이 문제로 agent, 파일처리, 봇 av 등이 영향을 받아 비정상 처리 되었을테니 확인 필요<br>
   - download_video : ANIPLUS 기능 추가<br>
     시청 권한이 있는 영상만 다운로드 가능<br>
   - download_video - ani365 : 사이트에 cloudflare 적용이 없어서 다시 가능해짐.<br>
