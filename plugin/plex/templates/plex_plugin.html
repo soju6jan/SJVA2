@@ -425,10 +425,10 @@ function make_plugin_list(data) {
   str = ''
   for (i in data) {
     str += m_row_start();
-    tmp = '<img src="' + data[i].icon + '" class="img-fluid">'
+    tmp = '<img src="' + data[i].url_icon + '" class="img-fluid">'
     str += m_col(2, tmp);
     
-    str += m_col(3, data[i].name);
+    str += m_col(3, data[i].name  + '<br>' + 'Author : ' + data[i].author);
     //str += m_col(3, data[i].identifier);
     str += m_col(5, data[i].description);
 
