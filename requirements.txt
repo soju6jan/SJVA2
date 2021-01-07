@@ -21,7 +21,7 @@ guppy==0.1.10
 idna==2.8
 itsdangerous==1.1.0
 Jinja2==2.10.1
-lxml==4.3.3
+lxml==4.6.2
 Mako==1.0.8
 Markdown==3.1
 MarkupSafe==1.1.1
