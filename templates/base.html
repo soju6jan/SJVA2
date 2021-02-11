@@ -581,6 +581,15 @@ function m_button2(id, text, data, outline_color) {
   return str;
 }
 
+function m_button3(id, text, data, outline_color, title) {
+  var str = '<button id="'+id+'" name="'+id+'" title="'+title+'" class="btn btn-sm btn-outline-'+outline_color+'" '
+  for ( var i in data) {
+    str += ' data-' + data[i].key + '="' + data[i].value+ '" '
+  }
+  str += '>' + text + '</button>';
+  return str;
+}
+
 function global_sub_request_search(page, move_top=true) {
   var formData = get_formdata('#form_search')
   formData += '&page=' + page;
