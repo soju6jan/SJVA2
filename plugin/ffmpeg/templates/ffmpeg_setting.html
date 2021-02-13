@@ -56,21 +56,21 @@ $("#ffmpeg_version").click(function(e) {
 
 $("body").on('click', '#select_temp_path_btn', function(e){
   e.preventDefault();
-  m_select_local_file_modal("임시 저장 경로 선택", $('#temp_path').val().trim(), 'true', function(result){
+  m_select_local_file_modal("임시 저장 경로 선택", $('#temp_path').val().trim(), true, function(result){
     document.getElementById("temp_path").value = result;
   });
 });
 
 $("body").on('click', '#select_save_path_btn', function(e){
   e.preventDefault();
-  m_select_local_file_modal("저장 경로 선택", $('#save_path').val().trim(), 'true', function(result){
+  m_select_local_file_modal("저장 경로 선택", $('#save_path').val().trim(), true, function(result){
     document.getElementById("save_path").value = result;
   });
 });
 
 $("body").on('click', '#select_binary_path_btn', function(e){
   e.preventDefault();
-  m_select_local_file_modal("실행 파일 선택", '/', 'false', function(result){
+  m_select_local_file_modal("실행 파일 선택", '/', false, function(result){
     document.getElementById("ffmpeg_path").value = result;
   });
 });
