@@ -46,7 +46,7 @@ $("#login_btn").click(function(e) {
     success: function (data) {
       if (data == 'redirect') {
         next = document.getElementById("next").value;
-        if (next == 'None') {
+        if (next == 'None' || next == '/system/restart') {
           next = '/'
         }
         window.location.href = next;
