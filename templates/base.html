@@ -699,7 +699,7 @@ $("body").on('click', '#select_local_file_modal_confirm_btn', function(e) {
 });
 
 
-let listdir = (path = '/', only_dir = true, callback = null) => {
+let listdir = (path = '/', only_dir = true) => {
   $.ajax({
       url: `/global/ajax/listdir`,
       type: 'POST',
@@ -734,7 +734,7 @@ let listdir = (path = '/', only_dir = true, callback = null) => {
               new_path = (path !== path_spliter) ? path + path_spliter + $(evt.currentTarget).text() : path + $(evt.currentTarget).text();
           }
           $('#select_local_file_modal_path').val(new_path);
-          listdir(new_path, only_dir, callback);
+          listdir(new_path, only_dir);
       });
   }).fail((datas) => {
       $.notify('<strong>경로 읽기 실패</strong><br/>${add_path}', {type: 'danger'});
