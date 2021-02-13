@@ -24,6 +24,11 @@
   - jav-censored
     - 컬렉션 옵션 추가
 
+
+##### ■ 0.2.18.32 (2021-02-13) #####
+  - Global UI - 로컬 파일, 폴더 선택 팝업창 추가 by <span style="font-weight:bold; color:brown">떡잎<span><br>
+  - 로그인시 다음 페이지가 Restart일 경우 다시 재시작하는 문제 수정 <span style="font-weight:bold; color:brown">떡잎<span><br>
+
 ##### ■ 0.2.18.31 (2021-02-07) #####
   - 홈페이지 서버 이전. AWS 라이트세일 국내리전 월 $160 플랜. IP : 52.78.103.230<br>
   - 구드공 서버 콘타보 미국리전에서 AWS로 이전<br>

@@ -115,6 +115,32 @@
         </div>
       </div>
     </div>
+
+    <!-- 경로 선택 모달 -->
+    <div class="modal fade" id="select_local_file_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="select_local_file_modal_title">경로 선택</h4>
+          </div>
+          <div class="modal-body" id="modal_body" style="word-break: break-all;">
+            {{ macros.setting_input_text_and_buttons('select_local_file_modal_path', 'Path',[['global_select_local_file_load_btn', 'Load']], desc=['입력한 경로를 불러옵니다.'], value='/') }}
+            <input type="hidden" id="select_local_file_modal_only_dir" value="true" />
+            <input type="hidden" id="select_local_file_modal_callback" value="" />
+            <div class="list-group" id="select_local_file_modal_list_group">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id='select_local_file_modal_confirm_btn' class="btn btn-success" data-dismiss="modal">선택
+            </button>
+            <button type="button" id='select_local_file_modal_cancel_btn' class="btn btn-default" data-dismiss="modal">닫기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <!--command modal-->
     {{ macros.m_modal_start('command_modal', '', 'modal-lg') }}
       <div>
@@ -646,4 +672,75 @@ $("body").on('click', '#global_remove_btn', function(e) {
 function notify(msg, type) {
   $.notify('<strong>' + msg + '</strong>', {type: type});
 }
+
+
+var select_local_file_modal_callback = null;
+
+function m_select_local_file_modal(title, init_path, only_dir, func) {
+  document.getElementById("select_local_file_modal_title").innerHTML = title;
+  document.getElementById("select_local_file_modal_path").value = init_path;
+  document.getElementById("select_local_file_modal_only_dir").value = only_dir;
+  select_local_file_modal_callback = func;
+  $("#select_local_file_modal").modal();
+  listdir(init_path, only_dir);
+}
+
+$("body").on('click', '#global_select_local_file_load_btn', function(e) {
+  e.preventDefault();
+  let current_path = $('#select_local_file_modal_path').val().trim();
+  only_dir = $('#select_local_file_modal_only_dir').val().trim();
+});
+
+$("body").on('click', '#select_local_file_modal_confirm_btn', function(e) {
+  e.preventDefault();
+  if (select_local_file_modal_callback != null)
+    select_local_file_modal_callback($('#select_local_file_modal_path').val().trim());
+  $("#select_local_file_modal").modal('toggle');
+});
+
+
+let listdir = (path = '/', only_dir = true, callback = null) => {
+  $.ajax({
+      url: `/global/ajax/listdir`,
+      type: 'POST',
+      cache: false,
+      data: {
+          path: path,
+          only_dir : only_dir
+      },
+      dataType: 'json'
+  }).done((datas) => {
+      if (datas.length == 0) {
+        return false;
+      }
+      let new_obj = ``;
+      const path_spliter = (path.indexOf('/')>=0)?'/':'\\';
+      $('#select_local_file_modal_list_group').empty();
+      for (let dt of datas) {
+          new_obj += `<a href='#' class="list-group-item list-group-item-action item_path">${dt}</a>`;
+      }
+      $('#select_local_file_modal_list_group').append(new_obj);
+      $('.item_path').off('click').click((evt) => {
+          let new_path = '';
+          if ($(evt.currentTarget).text() === '..'){
+              let split_path = '';
+              split_path = path.split(path_spliter);
+              split_path.pop();
+              new_path = split_path.join(path_spliter);
+              if (new_path.length === 0){
+                  new_path = path_spliter
+              }
+          } else {
+              new_path = (path !== path_spliter) ? path + path_spliter + $(evt.currentTarget).text() : path + $(evt.currentTarget).text();
+          }
+          $('#select_local_file_modal_path').val(new_path);
+          listdir(new_path, only_dir, callback);
+      });
+  }).fail((datas) => {
+      $.notify('<strong>경로 읽기 실패</strong><br/>${add_path}', {type: 'danger'});
+  });
+  return false;
+}
+
+        
 </script>
