@@ -61,7 +61,7 @@ $("body").on('click', '#select_temp_path_btn', function(e){
   });
 });
 
-$("body").on('click', '#select_temp_path_btn', function(e){
+$("body").on('click', '#select_save_path_btn', function(e){
   e.preventDefault();
   m_select_local_file_modal("저장 경로 선택", $('#save_path').val().trim(), 'true', function(result){
     document.getElementById("save_path").value = result;
