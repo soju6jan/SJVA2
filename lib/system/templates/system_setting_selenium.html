@@ -22,6 +22,7 @@
     
     {{ macros.m_tab_content_start('test', false) }}
       {{ macros.setting_input_text_and_buttons('tmp_go_url', '테스트 URL', [['selenium_test_btn', 'GO'], ['capture_btn', '화면표시'], ['cookie_btn', '쿠키정보']], value='https://sjva.me') }}
+      {{ macros.setting_input_text_and_buttons('tmp_daum_capcha', '다음 캡챠', [['tmp_daum_capcha_btn', '캡챠 풀기']], value='') }}
       <div id="image_div"></div>
     {{ macros.m_tab_content_end() }} 
   </div><!--tab-content-->
@@ -141,7 +142,26 @@ $("body").on('click', '#cookie_btn', function(e){
   });
 });
 
-
+$("body").on('click', '#tmp_daum_capcha_btn', function(e){
+  e.preventDefault();
+  daum_capcha = document.getElementById('tmp_daum_capcha').value
+  $.ajax({
+    url: '/' + package_name + '/ajax/'+sub+'/daum_capcha',
+    type: "POST", 
+    cache: false,
+    data: {daum_capcha:daum_capcha},
+    dataType: "json",
+    success: function (data) {
+      m_modal(data);
+      return;
+      if (data.ret == 'success') {
+        $.notify('<strong>전달 하였습니다. 페이지 다시 로딩 & 쿠키 정보 확인하여 Site Daum에 입력하세요.</strong>', {
+          type: 'success'
+        });
+      }
+    }
+  });
+});
 
 
 </script>    
