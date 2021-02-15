@@ -152,8 +152,6 @@ $("body").on('click', '#tmp_daum_capcha_btn', function(e){
     data: {daum_capcha:daum_capcha},
     dataType: "json",
     success: function (data) {
-      m_modal(data);
-      return;
       if (data.ret == 'success') {
         $.notify('<strong>전달 하였습니다. 페이지 다시 로딩 & 쿠키 정보 확인하여 Site Daum에 입력하세요.</strong>', {
           type: 'success'
