@@ -745,5 +745,20 @@ let listdir = (path = '/', only_dir = true) => {
   return false;
 }
 
-        
+function global_relay_test(remote) {
+  $.ajax({
+    url: '/' + 'gd_share_client' + '/ajax/'+'base'+'/relay_test',
+    type: "POST", 
+    cache: false,
+    data: {remote:remote},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        $.notify('<strong>릴레이 공유가 가능합니다.<strong>', {type: 'success'});
+      }else {
+        $.notify('<strong>설정이 잘못 되어 있습니다.</strong>', {type: 'warning'});
+      }
+    }
+  });
+}       
 </script>
