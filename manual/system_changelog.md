@@ -25,6 +25,11 @@
     - 컬렉션 옵션 추가
 
 
+##### ■ 0.2.18.36 (2021-02-17) #####
+  - hdhomerun 옵션 추가 [(관련글)](https://sjva.me/bbs/board.php?bo_table=tip&wr_id=4681)<br>
+    방송 url은 db에 저장되어 있기 때문에 바뀐 옵션을 적용하려면 IP 변경 버튼을 클릭해야 함<br>
+  ![](https://cdn.discordapp.com/attachments/631112094015815681/811573818975453216/unknown.png)<br>
+
 
 ##### ■ 0.2.18.35 (2021-02-15) #####
   - 설정 - selenium에서 Daum 캡챠 전달하여 차단 푸는 방법 추가 by <span style="font-weight:bold; color:brown">이치로<span>
