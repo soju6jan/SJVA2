@@ -28,7 +28,7 @@
 ##### ■ 0.2.18.38 (2021-02-18) #####
   - 토렌트 자료는 릴레이 공유 방식으로 변경완료 [(매뉴얼)](https://sjva.me/wiki/서비스/구글_드라이브_공유)<br>
     - 예전 방식은 이제 불가능하여 게시판 글 일괄 삭제<br>
-
+  - python3 json.load 명령 버그 수정[(관련글)](https://sjva.me/bbs/board.php?bo_table=tip&wr_id=4681)<br>
 
 ##### ■ 0.2.18.36 (2021-02-17) #####
   - hdhomerun 옵션 추가 [(관련글)](https://sjva.me/bbs/board.php?bo_table=tip&wr_id=4681)<br>
