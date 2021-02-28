@@ -24,10 +24,12 @@
   - jav-censored
     - 컬렉션 옵션 추가
     
-##### ■ 0.2.18.41 (2021-02-28) #####
+##### ■ 0.2.18.42 (2021-02-28) #####
   - GD 바로가기 관리 플러그인 추가 [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=3850) by <span style="font-weight:bold; color:brown">오리알<span><br>
   - 메타데이터 : Daum 영화 리뉴얼 대응<br>
-    - 에이전트 업데이트 필요. 버전 동일<br>
+  - 에이전트 업데이트. 버전 동일<br>
+    - 모듈별 sjva 서버 설정 적용<br>
+    - ktv 종영표시, movie 재생버전 분할하여 추가 기능 적용<br>
   - 봇 AV : 새로운 메타 적용<br>
 
 ##### ■ 0.2.18.39 (2021-02-21) #####
