@@ -680,6 +680,8 @@ function notify(msg, type) {
 var select_local_file_modal_callback = null;
 
 function m_select_local_file_modal(title, init_path, only_dir, func) {
+  if (init_path == '' || init_path == null)
+    init_path = '/';
   document.getElementById("select_local_file_modal_title").innerHTML = title;
   document.getElementById("select_local_file_modal_path").value = init_path;
   document.getElementById("select_local_file_modal_only_dir").value = only_dir;

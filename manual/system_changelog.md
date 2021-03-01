@@ -23,7 +23,8 @@
     - 왓챠 리뷰 동명 tv 가지고 오는 문제 수정(남자가 사랑할 때)
   - jav-censored
     - 컬렉션 옵션 추가
-    
+
+
 ##### ■ 0.2.18.42 (2021-02-28) #####
   - GD 바로가기 관리 플러그인 추가 [(매뉴얼)](https://sjva.me/bbs/board.php?bo_table=manual&wr_id=3850) by <span style="font-weight:bold; color:brown">오리알<span><br>
   - 메타데이터 : Daum 영화 리뉴얼 대응<br>

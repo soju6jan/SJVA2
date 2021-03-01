@@ -310,8 +310,26 @@
     >{{ value }}</textarea>
   </div>  
   {{ setting_bottom(desc) }}
-  
 {% endmacro %}
+
+{% macro setting_input_textarea_and_buttons(id, left, buttons, value='', col='9', row='3', desc='', disabled=False) %}
+  {{ setting_top(left) }}
+  <div class="input-group col-sm-{{col}}">
+    <textarea id="{{id}}" name="{{id}}" class="col-md-12" rows="{{row}}" 
+      {% if disabled %}
+        disabled
+      {% endif %}
+    >{{ value }}</textarea>
+    {% for b in buttons %}
+    <span class='text-left' style="padding-left:5px; padding-top:0px">
+      <button id="{{b[0]}}" class="btn btn-sm btn-outline-success">{{b[1]}}</button>
+    </span>  
+    {% endfor %}
+  </div>
+  {{ setting_bottom(desc) }}
+{% endmacro %}
+
+
 
 <!--progress-bar-striped progress-bar-animated-->
 {% macro setting_progress(id, left='', desc='') %}
