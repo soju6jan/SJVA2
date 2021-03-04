@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  {{ macros.m_button_group([['global_setting_save_btn', '설정 저장']])}}
+  {{ macros.m_row_start('5') }}
+  {{ macros.m_row_end() }}
+  <nav>  
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head2('normal', '일반', true) }}
+      
+    {{ macros.m_tab_head_end() }}
+  </nav>  
+  <form id='setting' name='setting'>  
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('normal', true) }}
+      {{ macros.setting_checkbox('tool_crypt_use_user_key', '암호화 키 본인키 사용', value=arg['tool_crypt_use_user_key'], desc=['On : 본인 키 사용', 'Off : SJVA 고정 키 사용']) }}
+      <div id="tool_crypt_use_user_key_div" class="collapse">
+        {{ macros.setting_input_text('tool_crypt_user_key', '암호화 키', value=arg['tool_crypt_user_key'], desc=['16진수(숫자, a~e)로 이루어진 32글자. 미만시 앞을 0으로 채움. 초과시 뒤에 무시']) }}
+      </div>
+
+      {{ macros.setting_input_text_and_buttons('tool_crypt_encrypt_word', '암호화', [['tool_crypt_encrypt_word_btn', '암호화']], value=arg['tool_crypt_encrypt_word']) }}
+      {{ macros.setting_input_text('tool_crypt_encrypt_word_result', '', disabled=True) }}
+
+      {{ macros.setting_input_text_and_buttons('tool_crypt_decrypt_word', '평문화', [['tool_crypt_decrypt_word_btn', '평문화']], value=arg['tool_crypt_decrypt_word']) }}
+      {{ macros.setting_input_text('tool_crypt_decrypt_word_result', '', disabled=True) }}
+    {{ macros.m_tab_content_end() }}   
+   
+  </div><!--tab-content-->
+  </form>
+</div> <!--전체-->
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name'] }}";
+var sub = "{{arg['sub'] }}";
+
+$(document).ready(function(){
+  use_collapse("tool_crypt_use_user_key");
+});
+
+$("body").on('change', '#tool_crypt_use_user_key', function(e){
+  use_collapse('tool_crypt_use_user_key');
+});
+
+$("body").on('click', '#tool_crypt_encrypt_word_btn', function(e) {
+  e.preventDefault();
+  word = document.getElementById("tool_crypt_encrypt_word").value
+  crypt_test('encrypt', word);
+});
+
+$("body").on('click', '#tool_crypt_decrypt_word_btn', function(e) {
+  e.preventDefault();
+  word = document.getElementById("tool_crypt_decrypt_word").value
+  crypt_test('decrypt', word);
+});
+
+function crypt_test(mode, word) {
+  $.ajax({
+    url: '/' + package_name + '/ajax/'+sub+'/crypt_test',
+    type: "POST", 
+    cache: false,
+    data: {mode:mode, word:word},
+    dataType: "json",
+    success: function (ret) {
+      if (ret.ret == 'success') {
+        if (mode == "encrypt")
+          document.getElementById("tool_crypt_encrypt_word_result").value = ret.data;
+        else
+          document.getElementById("tool_crypt_decrypt_word_result").value = ret.data;
+      } else {
+        notify(ret.log, 'warning');
+      }
+    }
+  });
+}
+</script>    
+{% endblock %}
