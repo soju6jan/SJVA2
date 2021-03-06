@@ -27,9 +27,10 @@
 
 ##### <span style="color:red">■ 0.2.19.0 (2021-03-06)</span> #####
   - 구드공 방식 변경<br>
-    - 이치로님의 rclone 1.54.0-2 버전 필수. [(링크))](https://github.com/wiserain/rclone/releases/tag/v1.54.0-2)<br>
+    - 이치로님의 rclone 1.54.0-2 버전 필수. [링크](https://github.com/wiserain/rclone/releases/tag/v1.54.0-2)<br>
     - 음악 제외 이전 완료.<br>
-  작업 중 실수로 봇 TV + 구드를 이용하시는 분들 폴더에 AV 파일 들어가 있을 수도 있습니다. 죄송합니다.<br>
+  
+  ⚠️⚠️ 작업 중 실수로 봇 TV + 구드를 이용하시는 분들 폴더에 AV 파일 들어가 있을 수도 있습니다. ⚠️⚠️
 
 ##### ■ 0.2.18.46 (2021-03-03) #####
   - 구드공 방식 변경중<br>
