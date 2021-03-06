@@ -25,7 +25,7 @@
     - 컬렉션 옵션 추가
 
 
-##### <span style="color:red">■ 0.2.19.0 (2021-03-06)</span> #####
+##### <span style="color:red">■ 0.2.19.1 (2021-03-06)</span> #####
   - 구드공 방식 변경<br>
     - 이치로님의 rclone 1.54.0-2 버전 필수. [링크](https://github.com/wiserain/rclone/releases/tag/v1.54.0-2)<br>
     - 음악 제외 이전 완료.<br>
