@@ -24,6 +24,11 @@
   - jav-censored
     - 컬렉션 옵션 추가
 
+##### ■ 0.2.19.4 (2021-03-09) #####
+  - 관리봇 변경 : super_sjva_bot => https://t.me/sjva_admin_bot. super_sjva_bot은 대답하지 않음.<br>
+  - rclone 1.54.1 적용 by <span style="font-weight:bold; color:brown">이치로<span> [링크](https://github.com/wiserain/rclone/releases)
+    - 구드공에 1.54.1 버전 필요.
+  
 
 ##### <span style="color:red">■ 0.2.19.1 (2021-03-06)</span> #####
   - 구드공 방식 변경<br>
