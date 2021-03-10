@@ -64,7 +64,6 @@ inline_flavors = ['inline_query', 'chosen_inline_result']
 def _find_first_key(d, keys):
     for k in keys:
         if k in d:
-            print(k)
             return k
     raise KeyError('No suggested keys %s in %s' % (str(keys), str(d)))
 
@@ -74,7 +73,7 @@ all_content_types = [
     'contact', 'location', 'venue', 'new_chat_member', 'left_chat_member', 'new_chat_title',
     'new_chat_photo',  'delete_chat_photo', 'group_chat_created', 'supergroup_chat_created',
     'channel_chat_created', 'migrate_to_chat_id', 'migrate_from_chat_id', 'pinned_message',
-    'new_chat_members', 'invoice', 'successful_payment'
+    'new_chat_members', 'invoice', 'successful_payment', 'my_chat_member'
 ]
 
 def glance(msg, flavor='chat', long=False):
@@ -1170,7 +1169,7 @@ class Bot(_BotBase):
                                            'inline_query',
                                            'chosen_inline_result',
                                            'shipping_query',
-                                           'pre_checkout_query', 'my_chat_member'])
+                                           'pre_checkout_query'])
             collect_queue.put(update[key])
             return update['update_id']
 
