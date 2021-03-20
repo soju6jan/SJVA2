@@ -25,6 +25,11 @@
     - 컬렉션 옵션 추가
 
 
+##### ■ 0.2.19.13 (2021-03-20) #####
+  - klive : 커스텀 채널 설정 UI 개선 <span style="font-weight:bold; color:brown">오리알<span>
+    ![](https://cdn.discordapp.com/attachments/657108436890157087/822738531071557642/qc0H06BLhv.gif)<br>
+
+
 ##### ■ 0.2.19.10 (2021-03-19) #####
   - 메타데이터 : FTV 기능 추가. 에이전트 업데이트 필요
 
