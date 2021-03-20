@@ -20,7 +20,7 @@ guessit==3.0.4
 guppy==0.1.10
 idna==2.8
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.11.3
 lxml==4.3.3
 Mako==1.0.8
 Markdown==3.1
