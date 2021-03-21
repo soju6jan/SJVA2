@@ -27,6 +27,7 @@
 
 ##### ■ 0.2.19.15 (2021-03-21) #####
   - 파일처리 av2 : VR 영상 분류하는 기능 추가<span>
+  - av : td0XX 가 앞에 붙어서 처리되는 버그 수정<span>
 
 ##### ■ 0.2.19.13 (2021-03-20) #####
   - klive : 커스텀 채널 설정 UI 개선 <span style="font-weight:bold; color:brown">오리알<span>
