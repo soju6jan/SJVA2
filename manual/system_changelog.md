@@ -25,6 +25,9 @@
     - 컬렉션 옵션 추가
 
 
+##### ■ 0.2.19.15 (2021-03-21) #####
+  - 파일처리 av2 : VR 영상 분류하는 기능 추가<span>
+
 ##### ■ 0.2.19.13 (2021-03-20) #####
   - klive : 커스텀 채널 설정 UI 개선 <span style="font-weight:bold; color:brown">오리알<span>
     ![](https://cdn.discordapp.com/attachments/657108436890157087/822738531071557642/qc0H06BLhv.gif)<br>
