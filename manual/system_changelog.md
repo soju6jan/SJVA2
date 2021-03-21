@@ -1,29 +1,3 @@
-##### TODO #####
-  - 메이저
-    - 기본 포함된 플러그인 모두 설치형으로 변경 (ffmpeg, TV, 영화, Plex, GDriveScan, RClone)<br>
-    - python3으로 변경<br>
-  - 마이너<br>
-    - 추적+일반적인파일처리 작업을 하는 플러그인. aria임시폴더 기능 통합<br>
-    - plex 통합 에이전트 + sjva.bundle<br>
-    - Daum 쿠키값 관련. Daum TV 플러그인 삭제. 관련 API 정리<br>    
-    - tv 이동폴더 지정 풀매칭으로<br>
-  - 검토<br>
-    - 설정 - 백업, 초기화<br>
-    - downloader 일반파일(자막) 설정 없어도 받기<br>
-    - uncensored 처리 [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=3968)<br>
-    - 봇 영화 다음 평점 조건 추가 <br>
-  - recent<br>
-    - dmm 에이전트 카테고리 추가  [(참고)](https://sjva.me/bbs/board.php?bo_table=qa&wr_id=6675)
-
-##### 메타데이터 변경사항 #####
-  - 영화
-    - 왓챠 사용 범위 선택
-    - tmdb 배우 최대 20명까지 가져오도록 수정. (옥자의 경우 배우 107명이라 타임아웃)
-    - 같은제목, 같은년도인 경우 sub로 tmdb동작 안함
-    - 왓챠 리뷰 동명 tv 가지고 오는 문제 수정(남자가 사랑할 때)
-  - jav-censored
-    - 컬렉션 옵션 추가
-
 
 ##### ■ 0.2.19.15 (2021-03-21) #####
   - 파일처리 av2 : VR 영상 분류하는 기능 추가<span>
