@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" ttp:version="2" xmlns:ttm="http://www.w3.org/ns/ttml#metadata" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" xml:lang="es-ES">
+ <head>
+  <styling>
+   <style xml:id="AmazonDefaultStyle" tts:fontFamily="monospace" tts:color="white" tts:fontSize="1c"></style>
+  </styling>
+  <layout>
+   <region xml:id="AmazonDefaultRegion" tts:extent="80% 15%" tts:origin="10% 80%" tts:displayAlign="after" tts:textAlign="center"></region>
+  </layout>
+ </head>
+ <body>
+  <div>
+   <p begin="00:00:43.419" end="00:00:44.920" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Pierce.<br /> -¿Qué pasa?</p>
+   <p begin="00:00:45.087" end="00:00:47.631" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Necesito que vigiles a este tipo.<br /> -Vale.</p>
+   <p begin="00:00:53.095" end="00:00:55.473" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Mantén la boca cerrada.<br /> -De acuerdo.</p>
+   <p begin="00:01:07.276" end="00:01:09.320" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Que nadie hable con él.<br /> Que no entre nadie.</p>
+   <p begin="00:01:10.112" end="00:01:11.489" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Entendido.<br /> -Mierda.</p>
+   <p begin="00:01:11.739" end="00:01:14.742" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Es uno de ellos. No te vayas.<br /> -Cierra la puta boca.</p>
+   <p begin="00:01:23.918" end="00:01:25.669" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No me jodas.</p>
+   <p begin="00:01:26.170" end="00:01:27.171" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué?</p>
+   <p begin="00:01:27.755" end="00:01:29.089" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Quieres hacerte el duro?</p>
+   <p begin="00:01:29.173" end="00:01:31.467" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Podría enchironarte ahora mismo<br /> por atacar a un agente.</p>
+   <p begin="00:01:31.509" end="00:01:33.552" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Te caería un año como mínimo, listillo.</p>
+   <p begin="00:01:33.677" end="00:01:35.846" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Lo siento, tío. Me equivoqué.<br /> -¿Por qué huiste?</p>
+   <p begin="00:01:36.096" end="00:01:37.306" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Porque todos huían.</p>
+   <p begin="00:01:37.807" end="00:01:41.811" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Es un acto reflejo. "¡La pasma!"<br /> Es lo que se hace: huir.</p>
+   <p begin="00:01:41.852" end="00:01:44.104" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Solo queríamos hablar contigo.<br /> -¿Sí?</p>
+   <p begin="00:01:45.815" end="00:01:47.691" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mierda, ojalá lo hubiera sabido.</p>
+   <p begin="00:01:48.692" end="00:01:50.152" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tengo las costillas rotas.</p>
+   <p begin="00:01:50.736" end="00:01:53.155" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ese policía negro quería matarme, joder.</p>
+   <p begin="00:01:53.197" end="00:01:55.574" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué esperabas? Oyó el disparo<br /> y vio a su compañera en el suelo.</p>
+   <p begin="00:01:55.658" end="00:01:59.703" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Yo no lo hice.<br /> Juro por Dios que yo no le disparé.</p>
+   <p begin="00:01:59.745" end="00:02:01.205" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estaba allí. Sé lo que pasó.</p>
+   <p begin="00:02:02.289" end="00:02:03.833" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Entonces sabe que yo no lo hice.</p>
+   <p begin="00:02:08.254" end="00:02:10.548" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Soy el único amigo<br /> que tienes ahora, Stokes.</p>
+   <p begin="00:02:10.589" end="00:02:11.966" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué quieres?</p>
+   <p begin="00:02:13.676" end="00:02:15.219" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Háblame de Arthur Delacroix.</p>
+   <p begin="00:02:16.262" end="00:02:17.346" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Quién?</p>
+   <p begin="00:02:17.429" end="00:02:19.431" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estaba en tu pandilla de <span>skaters.</span></p>
+   <p begin="00:02:20.307" end="00:02:22.518" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ese eres tú. Es tu pandilla, ¿verdad?</p>
+   <p begin="00:02:26.063" end="00:02:29.567" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Por entonces estaba casi siempre borracho.</p>
+   <p begin="00:02:29.650" end="00:02:32.736" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ni siquiera recuerdo sus nombres,<br /> si es que los conocía.</p>
+   <p begin="00:02:33.737" end="00:02:35.739" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Cuál es su chico?<br /> -Las preguntas las hago yo.</p>
+   <p begin="00:02:36.031" end="00:02:37.741" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Esta foto, ¿dónde se hizo?</p>
+   <p begin="00:02:38.659" end="00:02:40.744" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Joder, tío, no me acuerdo.</p>
+   <p begin="00:02:40.828" end="00:02:42.538" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Solíais patinar en Laurel Canyon?</p>
+   <p begin="00:02:42.580" end="00:02:44.999" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No, éramos más de Miracle Mile, Wilshire.</p>
+   <p begin="00:02:45.249" end="00:02:46.292" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Alguien hizo esta foto,</p>
+   <p begin="00:02:46.375" end="00:02:48.919" region="AmazonDefaultRegion" style="AmazonDefaultStyle">y el padre de Arthur Delacroix<br /> sabía tu nombre cuando te vio.</p>
+   <p begin="00:02:49.587" end="00:02:51.088" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Dijo que Arthur te admiraba.</p>
+   <p begin="00:02:51.881" end="00:02:54.466" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Dónde vivía ese chico?<br /> -Por Wilshire, Carthay Circle.</p>
+   <p begin="00:02:55.259" end="00:02:57.136" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Eso es. Yo también.</p>
+   <p begin="00:02:58.012" end="00:03:00.598" region="AmazonDefaultRegion" style="AmazonDefaultStyle">En Carthay Square.<br /> Por eso su padre sabía mi nombre.</p>
+   <p begin="00:03:00.681" end="00:03:02.808" region="AmazonDefaultRegion" style="AmazonDefaultStyle">De verme por ahí. ¿Me entiende?</p>
+   <p begin="00:03:04.768" end="00:03:08.272" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Este memo también era de Carthay.</p>
+   <p begin="00:03:08.314" end="00:03:10.900" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estoy seguro. ¿Se refiere a este?</p>
+   <p begin="00:03:12.735" end="00:03:14.361" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Sabes lo que le pasó?<br /> -No.</p>
+   <p begin="00:03:15.154" end="00:03:17.865" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No, perdí el contacto con todos</p>
+   <p begin="00:03:17.948" end="00:03:20.784" region="AmazonDefaultRegion" style="AmazonDefaultStyle">después de que me encerraran en Sylmar<br /> un puto año.</p>
+   <p begin="00:03:20.868" end="00:03:22.453" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Cuándo fue eso?<br /> -En el 95.</p>
+   <p begin="00:03:22.494" end="00:03:25.873" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Cuando salí... Se habían dispersado.</p>
+   <p begin="00:03:28.459" end="00:03:30.753" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Asuntos internos quiere hablar contigo.<br /> -No me deje.</p>
+   <p begin="00:04:08.499" end="00:04:11.001" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Tengo un sentimiento</span><br /> <span>que no puedo dejar pasar</span></p>
+   <p begin="00:04:11.043" end="00:04:13.796" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Tengo un sentimiento</span><br /> <span>que no puedo dejar pasar</span></p>
+   <p begin="00:04:13.837" end="00:04:16.382" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Tengo un sentimiento</span><br /> <span>que no puedo dejar pasar</span></p>
+   <p begin="00:04:16.465" end="00:04:19.051" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Tengo un sentimiento</span><br /> <span>que no puedo dejar pasar</span></p>
+   <p begin="00:04:19.134" end="00:04:21.762" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Tengo un sentimiento</span><br /> <span>que no puedo dejar pasar</span></p>
+   <p begin="00:04:21.845" end="00:04:24.515" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Tengo un sentimiento</span><br /> <span>que no puedo dejar pasar</span></p>
+   <p begin="00:04:24.556" end="00:04:26.976" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Tengo un sentimiento</span><br /> <span>que no puedo dejar pasar</span></p>
+   <p begin="00:04:27.017" end="00:04:29.228" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>No puedo dejar pasar</span></p>
+   <p begin="00:04:41.198" end="00:04:42.950" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Como yo</span></p>
+   <p begin="00:05:46.555" end="00:05:49.266" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Cuando llegué al garaje,<br /> bajé la rampa y me dirigí a las voces.</p>
+   <p begin="00:05:50.476" end="00:05:52.853" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Qué estaban diciendo?<br /> -Había mucho ruido.</p>
+   <p begin="00:05:53.228" end="00:05:54.938" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Y eco. No se entendía bien.</p>
+   <p begin="00:05:54.980" end="00:05:58.317" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Alto ahí. No te muevas. Date la vuelta.</span><br /> <span>Las manos en la pared.</span></p>
+   <p begin="00:05:58.400" end="00:06:00.235" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Y cuando al final los alcanzó?</p>
+   <p begin="00:06:00.277" end="00:06:03.947" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Todo ocurrió muy rápido.<br /> -¿Y cuando se disparó la pistola?</p>
+   <p begin="00:06:07.034" end="00:06:08.619" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Como he dicho, todo estaba borroso.</p>
+   <p begin="00:06:08.994" end="00:06:10.871" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Deme tiempo para ordenar los detalles.</p>
+   <p begin="00:06:12.790" end="00:06:15.209" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Claro. Quizá empiece a recordar.</p>
+   <p begin="00:06:17.503" end="00:06:18.921" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Interrogó ya a la agente Brasher?</p>
+   <p begin="00:06:19.129" end="00:06:20.547" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Los de Homicidios tienen prioridad.</p>
+   <p begin="00:06:21.465" end="00:06:22.674" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hablaremos cuando acaben.</p>
+   <p begin="00:06:28.138" end="00:06:30.808" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Vas a ir a por Stokes por eso?<br /> -No lo he decidido.</p>
+   <p begin="00:06:30.849" end="00:06:32.101" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No tendrás que hacerlo.</p>
+   <p begin="00:06:33.769" end="00:06:36.146" region="AmazonDefaultRegion" style="AmazonDefaultStyle">He oído que los de Homicidios<br /> van a por él con todo.</p>
+   <p begin="00:06:37.481" end="00:06:40.275" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Por qué?<br /> -Intento de asesinato de un agente.</p>
+   <p begin="00:06:40.359" end="00:06:42.236" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-No es lo que pasó.<br /> -Bueno, posesión de armas.</p>
+   <p begin="00:06:42.402" end="00:06:44.196" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-No estaba armado.<br /> -Cogió el arma de Brasher.</p>
+   <p begin="00:06:44.279" end="00:06:45.280" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Eso dijo ella?</p>
+   <p begin="00:06:45.823" end="00:06:47.032" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Es lo que he oído.</p>
+   <p begin="00:06:50.911" end="00:06:53.831" region="AmazonDefaultRegion" style="AmazonDefaultStyle">HOSPITAL DE LOS ÁNGELES<br /> ENTRADA PERSONAL MÉDICO</p>
+   <p begin="00:07:02.131" end="00:07:04.007" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Eh, deja de fingir que sabes leer.</p>
+   <p begin="00:07:05.175" end="00:07:07.010" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hola, Harry.</p>
+   <p begin="00:07:07.678" end="00:07:09.221" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Cómo estás, Big Dog?</p>
+   <p begin="00:07:10.556" end="00:07:13.767" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mejor. Al menos me han retirado el tubo<br /> y puedo hablar.</p>
+   <p begin="00:07:13.851" end="00:07:16.228" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Mierda, ¿pueden volver a ponértelo?<br /> -Que te jodan.</p>
+   <p begin="00:07:20.232" end="00:07:22.276" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Siento que esa mierda saliera mal, Harry.</p>
+   <p begin="00:07:23.110" end="00:07:27.781" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estoy perdiendo facultades. Devolvería mi<br /> placa, pero aún la tiene ese cabrón.</p>
+   <p begin="00:07:28.115" end="00:07:29.700" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Le podría haber pasado a cualquiera.</p>
+   <p begin="00:07:29.783" end="00:07:31.577" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Le cogeremos y te devolveremos tu placa.</p>
+   <p begin="00:07:31.869" end="00:07:34.872" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Cuando lo hagas, usa mi arma.<br /> ¿Me entiendes?</p>
+   <p begin="00:07:36.665" end="00:07:38.333" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Feliz Navidad, colega.</p>
+   <p begin="00:07:39.543" end="00:07:41.545" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Feliz Navidad, Harry.</p>
+   <p begin="00:07:42.379" end="00:07:43.964" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Feliz Navidad.</p>
+   <p begin="00:07:44.256" end="00:07:45.465" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ya estás mejor.</p>
+   <p begin="00:08:11.200" end="00:08:12.492" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hola.<br /> -¿Qué tal?</p>
+   <p begin="00:08:21.251" end="00:08:23.337" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Cómo estás?<br /> -En una nube.</p>
+   <p begin="00:08:24.838" end="00:08:26.715" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Qué te han dado?<br /> -Algo...</p>
+   <p begin="00:08:27.758" end="00:08:29.593" region="AmazonDefaultRegion" style="AmazonDefaultStyle">...muy bueno.</p>
+   <p begin="00:08:31.678" end="00:08:32.930" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Cuál es el diagnóstico?</p>
+   <p begin="00:08:33.430" end="00:08:36.683" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Un par de costillas rotas<br /> y un moratón grande y feo.</p>
+   <p begin="00:08:38.393" end="00:08:39.811" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Te dejarán ir a casa?</p>
+   <p begin="00:08:41.230" end="00:08:44.274" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Me di un golpe fuerte en la cabeza<br /> contra el suelo.</p>
+   <p begin="00:08:44.358" end="00:08:46.443" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Quieren que pase la noche aquí<br /> por si tengo una conmoción.</p>
+   <p begin="00:08:48.946" end="00:08:50.197" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Alguna visita?</p>
+   <p begin="00:08:51.615" end="00:08:55.535" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Irving se pasó un rato<br /> con el capitán Pounds.</p>
+   <p begin="00:08:56.328" end="00:08:58.330" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Y mi padre vendrá por la mañana.</p>
+   <p begin="00:08:58.622" end="00:09:01.500" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Está aterrorizado. Quiere que lo deje y...</p>
+   <p begin="00:09:01.625" end="00:09:04.002" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Qué le has dicho?<br /> -Que ni de coña.</p>
+   <p begin="00:09:05.087" end="00:09:06.463" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Cuando me van a dar una medalla?</p>
+   <p begin="00:09:08.966" end="00:09:10.259" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué hay de Robos y Homicidios?</p>
+   <p begin="00:09:11.009" end="00:09:14.304" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Se pasaron y dijeron que volverían<br /> cuando estuviera mi representante.</p>
+   <p begin="00:09:15.973" end="00:09:17.808" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tienes que pensar en lo que vas a decir</p>
+   <p begin="00:09:17.891" end="00:09:19.476" region="AmazonDefaultRegion" style="AmazonDefaultStyle">antes de que concreten tu historia.</p>
+   <p begin="00:09:20.727" end="00:09:23.146" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí. Les volveré a decir<br /> lo mismo que esta noche.</p>
+   <p begin="00:09:24.481" end="00:09:25.816" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Y qué les has dicho?</p>
+   <p begin="00:09:26.358" end="00:09:27.859" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Que el gilipollas fue a por mi arma</p>
+   <p begin="00:09:27.943" end="00:09:30.529" region="AmazonDefaultRegion" style="AmazonDefaultStyle">y se disparó.<br /> Tuve suerte de llevar el chaleco.</p>
+   <p begin="00:10:06.606" end="00:10:07.733" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David.</p>
+   <p begin="00:10:09.401" end="00:10:10.861" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David.</p>
+   <p begin="00:10:12.529" end="00:10:13.697" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-David.<br /> -¿Mamá?</p>
+   <p begin="00:10:16.283" end="00:10:17.326" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Mamá?</p>
+   <p begin="00:10:18.785" end="00:10:20.078" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué has hecho?</p>
+   <p begin="00:10:20.996" end="00:10:22.539" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-David.<br /> -¿Qué has hecho? ¿Estás bien?</p>
+   <p begin="00:10:22.706" end="00:10:24.708" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lo siento. Lo siento mucho.</p>
+   <p begin="00:10:24.750" end="00:10:27.044" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Solo quería ir al baño.</p>
+   <p begin="00:10:27.085" end="00:10:28.503" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No pasa nada. ¿Te has hecho daño?</p>
+   <p begin="00:10:28.795" end="00:10:31.173" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-No lo sé.<br /> -Vamos. Déjame ayudarte a levantarte.</p>
+   <p begin="00:10:31.214" end="00:10:33.425" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Estoy muy avergonzada.<br /> -No pasa nada. Tranquila.</p>
+   <p begin="00:10:33.884" end="00:10:37.304" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Eso es. Espera.</p>
+   <p begin="00:10:39.264" end="00:10:40.974" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué haría sin ti?</p>
+   <p begin="00:10:41.308" end="00:10:42.434" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vale, toma.</p>
+   <p begin="00:10:47.356" end="00:10:51.485" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Para terminar, me gustaría transmitir</span><br /> <span>a la buena gente de Los Ángeles</span></p>
+   <p begin="00:10:52.069" end="00:10:54.863" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>que este renovado sentido</span><br /> <span>de misión y trabajo en equipo</span></p>
+   <p begin="00:10:54.905" end="00:10:56.990" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>entre mi oficina</span><br /> <span>y la policía de Los Ángeles</span></p>
+   <p begin="00:10:57.324" end="00:11:00.452" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>debería ayudarnos a dormir más tranquilos</span><br /> <span>en esta época de fiestas.</span></p>
+   <p begin="00:11:01.370" end="00:11:02.371" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>¿Jefe?</span></p>
+   <p begin="00:11:05.499" end="00:11:10.295" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>La detención de Raynard Waits</span><br /> <span>sigue siendo nuestra mayor prioridad</span></p>
+   <p begin="00:11:11.171" end="00:11:13.215" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>y estamos empleando todos los recursos</span></p>
+   <p begin="00:11:13.256" end="00:11:16.885" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>para conseguirlo lo antes posible.</span></p>
+   <p begin="00:11:20.138" end="00:11:23.058" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>-Pero nosotros, como...</span><br /> -Ha salido bien, jefe.</p>
+   <p begin="00:11:23.225" end="00:11:24.893" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Se ha emitido en directo.</p>
+   <p begin="00:11:25.894" end="00:11:27.020" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hemos transmitido el mensaje.</p>
+   <p begin="00:11:28.605" end="00:11:30.816" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No más acusaciones,<br /> no más culpar a nadie.</p>
+   <p begin="00:11:30.899" end="00:11:32.442" region="AmazonDefaultRegion" style="AmazonDefaultStyle">NecesitamoS ayuda hasta que acabe.</p>
+   <p begin="00:11:33.318" end="00:11:36.238" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí, señor. Ha quedado muy claro.</p>
+   <p begin="00:11:37.489" end="00:11:39.574" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ahora tenemos que coger a ese hijo de puta</p>
+   <p begin="00:11:40.951" end="00:11:42.452" region="AmazonDefaultRegion" style="AmazonDefaultStyle">antes de que nos hunda.</p>
+   <p begin="00:11:49.209" end="00:11:51.378" region="AmazonDefaultRegion" style="AmazonDefaultStyle">El único día que llego tarde al trabajo.</p>
+   <p begin="00:11:52.421" end="00:11:54.923" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Interrumpo algo?<br /> -Bueno, la verdad...</p>
+   <p begin="00:11:56.466" end="00:11:58.051" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estamos envolviendo regalos.</p>
+   <p begin="00:11:58.760" end="00:12:00.846" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mañana es Navidad.</p>
+   <p begin="00:12:01.763" end="00:12:02.931" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Sí?</p>
+   <p begin="00:12:04.683" end="00:12:06.059" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hola, Harry.<br /> -Hola, Leese.</p>
+   <p begin="00:12:06.143" end="00:12:08.228" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Uno de esos es para mí?<br /> -Sí, el pastel de frutas.</p>
+   <p begin="00:12:09.062" end="00:12:10.522" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Genial. ¿El mismo del año pasado?</p>
+   <p begin="00:12:11.022" end="00:12:12.190" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Quieres un café?</p>
+   <p begin="00:12:14.025" end="00:12:17.154" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué es tan importante que no puede<br /> esperar hasta la oficina?</p>
+   <p begin="00:12:18.655" end="00:12:20.991" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Brasher hizo<br /> una declaración preliminar a Homicidios.</p>
+   <p begin="00:12:22.075" end="00:12:23.493" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Dijo que Stokes cogió su arma.</p>
+   <p begin="00:12:23.577" end="00:12:25.829" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿No es eso lo que pasó?<br /> -No es lo que yo vi.</p>
+   <p begin="00:12:26.496" end="00:12:30.625" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Harry, no me digas eso.<br /> -Las manos de Stokes estaban en la pared.</p>
+   <p begin="00:12:30.834" end="00:12:32.669" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Joder.<br /> -Bueno, no puedo asegurarlo.</p>
+   <p begin="00:12:32.752" end="00:12:33.962" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No lo vi bien.</p>
+   <p begin="00:12:34.004" end="00:12:36.006" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Creo que intentó esposarle<br /> y se le cayó el arma.</p>
+   <p begin="00:12:36.047" end="00:12:39.342" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-No es bueno, pero son cosas que pasan.<br /> -Sería su tercera falta.</p>
+   <p begin="00:12:40.510" end="00:12:42.846" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mierda. Por eso está culpando a Stokes.</p>
+   <p begin="00:12:42.929" end="00:12:44.264" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Busca salvar su empleo.</p>
+   <p begin="00:12:45.056" end="00:12:46.266" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Pero no lo vas a corroborar,</p>
+   <p begin="00:12:47.142" end="00:12:48.518" region="AmazonDefaultRegion" style="AmazonDefaultStyle">y no es que te lo esté pidiendo.</p>
+   <p begin="00:12:49.060" end="00:12:51.646" region="AmazonDefaultRegion" style="AmazonDefaultStyle">De todos modos está acabada<br /> si hace una declaración falsa.</p>
+   <p begin="00:12:53.815" end="00:12:55.609" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Puedes convencerla<br /> de que haga lo correcto?</p>
+   <p begin="00:12:55.692" end="00:12:58.111" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Puedo intentarlo. ¿Y Stokes?<br /> Tengo que soltarle.</p>
+   <p begin="00:12:58.195" end="00:12:59.738" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Espera al menos hasta mañana.</p>
+   <p begin="00:12:59.821" end="00:13:02.449" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Habrá menos agentes amigos de Brasher<br /> para verlo.</p>
+   <p begin="00:13:03.450" end="00:13:06.036" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Y te dará más tiempo<br /> para que ella cambie su historia.</p>
+   <p begin="00:13:06.161" end="00:13:08.246" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí, es un buen gesto<br /> con las fiestas y eso.</p>
+   <p begin="00:13:08.538" end="00:13:09.789" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Exacto.</p>
+   <p begin="00:13:10.165" end="00:13:12.375" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>-El cable está incluido.</span><br /> -Genial.</p>
+   <p begin="00:13:13.293" end="00:13:14.503" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Es genial.</p>
+   <p begin="00:13:15.295" end="00:13:17.088" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Le encantan sus programas.</p>
+   <p begin="00:13:17.380" end="00:13:19.883" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Tenemos espectáculos</span><br /> <span>los fines de semana y festivos,</span></p>
+   <p begin="00:13:20.675" end="00:13:23.428" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>y ofrecemos servicios confesionales</span><br /> <span>los domingos.</span></p>
+   <p begin="00:13:23.803" end="00:13:26.389" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Eso suena genial.</p>
+   <p begin="00:13:26.932" end="00:13:29.267" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Cuánto cuesta todo?</p>
+   <p begin="00:13:29.601" end="00:13:33.563" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Depende del plan, los extras que elija,</span><br /> <span>el tipo de habitación.</span></p>
+   <p begin="00:13:34.231" end="00:13:37.359" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿El básico? ¿Cuánto es el básico?</p>
+   <p begin="00:13:38.068" end="00:13:39.945" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>El seguro médico</span><br /> <span>cubre una parte considerable.</span></p>
+   <p begin="00:13:40.570" end="00:13:43.114" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Bien.<br /> <span>-Traiga a su madre, Sr. Martinez.</span></p>
+   <p begin="00:13:43.740" end="00:13:45.617" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Vea las instalaciones.</span><br /> <span>Conozca al personal.</span></p>
+   <p begin="00:13:45.909" end="00:13:47.077" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿David?</p>
+   <p begin="00:13:48.161" end="00:13:49.162" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿David?</p>
+   <p begin="00:13:50.872" end="00:13:52.374" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>-¿Sr. Martinez?</span><br /> -David.</p>
+   <p begin="00:13:54.084" end="00:13:56.878" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Sr. Martinez, ¿sigue ahí?</span></p>
+   <p begin="00:13:59.256" end="00:14:01.258" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Puedes apagarlo?</p>
+   <p begin="00:14:01.758" end="00:14:03.677" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Miembros de la familia de Luis Escobar...</span></p>
+   <p begin="00:14:05.220" end="00:14:07.138" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estaba escuchando eso.</p>
+   <p begin="00:14:08.098" end="00:14:09.766" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Estás leyendo.<br /> -Bueno, eso intento.</p>
+   <p begin="00:14:10.600" end="00:14:12.936" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Cuándo vas a recoger mis gafas nuevas?</p>
+   <p begin="00:14:13.270" end="00:14:15.272" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mamá, tu prescripción es<br /> un pedido especial.</p>
+   <p begin="00:14:15.689" end="00:14:17.274" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Dijeron que el día después de Navidad.</p>
+   <p begin="00:14:18.108" end="00:14:19.734" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Muy bien. Mentiroso.</p>
+   <p begin="00:14:20.986" end="00:14:24.239" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Qué estás leyendo?<br /> -Estoy refrescando mi gramática francesa.</p>
+   <p begin="00:14:25.949" end="00:14:27.701" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Qué interesante.</p>
+   <p begin="00:14:29.119" end="00:14:30.328" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No seas listillo.</p>
+   <p begin="00:14:31.037" end="00:14:33.707" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nunca entendí tu falta de interés.</p>
+   <p begin="00:14:33.790" end="00:14:35.417" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Podrías haber hablado con soltura.</p>
+   <p begin="00:14:35.500" end="00:14:37.294" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿No lo sabes ya de sobra?</p>
+   <p begin="00:14:37.544" end="00:14:38.878" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Pero nunca me canso.</p>
+   <p begin="00:14:42.424" end="00:14:44.175" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Te lo he dicho, el día después de Navidad.</p>
+   <p begin="00:14:44.676" end="00:14:45.760" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Te acuerdas.</p>
+   <p begin="00:15:23.840" end="00:15:25.133" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Cómo estás?</p>
+   <p begin="00:15:25.842" end="00:15:27.510" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Me duele mucho.</p>
+   <p begin="00:15:28.094" end="00:15:29.929" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Un café? Está recién hecho.</p>
+   <p begin="00:15:30.013" end="00:15:31.514" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No, gracias. Ya he tomado bastante.</p>
+   <p begin="00:15:32.557" end="00:15:34.142" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Qué bonito es esto.</p>
+   <p begin="00:15:34.893" end="00:15:36.227" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí.</p>
+   <p begin="00:15:37.646" end="00:15:39.606" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Alguna vez has pensado<br /> en trabajar en Pacific?</p>
+   <p begin="00:15:40.357" end="00:15:42.025" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sería un buen viaje.</p>
+   <p begin="00:15:42.108" end="00:15:45.362" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Pero no, me gusta el raro Hollywood,<br /> siempre hay acción.</p>
+   <p begin="00:15:45.445" end="00:15:46.488" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí.</p>
+   <p begin="00:15:48.073" end="00:15:51.117" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Conocí a un oficial, Williams,<br /> le encantaba trabajar en Hollywood.</p>
+   <p begin="00:15:51.201" end="00:15:53.119" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ya sabes, esteroides.</p>
+   <p begin="00:15:53.870" end="00:15:56.373" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Un día paró a un Corvette<br /> con matrícula caducada.</p>
+   <p begin="00:15:56.456" end="00:15:58.041" region="AmazonDefaultRegion" style="AmazonDefaultStyle">El tío estaba fichado.<br /> Hubo una persecución.</p>
+   <p begin="00:15:58.083" end="00:15:59.793" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí, a eso me refiero.</p>
+   <p begin="00:16:00.460" end="00:16:03.421" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Williams cogió tres divisiones,</p>
+   <p begin="00:16:03.505" end="00:16:05.965" region="AmazonDefaultRegion" style="AmazonDefaultStyle">hasta aquí, Venice.</p>
+   <p begin="00:16:06.049" end="00:16:09.928" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Cuando todo se acabó,<br /> estaba harto. Enfadado.</p>
+   <p begin="00:16:10.011" end="00:16:11.554" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Dispuesto a darle una paliza.</p>
+   <p begin="00:16:11.638" end="00:16:14.516" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Le sacó del coche, le tiró contra el capó,<br /> intentó esposarle.</p>
+   <p begin="00:16:14.557" end="00:16:15.558" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Y ¡pum!</p>
+   <p begin="00:16:16.226" end="00:16:19.354" region="AmazonDefaultRegion" style="AmazonDefaultStyle">La rueda delantera explotó<br /> acojonándoles a ambos.</p>
+   <p begin="00:16:19.396" end="00:16:21.064" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Me encanta.</p>
+   <p begin="00:16:22.691" end="00:16:27.570" region="AmazonDefaultRegion" style="AmazonDefaultStyle">El tema es que Williams<br /> estaba tan nervioso</p>
+   <p begin="00:16:28.571" end="00:16:31.241" region="AmazonDefaultRegion" style="AmazonDefaultStyle">que pensó que había sacado las esposas,<br /> no la pistola.</p>
+   <p begin="00:16:37.288" end="00:16:39.249" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Has venido hasta aquí para contarme eso?</p>
+   <p begin="00:16:41.501" end="00:16:43.586" region="AmazonDefaultRegion" style="AmazonDefaultStyle">He venido a decirte<br /> que los accidentes suceden,</p>
+   <p begin="00:16:43.628" end="00:16:46.589" region="AmazonDefaultRegion" style="AmazonDefaultStyle">y no quiero que te hagas daño<br /> por una declaración no exacta.</p>
+   <p begin="00:16:50.093" end="00:16:51.594" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Cómo que no es exacta? Estabas allí.</p>
+   <p begin="00:16:55.598" end="00:16:57.308" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vas a respaldarme, ¿verdad, Harry?</p>
+   <p begin="00:16:58.727" end="00:17:00.270" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Verdad?<br /> -Maldita sea, Julia.</p>
+   <p begin="00:17:01.062" end="00:17:02.147" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Eso no es lo que pasó.</p>
+   <p begin="00:17:03.356" end="00:17:05.859" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No fue a por tu arma.<br /> Tenía las manos en la pared.</p>
+   <p begin="00:17:07.068" end="00:17:09.988" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Es lo que vi. Es lo que diré.</p>
+   <p begin="00:17:12.449" end="00:17:13.950" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Vas a apoyar a esa escoria y no a mí?</p>
+   <p begin="00:17:14.451" end="00:17:15.452" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No se trata de eso.</p>
+   <p begin="00:17:15.535" end="00:17:19.122" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Stokes es un criminal.<br /> Si no va a la cárcel por esto,</p>
+   <p begin="00:17:19.164" end="00:17:20.790" region="AmazonDefaultRegion" style="AmazonDefaultStyle">acabará yendo por cualquier otra cosa</p>
+   <p begin="00:17:20.832" end="00:17:22.292" region="AmazonDefaultRegion" style="AmazonDefaultStyle">y hará daño a alguien.</p>
+   <p begin="00:17:24.461" end="00:17:28.131" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Que te jodan, Harry.<br /> Eres un puto hipócrita.</p>
+   <p begin="00:17:36.639" end="00:17:39.559" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Oí a la agente Brasher<br /> gritándole órdenes al sospechoso.</p>
+   <p begin="00:17:39.642" end="00:17:40.769" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué decía?</p>
+   <p begin="00:17:40.810" end="00:17:43.688" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Quieto." "No te muevas." Cosas así.</p>
+   <p begin="00:17:43.772" end="00:17:46.608" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bajé la rampa hacia las voces<br /> y les vi en la planta baja.</p>
+   <p begin="00:17:46.649" end="00:17:47.650" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué vio?</p>
+   <p begin="00:17:47.734" end="00:17:48.943" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>¡Alto ahí! No te muevas.</span></p>
+   <p begin="00:17:48.985" end="00:17:51.780" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Date la vuelta. Las manos contra la pared.<br /> ¡Date la vuelta!</p>
+   <p begin="00:17:51.821" end="00:17:55.074" region="AmazonDefaultRegion" style="AmazonDefaultStyle">El sospechoso estaba en la postura,<br /> tenía las manos contra la pared.</p>
+   <p begin="00:17:55.158" end="00:17:56.826" region="AmazonDefaultRegion" style="AmazonDefaultStyle">La agente Brasher estaba detrás de él.</p>
+   <p begin="00:17:56.910" end="00:17:57.911" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué pasó después?</p>
+   <p begin="00:17:57.994" end="00:18:00.413" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estaba rodeando un coche<br /> para llegar a ellos</p>
+   <p begin="00:18:00.497" end="00:18:01.581" region="AmazonDefaultRegion" style="AmazonDefaultStyle">cuando oí el disparo.</p>
+   <p begin="00:18:01.664" end="00:18:03.917" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Vio a la agente Brasher sacar su arma?</p>
+   <p begin="00:18:05.502" end="00:18:07.712" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No. Desde mi situación,</p>
+   <p begin="00:18:07.796" end="00:18:10.173" region="AmazonDefaultRegion" style="AmazonDefaultStyle">solo podía deducir sus movimientos.</p>
+   <p begin="00:18:10.256" end="00:18:12.509" region="AmazonDefaultRegion" style="AmazonDefaultStyle">En ese momento, cuando oyó el disparo,</p>
+   <p begin="00:18:12.550" end="00:18:13.927" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿seguían las manos en la pared?</p>
+   <p begin="00:18:18.348" end="00:18:19.474" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí.</p>
+   <p begin="00:18:19.641" end="00:18:20.642" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Ambas manos?</p>
+   <p begin="00:18:23.269" end="00:18:26.439" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ambas manos, en la pared.</p>
+   <p begin="00:19:08.648" end="00:19:09.649" region="AmazonDefaultRegion" style="AmazonDefaultStyle">PERSECUCIÓN<br /> ASESINO EN SERIE</p>
+   <p begin="00:19:40.847" end="00:19:43.600" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hola, colega, ¿qué bebes?</p>
+   <p begin="00:19:45.268" end="00:19:46.311" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Quieres un poco?</p>
+   <p begin="00:19:48.104" end="00:19:50.231" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Policía de Los Ángeles. Joder.</p>
+   <p begin="00:19:50.273" end="00:19:52.233" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Me temo que tengo que multarle por esto.</p>
+   <p begin="00:19:52.275" end="00:19:54.485" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Por beber en público, envase abierto.</p>
+   <p begin="00:19:54.569" end="00:19:57.822" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vamos, agente. ¿En serio?</p>
+   <p begin="00:19:57.906" end="00:19:59.449" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí. Déjeme ver la documentación.</p>
+   <p begin="00:19:59.532" end="00:20:01.659" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estoy a media manzana de mi apartamento.</p>
+   <p begin="00:20:01.743" end="00:20:03.202" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Y si lo tiro?</p>
+   <p begin="00:20:03.786" end="00:20:05.121" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Demasiado tarde.</p>
+   <p begin="00:20:05.204" end="00:20:07.457" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Siéntese mientras le pongo la multa.</p>
+   <p begin="00:20:12.086" end="00:20:13.379" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Cierra la puerta.</p>
+   <p begin="00:20:15.924" end="00:20:19.093" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vaya mierda.<br /> ¿Por qué no va en coche patrulla?</p>
+   <p begin="00:20:19.928" end="00:20:22.722" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Porque es una operación encubierta.<br /> Déjeme la documentación.</p>
+   <p begin="00:20:22.805" end="00:20:24.766" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Por qué la policía<br /> tiene una operación...?</p>
+   <p begin="00:20:26.142" end="00:20:28.269" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¡Joder! ¿Qué haces?</p>
+   <p begin="00:20:32.690" end="00:20:33.942" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¡Hijo de puta!</p>
+   <p begin="00:20:42.992" end="00:20:45.161" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¡Que te jodan, hijo de puta!</p>
+   <p begin="00:21:00.677" end="00:21:02.804" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Está todo?<br /> -Sí, eso parece.</p>
+   <p begin="00:21:02.845" end="00:21:04.222" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Firme aquí.</p>
+   <p begin="00:21:06.015" end="00:21:07.183" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Muy bien.</p>
+   <p begin="00:21:11.521" end="00:21:12.522" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Otra vez?</p>
+   <p begin="00:21:12.605" end="00:21:13.898" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Recuerdas algún nombre?</p>
+   <p begin="00:21:13.982" end="00:21:15.024" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mierda.</p>
+   <p begin="00:21:15.984" end="00:21:17.026" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Me debes una.</p>
+   <p begin="00:21:17.068" end="00:21:19.737" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Échale otro vistazo,<br /> o te meto de nuevo en la celda.</p>
+   <p begin="00:21:21.072" end="00:21:26.369" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Kevin... Grandersen? ¿Andersen, quizá?</p>
+   <p begin="00:21:26.703" end="00:21:31.416" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Este es Tom Parker. Tom Parker, seguro.</p>
+   <p begin="00:21:31.499" end="00:21:33.960" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Feliz Navidad, Stokes.<br /> No digas que nunca te regalo nada.</p>
+   <p begin="00:21:34.043" end="00:21:35.044" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lo que usted diga.</p>
+   <p begin="00:21:35.128" end="00:21:39.007" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Adónde vas?<br /> Por delante, por tu propio bien.</p>
+   <p begin="00:21:43.553" end="00:21:48.558" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿A que es bonito? Me encantan las voces<br /> de estos chicos. ¿A ti no?</p>
+   <p begin="00:21:50.560" end="00:21:51.978" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí, mamá. Precioso.</p>
+   <p begin="00:21:52.061" end="00:21:55.857" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Una voces preciosas. Como los ángeles.</p>
+   <p begin="00:22:00.028" end="00:22:05.241" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Me hace sentir el espíritu navideño.<br /> Me encanta la Navidad. ¿A ti no?</p>
+   <p begin="00:22:07.160" end="00:22:08.536" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí, me encanta.</p>
+   <p begin="00:22:53.081" end="00:22:54.624" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué me he perdido?</p>
+   <p begin="00:22:54.957" end="00:22:59.337" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bedford Falls se está yendo a la mierda<br /> sin George Bailey.</p>
+   <p begin="00:23:00.630" end="00:23:03.549" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Coge otro trozo de tarta.<br /> Que no se desperdicie.</p>
+   <p begin="00:23:03.633" end="00:23:05.384" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No, mamá, estoy lleno.</p>
+   <p begin="00:23:05.927" end="00:23:07.970" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Quieres ver el resto de la película?</p>
+   <p begin="00:23:08.054" end="00:23:10.014" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sé cómo acaba.</p>
+   <p begin="00:23:10.098" end="00:23:13.267" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mamá, voy a salir un rato<br /> a ver unos amigos.</p>
+   <p begin="00:23:13.643" end="00:23:15.311" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estarás bien hasta que vuelva, ¿verdad?</p>
+   <p begin="00:23:15.394" end="00:23:17.897" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estoy bien. Llévate la puta tarta.</p>
+   <p begin="00:23:19.148" end="00:23:20.149" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mamá.</p>
+   <p begin="00:23:20.233" end="00:23:24.487" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Venga. Deséales feliz Navidad a tus amigos<br /> de mi parte.</p>
+   <p begin="00:23:24.529" end="00:23:25.571" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lo haré.</p>
+   <p begin="00:23:25.655" end="00:23:27.824" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No vuelvas muy tarde.</p>
+   <p begin="00:23:27.865" end="00:23:30.034" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No. Cerraré la puerta trasera.</p>
+   <p begin="00:23:30.243" end="00:23:32.078" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Feliz Navidad.</p>
+   <p begin="00:23:35.832" end="00:23:37.500" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vale, mamá. Feliz Navidad.</p>
+   <p begin="00:23:48.302" end="00:23:51.848" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Esperaba encontrarle aquí, agente.<br /> ¿Algún progreso?</p>
+   <p begin="00:23:52.849" end="00:23:56.519" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Volvemos a la casilla de salida.<br /> Estamos comprobando unos nombres.</p>
+   <p begin="00:23:57.770" end="00:24:00.398" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Por qué ha venido el día de Navidad?</p>
+   <p begin="00:24:00.481" end="00:24:02.150" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Esta madrugada<br /> Waits intentó un secuestro.</p>
+   <p begin="00:24:02.191" end="00:24:04.902" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lo he oído. ¿Alguna pista?</p>
+   <p begin="00:24:04.986" end="00:24:06.154" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estamos en ello.</p>
+   <p begin="00:24:07.488" end="00:24:09.907" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tengo entendido que ha soltado<br /> al tal John Stokes.</p>
+   <p begin="00:24:09.991" end="00:24:14.787" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tomé la determinación de que el caso<br /> no justificaba los cargos.</p>
+   <p begin="00:24:14.871" end="00:24:16.873" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Un sospechoso<br /> en un tiroteo a un agente?</p>
+   <p begin="00:24:16.914" end="00:24:18.374" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Le hice un favor al departamento.</p>
+   <p begin="00:24:18.457" end="00:24:19.542" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Cómo?</p>
+   <p begin="00:24:19.584" end="00:24:21.669" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No poniendo al departamento<br /> en una situación</p>
+   <p begin="00:24:21.711" end="00:24:24.422" region="AmazonDefaultRegion" style="AmazonDefaultStyle">en la que el fiscal sopese<br /> testimonios contradictorios</p>
+   <p begin="00:24:24.505" end="00:24:25.548" region="AmazonDefaultRegion" style="AmazonDefaultStyle">de dos agentes.</p>
+   <p begin="00:24:25.590" end="00:24:28.551" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Se refiere a la versión<br /> de la agente Brasher contra la suya?</p>
+   <p begin="00:24:28.593" end="00:24:32.096" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Pensé que nadie querría que<br /> esa discrepancia apareciera en los medios.</p>
+   <p begin="00:24:35.141" end="00:24:36.475" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estoy de acuerdo.</p>
+   <p begin="00:24:42.690" end="00:24:46.736" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Le voy a asignar el caso de Waits, Bosch,<br /> al margen del cuerpo especial.</p>
+   <p begin="00:24:48.446" end="00:24:49.614" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tengo a la ciudad aterrorizada</p>
+   <p begin="00:24:49.697" end="00:24:51.574" region="AmazonDefaultRegion" style="AmazonDefaultStyle">y al cuerpo especial<br /> no se le ocurre nada.</p>
+   <p begin="00:24:52.200" end="00:24:55.870" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Necesito resultados, agente,<br /> haga lo que sea necesario.</p>
+   <p begin="00:24:57.246" end="00:25:00.166" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Responde ante mí. Mi línea directa,<br /> en cualquier momento.</p>
+   <p begin="00:25:01.834" end="00:25:03.252" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Y Pounds?</p>
+   <p begin="00:25:03.294" end="00:25:04.921" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Deje que yo me ocupe de Pounds.</p>
+   <p begin="00:25:06.005" end="00:25:07.757" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Y Arthur Delacroix?</p>
+   <p begin="00:25:07.840" end="00:25:09.342" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Siga trabajando en ello.</p>
+   <p begin="00:25:09.425" end="00:25:11.260" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Por lo que sé,<br /> ambos casos están relacionados</p>
+   <p begin="00:25:11.302" end="00:25:13.304" region="AmazonDefaultRegion" style="AmazonDefaultStyle">hasta que demuestre<br /> que Waits no mató a ese chico.</p>
+   <p begin="00:26:56.115" end="00:26:58.617" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Drogas</p>
+   <p begin="00:28:12.858" end="00:28:14.443" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Algo más?</p>
+   <p begin="00:28:14.527" end="00:28:15.611" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No, gracias.</p>
+   <p begin="00:28:16.654" end="00:28:17.822" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Feliz Navidad, Harry.</p>
+   <p begin="00:28:17.905" end="00:28:19.448" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Feliz Navidad.</p>
+   <p begin="00:28:27.623" end="00:28:28.666" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bosch.</p>
+   <p begin="00:28:28.749" end="00:28:31.544" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Hola, soy yo. ¿Dónde estás?</span></p>
+   <p begin="00:28:32.128" end="00:28:35.005" region="AmazonDefaultRegion" style="AmazonDefaultStyle">De camino a la fiesta de Navidad<br /> de los agentes de homicidios.</p>
+   <p begin="00:28:35.923" end="00:28:37.842" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Claro.</span></p>
+   <p begin="00:28:37.925" end="00:28:39.468" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Feliz Navidad, por cierto.</p>
+   <p begin="00:28:39.552" end="00:28:41.762" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Vale. Lo mismo digo.</span></p>
+   <p begin="00:28:41.804" end="00:28:43.597" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Me preguntaba si ibas a llamar a tu hija</span></p>
+   <p begin="00:28:43.639" end="00:28:44.682" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>para desearle feliz Navidad.</span></p>
+   <p begin="00:28:46.142" end="00:28:47.393" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estaba esperando hasta después de la cena.</p>
+   <p begin="00:28:47.476" end="00:28:49.854" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No quería interrumpir lo<br /> que pudierais estar haciendo...</p>
+   <p begin="00:28:49.937" end="00:28:51.105" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Es tu padre.</span></p>
+   <p begin="00:28:53.732" end="00:28:55.484" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Feliz Navidad, Harry.</span></p>
+   <p begin="00:28:56.652" end="00:28:58.070" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Feliz Navidad, cielo. ¿Cómo estás?</p>
+   <p begin="00:28:58.154" end="00:29:01.157" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Bien. ¿Cuándo vas a volver?</span></p>
+   <p begin="00:29:01.240" end="00:29:04.535" region="AmazonDefaultRegion" style="AmazonDefaultStyle">En cuanto pueda. Lo siento mucho.<br /> Sé que te lo prometí.</p>
+   <p begin="00:29:04.618" end="00:29:08.122" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estos casos me tienen muy ocupado.</p>
+   <p begin="00:29:09.707" end="00:29:10.875" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>No pasa nada.</span></p>
+   <p begin="00:29:11.917" end="00:29:13.669" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Escucha. Tengo una idea. Estaba pensando</p>
+   <p begin="00:29:13.711" end="00:29:16.172" region="AmazonDefaultRegion" style="AmazonDefaultStyle">que quizá podrías venir tú a visitarme<br /> a Los Ángeles.</p>
+   <p begin="00:29:16.505" end="00:29:20.009" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>¿En serio? Eso sería genial.</span></p>
+   <p begin="00:29:20.634" end="00:29:24.180" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Podríamos patrullar, ir a la academia,</p>
+   <p begin="00:29:24.263" end="00:29:25.347" region="AmazonDefaultRegion" style="AmazonDefaultStyle">ir al campo de tiro.</p>
+   <p begin="00:29:25.389" end="00:29:26.724" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Fantástico.</span></p>
+   <p begin="00:29:26.807" end="00:29:30.019" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bueno, tenemos que hablar antes<br /> con tu madre, a ver qué le parece,</p>
+   <p begin="00:29:30.102" end="00:29:33.481" region="AmazonDefaultRegion" style="AmazonDefaultStyle">y comprobar tu agenda escolar.<br /> Quizá en las vacaciones de primavera.</p>
+   <p begin="00:29:38.277" end="00:29:40.863" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Maddie, tengo que coger una llamada.<br /> Es del trabajo.</p>
+   <p begin="00:29:40.946" end="00:29:42.656" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Te llamo luego, ¿vale?</p>
+   <p begin="00:29:43.240" end="00:29:44.241" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Vale.</span></p>
+   <p begin="00:29:45.451" end="00:29:46.785" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Te quiero.</p>
+   <p begin="00:29:47.453" end="00:29:49.413" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Y yo a ti.</span></p>
+   <p begin="00:29:49.497" end="00:29:51.707" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Adiós.<br /> <span>-Adiós.</span></p>
+   <p begin="00:29:55.878" end="00:29:56.879" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bosch.</p>
+   <p begin="00:29:56.921" end="00:30:01.926" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Quiero que sepas que estoy pasando unas<br /> grandes fiestas con mis seres queridos,</p>
+   <p begin="00:30:02.009" end="00:30:04.053" region="AmazonDefaultRegion" style="AmazonDefaultStyle">y espero que tú también.</p>
+   <p begin="00:30:05.304" end="00:30:08.307" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Waits, hoy sería una buena noche<br /> para entregarte.</p>
+   <p begin="00:30:08.390" end="00:30:09.475" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué dices?</p>
+   <p begin="00:30:09.558" end="00:30:13.229" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Diría que me estás vendiendo<br /> una farsa navideña.</p>
+   <p begin="00:30:15.314" end="00:30:18.150" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Intento acabar con esto contigo vivo.</p>
+   <p begin="00:30:18.234" end="00:30:20.110" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Creo que los dos sabemos<br /> cómo acaba esto.</p>
+   <p begin="00:30:22.404" end="00:30:27.368" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tú y yo, Harry, estamos cortados<br /> por el mismo patrón.</p>
+   <p begin="00:30:28.452" end="00:30:32.248" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Yo mato gente. Tú matas gente.</p>
+   <p begin="00:30:32.331" end="00:30:36.544" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No hay que llegar a eso.<br /> Podemos vernos. Tú eliges el sitio.</p>
+   <p begin="00:30:46.178" end="00:30:48.597" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Soy el agente Harry Bosch,<br /> de Homicidios de Hollywood.</p>
+   <p begin="00:30:48.639" end="00:30:50.683" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Necesito ayuda para localizar un móvil.</p>
+   <p begin="00:30:50.766" end="00:30:55.020" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Un momento, agente. Necesitaré información</span><br /> <span>para la declaración jurada.</span></p>
+   <p begin="00:30:55.104" end="00:30:57.398" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No hay tiempo para una orden judicial.</p>
+   <p begin="00:30:57.439" end="00:31:01.735" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Es por el asesino en serie, Waits.<br /> Circunstancias extremas.</p>
+   <p begin="00:31:01.777" end="00:31:04.613" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Puede contactar con el despacho<br /> del jefe adjunto Irving.</p>
+   <p begin="00:31:08.909" end="00:31:09.952" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bosch.</p>
+   <p begin="00:31:09.994" end="00:31:11.245" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Detective, tenemos el móvil.</span></p>
+   <p begin="00:31:11.287" end="00:31:13.622" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Glendale Boulevard</span><br /> <span>entre Fletcher Drive y Waterloo,</span></p>
+   <p begin="00:31:13.706" end="00:31:14.790" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>distrito Silver Lake.</span></p>
+   <p begin="00:31:14.832" end="00:31:15.874" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Gracias.</p>
+   <p begin="00:31:37.021" end="00:31:39.189" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Dice que lo encontró en la calle,<br /> junto al bordillo.</p>
+   <p begin="00:31:43.819" end="00:31:46.071" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Llevaos al chico.<br /> No tiene nada que ver con esto.</p>
+   <p begin="00:32:13.766" end="00:32:18.020" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Esos huesos están justo debajo<br /> de las calles de París. ¿Quién sabe?</p>
+   <p begin="00:32:19.521" end="00:32:22.191" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué piensas de estas fotos?<br /> Parecen recientes.</p>
+   <p begin="00:32:23.233" end="00:32:25.903" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sospecho que Waits posiblemente<br /> viajó al extranjero.</p>
+   <p begin="00:32:25.986" end="00:32:28.739" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kiz, ¿ha habido suerte<br /> con el control de pasaportes?</p>
+   <p begin="00:32:28.822" end="00:32:32.660" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nada. Si Waits ha ido a Francia,<br /> fue con otro nombre.</p>
+   <p begin="00:32:32.701" end="00:32:33.827" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vale, gracias.</p>
+   <p begin="00:32:38.457" end="00:32:39.500" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bosch.</p>
+   <p begin="00:32:55.849" end="00:32:56.934" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Cuándo has llegado?</p>
+   <p begin="00:32:57.017" end="00:32:58.060" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Esta mañana.</p>
+   <p begin="00:32:58.102" end="00:32:59.853" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Esto es de Maddie. Feliz Navidad.</p>
+   <p begin="00:33:01.021" end="00:33:02.606" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Quería estar allí.</p>
+   <p begin="00:33:02.690" end="00:33:04.233" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Pero no estuviste.</p>
+   <p begin="00:33:04.274" end="00:33:05.776" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Has venido a tocarme las pelotas?</p>
+   <p begin="00:33:06.235" end="00:33:09.405" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No te hagas ilusiones.<br /> He venido a jugar a las cartas.</p>
+   <p begin="00:33:09.446" end="00:33:12.074" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Un pez gordo de Bel Air oyó<br /> que estaba ganando en Las Vegas.</p>
+   <p begin="00:33:12.116" end="00:33:13.367" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Quiere intentar ganarme.</p>
+   <p begin="00:33:13.992" end="00:33:15.577" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Se ha metido en un lío.</p>
+   <p begin="00:33:24.962" end="00:33:26.755" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Prednisona."</p>
+   <p begin="00:33:26.839" end="00:33:29.800" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No. No... ¿David?</p>
+   <p begin="00:33:31.135" end="00:33:32.469" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿David?</p>
+   <p begin="00:33:33.429" end="00:33:34.805" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¡David!</p>
+   <p begin="00:33:35.597" end="00:33:37.391" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Qué, mamá? ¿Qué? ¿Qué pasa?<br /> -¡David!</p>
+   <p begin="00:33:37.433" end="00:33:40.185" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Me he quedado sin la puta prednisona.<br /> -¡Mamá!</p>
+   <p begin="00:33:40.269" end="00:33:42.146" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué...? Lo siento, pero no me queda.</p>
+   <p begin="00:33:42.229" end="00:33:43.272" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué quieres que haga?</p>
+   <p begin="00:33:44.273" end="00:33:47.776" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Serías tan amable de ir<br /> a que me la rellenen, por favor?</p>
+   <p begin="00:33:47.818" end="00:33:49.027" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Por favor.</p>
+   <p begin="00:33:50.320" end="00:33:52.489" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí, claro. Claro.</p>
+   <p begin="00:33:53.157" end="00:33:54.199" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vale.</p>
+   <p begin="00:33:54.950" end="00:33:56.952" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Catacumbas del siglo XVIII de París</p>
+   <p begin="00:33:57.035" end="00:34:00.706" region="AmazonDefaultRegion" style="AmazonDefaultStyle">He estado en las catacumbas de París.<br /> En la entrada está este aviso:</p>
+   <p begin="00:34:00.789" end="00:34:03.125" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Alto, este es el Imperio de la Muerte".</p>
+   <p begin="00:34:04.752" end="00:34:06.754" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Encontré el libro<br /> en el apartamento de Waits.</p>
+   <p begin="00:34:08.380" end="00:34:10.758" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Las fotos estaban en esta página.</p>
+   <p begin="00:34:16.513" end="00:34:18.640" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿No se encontraron<br /> a las siete presuntas víctimas?</p>
+   <p begin="00:34:18.724" end="00:34:19.767" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Correcto.</p>
+   <p begin="00:34:19.808" end="00:34:21.685" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Quizá los guarde.</p>
+   <p begin="00:34:21.769" end="00:34:24.563" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Podría estar creando su propia catacumba<br /> usando los huesos.</p>
+   <p begin="00:34:25.355" end="00:34:26.482" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Sigue llamándote?</p>
+   <p begin="00:34:26.565" end="00:34:27.733" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí.</p>
+   <p begin="00:34:28.442" end="00:34:31.320" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Te ve como un amigo, un rival, un hermano.</p>
+   <p begin="00:34:31.361" end="00:34:32.696" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Cortados por el mismo patrón".</p>
+   <p begin="00:34:32.780" end="00:34:35.824" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Es lo que dijo:<br /> "Cortados por el mismo patrón".</p>
+   <p begin="00:34:35.866" end="00:34:39.328" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Llamarte es arriesgado.<br /> Eso le gusta. Podrías usarlo.</p>
+   <p begin="00:34:39.369" end="00:34:40.662" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lo estoy intentando.</p>
+   <p begin="00:34:40.704" end="00:34:44.208" region="AmazonDefaultRegion" style="AmazonDefaultStyle">De momento no consigo<br /> que cometa un error, que revele algo.</p>
+   <p begin="00:34:44.291" end="00:34:48.212" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jugar con su vanidad, desafiarle,<br /> nada parece hacerle equivocarse.</p>
+   <p begin="00:34:48.295" end="00:34:50.964" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Quizá necesites preparar un guion<br /> para cuando vuelva a llamar.</p>
+   <p begin="00:34:51.006" end="00:34:54.051" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tendrás a un criminólogo<br /> de ciencias del comportamiento en esto.</p>
+   <p begin="00:34:54.134" end="00:34:56.261" region="AmazonDefaultRegion" style="AmazonDefaultStyle">El cuerpo especial sí.<br /> ¿Para qué lo necesito yo?</p>
+   <p begin="00:34:56.345" end="00:34:57.346" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tengo al mejor justo aquí.</p>
+   <p begin="00:34:58.806" end="00:35:01.558" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Harry, ya te lo he dicho.<br /> Ahora me dedico a jugar a las cartas.</p>
+   <p begin="00:35:02.434" end="00:35:05.395" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Y tengo que irme.<br /> ¿Vas a abrir el regalo de Maddie?</p>
+   <p begin="00:35:13.070" end="00:35:14.738" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ha hecho que la personalicen para ti.</p>
+   <p begin="00:35:23.038" end="00:35:26.208" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Preciosa. Realmente preciosa.</p>
+   <p begin="00:35:32.506" end="00:35:34.925" region="AmazonDefaultRegion" style="AmazonDefaultStyle">RECETAS</p>
+   <p begin="00:35:43.559" end="00:35:46.103" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí. Claro.</p>
+   <p begin="00:35:49.064" end="00:35:50.858" region="AmazonDefaultRegion" style="AmazonDefaultStyle">PERSECUCIÓN<br /> ASESINO EN SERIE</p>
+   <p begin="00:35:53.277" end="00:35:54.319" region="AmazonDefaultRegion" style="AmazonDefaultStyle">TELÉFONO ASISTENCIA DPLA<br /> 323-555-0172</p>
+   <p begin="00:36:03.078" end="00:36:07.666" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Vamos a entrar ahí, Waits.</span><br /> <span>Recuerda lo que hemos hablado antes.</span></p>
+   <p begin="00:36:07.749" end="00:36:09.042" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Lo sé.</span></p>
+   <p begin="00:36:09.084" end="00:36:12.921" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Me meterás en el maletero</span><br /> <span>y no volveré a ver la luz del día.</span></p>
+   <p begin="00:36:13.630" end="00:36:14.673" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jerry, ¿qué es eso?</p>
+   <p begin="00:36:14.756" end="00:36:16.550" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿El qué?<br /> -Lo de tu ordenador.</p>
+   <p begin="00:36:16.592" end="00:36:18.302" region="AmazonDefaultRegion" style="AmazonDefaultStyle">El vídeo de Waits de la excursión.</p>
+   <p begin="00:36:18.385" end="00:36:19.595" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Rebobínalo.</p>
+   <p begin="00:36:21.096" end="00:36:25.350" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Vamos a entrar ahí, Waits.</span><br /> <span>Recuerda lo que hemos hablado antes.</span></p>
+   <p begin="00:36:25.934" end="00:36:27.060" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Lo sé.</span></p>
+   <p begin="00:36:27.102" end="00:36:31.189" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Me meterás en el maletero</span><br /> <span>y no volveré a ver la luz del día.</span></p>
+   <p begin="00:36:31.565" end="00:36:32.691" region="AmazonDefaultRegion" style="AmazonDefaultStyle">El maletero.</p>
+   <p begin="00:36:32.774" end="00:36:34.151" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué maletero?</p>
+   <p begin="00:36:34.234" end="00:36:35.402" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mierda, necesitamos una orden.</p>
+   <p begin="00:36:35.444" end="00:36:36.945" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Por un maletero? ¿Qué ocurre, Harry?</p>
+   <p begin="00:36:36.987" end="00:36:38.238" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Se me pasó.</p>
+   <p begin="00:36:49.958" end="00:36:52.336" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Maletero" es una habitación<br /> donde castigan a los niños.</p>
+   <p begin="00:36:52.419" end="00:36:54.296" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Creo que Waits también ha estado aquí.</p>
+   <p begin="00:36:54.379" end="00:36:56.840" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Es el vínculo del que ha estado hablando.</p>
+   <p begin="00:36:58.008" end="00:37:01.136" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lo que tenemos en común,<br /> el centro juvenil McClaren.</p>
+   <p begin="00:37:01.178" end="00:37:02.220" region="AmazonDefaultRegion" style="AmazonDefaultStyle">CENTRO JUVENIL<br /> McCLAREN</p>
+   <p begin="00:37:02.304" end="00:37:03.513" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Su carné de conducir<br /> dice que tiene 43 años.</p>
+   <p begin="00:37:03.597" end="00:37:07.142" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Supongamos que tiene esa edad,<br /> año arriba, año abajo.</p>
+   <p begin="00:37:07.184" end="00:37:10.312" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Queremos los registros de los nombres</p>
+   <p begin="00:37:10.354" end="00:37:13.899" region="AmazonDefaultRegion" style="AmazonDefaultStyle">desde 1970 a 1990 para asegurarnos.</p>
+   <p begin="00:37:13.982" end="00:37:17.903" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estará ahí en alguna parte. Yo también.</p>
+   <p begin="00:37:20.864" end="00:37:23.283" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿El nombre y expediente<br /> de cada chico que ha pasado</p>
+   <p begin="00:37:23.325" end="00:37:24.493" region="AmazonDefaultRegion" style="AmazonDefaultStyle">por aquí en 20 años?</p>
+   <p begin="00:37:24.534" end="00:37:27.496" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Solo buscamos a uno. Cuando lo tengamos,<br /> le devolveremos todo.</p>
+   <p begin="00:37:27.537" end="00:37:29.456" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-¿Tiene un camión?<br /> -¿Cómo?</p>
+   <p begin="00:37:29.498" end="00:37:32.668" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Los 70 y 80,<br /> mucho antes de la era digital.</p>
+   <p begin="00:37:32.751" end="00:37:35.212" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estamos hablando de fotocopias,<br /> miles de ellas.</p>
+   <p begin="00:37:35.295" end="00:37:37.339" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Docenas de cajas de archivos.</p>
+   <p begin="00:37:38.382" end="00:37:39.508" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Haga lo que tenga que hacer.</p>
+   <p begin="00:37:41.343" end="00:37:42.469" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Jefe adjunto Irving.</span></p>
+   <p begin="00:37:42.511" end="00:37:45.013" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Dijo que si necesitaba algo le llamara.</p>
+   <p begin="00:37:45.055" end="00:37:46.932" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>¿Qué necesita, detective?</span></p>
+   <p begin="00:37:47.015" end="00:37:50.352" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Una furgoneta o un camión.<br /> Personal para llevar cajas, urgente.</p>
+   <p begin="00:37:50.394" end="00:37:51.895" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Mándeme la dirección.</span></p>
+   <p begin="00:39:19.483" end="00:39:22.944" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Harry, los chicos estaban ordenados<br /> por año de llegada.</p>
+   <p begin="00:39:23.028" end="00:39:26.531" region="AmazonDefaultRegion" style="AmazonDefaultStyle">En 20 años, son unos 8.000 expedientes.</p>
+   <p begin="00:39:26.615" end="00:39:30.160" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Había 300 camas. Los chicos<br /> entraban y salían todo el tiempo.</p>
+   <p begin="00:39:30.243" end="00:39:32.746" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No todos, algunos se quedaban años.</p>
+   <p begin="00:39:32.788" end="00:39:35.707" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Da igual, solo los blancos.<br /> Reparte el trabajo.</p>
+   <p begin="00:39:35.791" end="00:39:38.210" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Olvida el cuerpo especial,<br /> sácalo todo en un día,</p>
+   <p begin="00:39:38.293" end="00:39:39.878" region="AmazonDefaultRegion" style="AmazonDefaultStyle">dos como mucho.</p>
+   <p begin="00:40:16.331" end="00:40:18.875" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ya no usamos esa habitación.</p>
+   <p begin="00:40:18.959" end="00:40:21.711" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Las prácticas draconianas<br /> son cosa del pasado, detective.</p>
+   <p begin="00:40:22.212" end="00:40:25.382" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Por qué siguen teniendo un colchón?<br /> ¿Por si acaso?</p>
+   <p begin="00:40:25.465" end="00:40:27.467" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Le agradecería, agente,</p>
+   <p begin="00:40:27.509" end="00:40:30.470" region="AmazonDefaultRegion" style="AmazonDefaultStyle">que se limitase a la zona del almacén.</p>
+   <p begin="00:40:30.512" end="00:40:33.223" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Déjeme decirle algo. Vengo de aquí.</p>
+   <p begin="00:40:34.057" end="00:40:35.183" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Aquí es donde crecí,</p>
+   <p begin="00:40:35.225" end="00:40:37.310" region="AmazonDefaultRegion" style="AmazonDefaultStyle">y si dependiera de mí,<br /> quemaría este sitio.</p>
+   <p begin="00:40:46.528" end="00:40:47.612" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>¡Mierdecilla!</span></p>
+   <p begin="00:41:31.615" end="00:41:33.491" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Dónde está la caja del 78?</p>
+   <p begin="00:41:33.575" end="00:41:35.160" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Willeford, ¿dónde está el 78?</p>
+   <p begin="00:41:36.203" end="00:41:37.704" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Aquí.</p>
+   <p begin="00:41:45.420" end="00:41:46.421" region="AmazonDefaultRegion" style="AmazonDefaultStyle">83.</p>
+   <p begin="00:41:53.220" end="00:41:55.847" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Qué eres, Sherlock Holmes?<br /> ¿Sacamos 53 cajas,</p>
+   <p begin="00:41:55.931" end="00:41:57.891" region="AmazonDefaultRegion" style="AmazonDefaultStyle">coges una<br /> y encuentras el expediente de Waits?</p>
+   <p begin="00:41:57.933" end="00:41:59.434" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Su expediente no.</p>
+   <p begin="00:42:01.645" end="00:42:04.314" region="AmazonDefaultRegion" style="AmazonDefaultStyle">REGISTRO JUVENIL CENTRO McCLAREN<br /> BOSCH, HIERONYMUS (HARRY)</p>
+   <p begin="00:42:16.534" end="00:42:18.620" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David, ¿dónde estás?</p>
+   <p begin="00:42:23.416" end="00:42:24.584" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Estoy aquí, mamá.</p>
+   <p begin="00:42:27.295" end="00:42:28.964" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Dónde has estado?</p>
+   <p begin="00:42:29.005" end="00:42:31.591" region="AmazonDefaultRegion" style="AmazonDefaultStyle">He estado aquí, viéndote dormir.</p>
+   <p begin="00:42:34.427" end="00:42:37.722" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Deberías haberme despertado.<br /> Estaré toda la noche despierta.</p>
+   <p begin="00:42:38.723" end="00:42:41.226" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Fuiste a la farmacia?</p>
+   <p begin="00:42:41.309" end="00:42:44.312" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sí, pero no conseguí la prednisona.</p>
+   <p begin="00:42:44.354" end="00:42:47.107" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Por qué no? ¿No les quedaba?</p>
+   <p begin="00:42:47.148" end="00:42:50.277" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Necesito mis medicinas.</p>
+   <p begin="00:42:50.318" end="00:42:55.490" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No, te he traído algo mejor.<br /> Mucho mejor, creo.</p>
+   <p begin="00:42:56.157" end="00:42:59.286" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿El qué?<br /> El doctor me recetó prednisona.</p>
+   <p begin="00:43:02.330" end="00:43:07.168" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mamá, espero que no haya sido<br /> de alguna forma una decepción para ti.</p>
+   <p begin="00:43:07.836" end="00:43:10.672" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Claro que no. ¿De qué hablas?</p>
+   <p begin="00:43:11.881" end="00:43:14.175" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Me he esforzado mucho para cuidarte.</p>
+   <p begin="00:43:14.259" end="00:43:15.468" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lo sabes, ¿verdad?</p>
+   <p begin="00:43:15.510" end="00:43:20.223" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Claro que lo sé. Eres un buen hijo.</p>
+   <p begin="00:43:22.309" end="00:43:24.602" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Desde que viniste a vivir con nosotros.</p>
+   <p begin="00:43:26.438" end="00:43:31.568" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No sé dónde estaría si no me cuidaras.</p>
+   <p begin="00:43:34.988" end="00:43:37.073" region="AmazonDefaultRegion" style="AmazonDefaultStyle">¿Pasa algo?</p>
+   <p begin="00:43:38.033" end="00:43:41.077" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Eres la única persona<br /> que se ha preocupado realmente por mí.</p>
+   <p begin="00:43:41.870" end="00:43:43.371" region="AmazonDefaultRegion" style="AmazonDefaultStyle">En toda mi vida.</p>
+   <p begin="00:43:45.040" end="00:43:46.750" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Me rescataste del fuego.</p>
+   <p begin="00:43:52.005" end="00:43:53.089" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Te quiero, mamá.</p>
+   <p begin="00:43:54.841" end="00:43:56.176" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Yo también te quiero, hijo.</p>
+   <p begin="00:43:58.178" end="00:43:59.471" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Dame un beso.</p>
+   <p begin="00:44:11.483" end="00:44:12.525" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No, David.</p>
+   <p begin="00:44:12.567" end="00:44:15.278" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No me gusta estar tan baja.<br /> Vuelve a subirme.</p>
+   <p begin="00:44:17.155" end="00:44:19.574" region="AmazonDefaultRegion" style="AmazonDefaultStyle">No, pónmela detrás.</p>
+   <p begin="00:44:20.575" end="00:44:21.826" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David, no.</p>
+  </div>
+ </body></tt>

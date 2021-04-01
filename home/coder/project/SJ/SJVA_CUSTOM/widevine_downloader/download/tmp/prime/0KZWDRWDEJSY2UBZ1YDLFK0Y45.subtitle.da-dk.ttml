@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" ttp:version="2" xmlns:ttm="http://www.w3.org/ns/ttml#metadata" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" xml:lang="da">
+ <head>
+  <styling>
+   <style xml:id="AmazonDefaultStyle" tts:fontFamily="monospace" tts:color="white" tts:fontSize="1c"></style>
+  </styling>
+  <layout>
+   <region xml:id="AmazonDefaultRegion" tts:extent="80% 15%" tts:origin="10% 80%" tts:displayAlign="after" tts:textAlign="center"></region>
+  </layout>
+ </head>
+ <body>
+  <div>
+   <p begin="00:00:43.419" end="00:00:45.004" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Pierce.<br />-Hvad så?</p>
+   <p begin="00:00:45.087" end="00:00:47.631" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Du må holde øje med ham her.<br />-Okay.</p>
+   <p begin="00:00:53.095" end="00:00:55.723" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Du holder munden lukket.<br />-Okay.</p>
+   <p begin="00:01:07.276" end="00:01:10.029" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ingen taler med ham. Ingen kommer ind.</p>
+   <p begin="00:01:10.112" end="00:01:11.655" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Modtaget.<br />-Lort.</p>
+   <p begin="00:01:11.739" end="00:01:14.658" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Han er en af dem. Gå ikke.<br />-Luk røven.</p>
+   <p begin="00:01:24.210" end="00:01:25.377" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad fanden, mand?</p>
+   <p begin="00:01:26.420" end="00:01:27.630" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad?</p>
+   <p begin="00:01:27.755" end="00:01:29.089" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vil du være hård?</p>
+   <p begin="00:01:29.173" end="00:01:31.425" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg kan anholde dig på stedet<br />for vold mod en betjent.</p>
+   <p begin="00:01:31.509" end="00:01:33.594" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er et år i amtsfængslet, smarte.</p>
+   <p begin="00:01:33.677" end="00:01:36.138" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Undskyld. Det var forkert.<br />-Hvorfor stak du af?</p>
+   <p begin="00:01:36.222" end="00:01:37.723" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Fordi alle andre gjorde.</p>
+   <p begin="00:01:37.807" end="00:01:41.769" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er en reaktion. "Politiet!"<br />Sådan gør man. Man løber.</p>
+   <p begin="00:01:41.852" end="00:01:44.313" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Vi ville bare tale med dig.<br />-Ville I?</p>
+   <p begin="00:01:45.815" end="00:01:47.858" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Pis, bare jeg havde vidst det.</p>
+   <p begin="00:01:48.692" end="00:01:50.653" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mine ribben er brækket, mand.</p>
+   <p begin="00:01:50.736" end="00:01:53.113" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Den sorte betjent ville sgu slå mig ihjel.</p>
+   <p begin="00:01:53.197" end="00:01:55.574" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad forventede du? Han hørte skuddet<br />og så sin makker på jorden.</p>
+   <p begin="00:01:55.658" end="00:01:59.662" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det var ikke mig.<br />Jeg sværger, jeg ikke skød hende.</p>
+   <p begin="00:01:59.745" end="00:02:02.206" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg var der. Jeg ved, hvad der skete.</p>
+   <p begin="00:02:02.289" end="00:02:08.170" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Så ved du, at det ikke var mig.</p>
+   <p begin="00:02:08.254" end="00:02:10.506" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det gør mig til<br />din eneste ven lige nu, Stokes.</p>
+   <p begin="00:02:10.589" end="00:02:13.592" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad vil du have?</p>
+   <p begin="00:02:13.676" end="00:02:16.178" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Fortæl mig om Arthur Delacroix.</p>
+   <p begin="00:02:16.262" end="00:02:17.346" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvem?</p>
+   <p begin="00:02:17.429" end="00:02:20.224" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han var en del af din skateboard-flok<br />i gamle dage.</p>
+   <p begin="00:02:20.307" end="00:02:22.518" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er dig. Det er dine venner, ikke?</p>
+   <p begin="00:02:26.063" end="00:02:29.567" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg var stiv det meste af tiden dengang.</p>
+   <p begin="00:02:29.650" end="00:02:33.112" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg kan ikke huske deres navne,<br />hvis jeg overhovedet kendte dem.</p>
+   <p begin="00:02:33.529" end="00:02:35.948" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvem er det, du taler om?<br />-Lad mig stille spørgsmålene.</p>
+   <p begin="00:02:36.031" end="00:02:38.075" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvor er billedet taget?</p>
+   <p begin="00:02:38.659" end="00:02:40.744" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det kan jeg sgu da ikke huske.</p>
+   <p begin="00:02:40.828" end="00:02:42.496" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Skatede du og dine venner<br />nogensinde oppe i Laurel Canyon?</p>
+   <p begin="00:02:42.580" end="00:02:45.165" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej, vi var på Miracle Mile, Wilshire.</p>
+   <p begin="00:02:45.249" end="00:02:46.292" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nogen tog det her billede,</p>
+   <p begin="00:02:46.375" end="00:02:49.712" region="AmazonDefaultRegion" style="AmazonDefaultStyle">og Arthur Delacroixs far kendte dit navn,<br />da han så dig.</p>
+   <p begin="00:02:49.795" end="00:02:51.797" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han sagde, at Arthur så op til dig.</p>
+   <p begin="00:02:51.881" end="00:02:54.550" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvor boede han?<br />-Ved Wilshire, Carthay Circle.</p>
+   <p begin="00:02:55.259" end="00:02:57.219" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Der kan du bare se. Det gjorde jeg også.</p>
+   <p begin="00:02:58.012" end="00:03:00.848" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Carthay Square.<br />Det må være sådan, hans far kendte mig.</p>
+   <p begin="00:03:00.931" end="00:03:03.225" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Fra området. Forstår du?</p>
+   <p begin="00:03:04.768" end="00:03:08.230" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Den her tumpede knægt<br />var også fra Carthay.</p>
+   <p begin="00:03:08.689" end="00:03:10.941" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Er jeg ret sikker på. Mener du ham her?</p>
+   <p begin="00:03:12.735" end="00:03:15.070" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Ved du, hvad der blev af ham?<br />-Nej.</p>
+   <p begin="00:03:15.154" end="00:03:17.865" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej, jeg mistede kontakten til dem alle,</p>
+   <p begin="00:03:17.948" end="00:03:20.784" region="AmazonDefaultRegion" style="AmazonDefaultStyle">efter de smed mig i Sylmar i et helt år.</p>
+   <p begin="00:03:20.868" end="00:03:22.411" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvornår var det?<br />-I '95.</p>
+   <p begin="00:03:22.494" end="00:03:25.831" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg kom ud...<br />Og alle mine venner var spredt.</p>
+   <p begin="00:03:28.459" end="00:03:30.961" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-IE vil tale med dig.<br />-Efterlad mig ikke, mand.</p>
+   <p begin="00:04:08.749" end="00:04:11.418" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Jeg har en følelse, jeg ikke kan glemme</span></p>
+   <p begin="00:04:27.267" end="00:04:28.644" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Jeg ikke kan glemme</span></p>
+   <p begin="00:04:41.532" end="00:04:42.741" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Ligesom mig</span></p>
+   <p begin="00:05:46.555" end="00:05:50.309" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Da jeg nåede ned i garagen,<br />løb jeg ned ad rampen mod stemmerne.</p>
+   <p begin="00:05:50.392" end="00:05:52.853" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvad sagde de?<br />-Der var meget støj.</p>
+   <p begin="00:05:52.936" end="00:05:54.897" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ekkoer. Jeg kunne ikke høre det præcis.</p>
+   <p begin="00:05:54.980" end="00:05:58.317" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Stop. Rør dig ikke. Vend dig om.<br />Hænderne på muren.</p>
+   <p begin="00:05:58.400" end="00:06:00.194" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Og da du endelig nåede hen til dem?</p>
+   <p begin="00:06:00.277" end="00:06:04.323" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Det skete så hurtigt.<br />-Hvad med pistolen, der gik af?</p>
+   <p begin="00:06:06.950" end="00:06:08.911" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Som jeg sagde, var det sløret.</p>
+   <p begin="00:06:08.994" end="00:06:11.663" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bare giv mig lidt tid<br />til at få styr på detaljerne.</p>
+   <p begin="00:06:12.790" end="00:06:15.584" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Okay. Måske begynder det<br />at vende tilbage til dig.</p>
+   <p begin="00:06:17.503" end="00:06:19.046" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Har du afhørt betjent Brasher endnu?</p>
+   <p begin="00:06:19.129" end="00:06:20.839" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Røveri og drab har førsteret.</p>
+   <p begin="00:06:21.465" end="00:06:23.342" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vi taler med hende, når de er færdige.</p>
+   <p begin="00:06:27.971" end="00:06:30.766" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Sigter du Stokes for dem der?<br />-Det har jeg ikke besluttet.</p>
+   <p begin="00:06:30.849" end="00:06:32.101" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det behøver du ikke.</p>
+   <p begin="00:06:33.769" end="00:06:36.522" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg hører, Røveri og drab sigter ham<br />for hele molevitten.</p>
+   <p begin="00:06:37.481" end="00:06:40.275" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-For hvad?<br />-Mordforsøg på en betjent i hvert fald.</p>
+   <p begin="00:06:40.359" end="00:06:42.319" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Det var ikke det, der skete.<br />-Besiddelse af et skydevåben.</p>
+   <p begin="00:06:42.402" end="00:06:44.571" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Han var ikke bevæbnet.<br />-Han tog Brashers pistol.</p>
+   <p begin="00:06:44.655" end="00:06:45.739" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sagde hun det?</p>
+   <p begin="00:06:45.823" end="00:06:46.949" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er det, jeg hører.</p>
+   <p begin="00:06:50.911" end="00:06:54.039" region="AmazonDefaultRegion" style="AmazonDefaultStyle">LOS ANGELES HOSPITAL<br />PERSONALEINDGANG</p>
+   <p begin="00:07:02.131" end="00:07:04.174" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hold op med at lade, som om du kan læse.</p>
+   <p begin="00:07:05.175" end="00:07:06.927" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hej, Harry.</p>
+   <p begin="00:07:07.678" end="00:07:09.012" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvordan går det, mester?</p>
+   <p begin="00:07:10.556" end="00:07:13.767" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bedre. I det mindste fjernede de slangen,<br />så jeg kan tale.</p>
+   <p begin="00:07:13.851" end="00:07:16.311" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Pis, kan de sætte den tilbage?<br />-Rend mig.</p>
+   <p begin="00:07:20.232" end="00:07:22.526" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg er ked af, at det gik galt, Harry.</p>
+   <p begin="00:07:23.110" end="00:07:27.865" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg mister følingen. Jeg ville aflevere<br />mit skilt, men skiderikken har det stadig.</p>
+   <p begin="00:07:28.115" end="00:07:29.700" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det kunne være sket for enhver, Gøg.</p>
+   <p begin="00:07:29.783" end="00:07:31.785" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vi fanger ham og får dit skilt tilbage.</p>
+   <p begin="00:07:31.869" end="00:07:34.830" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Når I gør, så brug min pistol. Forstår du?</p>
+   <p begin="00:07:36.665" end="00:07:38.083" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Glædelig jul, makker.</p>
+   <p begin="00:07:39.543" end="00:07:41.587" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Felix Når vi dag, Harry.</p>
+   <p begin="00:07:42.379" end="00:07:43.714" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Felix Når vi dag.</p>
+   <p begin="00:07:44.256" end="00:07:45.841" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du har det bedre.</p>
+   <p begin="00:08:11.200" end="00:08:12.910" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hej.<br />-Hvordan går det?</p>
+   <p begin="00:08:21.251" end="00:08:23.503" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvordan har du det?<br />-Jeg svæver.</p>
+   <p begin="00:08:24.838" end="00:08:26.882" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvad gav de dig?<br />-Noget...</p>
+   <p begin="00:08:27.758" end="00:08:29.801" region="AmazonDefaultRegion" style="AmazonDefaultStyle">...virkelig, virkelig godt.</p>
+   <p begin="00:08:31.678" end="00:08:33.096" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad er omfanget?</p>
+   <p begin="00:08:33.430" end="00:08:36.850" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Et par brækkede ribben og et stort,<br />ulækkert blåt mærke.</p>
+   <p begin="00:08:38.727" end="00:08:40.229" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lader de dig tage hjem?</p>
+   <p begin="00:08:41.230" end="00:08:44.274" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg slog hovedet ret godt på betonen,</p>
+   <p begin="00:08:44.358" end="00:08:47.444" region="AmazonDefaultRegion" style="AmazonDefaultStyle">så de vil holde mig natten over<br />i tilfælde af hjernerystelse.</p>
+   <p begin="00:08:48.946" end="00:08:50.239" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Har du haft gæster?</p>
+   <p begin="00:08:51.615" end="00:08:55.577" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Irving var her kort<br />med politileder Pounds.</p>
+   <p begin="00:08:56.328" end="00:08:58.538" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Og min far kommer i morgen.</p>
+   <p begin="00:08:58.622" end="00:09:01.541" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han er helt hylet ud af den.<br />Han vil have mig til at sige op og...</p>
+   <p begin="00:09:01.625" end="00:09:04.336" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvad sagde du?<br />-Nej, sgu.</p>
+   <p begin="00:09:05.087" end="00:09:06.838" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lige når jeg skal til at få en medalje?</p>
+   <p begin="00:09:08.966" end="00:09:10.926" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad med Røveri og drab?</p>
+   <p begin="00:09:11.426" end="00:09:14.680" region="AmazonDefaultRegion" style="AmazonDefaultStyle">De sagde, at de ville komme,<br />når min tillidsmand var her.</p>
+   <p begin="00:09:15.597" end="00:09:17.808" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du må tænke over, hvad du vil sige,</p>
+   <p begin="00:09:17.891" end="00:09:19.810" region="AmazonDefaultRegion" style="AmazonDefaultStyle">før de skriver din historie ned.</p>
+   <p begin="00:09:20.727" end="00:09:23.355" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg fortæller dem bare igen,<br />hvad jeg sagde i aftes.</p>
+   <p begin="00:09:24.690" end="00:09:25.816" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Og det var?</p>
+   <p begin="00:09:26.358" end="00:09:28.068" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Røvhullet prøvede at tage min pistol.</p>
+   <p begin="00:09:28.151" end="00:09:30.821" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Den gik af.<br />Jeg er heldig, at jeg havde min vest på.</p>
+   <p begin="00:10:06.815" end="00:10:07.941" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David.</p>
+   <p begin="00:10:12.529" end="00:10:14.197" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-David.<br />-Mor?</p>
+   <p begin="00:10:16.283" end="00:10:17.576" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mor?</p>
+   <p begin="00:10:18.785" end="00:10:20.537" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mor, hvad har du lavet?</p>
+   <p begin="00:10:20.996" end="00:10:22.706" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-David.<br />-Mor, hvad har du lavet? Er du okay?</p>
+   <p begin="00:10:22.789" end="00:10:27.002" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Undskyld. Jeg ville bare på toilettet.</p>
+   <p begin="00:10:27.085" end="00:10:28.712" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er okay. Er du kommet til skade?</p>
+   <p begin="00:10:28.795" end="00:10:31.131" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Det ved jeg ikke.<br />-Kom. Lad mig hjælpe dig op.</p>
+   <p begin="00:10:31.214" end="00:10:33.800" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Jeg skammer mig sådan.<br />-Det er okay. Gør ikke det.</p>
+   <p begin="00:10:33.884" end="00:10:36.845" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sådan. Hold fast.</p>
+   <p begin="00:10:39.264" end="00:10:41.224" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad skulle jeg gøre uden dig?</p>
+   <p begin="00:10:41.308" end="00:10:42.642" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Okay, her.</p>
+   <p begin="00:10:47.356" end="00:10:51.568" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Som afslutning vil jeg videreformidle<br />til Los Angeles' gode borgere,</p>
+   <p begin="00:10:52.235" end="00:10:54.821" region="AmazonDefaultRegion" style="AmazonDefaultStyle">at denne nye mission og teamwork</p>
+   <p begin="00:10:54.905" end="00:10:57.157" region="AmazonDefaultRegion" style="AmazonDefaultStyle">mellem mit embede og LAPD</p>
+   <p begin="00:10:57.324" end="00:11:00.702" region="AmazonDefaultRegion" style="AmazonDefaultStyle">bør hjælpe os alle med<br />at sove tryggere i denne højtid.</p>
+   <p begin="00:11:01.620" end="00:11:02.454" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Politichef?</p>
+   <p begin="00:11:05.499" end="00:11:10.420" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Pågribelsen af Raynard Waits<br />forbliver vores hovedprioritet,</p>
+   <p begin="00:11:11.171" end="00:11:13.173" region="AmazonDefaultRegion" style="AmazonDefaultStyle">og vi tilegner samtlige ressourcer</p>
+   <p begin="00:11:13.256" end="00:11:17.010" region="AmazonDefaultRegion" style="AmazonDefaultStyle">til at opnå dette så hurtigt, som muligt.</p>
+   <p begin="00:11:20.138" end="00:11:22.933" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Men vi, som Los Angeles...<br />-Det gik godt, vicepolitichef.</p>
+   <p begin="00:11:23.225" end="00:11:25.102" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Morgenprogrammerne sendte det direkte.</p>
+   <p begin="00:11:25.894" end="00:11:27.479" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg tror, at vi fik beskeden ud.</p>
+   <p begin="00:11:28.355" end="00:11:30.816" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ikke mere pegen fingre,<br />ikke mere bebrejdelse.</p>
+   <p begin="00:11:30.899" end="00:11:33.235" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Alle mand på dæk, til det her er forbi.</p>
+   <p begin="00:11:33.318" end="00:11:36.113" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Javel. Det var tydeligt.</p>
+   <p begin="00:11:37.489" end="00:11:39.991" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nu skal vi bare fange den lille satan,</p>
+   <p begin="00:11:40.951" end="00:11:42.619" region="AmazonDefaultRegion" style="AmazonDefaultStyle">før han vælter os alle sammen.</p>
+   <p begin="00:11:49.209" end="00:11:51.878" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Den ene dag om året,<br />jeg tager sent på arbejde.</p>
+   <p begin="00:11:52.421" end="00:11:55.173" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Afbryder jeg?<br />-Faktisk...</p>
+   <p begin="00:11:56.466" end="00:11:58.176" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vi pakkede gaver ind.</p>
+   <p begin="00:11:58.760" end="00:12:01.054" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jul. Det er i morgen.</p>
+   <p begin="00:12:01.763" end="00:12:03.056" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Er det?</p>
+   <p begin="00:12:04.683" end="00:12:06.059" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hej, Harry.<br />-Hej, Leese.</p>
+   <p begin="00:12:06.143" end="00:12:08.311" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Er en af dem til mig?<br />-Ja, sandkagen.</p>
+   <p begin="00:12:09.062" end="00:12:10.939" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Flot. Den samme,<br />som jeg gav jer sidste år?</p>
+   <p begin="00:12:11.231" end="00:12:12.524" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vil du have en kop kaffe?</p>
+   <p begin="00:12:14.025" end="00:12:17.737" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad er det, der ikke kunne vente,<br />til jeg kommer ind på kontoret?</p>
+   <p begin="00:12:18.655" end="00:12:21.241" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Brasher gav Røveri og drab<br />et foreløbigt udsagn.</p>
+   <p begin="00:12:22.075" end="00:12:23.493" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hun siger, at Stokes prøvede<br />at tage hendes pistol.</p>
+   <p begin="00:12:23.577" end="00:12:26.413" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Er det ikke det, der skete?<br />-Ikke så vidt jeg så.</p>
+   <p begin="00:12:27.080" end="00:12:30.750" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Lort. Harry, det må du ikke sige.<br />-Stokes' hænder var på muren.</p>
+   <p begin="00:12:30.834" end="00:12:32.669" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Pis.<br />-Jeg kan ikke sværge.</p>
+   <p begin="00:12:32.752" end="00:12:33.920" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg kunne ikke se det tydeligt.</p>
+   <p begin="00:12:34.004" end="00:12:35.964" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Og jeg tror, hun prøvede at give ham<br />håndjern på, da pistolen gik af.</p>
+   <p begin="00:12:36.047" end="00:12:39.801" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Det er ikke godt, men den slags sker.<br />-Det ville være tredje utilfredsstillende.</p>
+   <p begin="00:12:40.385" end="00:12:42.846" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lort. Så det er derfor,<br />hun må give Stokes skylden.</p>
+   <p begin="00:12:42.929" end="00:12:44.806" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hun vil redde sit job.</p>
+   <p begin="00:12:45.056" end="00:12:46.725" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Men du vil ikke bekræfte det,</p>
+   <p begin="00:12:47.142" end="00:12:48.977" region="AmazonDefaultRegion" style="AmazonDefaultStyle">ikke at jeg beder dig om det.</p>
+   <p begin="00:12:49.060" end="00:12:52.147" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Uanset hvad er hun færdig,<br />hvis hun giver et falskt udsagn.</p>
+   <p begin="00:12:53.315" end="00:12:55.609" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tror du, du kan overtale hende til<br />at gøre det rette?</p>
+   <p begin="00:12:55.692" end="00:12:58.320" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg kan prøve. Hvad med Stokes?<br />Jeg bør løslade ham.</p>
+   <p begin="00:12:58.403" end="00:12:59.946" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vent i det mindste til i morgen.</p>
+   <p begin="00:13:00.030" end="00:13:02.866" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Der er færre af Brashers kolleger,<br />der kan se det ske.</p>
+   <p begin="00:13:03.450" end="00:13:06.077" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Og det giver dig længere tid til<br />at få Brasher til at ændre sin historie.</p>
+   <p begin="00:13:06.161" end="00:13:08.455" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja, og det er en pæn gestus<br />med højtiden og sådan.</p>
+   <p begin="00:13:08.538" end="00:13:09.706" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Præcis.</p>
+   <p begin="00:13:10.165" end="00:13:12.167" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>-Det inkluderer selvfølgelig kabel-tv.</span><br />-Skønt.</p>
+   <p begin="00:13:13.293" end="00:13:14.503" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er skønt.</p>
+   <p begin="00:13:15.295" end="00:13:17.297" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hun elsker sine programmer, forstår du?</p>
+   <p begin="00:13:17.380" end="00:13:20.008" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Vi har live-underholdning</span><br /><span>i weekenden og højtider,</span></p>
+   <p begin="00:13:20.675" end="00:13:23.720" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>og vi har tjenester for flere</span><br /><span>trosretninger om søndagen.</span></p>
+   <p begin="00:13:23.803" end="00:13:26.556" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det lyder rart og dejligt.</p>
+   <p begin="00:13:26.932" end="00:13:29.518" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad koster alt det her?</p>
+   <p begin="00:13:29.601" end="00:13:33.563" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Det afhænger af planen,</span><br /><span>tilføjelser og værelsestype.</span></p>
+   <p begin="00:13:34.231" end="00:13:37.359" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det basale?</p>
+   <p begin="00:13:38.068" end="00:13:40.320" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Medicare ville dække en god del.</span></p>
+   <p begin="00:13:40.570" end="00:13:43.657" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Godt.<br /><span>-Kom med din mor, hr. Martinez.</span></p>
+   <p begin="00:13:43.740" end="00:13:45.492" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Se området. Mød personalet.</span></p>
+   <p begin="00:13:45.909" end="00:13:47.077" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David?</p>
+   <p begin="00:13:48.161" end="00:13:49.329" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David?</p>
+   <p begin="00:13:50.872" end="00:13:52.290" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>-Hr. Martinez?</span><br />-David.</p>
+   <p begin="00:13:54.084" end="00:13:55.961" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Hr. Martinez, er du der?</span></p>
+   <p begin="00:13:59.256" end="00:14:01.675" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Gider du slukke?<br /><span>-...seriemorderen Raynard Waits.</span></p>
+   <p begin="00:14:01.758" end="00:14:03.718" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Pårørende til Luis Escobar...</span></p>
+   <p begin="00:14:05.095" end="00:14:07.347" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg hørte det.</p>
+   <p begin="00:14:08.098" end="00:14:10.141" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Du læser.<br />-Jeg prøver.</p>
+   <p begin="00:14:10.600" end="00:14:13.186" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvornår henter du mine nye briller, David?</p>
+   <p begin="00:14:13.270" end="00:14:15.605" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mor, det er en specialbestilling,<br />din recept.</p>
+   <p begin="00:14:15.689" end="00:14:18.024" region="AmazonDefaultRegion" style="AmazonDefaultStyle">De lovede, de kom dagen efter jul.</p>
+   <p begin="00:14:18.108" end="00:14:19.693" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Okay. Pokkers.</p>
+   <p begin="00:14:20.986" end="00:14:24.489" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvad læser du?<br />-Jeg opfrisker min franske grammatik.</p>
+   <p begin="00:14:25.949" end="00:14:28.076" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det lyder interessant.</p>
+   <p begin="00:14:29.119" end="00:14:30.495" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vær nu ikke kæk.</p>
+   <p begin="00:14:31.037" end="00:14:33.707" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg har aldrig forstået<br />din manglende interesse.</p>
+   <p begin="00:14:33.790" end="00:14:35.417" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du kunne have talt det flydende.</p>
+   <p begin="00:14:35.500" end="00:14:37.460" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kan du det ikke i søvne allerede?</p>
+   <p begin="00:14:37.544" end="00:14:39.212" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Men jeg bliver aldrig træt af det.</p>
+   <p begin="00:14:42.424" end="00:14:44.593" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mor, jeg sagde dagen efter jul.</p>
+   <p begin="00:14:44.676" end="00:14:45.844" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du husker det.</p>
+   <p begin="00:15:21.421" end="00:15:22.672" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hej.<br />-Hej.</p>
+   <p begin="00:15:23.840" end="00:15:25.008" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvordan har du det?</p>
+   <p begin="00:15:25.967" end="00:15:27.218" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Øm som bare fanden.</p>
+   <p begin="00:15:28.094" end="00:15:29.929" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kaffe? Jeg har lige lavet frisk.</p>
+   <p begin="00:15:30.013" end="00:15:31.806" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej, tak. Jeg har fået nok kaffe.</p>
+   <p begin="00:15:32.557" end="00:15:34.059" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Her er rart ude.</p>
+   <p begin="00:15:34.893" end="00:15:35.977" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja.</p>
+   <p begin="00:15:37.771" end="00:15:39.898" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tror du, at du ville arbejde i Pacific?</p>
+   <p begin="00:15:40.649" end="00:15:41.983" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er en god pendlertur.</p>
+   <p begin="00:15:42.108" end="00:15:45.153" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej, jeg synes om det sære Hollywood,<br />der er altid gang i den.</p>
+   <p begin="00:15:45.737" end="00:15:46.696" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja.</p>
+   <p begin="00:15:48.198" end="00:15:51.117" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg kendte en P-2, Williams,<br />han elskede at være i Hollywood.</p>
+   <p begin="00:15:51.201" end="00:15:52.786" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du ved, steroider.</p>
+   <p begin="00:15:53.870" end="00:15:56.373" region="AmazonDefaultRegion" style="AmazonDefaultStyle">En dag stoppede han en Corvette,<br />afgiftsmærkaten var udløbet.</p>
+   <p begin="00:15:56.456" end="00:15:57.999" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Fyren stikker af. Jagten er i gang.</p>
+   <p begin="00:15:58.083" end="00:16:00.043" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja, det er det, jeg mener.</p>
+   <p begin="00:16:00.627" end="00:16:03.421" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Så Williams følger ham<br />gennem tre divisioner,</p>
+   <p begin="00:16:03.505" end="00:16:05.965" region="AmazonDefaultRegion" style="AmazonDefaultStyle">helt herud til Venice.</p>
+   <p begin="00:16:06.049" end="00:16:09.928" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Da det er forbi, er han oppe at køre.<br />Han er stiktosset.</p>
+   <p begin="00:16:10.011" end="00:16:11.554" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han er klar til at give røvfuld.</p>
+   <p begin="00:16:11.638" end="00:16:14.474" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han flår fyren ud, smider ham på køleren,<br />prøver at give ham håndjern på.</p>
+   <p begin="00:16:14.557" end="00:16:15.684" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bang!</p>
+   <p begin="00:16:15.767" end="00:16:19.604" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han skød hul i forhjulet på Corvetten.<br />Det skræmte livet af dem begge.</p>
+   <p begin="00:16:19.688" end="00:16:20.730" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg elsker det.</p>
+   <p begin="00:16:22.857" end="00:16:27.112" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Men sagen er,<br />at Williams var så oppe at køre,</p>
+   <p begin="00:16:28.780" end="00:16:31.324" region="AmazonDefaultRegion" style="AmazonDefaultStyle">at han troede, han havde taget<br />sine håndjern, ikke pistolen.</p>
+   <p begin="00:16:37.414" end="00:16:39.874" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kom du helt hertil<br />for at fortælle mig den historie?</p>
+   <p begin="00:16:41.292" end="00:16:43.545" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg kom herud for at sige, at uheld sker,</p>
+   <p begin="00:16:43.628" end="00:16:47.382" region="AmazonDefaultRegion" style="AmazonDefaultStyle">og du skal ikke skade dig selv<br />med et udsagn, der ikke er er korrekt.</p>
+   <p begin="00:16:50.301" end="00:16:52.721" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad mener du med "ikke korrekt"?<br />Du var der.</p>
+   <p begin="00:16:55.807" end="00:16:58.643" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du støtter mig, ikke, Harry?</p>
+   <p begin="00:16:58.727" end="00:17:00.979" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Ikke?<br />-For fanden, Julia.</p>
+   <p begin="00:17:01.062" end="00:17:02.689" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det var ikke det, der skete.</p>
+   <p begin="00:17:03.356" end="00:17:06.359" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han prøvede ikke at tage din pistol.<br />Hans hænder var på væggen.</p>
+   <p begin="00:17:07.068" end="00:17:09.696" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er det, jeg så.<br />Det er det, jeg vil sige.</p>
+   <p begin="00:17:12.323" end="00:17:15.785" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Støtter du et udskud over mig?<br />-Det er ikke det, det handler om.</p>
+   <p begin="00:17:15.869" end="00:17:18.788" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Stokes er en plet på gaden.<br />Hvis han ikke ryger ind for det her,</p>
+   <p begin="00:17:18.872" end="00:17:21.291" region="AmazonDefaultRegion" style="AmazonDefaultStyle">ryger han ind for noget andet<br />på et tidspunkt</p>
+   <p begin="00:17:21.374" end="00:17:22.751" region="AmazonDefaultRegion" style="AmazonDefaultStyle">og gør en anden fortræd.</p>
+   <p begin="00:17:24.669" end="00:17:27.839" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Rend mig, Harry. Du er en skide hykler.</p>
+   <p begin="00:17:36.681" end="00:17:39.559" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg hørte betjent Brasher<br />råbe ordrer til mistænkte.</p>
+   <p begin="00:17:39.642" end="00:17:40.727" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad råbte hun?</p>
+   <p begin="00:17:40.810" end="00:17:43.104" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Stop." "Rør dig ikke." Den slags.</p>
+   <p begin="00:17:43.772" end="00:17:46.566" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg løb ned ad rampen mod stemmerne<br />og så dem på underetagen.</p>
+   <p begin="00:17:46.649" end="00:17:47.650" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad så du?</p>
+   <p begin="00:17:47.734" end="00:17:48.902" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Stop der! Rør dig ikke.</span></p>
+   <p begin="00:17:48.985" end="00:17:51.738" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vend dig om. Hænderne på væggen.<br />Vend dig om!</p>
+   <p begin="00:17:51.821" end="00:17:55.074" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mistænkte havde stillet sig<br />med hænderne på væggen.</p>
+   <p begin="00:17:55.158" end="00:17:57.786" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Betjent Brasher var bag ham.<br />-Hvad skete der så?</p>
+   <p begin="00:17:57.869" end="00:18:01.790" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg gik rundt om et køretøj for at nå<br />hen til dem, da jeg hørte skuddet.</p>
+   <p begin="00:18:01.873" end="00:18:04.250" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Så du betjent Brasher trække våbnet?</p>
+   <p begin="00:18:05.502" end="00:18:07.712" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej. Fra min vinkel</p>
+   <p begin="00:18:07.796" end="00:18:10.173" region="AmazonDefaultRegion" style="AmazonDefaultStyle">kunne jeg kun udlede af hendes bevægelser,<br />hvad hun lavede.</p>
+   <p begin="00:18:10.256" end="00:18:12.467" region="AmazonDefaultRegion" style="AmazonDefaultStyle">På det tidspunkt, hvor du hørte skuddet,</p>
+   <p begin="00:18:12.550" end="00:18:14.677" region="AmazonDefaultRegion" style="AmazonDefaultStyle">havde mistænkte så stadig<br />hænderne på væggen?</p>
+   <p begin="00:18:18.556" end="00:18:19.766" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja.</p>
+   <p begin="00:18:20.266" end="00:18:21.476" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Begge hænder?</p>
+   <p begin="00:18:23.269" end="00:18:25.563" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Begge hænder, på væggen.</p>
+   <p begin="00:19:08.690" end="00:19:09.732" region="AmazonDefaultRegion" style="AmazonDefaultStyle">SERIEMORDER<br />MENNESKEJAGT</p>
+   <p begin="00:19:41.055" end="00:19:43.600" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hej makker, hvad drikker du?</p>
+   <p begin="00:19:45.268" end="00:19:46.519" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vil du have noget?</p>
+   <p begin="00:19:48.104" end="00:19:50.189" region="AmazonDefaultRegion" style="AmazonDefaultStyle">LAPD. For fanden.</p>
+   <p begin="00:19:50.273" end="00:19:52.317" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg er bange for,<br />at jeg må notere det her.</p>
+   <p begin="00:19:52.400" end="00:19:54.110" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Druk i offentlighed fra en åben beholder.</p>
+   <p begin="00:19:54.569" end="00:19:57.822" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Helt ærlig, betjent. Virkelig?</p>
+   <p begin="00:19:57.906" end="00:19:59.449" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Virkelig. Lad mig se din legitimation.</p>
+   <p begin="00:19:59.532" end="00:20:01.659" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg er en halv karré fra min lejlighed.</p>
+   <p begin="00:20:01.743" end="00:20:03.703" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad, hvis jeg bare hælder det ud?</p>
+   <p begin="00:20:03.786" end="00:20:05.121" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er for sent.</p>
+   <p begin="00:20:05.204" end="00:20:07.790" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Her, sid ned, mens jeg noterer det.</p>
+   <p begin="00:20:12.211" end="00:20:13.379" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Luk døren.</p>
+   <p begin="00:20:16.090" end="00:20:19.469" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det her stinker.<br />Hvorfor kører du ikke i en politibil?</p>
+   <p begin="00:20:19.928" end="00:20:22.931" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Fordi jeg er under dække.<br />Lad mig se din legitimation.</p>
+   <p begin="00:20:23.014" end="00:20:25.600" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvorfor har LAPD<br />en operation under dække...</p>
+   <p begin="00:20:26.142" end="00:20:28.436" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Pis! Hvad laver du?</p>
+   <p begin="00:20:32.690" end="00:20:34.067" region="AmazonDefaultRegion" style="AmazonDefaultStyle">For satan!</p>
+   <p begin="00:20:42.992" end="00:20:44.786" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Rend mig, din satan!</p>
+   <p begin="00:21:01.010" end="00:21:02.762" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Er det hele der?<br />-Det ser sådan ud.</p>
+   <p begin="00:21:02.845" end="00:21:04.055" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Skriv under her.</p>
+   <p begin="00:21:06.224" end="00:21:07.141" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Okay.</p>
+   <p begin="00:21:11.521" end="00:21:13.898" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Det her igen?<br />-Kan du huske nogen navne?</p>
+   <p begin="00:21:13.982" end="00:21:14.983" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lort.</p>
+   <p begin="00:21:16.150" end="00:21:17.151" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du skylder mig en tjeneste.</p>
+   <p begin="00:21:17.235" end="00:21:19.946" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kig igen,<br />eller jeg smider dig tilbage i buret.</p>
+   <p begin="00:21:21.072" end="00:21:25.994" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kevin... Grandersen? Andersen, måske?</p>
+   <p begin="00:21:26.703" end="00:21:31.416" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er Tom Parker, er jeg ret sikker på.</p>
+   <p begin="00:21:31.499" end="00:21:33.960" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Glædelig jul, Stokes.<br />Sig ikke, at jeg ikke har givet dig noget.</p>
+   <p begin="00:21:34.043" end="00:21:35.044" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja, ja.</p>
+   <p begin="00:21:35.128" end="00:21:38.756" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvor skal du hen? Gå ud foran<br />for din egen sikkerheds skyld.</p>
+   <p begin="00:21:43.553" end="00:21:48.683" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Er det ikke flot? Jeg elsker bare<br />de drenges stemmer. Gør du ikke?</p>
+   <p begin="00:21:50.560" end="00:21:51.978" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jo, mor. Det er smukt.</p>
+   <p begin="00:21:52.061" end="00:21:55.898" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja, smukke stemmer. Som engle.</p>
+   <p begin="00:22:00.028" end="00:22:05.324" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det gør mig helt i julehumør.<br />Jeg elsker bare julen. Gør du ikke?</p>
+   <p begin="00:22:07.160" end="00:22:08.619" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jo, jeg elsker den.</p>
+   <p begin="00:22:53.081" end="00:22:54.332" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad gik jeg glip af?</p>
+   <p begin="00:22:54.957" end="00:22:58.503" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bedford Falls er på vej i vasken<br />uden George Bailey.</p>
+   <p begin="00:23:00.630" end="00:23:03.549" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tag et stykke tærte til.<br />Det bør ikke gå til spilde.</p>
+   <p begin="00:23:03.633" end="00:23:05.009" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej, mor, jeg er propmæt.</p>
+   <p begin="00:23:05.968" end="00:23:08.096" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vil du ikke se resten af filmen?</p>
+   <p begin="00:23:08.179" end="00:23:10.014" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg ved, hvordan den ender.</p>
+   <p begin="00:23:10.098" end="00:23:13.017" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg går lidt ud, mor, møder nogle venner.</p>
+   <p begin="00:23:13.559" end="00:23:15.311" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du er okay, til jeg kommer tilbage, ikke?</p>
+   <p begin="00:23:15.394" end="00:23:18.314" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg er okay. Tag den skide tærte.</p>
+   <p begin="00:23:19.148" end="00:23:20.149" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mor.</p>
+   <p begin="00:23:20.233" end="00:23:24.445" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Gå bare. Ønsk dine venner<br />glædelig jul fra mig.</p>
+   <p begin="00:23:24.529" end="00:23:25.571" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det skal jeg nok.</p>
+   <p begin="00:23:25.655" end="00:23:27.782" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Og bliv ikke ude for sent.</p>
+   <p begin="00:23:27.865" end="00:23:30.076" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det vil jeg ikke. Jeg låser bagdøren.</p>
+   <p begin="00:23:30.159" end="00:23:31.160" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Glædelig jul.</p>
+   <p begin="00:23:35.832" end="00:23:37.542" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja, mor. Glædelig jul.</p>
+   <p begin="00:23:48.469" end="00:23:51.764" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg forventede nok at finde dig her,<br />kriminalbetjent. Nogen fremgang?</p>
+   <p begin="00:23:52.890" end="00:23:56.477" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tilbage til start mere eller mindre.<br />Jeg undersøger et par navne.</p>
+   <p begin="00:23:57.770" end="00:23:59.772" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad bringer dig herind på juledag?</p>
+   <p begin="00:24:00.481" end="00:24:02.400" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Waits prøvede at bortføre nogen<br />tidligt i morges.</p>
+   <p begin="00:24:02.483" end="00:24:04.193" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det hørte jeg. Nogen spor?</p>
+   <p begin="00:24:04.986" end="00:24:06.112" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vi arbejder på det.</p>
+   <p begin="00:24:07.488" end="00:24:09.907" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg forstår, at du løslod ham John Stokes.</p>
+   <p begin="00:24:09.991" end="00:24:13.411" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg besluttede,<br />at sagen ikke krævede nogen sigtelser.</p>
+   <p begin="00:24:14.912" end="00:24:17.081" region="AmazonDefaultRegion" style="AmazonDefaultStyle">En mistænkt i et skyderi med en betjent?</p>
+   <p begin="00:24:17.415" end="00:24:19.500" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Jeg gjorde LAPD en tjeneste.<br />-Hvordan det?</p>
+   <p begin="00:24:19.584" end="00:24:21.627" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ved ikke at sætte styrken i en situation,</p>
+   <p begin="00:24:21.711" end="00:24:24.422" region="AmazonDefaultRegion" style="AmazonDefaultStyle">hvor distriktsanklageren måtte<br />afveje modstridende udsagn</p>
+   <p begin="00:24:24.505" end="00:24:25.506" region="AmazonDefaultRegion" style="AmazonDefaultStyle">fra to af deres betjente.</p>
+   <p begin="00:24:25.590" end="00:24:28.509" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Taler du om betjent Brashers version<br />af begivenhederne kontra dine?</p>
+   <p begin="00:24:28.593" end="00:24:32.638" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg tænkte, at ingen af os ønskede<br />den uoverensstemmelse i medierne.</p>
+   <p begin="00:24:35.141" end="00:24:36.225" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg er enig.</p>
+   <p begin="00:24:42.857" end="00:24:47.195" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg sætter dig tilbage på Waits-sagen,<br />Bosch, uafhængigt af specialstyrken.</p>
+   <p begin="00:24:48.279" end="00:24:49.614" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg har en skrækslagen by,</p>
+   <p begin="00:24:49.697" end="00:24:52.116" region="AmazonDefaultRegion" style="AmazonDefaultStyle">og specialstyrken har intet fundet.</p>
+   <p begin="00:24:52.200" end="00:24:56.120" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg har brug for resultater,<br />kriminalbetjent, så gør, hvad du gør.</p>
+   <p begin="00:24:57.413" end="00:25:00.208" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du rapporterer til mig.<br />Min direkte linje, døgnet rundt.</p>
+   <p begin="00:25:01.834" end="00:25:03.211" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad med Pounds?</p>
+   <p begin="00:25:03.294" end="00:25:05.129" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lad mig bekymre mig om Pounds.</p>
+   <p begin="00:25:06.005" end="00:25:07.465" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Og Arthur Delacroix?</p>
+   <p begin="00:25:07.840" end="00:25:09.091" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Arbejd videre på det.</p>
+   <p begin="00:25:09.175" end="00:25:11.636" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Efter min mening er begge sager forbundet,</p>
+   <p begin="00:25:11.719" end="00:25:14.847" region="AmazonDefaultRegion" style="AmazonDefaultStyle">indtil du kan bevise udover enhver tvivl,<br />at Waits ikke slog drengen ihjel.</p>
+   <p begin="00:26:56.115" end="00:26:57.867" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Stoffer</p>
+   <p begin="00:28:12.858" end="00:28:14.193" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ellers andet?</p>
+   <p begin="00:28:14.527" end="00:28:15.778" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Tak, nej.</p>
+   <p begin="00:28:16.654" end="00:28:17.822" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Glædelig jul, Harry.</p>
+   <p begin="00:28:17.905" end="00:28:19.240" region="AmazonDefaultRegion" style="AmazonDefaultStyle">I lige måde.</p>
+   <p begin="00:28:27.623" end="00:28:28.666" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bosch.</p>
+   <p begin="00:28:28.749" end="00:28:31.127" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Hej, det er mig. Hvor er du?</span></p>
+   <p begin="00:28:32.128" end="00:28:35.840" region="AmazonDefaultRegion" style="AmazonDefaultStyle">På vej til<br />drabskriminalbetjentenes julefest.</p>
+   <p begin="00:28:35.923" end="00:28:37.216" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Helt sikkert.</span></p>
+   <p begin="00:28:37.925" end="00:28:39.468" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Glædelig jul i øvrigt.</p>
+   <p begin="00:28:39.760" end="00:28:40.928" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Nå, ja. Det er det også.</span></p>
+   <p begin="00:28:41.011" end="00:28:43.556" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Jeg tænkte, om du nogensinde</span><br /><span>ville ringe til din datter</span></p>
+   <p begin="00:28:43.639" end="00:28:45.433" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>og ønske hende glædelig jul.</span></p>
+   <p begin="00:28:46.142" end="00:28:47.393" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg ville vente til efter middagen.</p>
+   <p begin="00:28:47.476" end="00:28:49.854" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg ville ikke afbryde noget,<br />som I måske...</p>
+   <p begin="00:28:49.937" end="00:28:51.063" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Det er din far.</span></p>
+   <p begin="00:28:53.732" end="00:28:55.109" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Glædelig jul, Harry.</span></p>
+   <p begin="00:28:56.652" end="00:28:58.070" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Glædelig jul, skat. Hvordan har du det?</p>
+   <p begin="00:28:58.154" end="00:29:01.157" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Okay. Hvornår kommer du tilbage?</span></p>
+   <p begin="00:29:01.240" end="00:29:04.535" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Så snart jeg kan. Jeg er så ked af det.<br />Jeg ved, at jeg lovede det.</p>
+   <p begin="00:29:04.618" end="00:29:07.955" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg er bare totalt presset<br />af de her sager.</p>
+   <p begin="00:29:09.707" end="00:29:10.875" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Det er okay.</span></p>
+   <p begin="00:29:11.917" end="00:29:13.627" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hør, jeg har en idé. Jeg tænkte,</p>
+   <p begin="00:29:13.711" end="00:29:16.422" region="AmazonDefaultRegion" style="AmazonDefaultStyle">at måske kunne du komme<br />og besøge mig i LA engang.</p>
+   <p begin="00:29:16.630" end="00:29:20.176" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Virkelig? Det ville være så fedt.</span></p>
+   <p begin="00:29:20.634" end="00:29:23.429" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja, du kunne køre med på arbejdet,<br />besøge politiskolen,</p>
+   <p begin="00:29:24.263" end="00:29:25.806" region="AmazonDefaultRegion" style="AmazonDefaultStyle">gå på skydebanen.</p>
+   <p begin="00:29:25.890" end="00:29:26.724" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Fedt.</span></p>
+   <p begin="00:29:26.807" end="00:29:30.019" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vi må spørge din mor først og se,<br />hvad hun synes</p>
+   <p begin="00:29:30.102" end="00:29:33.355" region="AmazonDefaultRegion" style="AmazonDefaultStyle">og tjekke din skole. Måske i påskeferien.</p>
+   <p begin="00:29:38.277" end="00:29:40.863" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Maddie, jeg må tage det her opkald.<br />Det er arbejdet.</p>
+   <p begin="00:29:40.946" end="00:29:43.157" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg ringer tilbage senere, okay?</p>
+   <p begin="00:29:43.240" end="00:29:44.283" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Okay.</span></p>
+   <p begin="00:29:45.451" end="00:29:46.535" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg elsker dig.</p>
+   <p begin="00:29:47.453" end="00:29:48.746" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Jeg elsker også dig.</span></p>
+   <p begin="00:29:49.497" end="00:29:50.998" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Farvel.<br /><span>-Farvel.</span></p>
+   <p begin="00:29:55.878" end="00:29:56.837" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bosch.</p>
+   <p begin="00:29:56.921" end="00:30:01.926" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du skal bare vide, at jeg har<br />en vidunderlig jul med mine kære,</p>
+   <p begin="00:30:02.009" end="00:30:04.428" region="AmazonDefaultRegion" style="AmazonDefaultStyle">og jeg håber, at du har det samme.</p>
+   <p begin="00:30:05.304" end="00:30:08.307" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Waits, i aften ville være en god aften<br />at melde dig.</p>
+   <p begin="00:30:08.390" end="00:30:09.475" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad siger du?</p>
+   <p begin="00:30:09.558" end="00:30:13.229" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg ville sige,<br />at du prøver at narre mig i julen.</p>
+   <p begin="00:30:15.314" end="00:30:18.150" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg prøver at ende det her,<br />mens du stadig er i live.</p>
+   <p begin="00:30:18.234" end="00:30:20.653" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hold nu op. Vi ved vist godt,<br />hvordan det her ender.</p>
+   <p begin="00:30:22.404" end="00:30:27.493" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Dig og mig, Harry, hunde fra samme kennel.</p>
+   <p begin="00:30:28.452" end="00:30:32.248" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg slår folk ihjel. Du slår folk ihjel.</p>
+   <p begin="00:30:32.331" end="00:30:36.585" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det behøver ikke ende sådan.<br />Vi kunne mødes. Du vælger stedet.</p>
+   <p begin="00:30:46.178" end="00:30:48.556" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er kriminalbetjent Harry Bosch,<br />Hollywoods drabsafdeling.</p>
+   <p begin="00:30:48.639" end="00:30:50.683" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg har brug for hjælp tip<br />at spore en mobil.</p>
+   <p begin="00:30:50.766" end="00:30:55.020" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Hæng på, kriminalbetnet. Jeg skal bruge</span><br /><span>information til den svorne erklæring.</span></p>
+   <p begin="00:30:55.104" end="00:30:57.356" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Der er ikke tid til en retskendelse.</p>
+   <p begin="00:30:57.439" end="00:31:01.694" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er i Waits-seriemordersagen.<br />Presserende omstændigheder.</p>
+   <p begin="00:31:01.777" end="00:31:04.780" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du kan kontakte vicepolitichef<br />Irvings kontor om nødvendigt.</p>
+   <p begin="00:31:08.909" end="00:31:11.203" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Bosch.<br /><span>-Kriminalbetjent, vi har sporet telefonen.</span></p>
+   <p begin="00:31:11.287" end="00:31:13.622" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Glendale Boulevard mellem</span><br /><span>Fletcher Drive og Waterloo Street,</span></p>
+   <p begin="00:31:13.706" end="00:31:15.499" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>-Silver Lake-området.</span><br />-Tak.</p>
+   <p begin="00:31:37.021" end="00:31:39.690" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han siger, han fandt den på gaden<br />ved siden af rendestenen.</p>
+   <p begin="00:31:43.819" end="00:31:46.155" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Løslad knægten.<br />Han har intet med det at gøre.</p>
+   <p begin="00:32:13.766" end="00:32:17.895" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Alle de her knogler ligger lige<br />under Paris' gader. Hvem skulle tro det?</p>
+   <p begin="00:32:19.313" end="00:32:22.274" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad siger du til de her billeder?<br />De ser nye ud.</p>
+   <p begin="00:32:23.233" end="00:32:25.903" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mit gæt er, at Waits nok rejste<br />til Europa på et tidspunkt.</p>
+   <p begin="00:32:25.986" end="00:32:28.739" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kiz, noget held med passet?</p>
+   <p begin="00:32:28.822" end="00:32:32.618" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Intet. Hvis Waits har været i Frankrig,<br />er det under et andet navn.</p>
+   <p begin="00:32:32.701" end="00:32:33.952" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Okay, tak.</p>
+   <p begin="00:32:38.457" end="00:32:39.708" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bosch.</p>
+   <p begin="00:32:53.180" end="00:32:54.515" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hej.</p>
+   <p begin="00:32:55.391" end="00:32:56.934" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hej.<br />-Hvornår er du kommet?</p>
+   <p begin="00:32:57.017" end="00:32:59.853" region="AmazonDefaultRegion" style="AmazonDefaultStyle">I morges. Det er fra Maddie. Glædelig jul.</p>
+   <p begin="00:33:01.021" end="00:33:02.606" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg ville gerne være der.</p>
+   <p begin="00:33:02.690" end="00:33:03.899" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Men det var du ikke.</p>
+   <p begin="00:33:04.274" end="00:33:06.151" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kom du helt hertil bare for<br />at skælde mig ud?</p>
+   <p begin="00:33:06.443" end="00:33:08.987" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vær nu ikke indbildsk.<br />Jeg kom for at spille kort.</p>
+   <p begin="00:33:09.446" end="00:33:12.032" region="AmazonDefaultRegion" style="AmazonDefaultStyle">En rigmand fra Bel-Air hørte,<br />at jeg fangede hvaler i Vegas.</p>
+   <p begin="00:33:12.116" end="00:33:13.909" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han vil prøve at stoppe mig.</p>
+   <p begin="00:33:13.992" end="00:33:15.202" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han er i knibe!</p>
+   <p begin="00:33:24.962" end="00:33:26.380" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Prednisone."</p>
+   <p begin="00:33:26.672" end="00:33:29.842" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej. Nej... David?</p>
+   <p begin="00:33:31.260" end="00:33:32.261" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David?</p>
+   <p begin="00:33:33.429" end="00:33:34.638" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David!</p>
+   <p begin="00:33:35.597" end="00:33:37.349" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvad, mor? Hvad er der?<br />-David!</p>
+   <p begin="00:33:37.433" end="00:33:40.185" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Jeg er sgu løbet tør for prednisone.<br />-Mor!</p>
+   <p begin="00:33:40.269" end="00:33:42.146" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad... Undskyld, men det er jeg.</p>
+   <p begin="00:33:42.229" end="00:33:44.189" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad skal jeg gøre?</p>
+   <p begin="00:33:44.273" end="00:33:47.735" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kan du være sød og få dem genopfyldt?</p>
+   <p begin="00:33:48.068" end="00:33:48.986" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vær nu rar.</p>
+   <p begin="00:33:50.529" end="00:33:52.489" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja, okay. Okay.</p>
+   <p begin="00:33:53.157" end="00:33:54.241" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Okay.</p>
+   <p begin="00:33:54.950" end="00:33:56.952" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Katakomberne under 1700-tallets Paris.</p>
+   <p begin="00:33:57.327" end="00:34:00.706" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg har været i Paris' katakomber.<br />Ved indgangen står den her advarsel:</p>
+   <p begin="00:34:00.956" end="00:34:03.000" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Stop, dette er dødens rige."</p>
+   <p begin="00:34:04.752" end="00:34:06.628" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vi fandt den her bog i Waits' lejlighed.</p>
+   <p begin="00:34:08.380" end="00:34:10.340" region="AmazonDefaultRegion" style="AmazonDefaultStyle">De her billeder blev fundet<br />på den her side.</p>
+   <p begin="00:34:16.513" end="00:34:18.640" region="AmazonDefaultRegion" style="AmazonDefaultStyle">De syv formodede ofre,<br />hvor der ikke er fundet lig?</p>
+   <p begin="00:34:18.724" end="00:34:19.725" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Korrekt.</p>
+   <p begin="00:34:19.808" end="00:34:21.268" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Måske beholdte han dem.</p>
+   <p begin="00:34:21.769" end="00:34:24.480" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Måske skaber han sin egen katakombe<br />med knoglerne.</p>
+   <p begin="00:34:25.355" end="00:34:26.982" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Ringer han stadig til dig?<br />-Jeps.</p>
+   <p begin="00:34:28.442" end="00:34:31.278" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han ser dig som en ven,<br />en modstander, en bror.</p>
+   <p begin="00:34:31.361" end="00:34:32.696" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Hunde fra den samme kennel."</p>
+   <p begin="00:34:32.780" end="00:34:35.783" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det sagde han.<br />"Hunde fra den samme kennel."</p>
+   <p begin="00:34:35.866" end="00:34:39.286" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er risikabelt at ringe til dig.<br />Han nyder det. Det kan du bruge.</p>
+   <p begin="00:34:39.369" end="00:34:40.621" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg prøver.</p>
+   <p begin="00:34:40.704" end="00:34:44.208" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg har ikke kunnet få ham til at begå<br />en fejl og røbe noget.</p>
+   <p begin="00:34:44.291" end="00:34:47.669" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bruge hans forfængelighed, konfrontation,<br />intet får ham til at begå fejl.</p>
+   <p begin="00:34:48.295" end="00:34:50.923" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Måske må du have et manuskript<br />til næste gang, han ringer.</p>
+   <p begin="00:34:51.006" end="00:34:54.051" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg antager, at du har en profilskaber<br />fra adfærdsvidenskab på sagen?</p>
+   <p begin="00:34:54.134" end="00:34:57.596" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det har specialstyrken. Hvad skal jeg<br />med dem? Jeg har den bedste lige her.</p>
+   <p begin="00:34:58.806" end="00:35:01.475" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Harry, har jeg sagt det.<br />Jeg er udelukkende kortspiller nu.</p>
+   <p begin="00:35:02.434" end="00:35:05.354" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Og jeg må gå. Vil du åbne Maddies gave?</p>
+   <p begin="00:35:13.153" end="00:35:14.988" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hun fik den speciallavet til dig.</p>
+   <p begin="00:35:23.038" end="00:35:25.791" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Sødt. Virkelig sødt.</p>
+   <p begin="00:35:32.339" end="00:35:34.967" region="AmazonDefaultRegion" style="AmazonDefaultStyle">RECEPTER</p>
+   <p begin="00:35:43.559" end="00:35:44.852" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja. Okay.</p>
+   <p begin="00:35:49.064" end="00:35:50.941" region="AmazonDefaultRegion" style="AmazonDefaultStyle">SERIEMORDER<br />MENNESKEJAGT</p>
+   <p begin="00:35:53.277" end="00:35:54.278" region="AmazonDefaultRegion" style="AmazonDefaultStyle">LAPD'S HJÆLPELINJE<br />323-555-0172</p>
+   <p begin="00:36:03.078" end="00:36:07.332" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Vi går derind, Waits.</span><br /><span>Husk, hvad vi talte om før.</span></p>
+   <p begin="00:36:07.749" end="00:36:09.001" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Det ved jeg.</span></p>
+   <p begin="00:36:09.084" end="00:36:13.255" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Læg mig i bagagerummet,</span><br /><span>og så ser jeg aldrig dagens lys igen.</span></p>
+   <p begin="00:36:13.630" end="00:36:14.673" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jerry, hvad er det?</p>
+   <p begin="00:36:14.756" end="00:36:16.508" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Hvad?<br />-På din computer.</p>
+   <p begin="00:36:16.592" end="00:36:18.302" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Videoen med Waits fra køreturen.</p>
+   <p begin="00:36:18.385" end="00:36:19.553" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Spil det igen.</p>
+   <p begin="00:36:21.305" end="00:36:25.851" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Vi går derind, Waits.</span><br /><span>Husk, hvad vi talte om før.</span></p>
+   <p begin="00:36:25.934" end="00:36:27.019" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Jeg ved det.</span></p>
+   <p begin="00:36:27.102" end="00:36:30.981" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Læg mig i bagagerummet,</span><br /><span>og så ser jeg aldrig dagens lys igen.</span></p>
+   <p begin="00:36:31.565" end="00:36:33.817" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Bagagerummet.<br />-Hvilket bagagerum?</p>
+   <p begin="00:36:34.234" end="00:36:35.360" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lort, vi skal bruge<br />en ransagningskendelse.</p>
+   <p begin="00:36:35.444" end="00:36:38.071" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Til et bagagerum? Hvad sker der, Harry?<br />-Jeg overså det.</p>
+   <p begin="00:36:49.958" end="00:36:52.336" region="AmazonDefaultRegion" style="AmazonDefaultStyle">"Bagagerummet" er et rum,<br />hvor de straffer børn.</p>
+   <p begin="00:36:52.419" end="00:36:54.296" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg tror, at Waits han have været der.</p>
+   <p begin="00:36:54.379" end="00:36:56.798" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det var den forbindelse, han har talt om.</p>
+   <p begin="00:36:58.008" end="00:37:01.094" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det, vi har til fælles,<br />McLaren ungdomshjem.</p>
+   <p begin="00:37:02.304" end="00:37:03.513" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ifølge Waits' kørekort er han 43.</p>
+   <p begin="00:37:03.597" end="00:37:07.100" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Så lad os antage at han er deromkring,<br />nogle få år fra eller til.</p>
+   <p begin="00:37:07.184" end="00:37:09.227" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Så vi vil have en fortegnelse over navne</p>
+   <p begin="00:37:10.520" end="00:37:13.273" region="AmazonDefaultRegion" style="AmazonDefaultStyle">fra 1970 til 1990 for at være sikre.</p>
+   <p begin="00:37:13.982" end="00:37:17.736" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Han står i dem et sted.<br />Jeg vil også stå der.</p>
+   <p begin="00:37:20.864" end="00:37:23.241" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vil I have navne og journaler på<br />alle drenge, der var her</p>
+   <p begin="00:37:23.325" end="00:37:24.451" region="AmazonDefaultRegion" style="AmazonDefaultStyle">i en periode på 20 år?</p>
+   <p begin="00:37:24.534" end="00:37:27.621" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vi leder kun efter én.<br />Når vi finder du, får du resten tilbage.</p>
+   <p begin="00:37:27.704" end="00:37:29.414" region="AmazonDefaultRegion" style="AmazonDefaultStyle">-Har I en lastbil?<br />-Undskyld mig?</p>
+   <p begin="00:37:29.498" end="00:37:32.668" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Halvfjerdserne og 80'erne,<br />længe før alt blev digitalt.</p>
+   <p begin="00:37:32.793" end="00:37:35.253" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vi taler om fysiske kopier,<br />tusindvis af dem.</p>
+   <p begin="00:37:35.337" end="00:37:37.673" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Dusinvis og atter dusinvis af arkivkasser.</p>
+   <p begin="00:37:38.131" end="00:37:39.549" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Gør, hvad du er nødt til.</p>
+   <p begin="00:37:41.343" end="00:37:42.427" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Vicepolitichef Irving.</span></p>
+   <p begin="00:37:42.761" end="00:37:44.972" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du sagde, at jeg skulle ringe,<br />hvis jeg havde brug for noget.</p>
+   <p begin="00:37:45.055" end="00:37:46.598" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Hvad har du brug for, kriminalbetjent?</span></p>
+   <p begin="00:37:47.015" end="00:37:50.310" region="AmazonDefaultRegion" style="AmazonDefaultStyle">En varevogn, måske en lastbil.<br />Nogle folk til at bære kasser. Straks.</p>
+   <p begin="00:37:50.560" end="00:37:51.812" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Sms mig adressen.</span></p>
+   <p begin="00:39:19.483" end="00:39:22.944" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Harry, hvert barn er opført<br />efter ankomstår.</p>
+   <p begin="00:39:23.028" end="00:39:26.239" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Over 20 år er det måske 8.000 journaler.</p>
+   <p begin="00:39:26.615" end="00:39:30.160" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Her var 300 sengepladser.<br />Børn kom og gik konstant.</p>
+   <p begin="00:39:30.243" end="00:39:32.704" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ikke dem alle,<br />nogle af dem var her i årevis.</p>
+   <p begin="00:39:32.788" end="00:39:35.707" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Kun hvide børn. Det er halvdelen.</p>
+   <p begin="00:39:35.832" end="00:39:38.460" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Bruger vi indsatsstyrken,<br />kan vi gennemgå det på en dag,</p>
+   <p begin="00:39:38.543" end="00:39:40.128" region="AmazonDefaultRegion" style="AmazonDefaultStyle">højest to.</p>
+   <p begin="00:40:16.331" end="00:40:18.875" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Vi bruger ikke det rum længere.</p>
+   <p begin="00:40:18.959" end="00:40:22.129" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Drakoniske straffe<br />hører fortiden til, kriminalbetjent.</p>
+   <p begin="00:40:22.212" end="00:40:25.382" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvorfor er der stadig en madras derinde?<br />For en sikkerheds skyld?</p>
+   <p begin="00:40:25.465" end="00:40:27.425" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg ville værdsætte det, kriminalbetjent,</p>
+   <p begin="00:40:27.509" end="00:40:30.428" region="AmazonDefaultRegion" style="AmazonDefaultStyle">hvis du ville holde dig<br />til opbevaringsrummet.</p>
+   <p begin="00:40:30.512" end="00:40:33.223" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lad mig sige dig noget. Jeg kommer herfra.</p>
+   <p begin="00:40:34.057" end="00:40:35.142" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er her, jeg voksede op,</p>
+   <p begin="00:40:35.225" end="00:40:38.395" region="AmazonDefaultRegion" style="AmazonDefaultStyle">og var det op til mig,<br />brændte jeg det hele ned.</p>
+   <p begin="00:40:46.611" end="00:40:47.654" region="AmazonDefaultRegion" style="AmazonDefaultStyle"><span>Din lille lort!</span></p>
+   <p begin="00:41:31.781" end="00:41:33.658" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvor er kassen fra '78?</p>
+   <p begin="00:41:33.742" end="00:41:35.327" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Willeford, hvor er '78?</p>
+   <p begin="00:41:36.453" end="00:41:37.454" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Lige her.</p>
+   <p begin="00:41:45.420" end="00:41:46.421" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Treogfirs.</p>
+   <p begin="00:41:53.220" end="00:41:55.847" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad er du, Sherlock holmes?<br />Vi slæber 53 kasser ud,</p>
+   <p begin="00:41:55.931" end="00:41:58.141" region="AmazonDefaultRegion" style="AmazonDefaultStyle">du rækker bare ned i én<br />og finder Waits' journal?</p>
+   <p begin="00:41:58.225" end="00:41:59.434" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det er ikke hans journal.</p>
+   <p begin="00:42:01.645" end="00:42:04.397" region="AmazonDefaultRegion" style="AmazonDefaultStyle">McCLAREN HALL UNGDOMSJOURNAL<br />BOSCH, HIERONYMUS (HARRY)</p>
+   <p begin="00:42:16.743" end="00:42:18.119" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David, hvor er du?</p>
+   <p begin="00:42:23.416" end="00:42:24.960" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg er lige her, mor.</p>
+   <p begin="00:42:27.295" end="00:42:28.922" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvor har du været?</p>
+   <p begin="00:42:29.005" end="00:42:31.925" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg sad lige her og så dig sove.</p>
+   <p begin="00:42:34.678" end="00:42:37.931" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du skulle have vækket mig.<br />Nu vil jeg være vågen hele natten.</p>
+   <p begin="00:42:38.723" end="00:42:40.642" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Har du været på apoteket?</p>
+   <p begin="00:42:41.309" end="00:42:44.271" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Ja, men jeg fik ingen prednisone.</p>
+   <p begin="00:42:44.354" end="00:42:46.690" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvorfor ikke? Var de løbet tør?</p>
+   <p begin="00:42:47.148" end="00:42:50.235" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg har brug for min medicin.</p>
+   <p begin="00:42:50.485" end="00:42:55.532" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej, jeg har noget bedre til dig.<br />Meget bedre, tror jeg.</p>
+   <p begin="00:42:56.157" end="00:42:59.452" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hvad, da? Lægen udskrev jo prednisone.</p>
+   <p begin="00:43:02.414" end="00:43:07.168" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Mor, jeg håber ikke,<br />at jeg har skuffet dig på nogen måde.</p>
+   <p begin="00:43:08.503" end="00:43:10.839" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Selvfølgelig ikke. Hvad taler du om?</p>
+   <p begin="00:43:11.881" end="00:43:14.175" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg har altid gjort mit bedste<br />for at passe på dig.</p>
+   <p begin="00:43:14.259" end="00:43:15.427" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Det ved du godt, ikke?</p>
+   <p begin="00:43:15.844" end="00:43:20.223" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Selvfølgelig gør du det.<br />Du er den gode søn.</p>
+   <p begin="00:43:22.309" end="00:43:24.436" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Siden du flyttede ind hos os.</p>
+   <p begin="00:43:26.646" end="00:43:30.984" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg ved ikke, hvor jeg ville være,<br />hvis du ikke passede på mig.</p>
+   <p begin="00:43:35.196" end="00:43:36.448" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Er der noget galt?</p>
+   <p begin="00:43:38.158" end="00:43:40.827" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du er den eneste,<br />der virkelig har holdt af mig.</p>
+   <p begin="00:43:41.995" end="00:43:43.121" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Hele mit liv.</p>
+   <p begin="00:43:45.040" end="00:43:46.708" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Du trak mig ud af ilden.</p>
+   <p begin="00:43:52.422" end="00:43:53.673" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg elsker dig, mor.</p>
+   <p begin="00:43:54.841" end="00:43:56.384" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg elsker også dig, søn.</p>
+   <p begin="00:43:58.219" end="00:43:59.387" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Giv mig et kys.</p>
+   <p begin="00:44:11.608" end="00:44:12.609" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej, David.</p>
+   <p begin="00:44:12.692" end="00:44:15.570" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Jeg kan ikke lide, at den er så lav.<br />Rejs mig op igen.</p>
+   <p begin="00:44:17.489" end="00:44:19.366" region="AmazonDefaultRegion" style="AmazonDefaultStyle">Nej, læg den bag mig.</p>
+   <p begin="00:44:20.742" end="00:44:22.202" region="AmazonDefaultRegion" style="AmazonDefaultStyle">David, nej.</p>
+  </div>
+ </body></tt>
