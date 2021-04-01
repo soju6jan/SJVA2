@@ -1,3 +1,8 @@
+##### ■ 0.2.19.20 (2021-04-01) #####
+  - Plex SJVA.bundle 업데이트 : [(관련글)](https://forums.plex.tv/t/can-no-longer-update-library-database-with-sqlite3/701405/36)<br>
+    - 최신버전에서는 update, delete 쿼리가 동작 하지 않음. 최신버전 Plex 인 경우 업데이트 필요<br>
+    - SJVA.bundle 버전 : 0.2.19.20 으로 동일
+
 ##### ■ 0.2.19.18 (2021-03-29) #####
   - Plex Agent : plex 업데이트로 인한 문제 수정. 에이전트 버전 : 0.2.19.18<br>
 
