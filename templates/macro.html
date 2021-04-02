@@ -312,6 +312,41 @@
   {{ setting_bottom(desc) }}
 {% endmacro %}
 
+
+
+{% macro setting_input_textarea_wide(id, left, value='', col='12', row='3', desc='', disabled=False, padding='10') %}
+  <div class='row' style="padding-top: {{padding}}px; padding-bottom:{{padding}}px; align-items: center;">
+    <div class='col-sm-12'>
+      {% if left != '' %}
+        <div class="input-group col-sm-{{col}}">
+          <strong>{{ left }}</strong>
+        </div>
+      {% endif %}
+      <div class="input-group col-sm-{{col}}">
+        <textarea id="{{id}}" name="{{id}}" class="col-md-12" rows="{{row}}" 
+          {% if disabled %}
+            disabled
+          {% endif %}
+        >{{ value }}</textarea>
+      </div>  
+      {% if desc is not none %}
+        <div style="padding-left:20px; padding-top:{{padding_top}}}px;">
+        <em>
+        {% if desc is string %}
+          {{ desc }}      
+        {% elif desc is iterable %}
+          {% for d in desc %}
+          {{ d }}<br>
+          {% endfor %}
+        {% endif %}
+        </em>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+
 {% macro setting_input_textarea_and_buttons(id, left, buttons, value='', col='9', row='3', desc='', disabled=False) %}
   {{ setting_top(left) }}
   <div class="input-group col-sm-{{col}}">
