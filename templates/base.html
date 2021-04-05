@@ -763,4 +763,19 @@ function global_relay_test(remote) {
     }
   });
 }       
+
+function global_send_commmand(command, data={}) {
+  data['command'] = command;
+  $.ajax({
+    url: '/' + package_name + '/ajax/' + sub + '/command',
+    type: "POST", 
+    cache: false,
+    data:data,
+    dataType: "json",
+    success: function (data) {
+      notify(data['msg'], data['ret']);
+    }
+  });
+}
+
 </script>
