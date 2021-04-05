@@ -1,3 +1,6 @@
+##### ■ 0.2.19.21 (2021-04-05) #####
+  - 메타데이터 - 영화 : 배우이름, 줄거리가 영문인 경우 번역하는 옵션 추가<br>
+
 ##### ■ 0.2.19.20 (2021-04-01) #####
   - Plex SJVA.bundle 업데이트 : [(관련글)](https://forums.plex.tv/t/can-no-longer-update-library-database-with-sqlite3/701405/36)<br>
     - 최신버전에서는 update, delete 쿼리가 동작 하지 않음. 최신버전 Plex 인 경우 업데이트 필요<br>
