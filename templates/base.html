@@ -764,7 +764,7 @@ function global_relay_test(remote) {
   });
 }       
 
-function global_send_commmand(command, data={}) {
+function global_send_command(command, data={}) {
   data['command'] = command;
   $.ajax({
     url: '/' + package_name + '/ajax/' + sub + '/command',
