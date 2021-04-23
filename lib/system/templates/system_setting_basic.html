@@ -25,7 +25,6 @@
       <form id='setting' name='setting'>
         {{ macros.setting_input_int('port', 'Port', value=arg['port'], min='1', placeholder='Port', desc=['포트 번호입니다.', '네이티브 설치 혹은 도커  네트워크 타입이 호스트일 경우 반영됩니다.', '도커 브릿지 모드인 경우는 docker run -p 옵션에서 변경하시기 바랍니다.', '경고 : -p 브릿지 모드로 사용중 일 경우 9999번을 절대 변경하지 마세요.']) }}
         {{ macros.setting_input_text_and_buttons('ddns', 'DDNS', [['ddns_test_btn', '테스트']], value=arg['ddns'], desc=['외부에서 접근시 사용할 DDNS. http:// 나 https:// 로 시작해야합니다.', 'RSS, Plex Callback, KLive 등에서 URL생성시 사용합니다.', '테스트 버튼 클릭 후 버전을 확인 할 수 있어야 합니다.']) }}
-        {{ macros.setting_input_text_and_buttons('url_filebrowser', 'URL FileBrowser', [['go_filebrowser_btn', 'GO']], value=arg['url_filebrowser']) }}
         {{ macros.setting_input_text('auto_restart_hour', '자동 재시작 시간', value=arg['auto_restart_hour'], col='3', desc=['자동 재시작 간격(시간단위)이나 Cron 설정을 입력합니다.', '0이면 재시작 안함.']) }}
         {{ macros.setting_select('log_level', '로그 레벨', [['10', 'DEBUG'],['20', 'INFO'],['30', 'WARNING'],['40', 'ERROR'], ['50', 'CRITICAL'] ], value=arg['log_level'], col='3') }}
         {{ macros.setting_button([['setting_save', '저장']]) }}
