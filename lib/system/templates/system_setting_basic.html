@@ -360,7 +360,7 @@ $("body").on('click', '#link_edit_confirm_btn', function(e){
     link_data.splice(link_data.length, 0, tmp);
   } else {
     link_data.splice(target_id, 1);
-    link_data.splice(target_id-1, 0, tmp);
+    link_data.splice(target_id, 0, tmp);
   }
   make_link_data()
   $('#link_edit_modal').modal('hide');  
