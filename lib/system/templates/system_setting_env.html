@@ -76,8 +76,7 @@ $("body").on('click', '#setting_save_btn', function(e){
 
 $("body").on('click', '#shutdown_btn', function(e){
   e.preventDefault();
-  window.location.href = "/system/shutdown"
-
+  shutdown_confirm();
 });
 
 $("body").on('click', '#celery_test_btn', function(e){
