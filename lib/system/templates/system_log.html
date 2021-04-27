@@ -61,6 +61,7 @@ var current_filename = '';
 var start_filename = "{{arg['filename']}}";
 
 $(document).ready(function() {
+  $('#main_container').attr('class', 'container-fluid');
   ResizeTextArea()
   make_form()
   if (start_filename != '')
