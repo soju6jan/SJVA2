@@ -2,8 +2,7 @@
   - 파일처리 av2 
     - -C 파일 처리시 타겟폴더에 다른 cd 파일이 있는 경우 cd3으로 처리<br>
     - 이미 파일처리된 -C 파일을 변경할 수 있는 툴 추가 <br>
-  - 도커 태그 : 3.5로 변경. soju6jan/sjva:3.5-tool / soju6jan/sjva:3.5 / soju6jan/sjva:3.5-mini<br>
-
+  
 ##### <span style="color:red">■ 0.2.20.0 (2021-04-29)</span> #####
   - 도커 업데이트<br>
 
