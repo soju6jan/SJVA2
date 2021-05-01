@@ -694,6 +694,7 @@ $("body").on('click', '#global_select_local_file_load_btn', function(e) {
   e.preventDefault();
   let current_path = $('#select_local_file_modal_path').val().trim();
   only_dir = $('#select_local_file_modal_only_dir').val().trim();
+  listdir(current_path, only_dir);
 });
 
 $("body").on('click', '#select_local_file_modal_confirm_btn', function(e) {
