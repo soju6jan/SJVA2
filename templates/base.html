@@ -143,6 +143,26 @@
       </div>
     </div>
 
+    
+    <!-- 예고편 Player Modal: START -->
+    <div class="modal fade" id="video_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="video_modal_title">예고편 재생: </h4>
+          </div>
+          <div class="modal-body" id="modal_body" style="word-break:break-all;">
+            <span id="video_player_body"></span>
+          </div>
+          <!--</div>-->
+          <div class="modal-footer">
+            <button type="button" id='video_close_btn' class="btn btn-default" data-dismiss="modal">닫기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 예고편 Player Modal: END -->
+
 
     <!--command modal-->
     {{ macros.m_modal_start('command_modal', '', 'modal-lg') }}
@@ -785,4 +805,13 @@ function shutdown_confirm() {
   $('#confirm_button').attr('onclick', 'window.location.href = "/system/shutdown";');
   $("#confirm_modal").modal();
 }
+
+$("#video_modal").on('hidden.bs.modal', function () {
+  document.getElementById("video_modal_video").pause();
+});
+
+$("#video_modal").on('click', '#trailer_close_btn', function(e){
+  document.getElementById("video_modal_video").pause();
+  e.preventDefault();
+});
 </script>
