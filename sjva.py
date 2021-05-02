@@ -26,9 +26,9 @@ try:
         try:
             if platform.system() != 'Windows':
                 custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'custom')
-                os.system("chmod 777 -R %s" % custom)
+                os.system('chmod 777 -R "%s"' % custom)
                 custom = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bin')
-                os.system("chmod 777 -R %s" % custom)
+                os.system('chmod 777 -R "%s"' % custom)
         except:
             print('Exception:%s', e)
 except Exception as exception:
