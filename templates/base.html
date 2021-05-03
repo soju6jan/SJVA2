@@ -808,10 +808,25 @@ function shutdown_confirm() {
 
 $("#video_modal").on('hidden.bs.modal', function () {
   document.getElementById("video_modal_video").pause();
+  //streaming_kill();
 });
 
 $("#video_modal").on('click', '#trailer_close_btn', function(e){
-  document.getElementById("video_modal_video").pause();
   e.preventDefault();
+  document.getElementById("video_modal_video").pause();
+  //streaming_kill();
 });
+
+function streaming_kill(command, data={}) {
+  $.ajax({
+    url: '/' + 'ffmpeg' + '/ajax/streaming_kill',
+    type: "POST", 
+    cache: false,
+    data:{},
+    dataType: "json",
+    success: function (data) {
+    }
+  });
+}
+
 </script>
