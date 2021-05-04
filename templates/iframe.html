@@ -2,44 +2,35 @@
 {% block content %}
 
 <div class="row" style="align-items: center; text-align: center;">
-  
-      <iframe id="iframe" class="embed-responsive"  src="" frameborder="0" scrolling="yes" allowfullscreen></iframe>
+  <iframe id="iframe" class="embed-responsive"  src="" frameborder="0" scrolling="yes" allowfullscreen></iframe>
   <a id='link' href="" target="_blank">새창으로 열기</a>
 </div>
 
 <script type="text/javascript">
-
-
-
-
-  $(document).ready(function() {
-    $('#main_container').attr('class', 'container-fluid');
-    var url = "{{site}}"
-    var protocol = window.location.protocol;
-    console.log(protocol)
-    tmp = url
-    $('#iframe').attr('src', tmp)
-    $('#link').attr('href', tmp)
-    if (tmp.search('flaskfilemanager') != -1) {
-      if (protocol == 'https:' && tmp.search('http:') != -1)  {
-        tmp = tmp.replace('http:', 'https:')
-        $('#iframe').attr('src', tmp)
-        $('#link').attr('href', tmp)
-      }
+$(document).ready(function() {
+  $('#main_container').attr('class', 'container-fluid');
+  var url = "{{site}}"
+  var protocol = window.location.protocol;
+  console.log(protocol);
+  tmp = url;
+  if (url.search('flaskfilemanager') != -1) {
+    if (protocol == 'https:' && url.search('http:') != -1)  {
+      url = url.replace('http:', 'https:')
     }
-    
+  }
+  $('#iframe').attr('src', url)
+  $('#link').attr('href', url)
+  Resize();
+});
 
+function Resize() {
+  ClientHeight = window.innerHeight
+  $("#iframe").height(ClientHeight-100);
+}
 
-    function Resize() {
-      ClientHeight = window.innerHeight
-      $("#iframe").height(ClientHeight-100);
-    }
-    $(window).resize(function() {
-      Resize();
-    });
-    Resize()
-    
-  })
+$(window).resize(function() {
+  Resize();
+});
 </script> 
 
 {% endblock %}
