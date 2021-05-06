@@ -2,7 +2,8 @@
 ##### python3 버그 패치 #####
   - smi2srt : 시간 0 으로 나오는 문제 수정<br>
   - 파일처리 av2 : nfo 생성 안되는 문제 수정<br>
-
+  - rclone_expand : import error 문제 수정<br>
+  
 ##### TODO #####
   - plex agent dvd, ama 같은 폴더인 경우<br>
 
