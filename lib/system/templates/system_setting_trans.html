@@ -13,14 +13,13 @@
   <form id='setting' name='setting'>  
   <div class="tab-content" id="nav-tabContent">
     {{ macros.m_tab_content_start('normal', true) }}
-      {{ macros.setting_radio('trans_type', '번역', ['사용안함', '구글', '파파고'], value=arg['trans_type']) }}
+      {{ macros.setting_radio('trans_type', '번역', ['사용안함', '구글 API', '파파고', '구글 WEB'], value=arg['trans_type']) }}
       <div id="google_div" class="collapse">
       {{ macros.setting_input_text('trans_google_api_key', '구글 번역 API 키', value=arg['trans_google_api_key']) }}
       </div>
 
       <div id="papago_div" class="collapse">
       {{ macros.setting_input_textarea('trans_papago_key', '파파고 Key', value=arg['trans_papago_key'], row='10', desc=['여러 개의 키값을 지원합니다. 구분자 | 또는 엔터', '예) Client_ID_1,Client_Secret_1|Client_ID_2,Client_Secret_2']) }}
-      
       </div>
       {{ macros.m_hr() }}
 
@@ -45,7 +44,7 @@ $(document).ready(function(){
 
 function set_trans_type(type) {
   $('input[name=trans_type]')[parseInt(type)].checked = true;
-  if (type == '0') {
+  if (type == '0' || type == '3') {
     $('#google_div').collapse('hide')
     $('#papago_div').collapse('hide')
   } else if (type == '1') {
