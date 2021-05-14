@@ -4,8 +4,8 @@
   - 파일처리 av2 : nfo 생성 안되는 문제 수정<br>
   - rclone_expand : import error 문제 수정<br>
   
-##### TODO #####
-  - plex agent dvd, ama 같은 폴더인 경우<br>
+##### ■ 0.2.20.9 (2021-05-14) #####
+  - 메타 ktv : tmdb 사용 옵션 추가 & 버그 수정<br>
 
 ##### ■ 0.2.20.8 (2021-05-12) #####
   - offcloud : rss 정규식 매칭으로 선택하여 피드 추가<br>
