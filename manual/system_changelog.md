@@ -3,6 +3,7 @@
   - smi2srt : 시간 0 으로 나오는 문제 수정<br>
   - 파일처리 av2 : nfo 생성 안되는 문제 수정<br>
   - rclone_expand : import error 문제 수정<br>
+  - no_celery and bind=True function call bug<br>
   
 ##### ■ 0.2.20.9 (2021-05-14) #####
   - 위키 : public 편집 안되는 문제 수정<br>
