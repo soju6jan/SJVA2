@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  {{ macros.m_button_group([['global_setting_save_btn', '설정 저장']])}}
+  {{ macros.m_row_start('5') }}
+  {{ macros.m_row_end() }}
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head2('normal', '설정', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <form id='setting' name='setting'>
+  <div class="tab-content" id="nav-tabContent">
+    {{ macros.m_tab_content_start('normal', true) }}
+      {{ macros.setting_input_text_and_buttons('base_mod_root_path', 'Path', [['select_path_btn', '경로 선택']], value=arg['base_mod_root_path'], desc=['모듈 폴더들이 들어 있는 경로', '변경시 재시작 후 적용']) }}
+      {{ macros.setting_input_textarea('base_mod_order', '메뉴 순서', value=arg['base_mod_order'], desc=['구분자 ,']) }}
+    {{ macros.m_tab_content_end() }}  
+  </div><!--tab-content-->
+  </form>
+</div> <!--전체-->
+
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name'] }}";
+var sub = "{{arg['sub'] }}";
+
+$(document).ready(function(){
+});
+
+$("body").on('click', '#select_path_btn', function(e){
+  e.preventDefault();
+  var path = $('#base_mod_root_path').val().trim();
+  if (path == '') path = '/'
+  m_select_local_file_modal("모듈 폴더 경로", path, true, function(result){
+    $('#base_mod_root_path').val(result);
+  });
+});
+</script>    
+{% endblock %}

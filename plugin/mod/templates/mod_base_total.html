@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  {{ macros.m_button_group([['module_list_load_btn', '새로고침']])}}
+  {{ macros.m_row_start('5') }}
+  {{ macros.m_row_end() }}
+
+  {{ macros.m_hr_head_top() }}
+  {{ macros.m_row_start('0') }}
+  {{ macros.m_col(2,  macros.m_strong('Name')) }}
+  {{ macros.m_col(1,  macros.m_strong('Version')) }}
+  {{ macros.m_col(1,  macros.m_strong('Dev')) }}
+  {{ macros.m_col(2,  macros.m_strong('Status')) }}
+  {{ macros.m_col(6,  macros.m_strong('Desc')) }}
+  {{ macros.m_row_end() }}
+  {{ macros.m_hr_head_bottom() }}
+  <div id="list_div"></div>
+</div> <!--전체-->
+
+
+
+<script type="text/javascript">
+var package_name = "{{arg['package_name'] }}";
+var sub = "{{arg['sub'] }}";
+var sub2 = "{{arg['sub2'] }}";
+var current_data = null;
+
+$(document).ready(function(){
+  send_command(sub2, 'module_list', '', null);
+});
+
+
+$("body").on('click', '#module_list_load_btn', function(e){
+  e.preventDefault();
+  send_command(sub2, 'module_list', 'refresh', null);
+});
+
+$("body").on('click', '#module_install_btn', function(e){
+  e.preventDefault();
+  send_command(sub2, 'module_install', $(this).data('name'), null);
+});
+
+$("body").on('click', '#module_remove_btn', function(e){
+  e.preventDefault();
+  send_command(sub2, 'module_remove', $(this).data('name'), null);
+});
+
+
+function send_command(sub2, command, arg1, arg2) {
+  $.ajax({
+    url: '/' + package_name + '/ajax/' + sub + '/send_command',
+    type: "POST", 
+    cache: false,
+    data:{sub2:sub2, command:command, arg1:arg1, arg2:arg2},
+    dataType: "json",
+    success: function (ret) {
+      if (ret.msg != null) notify(ret.msg, ret.ret);
+      if (ret.module_list != null) make_module_list(ret.module_list);
+    }
+  });
+}
+
+
+
+function make_module_list(data) {
+  current_data = data;
+  str = '';
+  for (i in data) {
+    console.log(data[i]);
+    str += m_row_start();
+    str += m_col(2, data[i].name);
+    str += m_col(1, data[i].version);
+    str += m_col(1, data[i].developer);
+    is_installed = (data[i].install == null) ? false : true;
+    tmp = is_installed ? "설치" : "미설치";
+    if (is_installed) {
+      tmp += (data[i].version == data[i].install.version) ? '<br>최신버전' : "<br>업데이트 필요";
+    }
+    str += m_col(2, tmp);
+
+    tmp = data[i].description;
+    tmp2 = m_button('module_install_btn', is_installed ? "재설치" : "설치", [{'key':'name', 'value':data[i].name}]);
+    if (is_installed) {
+      tmp2 += m_button('module_remove_btn', '삭제', [{'key':'name', 'value':data[i].name}]);
+    }
+    tmp += '<br><br>' + m_button_group(tmp2)
+    str += m_col(6, tmp);
+    str += m_row_end();
+    if (i != data.length -1) str += m_hr();
+  }
+  $("#list_div").html(str);
+}
+
+</script>    
+{% endblock %}

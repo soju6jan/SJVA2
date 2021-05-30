@@ -4,7 +4,12 @@
   - 파일처리 av2 : nfo 생성 안되는 문제 수정<br>
   - rclone_expand : import error 문제 수정<br>
   - no_celery and bind=True function call bug<br>
-  
+
+##### <span style="color:red">■ 0.2.21.0 (2021-05-29)</span> #####
+  - 시스템 - 모듈 기능 추가<br>
+  - sjva.me VOD, S-Movie 게시판 웹 재생 기능 추가<br>
+  - sjva2 사용 종료<br>
+
 ##### ■ 0.2.20.9 (2021-05-14) #####
   - 위키 : public 편집 안되는 문제 수정<br>
   - 웹 : 6등급 이상 회원 분중 개인정보 화면에 초대 ID가 나오지 않는 문제 수정<br>
